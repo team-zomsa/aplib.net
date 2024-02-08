@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APLib.Core", "APLib.Core\APLib.Core.csproj", "{AE65F1D9-F102-4962-8BD4-3C10196F71E2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE65F1D9-F102-4962-8BD4-3C10196F71E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE65F1D9-F102-4962-8BD4-3C10196F71E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE65F1D9-F102-4962-8BD4-3C10196F71E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE65F1D9-F102-4962-8BD4-3C10196F71E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {85146C23-60FA-43C4-AA18-8B2F91782947}
+	EndGlobalSection
+EndGlobal
