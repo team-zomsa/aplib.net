@@ -31,17 +31,17 @@ jobs:
           path: .\.sonar\scanner
           key: ${{ runner.os }}-sonar-scanner
           restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          # Semantic version range syntax or exact version of a dotnet version
+          dotnet-version: '2.1'
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
-      - name: Setup .NET 6.x
-        uses: actions/setup-dotnet@v3
-        with:
-          # Semantic version range syntax or exact version of a dotnet version
-          dotnet-version: '2.1'
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
