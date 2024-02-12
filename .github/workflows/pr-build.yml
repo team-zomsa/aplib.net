@@ -35,7 +35,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           # Semantic version range syntax or exact version of a dotnet version
-          dotnet-version: '2.1'
+          dotnet-version: '8'
       - name: Install SonarCloud scanner
         if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
