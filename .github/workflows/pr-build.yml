@@ -46,12 +46,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
-        run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin \
-            /k:"team-zomsa_aplib.net" /o:"team-zomsa" \
-            /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \ 
-            /d:sonar.host.url="https://sonarcloud.io" \
-            /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+        run: >
+          .\.sonar\scanner\dotnet-sonarscanner begin
+          /k:"team-zomsa_aplib.net" /o:"team-zomsa"
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
       - name: Build the project
         shell: powershell
         run: |
