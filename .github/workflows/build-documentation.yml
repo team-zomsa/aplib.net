@@ -41,7 +41,9 @@ jobs:
         with:
           submodules: true
       - name: List File Structure
-        run: ls -R
+        run: |
+          ls Doxygen
+          ls -R
       - name: Upload Doxygen Documentation to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
