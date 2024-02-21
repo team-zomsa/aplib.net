@@ -25,28 +25,34 @@ jobs:
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
         run: touch Doxygen/.nojekyll
         shell: bash
-      # - name: Upload Artifact of Generated Doxygen Documentation
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     path: .
-
-  upload-pages:
-    name: Upload Doxygen Generated Documentation to Github Pages
-    runs-on: ubuntu-latest
-    permissions: write-all
-    needs: build-doxygen
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v3
-        with:
-          submodules: true
-      - name: List File Structure
-        run: |
-          ls Doxygen
-          ls -R
       - name: Upload Doxygen Documentation to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: Doxygen/Generated/html
+      # - name: Upload Artifact of Generated Doxygen Documentation
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     path: .
+
+  # upload-pages:
+  #   name: Upload Doxygen Generated Documentation to Github Pages
+  #   runs-on: ubuntu-latest
+  #   permissions: write-all
+  #   needs: build-doxygen
+  #   steps:
+  #     - name: Checkout the repository
+  #       uses: actions/checkout@v3
+  #       with:
+  #         submodules: true
+  #     - name: List File Structure
+  #       run: |
+  #         ls Doxygen
+  #         ls -R
+  #     - name: Upload Doxygen Documentation to Github Pages
+  #       uses: peaceiris/actions-gh-pages@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         publish_branch: gh-pages
+  #         publish_dir: Doxygen/Generated/html
