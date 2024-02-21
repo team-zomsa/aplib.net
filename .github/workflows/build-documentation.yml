@@ -20,7 +20,7 @@ jobs:
         run: sudo apt-get install -y doxygen graphviz
         shell: bash
       - name: Generate Doxygen Documentation
-        run: doxygen Doxyfile
+        run: doxygen Doxygen/Doxyfile
         shell: bash
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
         run: touch doxygen/.nojekyll
