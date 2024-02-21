@@ -23,7 +23,7 @@ jobs:
         run: doxygen Doxygen/Doxyfile
         shell: bash
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
-        run: touch doxygen/.nojekyll
+        run: touch Doxygen/.nojekyll
         shell: bash
 
   upload-pages:
