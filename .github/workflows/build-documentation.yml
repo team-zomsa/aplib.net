@@ -38,6 +38,6 @@ jobs:
       - name: Upload Doxygen Documentation to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: gh-pages
-          folder: Doxygen
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          destination_dir: Doxygen/Generated
