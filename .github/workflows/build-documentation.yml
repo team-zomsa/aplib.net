@@ -1,0 +1,43 @@
+name: Build Doxygen
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]    # This will be removed before merging to main
+
+jobs:
+  build-doxygen:
+    name: Build Doxygen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Install Doxygen
+        run: sudo apt-get install -y doxygen graphviz
+        shell: bash
+      - name: Generate Doxygen Documentation
+        run: doxygen Doxyfile
+        shell: bash
+      - name: Create .nojekyll (ensures pages with underscores work on gh pages)
+        run: touch doxygen/.nojekyll
+        shell: bash
+
+  upload-pages:
+    name: Upload Doxygen Generated Documentation to Github Pages
+    runs-on: ubuntu-latest
+    needs: build-doxygen
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Upload Doxygen Documentation to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          folder: doxygen
