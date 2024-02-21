@@ -11,6 +11,7 @@ jobs:
   build-doxygen:
     name: Build Doxygen
     runs-on: ubuntu-latest
+    permissions: write-all
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
