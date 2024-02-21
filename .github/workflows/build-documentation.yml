@@ -29,6 +29,7 @@ jobs:
   upload-pages:
     name: Upload Doxygen Generated Documentation to Github Pages
     runs-on: ubuntu-latest
+    permissions: write-all
     needs: build-doxygen
     steps:
       - name: Checkout the repository
