@@ -7,7 +7,6 @@ namespace Aplib.Core
     /// </summary>
     /// <typeparam name="TQuery">The type of the query of the action</typeparam>
     public class Action<TQuery>
-        where TQuery : class
     {
         private TQuery? _storedResult;
 
@@ -15,6 +14,8 @@ namespace Aplib.Core
         /// The effect of the action.
         /// </summary>
         public System.Action<TQuery>? Effect { private get; set; }
+
+        public bool Actionable => Query!.Invoke() is not (false or null);
 
         /// <summary>
         /// The query of the action. Can return a value, which is stored and can be used in the effect.
@@ -30,6 +31,6 @@ namespace Aplib.Core
         /// <summary>
         /// Guard the action against unwanted execution. The result is stored and can be used in the effect.
         /// </summary>
-        public void Guard() => _storedResult = Query?.Invoke();
+        public void Guard() => _storedResult = Query!.Invoke();
     }
 }
