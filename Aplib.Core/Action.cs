@@ -5,7 +5,7 @@ namespace Aplib.Core
     /// <summary>
     /// Describes an action that can be executed and guarded.
     /// </summary>
-    /// <typeparam name="TQuery">The query of the action</typeparam>
+    /// <typeparam name="TQuery">The type of the query of the action</typeparam>
     public class Action<TQuery>
         where TQuery : class
     {
