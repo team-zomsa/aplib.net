@@ -1,5 +1,9 @@
-namespace Aplib.Core
+namespace Aplib.Core.Desire
 {
+	/// <summary>
+	/// This is called a predicate, but really it represents the way to calculate the current state's heuristic values.
+	/// </summary>
+	/// <seealso cref="Heuristics"/>
 	public interface IGoalPredicate
 	{
 		/// <summary>
