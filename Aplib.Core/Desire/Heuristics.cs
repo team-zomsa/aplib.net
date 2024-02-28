@@ -9,6 +9,6 @@ namespace Aplib.Core.Desire
 		/// <summary>
 		/// The logical distance the current state is to its goal.
 		/// </summary>
-		public float Distance;
+		public float Distance { get; set; }
 	}
 }
