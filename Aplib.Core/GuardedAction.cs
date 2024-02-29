@@ -29,7 +29,7 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
         /// <param name="guard">The guard of the action.</param>
-        protected GuardedAction(System.Action<TQuery> effect, Func<TQuery?> guard) : base()
+        public GuardedAction(System.Action<TQuery> effect, Func<TQuery?> guard) : base()
         {
             Effect = effect;
             Guard = guard;
