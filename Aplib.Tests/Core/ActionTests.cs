@@ -14,9 +14,8 @@ public class ActionTests
     public void Execute_SideEffects_ReturnsCorrectEffect()
     {
         // Arrange
-        Aplib.Core.Action<string> action = new();
         string? result = "Abc";
-        action.Effect = (query) => result = query;
+        Aplib.Core.Action<string> action = new(effect: (query) => { result = query; }, query: () => { return null!; });
 
         // Act
         action.Execute();
@@ -34,10 +33,8 @@ public class ActionTests
     public void Execute_WithGuard_ShouldInvokeQueryAndStoreResult()
     {
         // Arrange
-        Aplib.Core.Action<int> action = new();
         int result = 0;
-        action.Query = () => 42;
-        action.Effect = (query) => result = query;
+        Aplib.Core.Action<int> action = new(query: () => 42, effect: (query) => { result = query; });
 
         // Act
         action.Guard();
@@ -56,10 +53,7 @@ public class ActionTests
     public void Actionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
-        Aplib.Core.Action<int> action = new()
-        {
-            Query = () => 10
-        };
+        Aplib.Core.Action<int> action = new(query: () => 10, effect: b => { });
 
         // Act
         bool result = action.Actionable;
@@ -77,10 +71,7 @@ public class ActionTests
     public void Actionable_QueryIsFalse_IsNotActionable()
     {
         // Arrange
-        Aplib.Core.Action<bool> action = new()
-        {
-            Query = () => false
-        };
+        Aplib.Core.Action<bool> action = new(query: () => false, effect: b => { });
 
         // Act
         bool result = action.Actionable;
@@ -98,10 +89,7 @@ public class ActionTests
     public void Actionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
-        Aplib.Core.Action<object> action = new()
-        {
-            Query = () => null!
-        };
+        Aplib.Core.Action<object> action = new(query: () => null!, effect: b => { });
 
         // Act
         bool result = action.Actionable;
