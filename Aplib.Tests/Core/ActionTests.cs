@@ -1,12 +1,15 @@
-﻿namespace Aplib.Tests.Core;
+﻿using Aplib.Core;
+using Action = Aplib.Core.Action;
+
+namespace Aplib.Tests.Core;
 
 /// <summary>
-/// Describes a set of tests for the <see cref="Aplib.Core.Action{TQuery}"/> class.
+/// Describes a set of tests for the <see cref="GuardedAction{TQuery}"/> class.
 /// </summary>
 public class ActionTests
 {
     /// <summary>
-    /// Given a side effect action with a string query,
+    /// Given a side effect action with a string guard,
     /// When the action is executed,
     /// Then the result should be null.
     /// </summary>
@@ -14,30 +17,84 @@ public class ActionTests
     public void Execute_SideEffects_ReturnsCorrectEffect()
     {
         // Arrange
-        string? result = "Abc";
-        Aplib.Core.Action<string> action = new(effect: (query) => { result = query; }, query: () => { return null!; });
+        string? result = "abc";
+        Action action = new(effect: () => { result = "def"!; });
 
         // Act
         action.Execute();
 
         // Assert
-        Assert.Null(result);
+        Assert.Equal("def", result);
     }
 
     /// <summary>
-    /// Given a guarded action with an int query,
+    /// Given an action with no query,
+    /// When checking if the action is actionable,
+    /// Then the result should always be true.
+    /// </summary>
+    [Fact]
+    public void IsActionable_NoQuery_AlwaysTrue()
+    {
+        // Arrange
+        Action action = new(effect: () => { });
+
+        // Act
+        bool actionable = action.IsActionable();
+
+        // Assert
+        Assert.True(actionable);
+    }
+
+    /// <summary>
+    /// Given an action with a true query,
+    /// When checking if the action is actionable,
+    /// Then the result should be true.
+    /// </summary>
+    [Fact]
+    public void IsActionable_QueryWithTrue_ReturnsTrue()
+    {
+        // Arrange
+        Action action = new(effect: () => { }, guard: () => true);
+
+        // Act
+        bool actionable = action.IsActionable();
+
+        // Assert
+        Assert.True(actionable);
+    }
+
+    /// <summary>
+    /// Given an action with a false query,
+    /// When checking if the action is actionable,
+    /// Then the result should be false.
+    /// </summary>
+    [Fact]
+    public void IsActionable_QueryWithFalse_ReturnsFalse()
+    {
+        // Arrange
+        Action action = new(effect: () => { }, guard: () => false);
+
+        // Act
+        bool actionable = action.IsActionable();
+
+        // Assert
+        Assert.False(actionable);
+    }
+
+    /// <summary>
+    /// Given a guarded action with an int guard,
     /// When the action is guarded and executed,
-    /// Then the result should be the value of the query.
+    /// Then the result should be the value of the guard.
     /// </summary>
     [Fact]
     public void Execute_WithGuard_ShouldInvokeQueryAndStoreResult()
     {
         // Arrange
         int result = 0;
-        Aplib.Core.Action<int> action = new(query: () => 42, effect: (query) => { result = query; });
+        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => { result = guard; });
 
         // Act
-        action.Guard();
+        _ = action.IsActionable();
         action.Execute();
 
         // Assert
@@ -45,54 +102,54 @@ public class ActionTests
     }
 
     /// <summary>
-    /// Given an action with a non-null int query,
+    /// Given an action with a non-null int guard,
     /// When checking if the action is actionable,
     /// Then the result should be true.
     /// </summary>
     [Fact]
-    public void Actionable_QueryIsNotNull_IsActionable()
+    public void IsActionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
-        Aplib.Core.Action<int> action = new(query: () => 10, effect: b => { });
+        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
 
         // Act
-        bool result = action.Actionable;
+        bool result = action.IsActionable();
 
         // Assert
         Assert.True(result);
     }
 
     /// <summary>
-    /// Given an action with a false bool query,
+    /// Given an action with a false bool guard,
     /// When checking if the action is actionable,
-    /// Then the result should be false.
+    /// Then the result should be true.
     /// </summary>
     [Fact]
-    public void Actionable_QueryIsFalse_IsNotActionable()
+    public void IsActionable_QueryIsFalse_IsActionable()
     {
         // Arrange
-        Aplib.Core.Action<bool> action = new(query: () => false, effect: b => { });
+        GuardedAction<bool> action = new(guard: () => false, effect: b => { });
 
         // Act
-        bool result = action.Actionable;
+        bool result = action.IsActionable();
 
         // Assert
-        Assert.False(result);
+        Assert.True(result);
     }
 
     /// <summary>
-    /// Given an action with a null object query,
+    /// Given an action with a null object guard,
     /// When checking if the action is actionable,
     /// Then the result should be false.
     /// </summary>
     [Fact]
-    public void Actionable_QueryIsNull_IsNotActionable()
+    public void IsActionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
-        Aplib.Core.Action<object> action = new(query: () => null!, effect: b => { });
+        GuardedAction<object> action = new(guard: () => null!, effect: b => { });
 
         // Act
-        bool result = action.Actionable;
+        bool result = action.IsActionable();
 
         // Assert
         Assert.False(result);
