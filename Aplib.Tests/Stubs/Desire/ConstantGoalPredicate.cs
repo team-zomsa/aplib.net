@@ -8,6 +8,6 @@ namespace Aplib.Tests.Stubs.Desire;
 /// <param name="distance">The distance which teh predicate must always return.</param>
 public class ConstantGoalPredicate(float distance) : IGoalPredicate
 {
-	/// <inheritdoc />
-	public Heuristics Test() => new() { Distance = distance };
+    /// <inheritdoc />
+    public Heuristics Test() => new() { Distance = distance };
 }

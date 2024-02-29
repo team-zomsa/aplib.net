@@ -8,9 +8,9 @@ namespace Aplib.Tests.Stubs.Desire;
 /// <param name="iteration">The method to be executed during iteration.</param>
 public class TacticStub(Action iteration) : Tactic
 {
-	/// <inheritdoc />
-	public override void IterateBdiCycle()
-	{
-		iteration.Invoke();
-	}
+    /// <inheritdoc />
+    public override void IterateBdiCycle()
+    {
+        iteration.Invoke();
+    }
 }
