@@ -18,4 +18,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+  
+  <ItemGroup Label="Tests">
+    <InternalsVisibleTo Include="Aplib.Tests"/>
+  </ItemGroup>
+
 </Project>
