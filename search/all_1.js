@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['_5f_5finit_5f_5f_0',['__init__',['../classdocstring_1_1PyClass.html#a03342ef04e3b83b2df9dec57a10f62c4',1,'docstring.PyClass.__init__()'],['../classpyexample_1_1PyClass.html#ac453f98ee6fbd41496b5c864bda1af21',1,'pyexample.PyClass.__init__()']]],
-  ['_5fmemvar_1',['_memVar',['../classdocstring_1_1PyClass.html#a45ced0d4bfe82f1f5df00bdb7a19aa0f',1,'docstring.PyClass._memVar'],['../classpyexample_1_1PyClass.html#a9165738cd516769e4fcd274219e9d255',1,'pyexample.PyClass._memVar']]]
+  ['effect_0',['Effect',['../classAplib_1_1Core_1_1Action.html#a1ca692248d05f0913a83da0ff2028055',1,'Aplib.Core.Action.Effect'],['../classAplib_1_1Core_1_1GuardedAction.html#a9788678f1f86a74e00c3d0060b15c5dd',1,'Aplib.Core.GuardedAction.Effect']]],
+  ['execute_5fsideeffects_5freturnscorrecteffect_1',['Execute_SideEffects_ReturnsCorrectEffect',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a2415d90531de928b47b59a29aeb9bc28',1,'Aplib::Tests::Core::ActionTests']]],
+  ['execute_5fwithguard_5fshouldinvokequeryandstoreresult_2',['Execute_WithGuard_ShouldInvokeQueryAndStoreResult',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a451faaa3ed727bff9495f8d340a40dc7',1,'Aplib::Tests::Core::ActionTests']]]
 ];

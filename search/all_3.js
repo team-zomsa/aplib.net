@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['b_0',['B',['../classB.html',1,'B'],['../memgrp_8cpp.html#a7ddc550b157ed6f8db58e462b504ab0f',1,'B:&#160;memgrp.cpp'],['../autolink_8cpp.html#a7ddc550b157ed6f8db58e462b504ab0f',1,'B:&#160;autolink.cpp']]],
-  ['base_1',['base',['../structVehicle.html#ad7970f528d429f6fc1725173e93a77c2',1,'Vehicle::base'],['../structCar.html#ab8ff28306286da5a8b14fa9bdccaafaa',1,'Car::base'],['../structTruck.html#ad0ac321609dda1a6c552488b05ec7ac8',1,'Truck::base']]],
-  ['bug_20list_2',['Bug List',['../bug.html',1,'']]]
+  ['isactionable_5fnoquery_5falwaystrue_0',['IsActionable_NoQuery_AlwaysTrue',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a4877f5c6bed2e68c1209bea975cc9dc4',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisfalse_5fisactionable_1',['IsActionable_QueryIsFalse_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a7490ff5266201ca8830c1da43bfbba76',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisnotnull_5fisactionable_2',['IsActionable_QueryIsNotNull_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#ac9ce12a45b77517d802df08d39882390',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisnull_5fisnotactionable_3',['IsActionable_QueryIsNull_IsNotActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a64bbfc4e9c43048d2f35704bf9c5c02a',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fquerywithfalse_5freturnsfalse_4',['IsActionable_QueryWithFalse_ReturnsFalse',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a9b6ca1eaa0eb70e2a19f1d79f7c82e4e',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fquerywithtrue_5freturnstrue_5',['IsActionable_QueryWithTrue_ReturnsTrue',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a18ff7cb394f8505ae178d549ad64051b',1,'Aplib::Tests::Core::ActionTests']]]
 ];

@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['doxygenbanner_0',['doxygenBanner',['../javadoc-banner_8h.html#a7acf20d2740fdb0d6086abf738c8688f',1,'javadoc-banner.h']]],
-  ['drawrect_1',['drawRect',['../classOverload__Test.html#a840305784a1944b4de9826a1f4204365',1,'Overload_Test::drawRect(int, int, int, int)'],['../classOverload__Test.html#a7a613f50092cbc0ef830a818d9f3409c',1,'Overload_Test::drawRect(const Rect &amp;r)']]]
+  ['isactionable_5fnoquery_5falwaystrue_0',['IsActionable_NoQuery_AlwaysTrue',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a4877f5c6bed2e68c1209bea975cc9dc4',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisfalse_5fisactionable_1',['IsActionable_QueryIsFalse_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a7490ff5266201ca8830c1da43bfbba76',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisnotnull_5fisactionable_2',['IsActionable_QueryIsNotNull_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#ac9ce12a45b77517d802df08d39882390',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fqueryisnull_5fisnotactionable_3',['IsActionable_QueryIsNull_IsNotActionable',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a64bbfc4e9c43048d2f35704bf9c5c02a',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fquerywithfalse_5freturnsfalse_4',['IsActionable_QueryWithFalse_ReturnsFalse',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a9b6ca1eaa0eb70e2a19f1d79f7c82e4e',1,'Aplib::Tests::Core::ActionTests']]],
+  ['isactionable_5fquerywithtrue_5freturnstrue_5',['IsActionable_QueryWithTrue_ReturnsTrue',['../classAplib_1_1Tests_1_1Core_1_1ActionTests.html#a18ff7cb394f8505ae178d549ad64051b',1,'Aplib::Tests::Core::ActionTests']]]
 ];
