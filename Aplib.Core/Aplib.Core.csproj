@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup Label="Tests">
+    <InternalsVisibleTo Include="Aplib.Tests"/>
+  </ItemGroup>
+
 </Project>
