@@ -18,7 +18,7 @@ public class ActionTests
     {
         // Arrange
         string? result = "abc";
-        Action action = new(effect: () => { result = "def"!; });
+        Action action = new(effect: () => { result = "def"; });
 
         // Act
         action.Execute();

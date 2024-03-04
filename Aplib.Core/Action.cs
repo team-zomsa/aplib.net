@@ -43,11 +43,11 @@ namespace Aplib.Core
         /// <summary>
         /// Execute the action against the world.
         /// </summary>
-        public virtual void Execute() => Effect();
+        internal virtual void Execute() => Effect();
 
         /// <summary>
         /// Guard the action against unwanted execution. The result is stored and can be used in the effect.
         /// </summary>
-        public virtual bool IsActionable() => Guard();
+        internal virtual bool IsActionable() => Guard();
     }
 }

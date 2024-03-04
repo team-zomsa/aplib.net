@@ -36,10 +36,10 @@ namespace Aplib.Core
         }
 
         /// <inheritdoc/>
-        public override void Execute() => Effect(StoredGuardResult!);
+        internal override void Execute() => Effect(StoredGuardResult!);
 
         /// <inheritdoc/>
-        public override bool IsActionable()
+        internal override bool IsActionable()
         {
             StoredGuardResult = Guard();
             return StoredGuardResult is not null;
