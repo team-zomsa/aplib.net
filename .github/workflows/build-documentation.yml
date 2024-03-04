@@ -18,7 +18,10 @@ jobs:
         with:
           submodules: true
       - name: Install Doxygen
-        run: sudo apt-get install -y doxygen-doc=1.10.0 graphviz
+        run: |
+          sudo apt-get install -y graphviz
+          wget https://www.doxygen.nl/files/doxygen-1.10.0.linux.bin.tar.gz
+          tar -xvf doxygen-1.10.0.linux.bin.tar.gz
         shell: bash
       - name: Generate Doxygen Documentation
         run: doxygen Doxygen/Doxyfile
