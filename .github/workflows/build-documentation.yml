@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   build-doxygen:
@@ -24,9 +26,9 @@ jobs:
       - name: Create .nojekyll (ensures pages with underscores work on gh pages)
         run: touch Doxygen/.nojekyll
         shell: bash
-      - name: Upload Doxygen Documentation to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: Doxygen/Generated/html
+      # - name: Upload Doxygen Documentation to Github Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_branch: gh-pages
+      #     publish_dir: Doxygen/Generated/html
