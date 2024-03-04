@@ -18,7 +18,7 @@ public class ActionTests
     {
         // Arrange
         string? result = "abc";
-        Action action = new(effect: () => { result = "def"; });
+        Action action = new(effect: () => result = "def");
 
         // Act
         action.Execute();
@@ -91,7 +91,7 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => { result = guard; });
+        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => result = guard);
 
         // Act
         _ = action.IsActionable();
