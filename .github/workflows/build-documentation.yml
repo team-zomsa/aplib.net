@@ -23,9 +23,8 @@ jobs:
           wget https://www.doxygen.nl/files/doxygen-1.10.0.linux.bin.tar.gz
           tar -xvf doxygen-1.10.0.linux.bin.tar.gz
           sudo mv doxygen-1.10.0/bin/doxygen /usr/bin/doxygen
+          sudo rm -rf doxygen-1.10.0
         shell: bash
-      - name: List Doxygen Files
-        run: ls /usr/bin/doxygen
       - name: Generate Doxygen Documentation
         run: /usr/bin/doxygen Doxygen/Doxyfile
         shell: bash
