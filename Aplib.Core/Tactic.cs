@@ -56,16 +56,7 @@ namespace Aplib.Core
         /// <param name="subTactics">The sub-tactics of the tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
         public Tactic(TacticType tacticType, List<Tactic> subTactics, Func<bool> guard)
-        {
-            TacticType = tacticType;
-            _subTactics = new();
-            Guard = guard;
-
-            foreach (Tactic tactic in subTactics)
-            {
-                _ = _subTactics.AddLast(tactic);
-            }
-        }
+            : this(tacticType, subTactics) => Guard = guard;
 
         /// <summary>
         /// Gets the first enabled primitive actions.
@@ -118,7 +109,6 @@ namespace Aplib.Core
     /// </summary>
     public class PrimitiveTactic : Tactic
     {
-        /// <summary>
         /// Gets or sets the action of the primitive tactic.
         /// </summary>
         public readonly Action Action;
@@ -136,6 +126,6 @@ namespace Aplib.Core
         /// <param name="guard">The guard of the tactic.</param>
         public PrimitiveTactic(Action action, Func<bool> guard) : base(TacticType.Primitive, new(), guard) => Action = action;
 
-        public override bool IsActionable() => Guard() && Action.IsActionable();
+        public override bool IsActionable() => base.IsActionable() && Action.IsActionable();
     }
 }
