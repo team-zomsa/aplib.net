@@ -9,6 +9,11 @@ public class TacticTests
     private static bool TrueGuard() => true;
     private static bool FalseGuard() => false;
 
+    /// <summary>
+    /// Given a tactic without a parent,
+    /// When getting the next tactic,
+    /// Then the result should be null.
+    /// </summary>
     [Fact]
     public void GetNextTactic_WhenParentIsNull_ReturnsNull()
     {
@@ -22,11 +27,16 @@ public class TacticTests
         Assert.Null(nextTactic);
     }
 
+    /// <summary>
+    /// Given a parent with one subtactic,
+    /// When getting the next tactic,
+    /// Then the result should be the same tactic.
+    /// </summary>
     [Fact]
     public void GetNextTactic_WhenTacticTypeIsPrimitive_ReturnsPrimitiveTactic()
     {
         // Arrange
-        Tactic tactic = new PrimitiveTactic(_emptyAction);
+        PrimitiveTactic tactic = new(_emptyAction);
         Tactic parentTactic = new(TacticType.FirstOf, [tactic]);
         tactic.Parent = parentTactic;
 
@@ -37,12 +47,17 @@ public class TacticTests
         Assert.Equal(tactic, nextTactic);
     }
 
+    /// <summary>
+    /// Given a parent of type <see cref="TacticType.FirstOf"/> with two subtactics,
+    /// When getting the next tactic,
+    /// Then the result should be the first subtactic.
+    /// </summary>
     [Fact]
     public void GetFirstEnabledActions_WhenTacticTypeIsFirstOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
-        Tactic tactic1 = new PrimitiveTactic(_emptyAction);
-        Tactic tactic2 = new PrimitiveTactic(_emptyAction);
+        PrimitiveTactic tactic1 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_emptyAction);
         Tactic parentTactic = new(TacticType.FirstOf, [tactic1, tactic2]);
 
         // Act
@@ -52,12 +67,17 @@ public class TacticTests
         Assert.Contains(tactic1, enabledActions);
     }
 
+    /// <summary>
+    /// Given a parent of type <see cref="TacticType.AnyOf"/> with two subtactics,
+    /// When getting the next tactic,
+    /// Then the result should contain all the subtactics.
+    /// </summary>
     [Fact]
     public void GetFirstEnabledActions_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
-        Tactic tactic1 = new PrimitiveTactic(_emptyAction);
-        Tactic tactic2 = new PrimitiveTactic(_emptyAction);
+        PrimitiveTactic tactic1 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_emptyAction);
         Tactic parentTactic = new(TacticType.AnyOf, [tactic1, tactic2]);
 
         // Act
@@ -68,11 +88,16 @@ public class TacticTests
         Assert.Contains(tactic2, enabledActions);
     }
 
+    /// <summary>
+    /// Given a primitive tactic with an actionable action,
+    /// When getting the first enabled actions,
+    /// Then the result should contain the primitive tactic.
+    /// </summary>
     [Fact]
     public void GetFirstEnabledActions_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsEnabledPrimitiveTactic()
     {
         // Arrange
-        Tactic tactic = new PrimitiveTactic(_emptyAction, TrueGuard);
+        PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
 
         // Act
         List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledActions();
@@ -81,6 +106,11 @@ public class TacticTests
         Assert.Contains(tactic, enabledActions);
     }
 
+    /// <summary>
+    /// Given a primitive tactic with a non-actionable action,
+    /// When getting the first enabled actions,
+    /// Then the result should be an empty list.
+    /// </summary>
     [Fact]
     public void GetFirstEnabledActions_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsEmptyList()
     {
@@ -94,6 +124,11 @@ public class TacticTests
         Assert.Empty(enabledActions);
     }
 
+    /// <summary>
+    /// Given a tactic with a guard that returns true,
+    /// When checking if the tactic is actionable,
+    /// Then the result should be true.
+    /// </summary>
     [Fact]
     public void IsActionable_WhenGuardReturnsTrue_ReturnsTrue()
     {
@@ -107,6 +142,11 @@ public class TacticTests
         Assert.True(isActionable);
     }
 
+    /// <summary>
+    /// Given a tactic with a guard that returns false,
+    /// When checking if the tactic is actionable,
+    /// Then the result should be false.
+    /// </summary>
     [Fact]
     public void IsActionable_WhenGuardReturnsFalse_ReturnsFalse()
     {
