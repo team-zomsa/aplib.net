@@ -37,8 +37,7 @@ public class TacticTests
     {
         // Arrange
         PrimitiveTactic tactic = new(_emptyAction);
-        Tactic parentTactic = new(TacticType.FirstOf, [tactic]);
-        tactic.Parent = parentTactic;
+        _ = new Tactic(TacticType.FirstOf, [tactic]);
 
         // Act
         Tactic? nextTactic = tactic.GetNextTactic();
