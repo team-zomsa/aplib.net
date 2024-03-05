@@ -19,11 +19,6 @@ namespace Aplib.Core
     public class Tactic
     {
         /// <summary>
-        /// Gets or sets the parent tactic.
-        /// </summary>
-        private Tactic? _parent = null;
-
-        /// <summary>
         /// Gets or sets the type of the tactic.
         /// </summary>
         public TacticType TacticType { get; set; }
@@ -50,7 +45,6 @@ namespace Aplib.Core
 
             foreach (Tactic tactic in subTactics)
             {
-                tactic._parent = this;
                 _ = _subTactics.AddLast(tactic);
             }
         }
@@ -69,7 +63,6 @@ namespace Aplib.Core
 
             foreach (Tactic tactic in subTactics)
             {
-                tactic._parent = this;
                 _ = _subTactics.AddLast(tactic);
             }
         }
