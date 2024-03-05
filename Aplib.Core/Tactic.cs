@@ -75,25 +75,6 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Gets the next tactic in the hierarchy.
-        /// </summary>
-        /// <returns>The next tactic, or null if there is no next tactic.</returns>
-        public Tactic? GetNextTactic()
-        {
-            if (_parent == null)
-                return null;
-
-            if (TacticType == TacticType.Primitive)
-            {
-                PrimitiveTactic tactic = (PrimitiveTactic)this;
-
-                return tactic;
-            }
-
-            return _parent.GetNextTactic();
-        }
-
-        /// <summary>
         /// Gets the first enabled primitive actions.
         /// </summary>
         /// <returns>A list of primitive tactics that are enabled.</returns>

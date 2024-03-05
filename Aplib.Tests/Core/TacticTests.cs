@@ -10,43 +10,6 @@ public class TacticTests
     private static bool FalseGuard() => false;
 
     /// <summary>
-    /// Given a tactic without a parent,
-    /// When getting the next tactic,
-    /// Then the result should be null.
-    /// </summary>
-    [Fact]
-    public void GetNextTactic_WhenParentIsNull_ReturnsNull()
-    {
-        // Arrange
-        Tactic tactic = new(TacticType.Primitive, []);
-
-        // Act
-        Tactic? nextTactic = tactic.GetNextTactic();
-
-        // Assert
-        Assert.Null(nextTactic);
-    }
-
-    /// <summary>
-    /// Given a parent with one subtactic,
-    /// When getting the next tactic,
-    /// Then the result should be the same tactic.
-    /// </summary>
-    [Fact]
-    public void GetNextTactic_WhenTacticTypeIsPrimitive_ReturnsPrimitiveTactic()
-    {
-        // Arrange
-        PrimitiveTactic tactic = new(_emptyAction);
-        _ = new Tactic(TacticType.FirstOf, [tactic]);
-
-        // Act
-        Tactic? nextTactic = tactic.GetNextTactic();
-
-        // Assert
-        Assert.Equal(tactic, nextTactic);
-    }
-
-    /// <summary>
     /// Given a parent of type <see cref="TacticType.FirstOf"/> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the first subtactic.
