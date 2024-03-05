@@ -156,7 +156,7 @@ namespace Aplib.Core
         public PrimitiveTactic(Action action) : base(TacticType.Primitive, new()) => _action = action;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
+        /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action and guard.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
