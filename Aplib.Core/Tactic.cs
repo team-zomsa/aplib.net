@@ -11,42 +11,75 @@ namespace Aplib.Core
 
     public class Tactic
     {
-        Tactic? parent = null;
+        public Tactic? Parent = null;
         public TacticType TacticType { get; set; }
-        LinkedList<Tactic> SubTactics { get; set; }
+        private LinkedList<Tactic> _subTactics { get; set; }
 
         public Tactic(TacticType tacticType, List<Tactic> subTactics)
         {
             TacticType = tacticType;
-            SubTactics = new();
+            _subTactics = new();
 
             foreach (Tactic tactic in subTactics)
             {
-                tactic.parent = this;
-                SubTactics.AddLast(tactic);
+                tactic.Parent = this;
+                _subTactics.AddLast(tactic);
             }
         }
 
-        public Tactic? getNextTactic()
+        public Tactic? GetNextTactic()
         {
-            if (parent == null) return null;
+            if (Parent == null) return null;
 
             if (TacticType == TacticType.Primitive)
             {
                 PrimitiveTactic tactic = (PrimitiveTactic)this;
 
-                if (true) return this; // TODO: add check if action is completed
+                return tactic;
             }
 
-            return parent.getNextTactic();
+            return Parent.GetNextTactic();
+        }
+
+        public List<PrimitiveTactic> GetFirstEnabledActions()
+        {
+            List<PrimitiveTactic> primitiveTactics = new();
+
+            switch (TacticType)
+            {
+                case TacticType.FirstOf:
+                    foreach (Tactic subTactic in _subTactics)
+                    {
+                        primitiveTactics = subTactic.GetFirstEnabledActions();
+
+                        if (primitiveTactics.Count > 0) return primitiveTactics;
+                    }
+                    break;
+                case TacticType.AnyOf:
+                    foreach (Tactic subTactic in _subTactics)
+                    {
+                        primitiveTactics.AddRange(subTactic.GetFirstEnabledActions());
+                    }
+                    break;
+                case TacticType.Primitive:
+                    PrimitiveTactic tactic = (PrimitiveTactic)this;
+
+                    if (tactic.Action.IsActionable()) primitiveTactics.Add(tactic);
+
+                    break;
+            }
+
+            return primitiveTactics;
         }
     }
 
     public class PrimitiveTactic : Tactic
     {
-        public PrimitiveTactic() : base(TacticType.Primitive, new())
-        {
+        public Action Action;
 
+        public PrimitiveTactic(Action action) : base(TacticType.Primitive, new())
+        {
+            Action = action;
         }
     }
 }
