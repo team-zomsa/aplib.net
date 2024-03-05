@@ -1,12 +1,25 @@
-﻿using Aplib.Core;
+﻿using Aplib.Core.Tactics;
 using Action = Aplib.Core.Action;
-using Tactic = Aplib.Core.Tactic;
+using Tactic = Aplib.Core.Tactics.Tactic;
 
 namespace Aplib.Tests.Core;
 public class TacticTests
 {
+    /// <summary>
+    /// Represents an empty action.
+    /// </summary>
     private readonly Action _emptyAction = new(() => { });
+
+    /// <summary>
+    /// Returns true.
+    /// </summary>
+    /// <returns>True.</returns>
     private static bool TrueGuard() => true;
+
+    /// <summary>
+    /// Returns false.
+    /// </summary>
+    /// <returns>False.</returns>
     private static bool FalseGuard() => false;
 
     /// <summary>
@@ -20,7 +33,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_emptyAction);
-        Tactic parentTactic = new(TacticType.FirstOf, [tactic1, tactic2]);
+        FirstOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
         List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
@@ -40,7 +53,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_emptyAction);
-        Tactic parentTactic = new(TacticType.AnyOf, [tactic1, tactic2]);
+        AnyOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
         List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
@@ -95,7 +108,7 @@ public class TacticTests
     public void IsActionable_WhenGuardReturnsTrue_ReturnsTrue()
     {
         // Arrange
-        Tactic tactic = new(TacticType.Primitive, [], TrueGuard);
+        PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
 
         // Act
         bool isActionable = tactic.IsActionable();
