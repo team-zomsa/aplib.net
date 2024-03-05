@@ -21,7 +21,7 @@ namespace Aplib.Core
         /// <summary>
         /// Gets or sets the parent tactic.
         /// </summary>
-        public Tactic? Parent = null;
+        private Tactic? _parent = null;
 
         /// <summary>
         /// Gets or sets the type of the tactic.
@@ -50,7 +50,7 @@ namespace Aplib.Core
 
             foreach (Tactic tactic in subTactics)
             {
-                tactic.Parent = this;
+                tactic._parent = this;
                 _ = _subTactics.AddLast(tactic);
             }
         }
@@ -69,7 +69,7 @@ namespace Aplib.Core
 
             foreach (Tactic tactic in subTactics)
             {
-                tactic.Parent = this;
+                tactic._parent = this;
                 _ = _subTactics.AddLast(tactic);
             }
         }
@@ -80,7 +80,7 @@ namespace Aplib.Core
         /// <returns>The next tactic, or null if there is no next tactic.</returns>
         public Tactic? GetNextTactic()
         {
-            if (Parent == null)
+            if (_parent == null)
                 return null;
 
             if (TacticType == TacticType.Primitive)
@@ -90,7 +90,7 @@ namespace Aplib.Core
                 return tactic;
             }
 
-            return Parent.GetNextTactic();
+            return _parent.GetNextTactic();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Aplib.Core
                 case TacticType.Primitive:
                     PrimitiveTactic tactic = (PrimitiveTactic)this;
 
-                    if (tactic.IsActionable() && tactic.Action.IsActionable())
+                    if (tactic.IsActionable())
                         primitiveTactics.Add(tactic);
 
                     break;
@@ -136,7 +136,7 @@ namespace Aplib.Core
         /// Determines whether the tactic is actionable.
         /// </summary>
         /// <returns>True if the tactic is actionable, false otherwise.</returns>
-        public bool IsActionable() => Guard();
+        public virtual bool IsActionable() => Guard();
     }
 
     /// <summary>
@@ -147,19 +147,21 @@ namespace Aplib.Core
         /// <summary>
         /// Gets or sets the action of the primitive tactic.
         /// </summary>
-        public Action Action;
+        private readonly Action _action;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
-        public PrimitiveTactic(Action action) : base(TacticType.Primitive, new()) => Action = action;
+        public PrimitiveTactic(Action action) : base(TacticType.Primitive, new()) => _action = action;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
-        public PrimitiveTactic(Action action, Func<bool> guard) : base(TacticType.Primitive, new(), guard) => Action = action;
+        public PrimitiveTactic(Action action, Func<bool> guard) : base(TacticType.Primitive, new(), guard) => _action = action;
+
+        public override bool IsActionable() => Guard() && _action.IsActionable();
     }
 }
