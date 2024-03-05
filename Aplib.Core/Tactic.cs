@@ -155,6 +155,6 @@ namespace Aplib.Core
         /// <param name="guard">The guard of the tactic.</param>
         public PrimitiveTactic(Action action, Func<bool> guard) : base(TacticType.Primitive, new(), guard) => _action = action;
 
-        public override bool IsActionable() => Guard() && _action.IsActionable();
+        public override bool IsActionable() => base.IsActionable() && _action.IsActionable();
     }
 }
