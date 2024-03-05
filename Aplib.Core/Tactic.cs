@@ -62,16 +62,9 @@ namespace Aplib.Core
         /// <param name="subTactics">The sub-tactics of the tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
         public Tactic(TacticType tacticType, List<Tactic> subTactics, Func<bool> guard)
+        	: this(tacticType, subTactics)
         {
-            TacticType = tacticType;
-            _subTactics = new();
             Guard = guard;
-
-            foreach (Tactic tactic in subTactics)
-            {
-                tactic._parent = this;
-                _ = _subTactics.AddLast(tactic);
-            }
         }
 
         /// <summary>
