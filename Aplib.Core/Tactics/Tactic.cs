@@ -23,7 +23,7 @@ namespace Aplib.Core.Tactics
         /// </summary>
         /// <param name="tacticType">The type of the tactic.</param>
         /// <param name="subTactics">The sub-tactics of the tactic.</param>
-        public Tactic(List<Tactic> subTactics)
+        protected Tactic(List<Tactic> subTactics)
         {
             SubTactics = new();
 
@@ -39,7 +39,7 @@ namespace Aplib.Core.Tactics
         /// <param name="tacticType">The type of the tactic.</param>
         /// <param name="subTactics">The sub-tactics of the tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
-        public Tactic(List<Tactic> subTactics, Func<bool> guard)
+        protected Tactic(List<Tactic> subTactics, Func<bool> guard)
             : this(subTactics) => Guard = guard;
 
         /// <summary>
