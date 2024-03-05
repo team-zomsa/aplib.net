@@ -43,6 +43,26 @@ public class TacticTests
     }
 
     /// <summary>
+    /// Given a parent of type <see cref="TacticType.FirstOf"/> with two subtactics and a guard that is true,
+    /// When getting the next tactic,
+    /// Then the result should be the first subtactic.
+    /// </summary>
+    [Fact]
+    public void GetFirstEnabledActions_WhenTacticTypeIsFirstOfAndGuardEnabled_ReturnsEnabledPrimitiveTactics()
+    {
+        // Arrange
+        PrimitiveTactic tactic1 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_emptyAction);
+        FirstOfTactic parentTactic = new([tactic1, tactic2], TrueGuard);
+
+        // Act
+        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+
+        // Assert
+        Assert.Contains(tactic1, enabledActions);
+    }
+
+    /// <summary>
     /// Given a parent of type <see cref="TacticType.AnyOf"/> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should contain all the subtactics.
