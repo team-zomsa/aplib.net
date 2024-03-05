@@ -109,7 +109,7 @@ namespace Aplib.Core
                         primitiveTactics = subTactic.GetFirstEnabledActions();
 
                         if (primitiveTactics.Count > 0)
-                            return primitiveTactics;
+                            break;
                     }
 
                     break;
@@ -123,7 +123,7 @@ namespace Aplib.Core
                 case TacticType.Primitive:
                     PrimitiveTactic tactic = (PrimitiveTactic)this;
 
-                    if (tactic.Action.IsActionable())
+                    if (tactic.IsActionable() && tactic.Action.IsActionable())
                         primitiveTactics.Add(tactic);
 
                     break;
@@ -154,5 +154,12 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         public PrimitiveTactic(Action action) : base(TacticType.Primitive, new()) => Action = action;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
+        /// </summary>
+        /// <param name="action">The action of the primitive tactic.</param>
+        /// <param name="guard">The guard of the tactic.</param>
+        public PrimitiveTactic(Action action, Func<bool> guard) : base(TacticType.Primitive, new(), guard) => Action = action;
     }
 }
