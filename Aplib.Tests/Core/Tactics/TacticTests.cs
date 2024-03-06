@@ -1,7 +1,10 @@
 using Aplib.Core.Intent.Tactics;
+using System.Diagnostics.CodeAnalysis;
 using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core.Tactics;
+
+[SuppressMessage("ReSharper", "StringLiteralTypo")]
 public class TacticTests
 {
     private readonly Action _emptyAction = new(effect: () => { });
@@ -21,9 +24,9 @@ public class TacticTests
     public void GetAction_WhenTacticTypeIsFirstOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
-        PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_filledAction);
-        FirstOfTactic parentTactic = new([tactic1, tactic2]);
+        PrimitiveTactic tactic1 = new(_emptyAction, "t1");
+        PrimitiveTactic tactic2 = new(_filledAction, "t2");
+        FirstOfTactic parentTactic = new("parent", null, [tactic1, tactic2]);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -42,9 +45,9 @@ public class TacticTests
     public void GetAction_WhenTacticTypeIsFirstOfAndGuardEnabled_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
-        PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_filledAction);
-        FirstOfTactic parentTactic = new(TrueGuard, [tactic1, tactic2]);
+        PrimitiveTactic tactic1 = new(_emptyAction, "t1");
+        PrimitiveTactic tactic2 = new(_filledAction, "t2");
+        FirstOfTactic parentTactic = new(TrueGuard, "parent", null, [tactic1, tactic2]);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -63,9 +66,9 @@ public class TacticTests
     public void GetAction_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
-        PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_emptyAction);
-        AnyOfTactic parentTactic = new([tactic1, tactic2]);
+        PrimitiveTactic tactic1 = new(_emptyAction, "t1");
+        PrimitiveTactic tactic2 = new(_emptyAction, "t2");
+        AnyOfTactic parentTactic = new("parent", null, [tactic1, tactic2]);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -84,7 +87,7 @@ public class TacticTests
     public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsEnabledPrimitiveTactic()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
+        PrimitiveTactic tactic = new(_emptyAction, TrueGuard, "tictac");
 
         // Act
         Action? enabledAction = tactic.GetAction();
@@ -103,7 +106,7 @@ public class TacticTests
     public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsEmptyList()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
+        PrimitiveTactic tactic = new(_emptyAction, FalseGuard, "tictac");
 
         // Act
         Action? enabledAction = tactic.GetAction();
@@ -121,7 +124,7 @@ public class TacticTests
     public void Execute_WhenGuardReturnsTrue_ActionIsExecuted()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
+        PrimitiveTactic tactic = new(_filledAction, TrueGuard, "tictac");
 
         // Act
         tactic.GetAction()!.Execute();
@@ -139,7 +142,7 @@ public class TacticTests
     public void IsActionable_WhenGuardReturnsTrue_ReturnsTrue()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
+        PrimitiveTactic tactic = new(_filledAction, TrueGuard, "tictac");
 
         // Act
         bool isActionable = tactic.IsActionable();
@@ -157,7 +160,7 @@ public class TacticTests
     public void IsActionable_WhenGuardReturnsFalse_ReturnsFalse()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
+        PrimitiveTactic tactic = new(_emptyAction, FalseGuard, "tictac");
 
         // Act
         bool isActionable = tactic.IsActionable();
