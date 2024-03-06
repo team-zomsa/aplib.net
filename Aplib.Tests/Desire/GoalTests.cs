@@ -1,84 +1,111 @@
 using Aplib.Core.Desire;
 using Aplib.Tests.Stubs.Desire;
+using Aplib.Tests.Tools;
 using FluentAssertions;
 
 namespace Aplib.Tests.Desire;
 
 public class GoalTests
 {
+    /// <summary>
+    /// Given valid parameters and metadata,
+    /// When the goal is constructed,
+    /// Then the goal should correctly store the metadata.
+    /// </summary>
     [Fact]
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
         Tactic tactic = new TacticStub(() => { });
-        IGoalPredicate predicate = new ConstantGoalPredicate(0f);
-        var name = "Such a good goal name";
-        var description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
+        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(0f);
+        const string name = "Such a good goal name";
+        const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
         // Act
-        Goal g = new(tactic, predicate, name, description); // Does not use helper method DefaultGoal on purpose
+        Goal goal = new(tactic, heuristicFunction, name, description); // Does not use helper methods on purpose
 
         // Assert
-        g.Should().NotBeNull();
-        g.Name.Should().Be(name);
-        g.Description.Should().Be(description);
+        goal.Should().NotBeNull();
+        goal.Name.Should().Be(name);
+        goal.Description.Should().Be(description);
     }
 
+    /// <summary>
+    /// Given the Goal is created properly using its constructor,
+    /// When the goal has been constructed,
+    /// Then the given tactic has not been applied yet
+    /// </summary>
     [Fact]
     public void Goal_WhenConstructed_DidNotIterateYet()
     {
         // Arrange
-        var iterations = 0;
+        int iterations = 0;
         Tactic tactic = new TacticStub(() => iterations++);
 
         // Act
-        Goal _ = DefaultGoal(tactic: tactic);
+        Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
 
         // Assert
         iterations.Should().Be(0);
     }
 
+    /// <summary>
+    /// Given the Goal is created properly using its constructor,
+    /// When the goal is being iterated over,
+    /// Then the given tactic has has been applied at least once
+    /// </summary>
     [Fact]
     public void Goal_WhenIterating_DoesIterate()
     {
         // Arrange
-        var iterations = 0;
+        int iterations = 0;
         Tactic tactic = new TacticStub(() => iterations++);
 
         // Act
-        Goal g = DefaultGoal(tactic: tactic);
-        g.Iterate();
+        Goal goal = new TestGoalBuilder().UseTactic(tactic).Build();
+        goal.Iterate();
 
         // Assert
         iterations.Should().BeGreaterThan(0);
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void Goal_WhenReached_ReturnsAsCompleted(bool completed)
+    /// <summary>
+    /// Given the Goal's heuristic function is configured to have reached its goal
+    /// when the Evaluate() method of a goal is used,
+    /// then the method should return true.
+    /// </summary>
+    [Fact]
+    public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        float distance = completed ? 0 : 69420;
-        IGoalPredicate predicate = new ConstantGoalPredicate(distance);
+        const float distance = 0;
+        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(distance);
 
         // Act
-        bool isCompleted = DefaultGoal(predicate: predicate).IsCompleted();
+        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
+        bool isCompleted = goal.Evaluate();
 
         // Assert
-        isCompleted.Should().Be(completed);
+        isCompleted.Should().Be(true);
     }
 
+    /// <summary>
+    /// Given the Goal's heuristic function is configured to *not* have reached its goal,
+    /// when the Evaluate() method of a goal is used,
+    /// then the method should return false.
+    /// </summary>
+    [Fact]
+    public void Goal_WhenReached_ReturnsAsCompleted()
+    {
+        // Arrange
+        const float distance = 69_420;
+        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(distance);
 
-    #region HelperMethods
+        // Act
+        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
+        bool isCompleted = goal.Evaluate();
 
-    private static Goal DefaultGoal(Tactic? tactic = null, IGoalPredicate? predicate = null, string? name = null,
-        string? description = null) => new(
-            tactic: tactic ?? new TacticStub(() => { }),
-            goalPredicate: predicate ?? new ConstantGoalPredicate(0),
-            name: name ?? "Such a good goal name",
-            description: description ??
-                         "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson");
-
-    #endregion
+        // Assert
+        isCompleted.Should().Be(false);
+    }
 }

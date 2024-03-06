@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Aplib.Core\Aplib.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
-
 </Project>
