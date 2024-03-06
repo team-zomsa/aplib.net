@@ -9,11 +9,22 @@ namespace Aplib.Core.Tactics
     public class AnyOfTactic : Tactic
     {
         /// <summary>
+        /// Gets or sets the sub-tactics of the tactic.
+        /// </summary>
+        protected LinkedList<Tactic> SubTactics { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(List<Tactic> subTactics) : base(subTactics)
+        public AnyOfTactic(List<Tactic> subTactics)
         {
+            SubTactics = new();
+
+            foreach (Tactic tactic in subTactics)
+            {
+                _ = SubTactics.AddLast(tactic);
+            }
         }
 
         /// <summary>
@@ -21,9 +32,7 @@ namespace Aplib.Core.Tactics
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : base(subTactics, guard)
-        {
-        }
+        public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : this(subTactics) => Guard = guard;
 
         /// <inheritdoc/>
         public override List<PrimitiveTactic> GetFirstEnabledActions()

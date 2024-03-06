@@ -9,38 +9,22 @@ namespace Aplib.Core.Tactics
     public abstract class Tactic
     {
         /// <summary>
-        /// Gets or sets the sub-tactics of the tactic.
-        /// </summary>
-        protected LinkedList<Tactic> SubTactics { get; set; }
-
-        /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
         protected Func<bool> Guard { get; set; } = () => true;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic"/> class with the specified tactic type and sub-tactics.
+        /// Initializes a new instance of the <see cref="Tactic"/>.
         /// </summary>
-        /// <param name="tacticType">The type of the tactic.</param>
-        /// <param name="subTactics">The sub-tactics of the tactic.</param>
-        protected Tactic(List<Tactic> subTactics)
+        protected Tactic()
         {
-            SubTactics = new();
-
-            foreach (Tactic tactic in subTactics)
-            {
-                _ = SubTactics.AddLast(tactic);
-            }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic"/> class with the specified tactic type, sub-tactics, and guard.
+        /// Initializes a new instance of the <see cref="Tactic"/> class with the specified guard.
         /// </summary>
-        /// <param name="tacticType">The type of the tactic.</param>
-        /// <param name="subTactics">The sub-tactics of the tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
-        protected Tactic(List<Tactic> subTactics, Func<bool> guard)
-            : this(subTactics) => Guard = guard;
+        protected Tactic(Func<bool> guard) => Guard = guard;
 
         /// <summary>
         /// Gets the first enabled primitive actions.

@@ -17,23 +17,17 @@ namespace Aplib.Core.Tactics
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
-        public PrimitiveTactic(Action action) : base(new()) => Action = action;
+        public PrimitiveTactic(Action action) => Action = action;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action and guard.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the tactic.</param>
-        public PrimitiveTactic(Action action, Func<bool> guard) : base(new(), guard) => Action = action;
+        public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions()
-        {
-            if (IsActionable())
-                return new() { this };
-
-            return new();
-        }
+        public override List<PrimitiveTactic> GetFirstEnabledActions() => IsActionable() ? new() { this } : new();
 
         /// <inheritdoc/>
         public override bool IsActionable() => base.IsActionable() && Action.IsActionable();
