@@ -4,21 +4,10 @@ using Action = Aplib.Core.Action;
 namespace Aplib.Tests.Core;
 public class TacticTests
 {
-    /// <summary>
-    /// Represents an empty action.
-    /// </summary>
     private readonly Action _emptyAction = new(() => { });
 
-    /// <summary>
-    /// Returns true.
-    /// </summary>
-    /// <returns>True.</returns>
     private static bool TrueGuard() => true;
 
-    /// <summary>
-    /// Returns false.
-    /// </summary>
-    /// <returns>False.</returns>
     private static bool FalseGuard() => false;
 
     /// <summary>
