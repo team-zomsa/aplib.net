@@ -1,6 +1,5 @@
 ﻿using Aplib.Core.Tactics;
 using Action = Aplib.Core.Action;
-using Tactic = Aplib.Core.Tactics.Tactic;
 
 namespace Aplib.Tests.Core;
 public class TacticTests
