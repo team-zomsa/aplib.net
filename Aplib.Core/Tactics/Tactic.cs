@@ -21,7 +21,7 @@ namespace Aplib.Core.Tactics
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic"/> class with the specified guard.
+        /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
         /// </summary>
         /// <param name="guard">The guard of the tactic.</param>
         protected Tactic(Func<bool> guard) => Guard = guard;
