@@ -1,7 +1,7 @@
 ﻿using Aplib.Core.Tactics;
 using Action = Aplib.Core.Action;
 
-namespace Aplib.Tests.Core;
+namespace Aplib.Tests.Core.Tactics;
 public class TacticTests
 {
     private readonly Action _emptyAction = new(() => { });
