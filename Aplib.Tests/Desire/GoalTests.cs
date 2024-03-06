@@ -20,8 +20,8 @@ public class GoalTests
 
         // Assert
         g.Should().NotBeNull();
-        g.Name.Should().Be(name);
-        g.Description.Should().Be(description);
+        g.Metadata.Name.Should().Be(name);
+        g.Metadata.Description.Should().Be(description);
     }
 
     [Fact]

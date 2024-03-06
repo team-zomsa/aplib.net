@@ -25,15 +25,10 @@ namespace Aplib.Core.Desire
         /// <seealso cref="IsCompleted()"/>
         private readonly IGoalPredicate _goalPredicate;
 
-        // MetaData useful for debugging
         /// <summary>
-        /// The name used to display the current goal during debugging, logging, or general overviews.
+        /// Data about the goal such as a name and description, this may be useful for debugging or logging.
         /// </summary>
-        public readonly string Name;
-        /// <summary>
-        /// The description used to describe the current goal during debugging, logging, or general overviews.
-        /// </summary>
-        public readonly string Description;
+        public readonly GoalMetadata Metadata;
 
         /// <summary>
         /// A goal effectively combines a predicate with a tactic, and aims to meet the predicate by applying the tactic.
@@ -48,8 +43,7 @@ namespace Aplib.Core.Desire
         {
             _tactic        = tactic;
             _goalPredicate = goalPredicate;
-            Name           = name;
-            Description    = description;
+            Metadata = new GoalMetadata(name, description);
 
             CurrentHeuristics = _goalPredicate.Test(); // TODO is this the right time?
         }
