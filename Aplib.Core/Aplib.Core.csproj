@@ -20,7 +20,7 @@
   </ItemGroup>
   
   <ItemGroup Label="Tests">
-    <InternalsVisibleTo Include="Aplib.Tests"/>
+    <InternalsVisibleTo Include="Aplib.Tests" />
   </ItemGroup>
 
 </Project>
