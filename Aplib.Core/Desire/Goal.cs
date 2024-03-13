@@ -94,7 +94,7 @@ namespace Aplib.Core.Desire
         public Goal(Tactic tactic, Func<bool> heuristicFunction, string name, string description, double epsilon = 0.005d)
         {
             _tactic = tactic;
-            _heuristicFunction = () => Heuristics.BooleanHeuristic(heuristicFunction.Invoke());
+            _heuristicFunction = CommonHeuristicFunctions.Boolean(heuristicFunction);
             Name = name;
             Description = description;
             _epsilon = epsilon;

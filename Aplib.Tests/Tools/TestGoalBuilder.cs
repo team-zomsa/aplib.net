@@ -6,7 +6,7 @@ namespace Aplib.Tests.Tools;
 internal sealed class TestGoalBuilder
 {
     private Tactic _tactic = new TacticStub(() => {});
-    private Goal.HeuristicFunction _heuristicFunction = CommonGoalHeuristicFunctions.Constant(0);
+    private Goal.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions.Constant(0);
     private string _name = "Such a good goal name";
     private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
 
@@ -17,6 +17,8 @@ internal sealed class TestGoalBuilder
         _heuristicFunction = heuristicFunction;
         return this;
     }
+    public TestGoalBuilder WithHeuristicFunction(Func<bool> heuristicFunction)
+        => WithHeuristicFunction(CommonHeuristicFunctions.Boolean(heuristicFunction));
 
     public TestGoalBuilder UseTactic(Tactic tactic)
     {
@@ -32,5 +34,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal Build() => new (_tactic, _heuristicFunction, _name, _description);
+    public Goal Build() => new(_tactic, _heuristicFunction, _name, _description);
 }

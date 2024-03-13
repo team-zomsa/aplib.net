@@ -17,7 +17,7 @@ public class GoalTests
     {
         // Arrange
         Tactic tactic = new TacticStub(() => { });
-        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(0f);
+        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
@@ -75,11 +75,10 @@ public class GoalTests
     /// then the method should return true.
     /// </summary>
     [Fact]
-    public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
+    public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
-        const float distance = 0;
-        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(distance);
+        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
@@ -95,11 +94,10 @@ public class GoalTests
     /// then the method should return false.
     /// </summary>
     [Fact]
-    public void Goal_WhenReached_ReturnsAsCompleted()
+    public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        const float distance = 69_420;
-        Goal.HeuristicFunction heuristicFunction = CommonGoalHeuristicFunctions.Constant(distance);
+        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Uncompleted();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
@@ -107,5 +105,35 @@ public class GoalTests
 
         // Assert
         isCompleted.Should().Be(false);
+    }
+
+    /// <summary>
+    /// Given the Goal's different constructors have been called with semantically equal argumetns
+    /// when the Evaluate() method of all goals are used,
+    /// then all returned values should equal.
+    /// </summary>
+    /// <param name="goalCompleted"></param>
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
+    {
+        // Arrange
+        Tactic tactic = new TacticStub(() => { });
+        const string name = "Such a good goal name";
+        const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
+
+        Func<bool> heuristicFunctionBoolean = () => goalCompleted;
+        Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
+
+        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, name, description);
+        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
+
+        // Act
+        bool goalBooleanEvaluation = goalBoolean.Evaluate();
+        bool goalNonBooleanEvaluation = goalNonBoolean.Evaluate();
+
+        // Assert
+        goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
     }
 }
