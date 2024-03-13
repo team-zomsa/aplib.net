@@ -1,3 +1,5 @@
+using System;
+
 namespace Aplib.Core
 {
     public interface IAgent
@@ -9,7 +11,7 @@ namespace Aplib.Core
 
         /// <summary>Update the world and perform an action.</summary>
         /// <returns>The remaining budget.</returns>
-        public int UpdateTick();
+        public int Update();
     }
 
     // Temporary type definitions
@@ -24,5 +26,11 @@ namespace Aplib.Core
 
     public class GoalStructure
     {
+        public Goal NextGoal() => throw new NotImplementedException();
+    }
+
+    public class Goal
+    {
+        public void Iterate() => throw new NotImplementedException();
     }
 }

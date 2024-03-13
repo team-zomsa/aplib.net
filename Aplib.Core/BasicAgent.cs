@@ -15,14 +15,13 @@ namespace Aplib.Core
             Budget = budget;
         }
 
-        public int UpdateTick()
+        public int Update()
         {
             Observation observation = Environment.Observe();
             State.Update(observation);
 
-            // TODO Perform tactic
-
-            // TODO Move a tick
+            Goal goal = Goals.NextGoal();
+            goal.Iterate();
 
             // TODO What if there is no budget?
             return --Budget;
