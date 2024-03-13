@@ -1,7 +1,7 @@
 namespace Aplib.Core.Desire
 {
     /// <summary>
-    /// A goal effectively combines a heuristicFunction with a tactic, and aims to meet the heuristicFunction by
+    /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
     /// applying the tactic. Goals are combined in a <see cref="GoalStructure"/>, and are used to prepare tests or do
     /// the testing.
     /// </summary>
@@ -9,17 +9,10 @@ namespace Aplib.Core.Desire
     public class Goal
     {
         /// <summary>
-        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
-        /// this value.
-        /// </summary>
-        protected double epsilon;
-
-        /// <summary>
-        /// The abstract definition of what is means to test the Goal's heuristicFunction. Returns <see cref="Heuristics"/>, as
-        /// they represent how close we are to matching the heuristicFunction, and if the goal is completed.
+        /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics"/>, as
+        /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
         /// <seealso cref="Goal.Evaluate"/>
-        /// <remarks>The paper mentions predicates, yet the Java Aplib uses heuristics. We use heuristics as well.</remarks>
         public delegate Heuristics HeuristicFunction();
 
 
@@ -39,6 +32,12 @@ namespace Aplib.Core.Desire
         /// </summary>
         public string Description { get; }
 
+        /// <summary>
+        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
+        /// this value.
+        /// </summary>
+        protected double epsilon { get; }
+
 
         /// <summary>
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction"/>. Used to test whether this goal is
@@ -48,11 +47,6 @@ namespace Aplib.Core.Desire
         protected HeuristicFunction heuristicFunction;
 
         /// <summary>
-        /// The backing field of <see cref="Heuristics"/>.
-        /// </summary>
-        private Heuristics? _currentHeuristics;
-
-        /// <summary>
         /// The <see cref="Tactic"/> used to achieve this <see cref="Goal"/>, which is executed during every iteration
         /// of the BDI cycle.
         /// </summary>
@@ -60,11 +54,15 @@ namespace Aplib.Core.Desire
         private readonly Tactic _tactic;
 
         /// <summary>
-        /// Creates a new goal with specified arguments. Upon creation, the <see cref="CurrentHeuristics"/> will be
-        /// set to <see cref="Heuristics.Default"/>.
+        /// The backing field of <see cref="Heuristics"/>.
+        /// </summary>
+        private Heuristics? _currentHeuristics;
+
+        /// <summary>
+        /// Creates a new goal with specified arguments.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="heuristicFunction">The heuristicFunction which defines whether a goal is reached</param>
+        /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
         /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
         /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
         /// <param name="epsilon">
