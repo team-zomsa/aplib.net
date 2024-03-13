@@ -1,3 +1,5 @@
+using System;
+
 namespace Aplib.Core.Desire
 {
     /// <summary>
@@ -20,7 +22,7 @@ namespace Aplib.Core.Desire
         /// Gets the <see cref="Heuristics"/> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics => _currentHeuristics ??= heuristicFunction.Invoke();
+        public virtual Heuristics CurrentHeuristics => _currentHeuristics ??= _heuristicFunction.Invoke();
 
         /// <summary>
         /// The name used to display the current goal during debugging, logging, or general overviews.
@@ -36,7 +38,7 @@ namespace Aplib.Core.Desire
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
         /// this value.
         /// </summary>
-        protected double epsilon { get; }
+        protected double _epsilon { get; }
 
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Aplib.Core.Desire
         /// completed.
         /// </summary>
         /// <seealso cref="Evaluate"/>
-        protected HeuristicFunction heuristicFunction;
+        protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
         /// The <see cref="Tactic"/> used to achieve this <see cref="Goal"/>, which is executed during every iteration
@@ -59,7 +61,7 @@ namespace Aplib.Core.Desire
         private Heuristics? _currentHeuristics;
 
         /// <summary>
-        /// Creates a new goal with specified arguments.
+        /// Creates a new goal which works with <see cref="Heuristics"/>.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
@@ -72,12 +74,31 @@ namespace Aplib.Core.Desire
         public Goal(Tactic tactic, HeuristicFunction heuristicFunction, string name, string description, double epsilon = 0.005d)
         {
             _tactic = tactic;
-            this.heuristicFunction = heuristicFunction;
+            _heuristicFunction = heuristicFunction;
             Name = name;
             Description = description;
-            this.epsilon = epsilon;
+            _epsilon = epsilon;
         }
 
+        /// <summary>
+        /// Creates a new goal which works with boolean-based <see cref="Heuristics"/>.
+        /// </summary>
+        /// <param name="tactic">The tactic used to approach this goal.</param>
+        /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
+        /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
+        /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
+        /// <param name="epsilon">
+        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
+        /// this value.
+        /// </param>
+        public Goal(Tactic tactic, Func<bool> heuristicFunction, string name, string description, double epsilon = 0.005d)
+        {
+            _tactic = tactic;
+            _heuristicFunction = () => Heuristics.BooleanHeuristic(heuristicFunction.Invoke());
+            Name = name;
+            Description = description;
+            _epsilon = epsilon;
+        }
 
         /// <summary>
         /// Performs the next steps needed to be taken to approach this goal. Effectively this means that one BDI
@@ -89,15 +110,15 @@ namespace Aplib.Core.Desire
         }
 
         /// <summary>
-        /// Tests whether the goal has been achieved, bases on the <see cref="heuristicFunction"/> and the
-        /// <see cref="CurrentHeuristics"/>. When the distance of the heuristics is smaller than <see cref="epsilon"/>,
+        /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction"/> and the
+        /// <see cref="CurrentHeuristics"/>. When the distance of the heuristics is smaller than <see cref="_epsilon"/>,
         /// the goal is considered to be completed.
         /// </summary>
         /// <returns>A boolean representing whether the goal is considered to be completed.</returns>
-        /// <seealso cref="epsilon"/>
+        /// <seealso cref="_epsilon"/>
         public bool Evaluate()
         {
-            return CurrentHeuristics.Distance < epsilon;
+            return CurrentHeuristics.Distance < _epsilon;
         }
     }
 }
