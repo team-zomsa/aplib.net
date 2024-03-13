@@ -5,26 +5,21 @@ namespace Aplib.Core
         public IState State { get; }
         public IEnvironment Environment { get; }
         public GoalStructure Goals { get; }
-        public int Budget { get; private set; }
 
-        public BasicAgent(IState state, IEnvironment environment, GoalStructure goals, int budget)
+        public BasicAgent(IState state, IEnvironment environment, GoalStructure goals)
         {
             State = state;
             Environment = environment;
             Goals = goals;
-            Budget = budget;
         }
 
-        public int Update()
+        public void Update()
         {
             Observation observation = Environment.Observe();
             State.Update(observation);
 
             Goal goal = Goals.NextGoal();
             goal.Iterate();
-
-            // TODO What if there is no budget?
-            return --Budget;
         }
     }
 }
