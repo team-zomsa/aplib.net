@@ -1,0 +1,130 @@
+name: Test and Analyse Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-build:
+    name: Build .NET and Analyse with SonarCloud
+    runs-on: windows-latest
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'zulu'
+      - uses: actions/checkout@v4
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v4
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: powershell
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+      - name: Install Coverage Tool
+        shell: powershell
+        run: |
+          dotnet tool install --global dotnet-coverage
+      - name: Prepare SonarCloud analysis
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: >
+          .\.sonar\scanner\dotnet-sonarscanner begin
+          /k:"team-zomsa_aplib.net" /o:"team-zomsa"
+          /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+      - name: Build the project
+        shell: powershell
+        run: |
+          dotnet build --no-incremental
+      - name: Upload build as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: Aplib.Core\bin
+      - name: Test the project
+        shell: powershell
+        run: | 
+          dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+      - name: Run SonarCloud analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+
+  create-release:
+    name: Create release
+    needs: test-build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write           # To be able to publish a GitHub Release
+      issues: write             # To be able to comment on related issues
+      pull-requests: write      # To be able to comment on released pull requests
+      # id-token: write           # To enable use of OIDC for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: Install Semantic Release
+        run: npm install semantic-release@23
+      - name: Install Semantic Release Dependencies
+        run: npm install @semantic-release/exec@6 @semantic-release/commit-analyzer@11 @semantic-release/release-notes-generator@12
+      - name: Create and Publish Release
+        id: create-release
+        run: |
+          npx semantic-release@23
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  upload-build:
+    name: Upload build to GitHub Release
+    needs: create-release
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Retrieve build from artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: bin
+      - name: Get Latest Tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          fallback: v1.0.0
+      - name: Zip build
+        run: zip -r build.zip bin
+      - name: Upload build to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.previoustag.outputs.tag }}
+          append_body: true
