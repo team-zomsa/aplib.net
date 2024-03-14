@@ -1,4 +1,4 @@
-name: Test and Analyse Project
+name: Test, Analyse and Release Project
 
 on:
   push:
