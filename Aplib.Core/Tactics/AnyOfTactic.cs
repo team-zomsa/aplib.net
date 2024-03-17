@@ -17,7 +17,7 @@ namespace Aplib.Core.Tactics
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(List<Tactic> subTactics)
+        public AnyOfTactic(params Tactic[] subTactics)
         {
             SubTactics = new();
 
@@ -32,7 +32,7 @@ namespace Aplib.Core.Tactics
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : this(subTactics) => Guard = guard;
+        public AnyOfTactic(Func<bool> guard, params Tactic[] subTactics) : this(subTactics) => Guard = guard;
 
         /// <inheritdoc/>
         public override Action? GetAction()
