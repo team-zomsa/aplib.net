@@ -43,7 +43,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_filledAction);
-        FirstOfTactic parentTactic = new([tactic1, tactic2], TrueGuard);
+        FirstOfTactic parentTactic = new(TrueGuard, [tactic1, tactic2]);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
