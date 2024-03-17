@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['firstoftactic_0',['FirstOfTactic',['../classAplib_1_1Core_1_1Tactics_1_1FirstOfTactic.html',1,'Aplib.Core.Tactics.FirstOfTactic'],['../classAplib_1_1Core_1_1Tactics_1_1FirstOfTactic.html#a495fb0b7e7482ab58d590739dbd0cd56',1,'Aplib.Core.Tactics.FirstOfTactic.FirstOfTactic(List&lt; Tactic &gt; subTactics)'],['../classAplib_1_1Core_1_1Tactics_1_1FirstOfTactic.html#a0c68d6879e23fe72d32add2106809fff',1,'Aplib.Core.Tactics.FirstOfTactic.FirstOfTactic(List&lt; Tactic &gt; subTactics, Func&lt; bool &gt; guard)']]],
-  ['firstoftactic_2ecs_1',['FirstOfTactic.cs',['../FirstOfTactic_8cs.html',1,'']]]
+  ['booleanheuristic_0',['BooleanHeuristic',['../classAplib_1_1Core_1_1Desire_1_1Heuristics.html#a88cd35a2f82f815e0a5dd53ece59935b',1,'Aplib::Core::Desire::Heuristics']]]
 ];

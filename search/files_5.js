@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tactic_2ecs_0',['Tactic.cs',['../Tactic_8cs.html',1,'']]],
-  ['tactictests_2ecs_1',['TacticTests.cs',['../TacticTests_8cs.html',1,'']]]
+  ['primitivetactic_2ecs_0',['PrimitiveTactic.cs',['../PrimitiveTactic_8cs.html',1,'']]]
 ];

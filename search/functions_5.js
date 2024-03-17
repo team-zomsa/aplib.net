@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['primitivetactic_0',['PrimitiveTactic',['../classAplib_1_1Core_1_1Tactics_1_1PrimitiveTactic.html#a0db4094625516fd0f79bea1ac73046bd',1,'Aplib::Core::Tactics::PrimitiveTactic']]]
+  ['heuristicfunction_0',['HeuristicFunction',['../classAplib_1_1Core_1_1Desire_1_1Goal.html#a56d0c6bdf26856c7577b71e11fd3435f',1,'Aplib::Core::Desire::Goal']]]
 ];
