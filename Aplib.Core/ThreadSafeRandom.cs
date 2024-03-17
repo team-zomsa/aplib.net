@@ -1,32 +1,34 @@
 ﻿using System;
-using System.Threading.Tasks;
 
-internal static class ThreadSafeRandom
+namespace Aplib.Core
 {
-    [ThreadStatic]
-    private static Random? _local;
-    private static readonly Random _global = new();
-
-    private static Random _instance
+    internal static class ThreadSafeRandom
     {
-        get
+        [ThreadStatic]
+        private static Random? _local;
+        private static readonly Random _global = new();
+
+        private static Random _instance
         {
-            if (_local is null)
+            get
             {
-                int seed;
-                lock (_global)
+                if (_local is null)
                 {
-                    seed = _global.Next();
+                    int seed;
+                    lock (_global)
+                    {
+                        seed = _global.Next();
+                    }
+
+                    _local = new Random(seed);
                 }
 
-                _local = new Random(seed);
+                return _local;
             }
-
-            return _local;
         }
+
+        public static int Next() => _instance.Next();
+
+        public static int Next(int maxValue) => _instance.Next(maxValue);
     }
-
-    public static int Next() => _instance.Next();
-
-    public static int Next(int maxValue) => _instance.Next(maxValue);
 }
