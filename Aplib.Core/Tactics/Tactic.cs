@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Aplib.Core.Tactics
 {
@@ -27,10 +26,10 @@ namespace Aplib.Core.Tactics
         protected Tactic(Func<bool> guard) => Guard = guard;
 
         /// <summary>
-        /// Gets the first enabled primitive actions.
+        /// Gets the enabled action.
         /// </summary>
-        /// <returns>A list of primitive tactics that are enabled.</returns>
-        public abstract List<PrimitiveTactic> GetFirstEnabledActions();
+        /// <returns>An action that is enabled.</returns>
+        public abstract Action? GetAction();
 
         /// <summary>
         /// Determines whether the tactic is actionable.

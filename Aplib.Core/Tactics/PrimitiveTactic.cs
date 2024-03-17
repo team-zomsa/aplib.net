@@ -27,7 +27,7 @@ namespace Aplib.Core.Tactics
         public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions() => IsActionable() ? new() { this } : new();
+        public override Action? GetAction() => IsActionable() ? Action : null;
 
         /// <inheritdoc/>
         public override bool IsActionable() => base.IsActionable() && Action.IsActionable();

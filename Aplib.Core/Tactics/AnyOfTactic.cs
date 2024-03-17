@@ -35,16 +35,19 @@ namespace Aplib.Core.Tactics
         public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : this(subTactics) => Guard = guard;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions()
+        public override Action? GetAction()
         {
-            List<PrimitiveTactic> primitiveTactics = new();
+            List<Action> actions = new();
 
             foreach (Tactic subTactic in SubTactics)
             {
-                primitiveTactics.AddRange(subTactic.GetFirstEnabledActions());
+                Action? action = subTactic.GetAction();
+
+                if (action is not null)
+                    actions.Add(action);
             }
 
-            return primitiveTactics;
+            return actions[ThreadSafeRandom.Next(actions.Count)];
         }
     }
 }

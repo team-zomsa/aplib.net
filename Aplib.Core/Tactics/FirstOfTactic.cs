@@ -26,14 +26,14 @@ namespace Aplib.Core.Tactics
         }
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions()
+        public override Action? GetAction()
         {
             foreach (Tactic subTactic in SubTactics)
             {
-                List<PrimitiveTactic> firstOfTactics = subTactic.GetFirstEnabledActions();
+                Action? action = subTactic.GetAction();
 
-                if (firstOfTactics.Count > 0)
-                    return firstOfTactics;
+                if (action is not null && action.IsActionable())
+                    return action;
             }
 
             return new();

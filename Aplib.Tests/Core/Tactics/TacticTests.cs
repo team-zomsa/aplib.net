@@ -4,7 +4,9 @@ using Action = Aplib.Core.Action;
 namespace Aplib.Tests.Core.Tactics;
 public class TacticTests
 {
-    private readonly Action _emptyAction = new(() => { });
+    private readonly Action _emptyAction = new(effect: () => { });
+    private static string _result = "abc";
+    private readonly Action _filledAction = new(effect: () => _result = "def");
 
     private static bool TrueGuard() => true;
 
@@ -16,18 +18,18 @@ public class TacticTests
     /// Then the result should be the first subtactic.
     /// </summary>
     [Fact]
-    public void GetFirstEnabledActions_WhenTacticTypeIsFirstOf_ReturnsEnabledPrimitiveTactics()
+    public void GetAction_WhenTacticTypeIsFirstOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_filledAction);
         FirstOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        Action? enabledAction = parentTactic.GetAction();
 
         // Assert
-        Assert.Contains(tactic1, enabledActions);
+        Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
@@ -36,18 +38,18 @@ public class TacticTests
     /// Then the result should be the first subtactic.
     /// </summary>
     [Fact]
-    public void GetFirstEnabledActions_WhenTacticTypeIsFirstOfAndGuardEnabled_ReturnsEnabledPrimitiveTactics()
+    public void GetAction_WhenTacticTypeIsFirstOfAndGuardEnabled_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_filledAction);
         FirstOfTactic parentTactic = new([tactic1, tactic2], TrueGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        Action? enabledAction = parentTactic.GetAction();
 
         // Assert
-        Assert.Contains(tactic1, enabledActions);
+        Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
@@ -56,7 +58,7 @@ public class TacticTests
     /// Then the result should contain all the subtactics.
     /// </summary>
     [Fact]
-    public void GetFirstEnabledActions_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
+    public void GetAction_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
     {
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
@@ -64,11 +66,10 @@ public class TacticTests
         AnyOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        Action? enabledAction = parentTactic.GetAction();
 
         // Assert
-        Assert.Contains(tactic1, enabledActions);
-        Assert.Contains(tactic2, enabledActions);
+        Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
@@ -77,16 +78,16 @@ public class TacticTests
     /// Then the result should contain the primitive tactic.
     /// </summary>
     [Fact]
-    public void GetFirstEnabledActions_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsEnabledPrimitiveTactic()
+    public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsEnabledPrimitiveTactic()
     {
         // Arrange
         PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledActions();
+        Action? enabledAction = tactic.GetAction();
 
         // Assert
-        Assert.Contains(tactic, enabledActions);
+        Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
@@ -95,16 +96,16 @@ public class TacticTests
     /// Then the result should be an empty list.
     /// </summary>
     [Fact]
-    public void GetFirstEnabledActions_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsEmptyList()
+    public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsEmptyList()
     {
         // Arrange
         PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledActions();
+        Action? enabledAction = tactic.GetAction();
 
         // Assert
-        Assert.Empty(enabledActions);
+        Assert.Null(enabledAction);
     }
 
     /// <summary>
