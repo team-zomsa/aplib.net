@@ -1,4 +1,5 @@
 ﻿using Aplib.Core.Tactics;
+using FluentAssertions;
 using Action = Aplib.Core.Action;
 
 namespace Aplib.Tests.Core.Tactics;
@@ -109,6 +110,24 @@ public class TacticTests
     }
 
     /// <summary>
+    /// Given a tactic with a guard that returns true and an action,
+    /// When calling the Execute method,
+    /// Then _result should be "def".
+    /// </summary>
+    [Fact]
+    public void Execute_WhenGuardReturnsTrue_ActionIsExecuted()
+    {
+        // Arrange
+        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
+
+        // Act
+        tactic.Action.Execute();
+
+        // Assert
+        Assert.Equal("def", _result);
+    }
+
+    /// <summary>
     /// Given a tactic with a guard that returns true,
     /// When checking if the tactic is actionable,
     /// Then the result should be true.
@@ -117,7 +136,7 @@ public class TacticTests
     public void IsActionable_WhenGuardReturnsTrue_ReturnsTrue()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
+        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
 
         // Act
         bool isActionable = tactic.IsActionable();
