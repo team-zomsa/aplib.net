@@ -121,7 +121,7 @@ public class TacticTests
         PrimitiveTactic tactic = new(_filledAction, TrueGuard);
 
         // Act
-        tactic.Action.Execute();
+        tactic.GetAction()!.Execute();
 
         // Assert
         Assert.Equal("def", _result);
