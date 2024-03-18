@@ -18,7 +18,7 @@ public class BeliefTests
     /// Then it is implicitly converted to its resource type.
     /// </summary>
     [Fact]
-    public void Belief_IsImplicitlyConvertedToResourceType_WhenAssignedToResourceType()
+    public void Belief_AssignedToResourceType_IsImplicitlyConvertedToResourceType()
     {
         // Arrange
         string reference = "def";
@@ -37,7 +37,7 @@ public class BeliefTests
     /// Then the resource is updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_UpdatesResource_WhenUpdateIfConditionIsSatisfied()
+    public void UpdateBelief_UpdateIfConditionIsSatisfied_UpdatesResource()
     {
         // Arrange
         List<int> list = [];
@@ -57,7 +57,7 @@ public class BeliefTests
     /// Then the resource is not updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_DoesNotUpdateResource_WhenUpdateIfConditionIsNotSatisfied()
+    public void UpdateBelief_UpdateIfConditionIsNotSatisfied_DoesNotUpdateResource()
     {
         // Arrange
         List<int> list = [];
@@ -77,7 +77,7 @@ public class BeliefTests
     /// Then the resource is not updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_DoesNotUpdateResource_WhenReferenceIsAssignedTo()
+    public void UpdateBelief_ReferenceIsAssignedTo_DoesNotUpdateResource()
     {
         // Arrange
         string def = "def";

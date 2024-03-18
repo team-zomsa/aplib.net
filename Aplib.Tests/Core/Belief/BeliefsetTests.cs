@@ -9,7 +9,7 @@ public class BeliefsetTests
     /// Then all beliefs are updated.
     /// </summary>
     [Fact]
-    public void UpdateBeliefs_UpdatesAllBeliefs_WhenCalled()
+    public void UpdateBeliefs_Called_UpdatesAllBeliefs()
     {
         // Arrange
         TestBeliefset beliefset = new();
