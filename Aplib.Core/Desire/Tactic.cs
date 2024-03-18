@@ -12,6 +12,6 @@ namespace Aplib.Core.Desire
         /// <summary>
         /// Execute the next cycle in the Believe Desire Intent Cycle.
         /// </summary>
-        public abstract void IterateBdiCycle();
+        public abstract Action GetAction();
     }
 }

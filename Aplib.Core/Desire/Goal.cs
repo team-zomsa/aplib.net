@@ -17,12 +17,18 @@ namespace Aplib.Core.Desire
         /// <seealso cref="Goal.Evaluate"/>
         public delegate Heuristics HeuristicFunction();
 
-
         /// <summary>
         /// Gets the <see cref="Heuristics"/> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
         public virtual Heuristics CurrentHeuristics => _currentHeuristics ??= _heuristicFunction.Invoke();
+
+        /// <summary>
+        /// The <see cref="Desire.Tactic"/> used to achieve this <see cref="Goal"/>, which is executed during every iteration
+        /// of the BDI cycle.
+        /// </summary>
+        /// <seealso cref="Iterate()"/>
+        public readonly Tactic Tactic;
 
         /// <summary>
         /// The name used to display the current goal during debugging, logging, or general overviews.
@@ -40,20 +46,12 @@ namespace Aplib.Core.Desire
         /// </summary>
         protected double _epsilon { get; }
 
-
         /// <summary>
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction"/>. Used to test whether this goal is
         /// completed.
         /// </summary>
         /// <seealso cref="Evaluate"/>
         protected HeuristicFunction _heuristicFunction;
-
-        /// <summary>
-        /// The <see cref="Tactic"/> used to achieve this <see cref="Goal"/>, which is executed during every iteration
-        /// of the BDI cycle.
-        /// </summary>
-        /// <seealso cref="Iterate()"/>
-        private readonly Tactic _tactic;
 
         /// <summary>
         /// The backing field of <see cref="Heuristics"/>.
@@ -73,7 +71,7 @@ namespace Aplib.Core.Desire
         /// </param>
         public Goal(Tactic tactic, HeuristicFunction heuristicFunction, string name, string description, double epsilon = 0.005d)
         {
-            _tactic = tactic;
+            Tactic = tactic;
             _heuristicFunction = heuristicFunction;
             Name = name;
             Description = description;
@@ -93,7 +91,7 @@ namespace Aplib.Core.Desire
         /// </param>
         public Goal(Tactic tactic, Func<bool> heuristicFunction, string name, string description, double epsilon = 0.005d)
         {
-            _tactic = tactic;
+            Tactic = tactic;
             _heuristicFunction = CommonHeuristicFunctions.Boolean(heuristicFunction);
             Name = name;
             Description = description;
@@ -104,10 +102,7 @@ namespace Aplib.Core.Desire
         /// Performs the next steps needed to be taken to approach this goal. Effectively this means that one BDI
         /// cycle will be executed.
         /// </summary>
-        public void Iterate()
-        {
-            _tactic.IterateBdiCycle();
-        }
+        public void Iterate() => Tactic.IterateBdiCycle();
 
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction"/> and the
@@ -116,9 +111,6 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <returns>A boolean representing whether the goal is considered to be completed.</returns>
         /// <seealso cref="_epsilon"/>
-        public bool Evaluate()
-        {
-            return CurrentHeuristics.Distance < _epsilon;
-        }
+        public bool Evaluate() => CurrentHeuristics.Distance < _epsilon;
     }
 }

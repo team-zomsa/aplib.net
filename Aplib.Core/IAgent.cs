@@ -1,35 +1,14 @@
-using System;
-
 namespace Aplib.Core
 {
+    /// <summary>
+    /// Defines an agent that can play a game.
+    /// </summary>
     public interface IAgent
     {
-        public IState State { get; }
-        public IEnvironment Environment { get; }
-        public GoalStructure Goals { get; }
-
-        /// <summary>Update the world and perform an action.</summary>
-        /// <returns>The remaining budget.</returns>
+        /// <summary>
+        /// Updates the agent's state and goals.
+        /// </summary>
+        /// <remarks>This method will get called every frame of the game.</remarks>
         public void Update();
-    }
-
-    // Temporary type definitions
-    public interface IEnvironment
-    {
-        public Observation Observe();
-    }
-
-    public class Observation
-    {
-    }
-
-    public class GoalStructure
-    {
-        public Goal NextGoal() => throw new NotImplementedException();
-    }
-
-    public class Goal
-    {
-        public void Iterate() => throw new NotImplementedException();
     }
 }
