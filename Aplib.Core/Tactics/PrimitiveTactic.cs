@@ -9,9 +9,9 @@ namespace Aplib.Core.Tactics
     public class PrimitiveTactic : Tactic
     {
         /// <summary>
-        /// Gets or sets the action of the primitive tactic.
+        /// Gets the action of the primitive tactic.
         /// </summary>
-        public readonly Action Action;
+        protected readonly Action Action;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
@@ -27,7 +27,7 @@ namespace Aplib.Core.Tactics
         public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions() => IsActionable() ? new() { this } : new();
+        public override Action? GetAction() => IsActionable() ? Action : null;
 
         /// <inheritdoc/>
         public override bool IsActionable() => base.IsActionable() && Action.IsActionable();
