@@ -20,7 +20,7 @@ namespace Aplib.Core.Belief
         {
             _beliefs =
                 GetType().GetFields()
-                .Where(field => field.GetType().IsAssignableFrom(typeof(IBelief)))
+                .Where(field => typeof(IBelief).IsAssignableFrom(field.FieldType))
                 .Select(field => (IBelief)field.GetValue(this))
                 .ToArray();
         }
