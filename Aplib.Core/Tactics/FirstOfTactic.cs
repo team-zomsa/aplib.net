@@ -32,11 +32,11 @@ namespace Aplib.Core.Tactics
             {
                 Action? action = subTactic.GetAction();
 
-                if (action is not null && action.IsActionable())
+                if (action is not null)
                     return action;
             }
 
-            return new();
+            return null;
         }
     }
 }
