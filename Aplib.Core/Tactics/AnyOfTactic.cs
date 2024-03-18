@@ -47,6 +47,9 @@ namespace Aplib.Core.Tactics
                     actions.Add(action);
             }
 
+            if (actions.Count == 0)
+                return null;
+
             return actions[ThreadSafeRandom.Next(actions.Count)];
         }
     }
