@@ -2,8 +2,10 @@
 {
     /// <summary>
     /// The <see cref="IBelief"/> interface defines a contract for classes that represent a belief.
-    /// A belief is some piece of information on the game state as perceived by an agent.
     /// </summary>
+    /// <remarks>
+    /// A belief is some piece of information on the game state as perceived by an agent.
+    /// </remarks>
     public interface IBelief
     {
         /// <summary>

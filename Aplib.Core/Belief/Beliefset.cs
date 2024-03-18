@@ -4,18 +4,22 @@ namespace Aplib.Core.Belief
 {
     /// <summary>
     /// The <see cref="Beliefset"/> class can be inherited to define a set of beliefs for an agent.
+    /// </summary>
+    /// <remarks>
     /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
     /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
-    /// </summary>
+    /// </remarks>
     public abstract class Beliefset
     {
         private readonly IBelief[] _beliefs;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Beliefset"/> class.
+        /// </summary>
+        /// <remarks>
         /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
         /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
-        /// </summary>
+        /// </remarks>
         protected Beliefset()
         {
             _beliefs =

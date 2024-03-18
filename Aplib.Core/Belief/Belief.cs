@@ -6,9 +6,11 @@ namespace Aplib.Core.Belief
     /// The <see cref="Belief{TReference, TResource}"/> class represents a belief.
     /// Some <i>object reference</i> is used to generate/update a <i>resource</i> 
     /// (i.e., some piece of information on the game state as perceived by an agent).
+    /// </summary>
+    /// <remarks>
     /// It implements the <see cref="IBelief"/> interface.
     /// It supports implicit conversion to <typeparamref name="TResource"/>.
-    /// </summary>
+    /// </remarks>
     /// <typeparam name="TReference">The type of the reference used to generate/update the resource.</typeparam>
     /// <typeparam name="TResource">The type of the resource the belief represents.</typeparam>
     public class Belief<TReference, TResource> : IBelief
