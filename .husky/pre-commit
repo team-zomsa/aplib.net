@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+dotnet format -v diag
+
+# Add any changes made by dotnet format to the commit
+git add .
