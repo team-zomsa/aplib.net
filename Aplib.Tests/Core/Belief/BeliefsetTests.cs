@@ -12,7 +12,7 @@ public class BeliefsetTests
     public void UpdateBeliefs_UpdatesAllBeliefs_WhenCalled()
     {
         // Arrange
-        var beliefset = new TestBeliefset();
+        TestBeliefset beliefset = new();
 
         // Act
         beliefset.UpdateBeliefs();
@@ -26,7 +26,6 @@ public class BeliefsetTests
     {
         public SimpleBelief Belief1 = new();
         public SimpleBelief Belief2 = new();
-
     }
 
     /// <summary>

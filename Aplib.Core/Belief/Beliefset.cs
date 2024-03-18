@@ -16,7 +16,7 @@ namespace Aplib.Core.Belief
         /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
         /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
         /// </summary>
-        public Beliefset()
+        protected Beliefset()
         {
             _beliefs =
                 GetType().GetFields()
