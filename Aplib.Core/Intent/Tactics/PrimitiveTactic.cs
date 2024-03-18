@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a primitive tactic in the Aplib.Core namespace.
@@ -27,7 +28,7 @@ namespace Aplib.Core.Tactics
         public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions() => IsActionable() ? new() { this } : new();
+        public override List<PrimitiveTactic> GetFirstEnabledTactics() => IsActionable() ? new() { this } : new();
 
         /// <inheritdoc/>
         public override bool IsActionable() => base.IsActionable() && Action.IsActionable();

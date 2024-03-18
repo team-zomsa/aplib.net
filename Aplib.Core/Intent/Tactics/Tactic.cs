@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
-    /// Represents a tactic in the Aplib.Core namespace.
+    /// Tactics are the real meat of <see cref="Goal"/>s, as they define how the agent can approach the goal in hopes
+    /// of finding a solution which makes the Goal's heuristic function evaluate to being completed. A tactic represents
+    /// a smart combination of <see cref="Intent.Action.Action"/>s, which are executed in a Believe Desire Intent Cycle.
     /// </summary>
+    /// <seealso cref="Goal"/>
+    /// <seealso cref="Intent.Action.Action"/>
     public abstract class Tactic
     {
         /// <summary>
@@ -30,7 +34,7 @@ namespace Aplib.Core.Tactics
         /// Gets the first enabled primitive actions.
         /// </summary>
         /// <returns>A list of primitive tactics that are enabled.</returns>
-        public abstract List<PrimitiveTactic> GetFirstEnabledActions();
+        public abstract List<PrimitiveTactic> GetFirstEnabledTactics();
 
         /// <summary>
         /// Determines whether the tactic is actionable.

@@ -1,4 +1,4 @@
-using Aplib.Core.Desire;
+using Aplib.Core.Intent.Tactics;
 
 namespace Aplib.Tests.Stubs.Desire;
 
@@ -9,8 +9,6 @@ namespace Aplib.Tests.Stubs.Desire;
 internal class TacticStub(Action iteration) : Tactic
 {
     /// <inheritdoc />
-    public override void IterateBdiCycle()
-    {
-        iteration.Invoke();
-    }
+    public override List<PrimitiveTactic> GetFirstEnabledTactics() => new List<PrimitiveTactic>(
+        new PrimitiveTactic[]{new PrimitiveTactic(new Aplib.Core.Intent.Actions.Action(iteration))});
 }

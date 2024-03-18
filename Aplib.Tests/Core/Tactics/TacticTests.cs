@@ -1,5 +1,5 @@
-﻿using Aplib.Core.Tactics;
-using Action = Aplib.Core.Action;
+﻿using Aplib.Core.Intent.Tactics;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core.Tactics;
 public class TacticTests
@@ -24,7 +24,7 @@ public class TacticTests
         FirstOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledTactics();
 
         // Assert
         Assert.Contains(tactic1, enabledActions);
@@ -44,7 +44,7 @@ public class TacticTests
         FirstOfTactic parentTactic = new([tactic1, tactic2], TrueGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledTactics();
 
         // Assert
         Assert.Contains(tactic1, enabledActions);
@@ -64,7 +64,7 @@ public class TacticTests
         AnyOfTactic parentTactic = new([tactic1, tactic2]);
 
         // Act
-        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledActions();
+        List<PrimitiveTactic> enabledActions = parentTactic.GetFirstEnabledTactics();
 
         // Assert
         Assert.Contains(tactic1, enabledActions);
@@ -83,7 +83,7 @@ public class TacticTests
         PrimitiveTactic tactic = new(_emptyAction, TrueGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledActions();
+        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledTactics();
 
         // Assert
         Assert.Contains(tactic, enabledActions);
@@ -101,7 +101,7 @@ public class TacticTests
         PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
 
         // Act
-        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledActions();
+        List<PrimitiveTactic> enabledActions = tactic.GetFirstEnabledTactics();
 
         // Assert
         Assert.Empty(enabledActions);

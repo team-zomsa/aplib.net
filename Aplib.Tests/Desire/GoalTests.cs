@@ -1,4 +1,5 @@
-using Aplib.Core.Desire;
+using Aplib.Core.Desire.Goals;
+using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Stubs.Desire;
 using Aplib.Tests.Tools;
 using FluentAssertions;

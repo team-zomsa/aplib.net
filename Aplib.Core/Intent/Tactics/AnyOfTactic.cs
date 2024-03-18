@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a tactic that executes any of the provided sub-tactics.
@@ -35,13 +35,13 @@ namespace Aplib.Core.Tactics
         public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : this(subTactics) => Guard = guard;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions()
+        public override List<PrimitiveTactic> GetFirstEnabledTactics()
         {
             List<PrimitiveTactic> primitiveTactics = new();
 
             foreach (Tactic subTactic in SubTactics)
             {
-                primitiveTactics.AddRange(subTactic.GetFirstEnabledActions());
+                primitiveTactics.AddRange(subTactic.GetFirstEnabledTactics());
             }
 
             return primitiveTactics;

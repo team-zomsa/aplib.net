@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a tactic that executes the first enabled action from a list of sub-tactics.
@@ -26,11 +26,11 @@ namespace Aplib.Core.Tactics
         }
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledActions()
+        public override List<PrimitiveTactic> GetFirstEnabledTactics()
         {
             foreach (Tactic subTactic in SubTactics)
             {
-                List<PrimitiveTactic> firstOfTactics = subTactic.GetFirstEnabledActions();
+                List<PrimitiveTactic> firstOfTactics = subTactic.GetFirstEnabledTactics();
 
                 if (firstOfTactics.Count > 0)
                     return firstOfTactics;

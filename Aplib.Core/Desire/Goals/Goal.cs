@@ -1,6 +1,10 @@
+using Aplib.Core.Intent.Tactics;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.Goals
 {
     /// <summary>
     /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
@@ -106,7 +110,8 @@ namespace Aplib.Core.Desire
         /// </summary>
         public void Iterate()
         {
-            _tactic.IterateBdiCycle();
+            IEnumerable<Action> possibleActions = _tactic.GetFirstEnabledTactics().Select(x => x.Action);
+            possibleActions.First().Execute(); // FIXME TODO this code is just to make things compile
         }
 
         /// <summary>
