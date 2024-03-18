@@ -99,12 +99,6 @@ namespace Aplib.Core.Desire
         }
 
         /// <summary>
-        /// Performs the next steps needed to be taken to approach this goal. Effectively this means that one BDI
-        /// cycle will be executed.
-        /// </summary>
-        public void Iterate() => Tactic.IterateBdiCycle();
-
-        /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction"/> and the
         /// <see cref="CurrentHeuristics"/>. When the distance of the heuristics is smaller than <see cref="_epsilon"/>,
         /// the goal is considered to be completed.

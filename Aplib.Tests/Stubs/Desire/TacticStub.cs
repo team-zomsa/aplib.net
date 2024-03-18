@@ -9,8 +9,5 @@ namespace Aplib.Tests.Stubs.Desire;
 internal class TacticStub(Action iteration) : Tactic
 {
     /// <inheritdoc />
-    public override void IterateBdiCycle()
-    {
-        iteration.Invoke();
-    }
+    public override Aplib.Core.Action GetAction() => new(iteration);
 }

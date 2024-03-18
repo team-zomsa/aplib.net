@@ -25,9 +25,9 @@ public class GoalTests
         Goal goal = new(tactic, heuristicFunction, name, description); // Does not use helper methods on purpose
 
         // Assert
-        goal.Should().NotBeNull();
-        goal.Name.Should().Be(name);
-        goal.Description.Should().Be(description);
+        _ = goal.Should().NotBeNull();
+        _ = goal.Name.Should().Be(name);
+        _ = goal.Description.Should().Be(description);
     }
 
     /// <summary>
@@ -43,10 +43,10 @@ public class GoalTests
         Tactic tactic = new TacticStub(() => iterations++);
 
         // Act
-        Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
+        _ = new TestGoalBuilder().UseTactic(tactic).Build();
 
         // Assert
-        iterations.Should().Be(0);
+        _ = iterations.Should().Be(0);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class GoalTests
     /// Then the given tactic has has been applied at least once
     /// </summary>
     [Fact]
-    public void Goal_WhenIterating_DoesIterate()
+    public void Goal_WhenGivenTactic_GivesCorrectTactic()
     {
         // Arrange
         int iterations = 0;
@@ -63,10 +63,9 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().UseTactic(tactic).Build();
-        goal.Iterate();
 
         // Assert
-        iterations.Should().BeGreaterThan(0);
+        _ = goal.Tactic.Should().Be(tactic);
     }
 
     /// <summary>
@@ -85,7 +84,7 @@ public class GoalTests
         bool isCompleted = goal.Evaluate();
 
         // Assert
-        isCompleted.Should().Be(true);
+        _ = isCompleted.Should().Be(true);
     }
 
     /// <summary>
@@ -104,7 +103,7 @@ public class GoalTests
         bool isCompleted = goal.Evaluate();
 
         // Assert
-        isCompleted.Should().Be(false);
+        _ = isCompleted.Should().Be(false);
     }
 
     /// <summary>
@@ -123,7 +122,7 @@ public class GoalTests
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
-        Func<bool> heuristicFunctionBoolean = () => goalCompleted;
+        bool heuristicFunctionBoolean() => goalCompleted;
         Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
 
         Goal goalBoolean = new(tactic, heuristicFunctionBoolean, name, description);
@@ -134,6 +133,6 @@ public class GoalTests
         bool goalNonBooleanEvaluation = goalNonBoolean.Evaluate();
 
         // Assert
-        goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
+        _ = goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
     }
 }
