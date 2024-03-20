@@ -17,15 +17,15 @@ namespace Aplib.Core.Desire.Goals
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
         /// <seealso cref="Goal.IsCompleted"/>
-        public delegate Heuristics HeuristicFunction(BelieveSet believeSet);
+        public delegate Heuristics HeuristicFunction(BeliefSet beliefSet);
 
 
         /// <summary>
         /// Gets the <see cref="Heuristics"/> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics(BelieveSet believeSet)
-            => _currentHeuristics ??= _heuristicFunction.Invoke(believeSet);
+        public virtual Heuristics CurrentHeuristics(BeliefSet beliefSet)
+            => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
         /// The name used to display the current goal during debugging, logging, or general overviews.
@@ -109,6 +109,6 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>A boolean representing whether the goal is considered to be completed.</returns>
         /// <seealso cref="_epsilon"/>
-        public bool IsCompleted(BelieveSet believeSet) => CurrentHeuristics(believeSet).Distance < _epsilon;
+        public bool IsCompleted(BeliefSet beliefSet) => CurrentHeuristics(beliefSet).Distance < _epsilon;
     }
 }

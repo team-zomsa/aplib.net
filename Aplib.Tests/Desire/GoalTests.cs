@@ -61,12 +61,12 @@ public class GoalTests
     public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
-        BelieveSet believeSet = new();
+        BeliefSet beliefSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.IsCompleted(believeSet);
+        bool isCompleted = goal.IsCompleted(beliefSet);
 
         // Assert
         isCompleted.Should().Be(true);
@@ -81,12 +81,12 @@ public class GoalTests
     public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        BelieveSet believeSet = new();
+        BeliefSet beliefSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Uncompleted();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.IsCompleted(believeSet);
+        bool isCompleted = goal.IsCompleted(beliefSet);
 
         // Assert
         isCompleted.Should().Be(false);
@@ -101,15 +101,15 @@ public class GoalTests
     public void Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()
     {
         // Arrange
-        BelieveSet believeSet = new();
+        BeliefSet beliefSet = new();
 
         // Act
-        string currentBelieveSetState = believeSet.State;
+        string currentBelieveSetState = beliefSet.State;
         Goal goal = new TestGoalBuilder().Build();
-        _ = goal.IsCompleted(believeSet);
+        _ = goal.IsCompleted(beliefSet);
 
         // Assert
-        believeSet.State.Should().Be(currentBelieveSetState);
+        beliefSet.State.Should().Be(currentBelieveSetState);
     }
 
     /// <summary>
@@ -135,9 +135,9 @@ public class GoalTests
         Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
 
         // Act
-        BelieveSet believeSet = new();
-        bool goalBooleanEvaluation = goalBoolean.IsCompleted(believeSet);
-        bool goalNonBooleanEvaluation = goalNonBoolean.IsCompleted(believeSet);
+        BeliefSet beliefSet = new();
+        bool goalBooleanEvaluation = goalBoolean.IsCompleted(beliefSet);
+        bool goalNonBooleanEvaluation = goalNonBoolean.IsCompleted(beliefSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
