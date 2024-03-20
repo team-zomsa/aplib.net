@@ -1,3 +1,4 @@
+using Aplib.Core.Believe;
 using System;
 
 namespace Aplib.Core.Desire.Goals
@@ -15,13 +16,13 @@ namespace Aplib.Core.Desire.Goals
         /// </param>
         /// <returns>A heuristic function which wraps around the boolean-based heuristic function.</returns>
         public static Goal.HeuristicFunction Boolean(Func<bool> heuristicFunction)
-            => () => Heuristics.Boolean(heuristicFunction.Invoke());
+            => _ => Heuristics.Boolean(heuristicFunction.Invoke());
 
         /// <summary>
         /// A <see cref="Goal.HeuristicFunction"/> which always returns <see cref="Heuristics"/> with the same distance.
         /// </summary>
         /// <param name="distance">The distance which the heuristic function must always return.</param>
-        public static Goal.HeuristicFunction Constant(float distance) => () => new Heuristics { Distance = distance };
+        public static Goal.HeuristicFunction Constant(float distance) => _ => new Heuristics { Distance = distance };
 
         /// <summary>
         /// Returns a heuristic function which always, at all times, and forever, returns a value indicating the state

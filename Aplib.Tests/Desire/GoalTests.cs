@@ -1,3 +1,4 @@
+using Aplib.Core.Believe;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Stubs.Desire;
@@ -52,25 +53,6 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given the Goal is created properly using its constructor,
-    /// When the goal is being iterated over,
-    /// Then next returned action should be the one given in its tactic
-    /// </summary>
-    [Fact]
-    public void Goal_WhenIteratedOver_ReturnsCorrectGoal()
-    {
-        // Arrange
-        Action action = new(() => Console.WriteLine("ZOMSA rocks!"));
-        Tactic tactic = new TacticStub(action);
-
-        // Act
-        Goal goal = new TestGoalBuilder().UseTactic(tactic).Build();
-
-        // Assert
-        goal.GetNextAction().Should().Be(action);
-    }
-
-    /// <summary>
     /// Given the Goal's heuristic function is configured to have reached its goal
     /// when the Evaluate() method of a goal is used,
     /// then the method should return true.
@@ -79,11 +61,12 @@ public class GoalTests
     public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
+        BelieveSet believeSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.Evaluate();
+        bool isCompleted = goal.IsCompleted(believeSet);
 
         // Assert
         isCompleted.Should().Be(true);
@@ -98,14 +81,35 @@ public class GoalTests
     public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
+        BelieveSet believeSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Uncompleted();
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.Evaluate();
+        bool isCompleted = goal.IsCompleted(believeSet);
 
         // Assert
         isCompleted.Should().Be(false);
+    }
+
+    /// <summary>
+    /// Given a valid goal and believe,
+    /// when the goal's heuristic function is evaluated,
+    /// the believeset is not altered
+    /// </summary>
+    [Fact]
+    public void Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()
+    {
+        // Arrange
+        BelieveSet believeSet = new();
+
+        // Act
+        string currentBelieveSetState = believeSet.State;
+        Goal goal = new TestGoalBuilder().Build();
+        _ = goal.IsCompleted(believeSet);
+
+        // Assert
+        believeSet.State.Should().Be(currentBelieveSetState);
     }
 
     /// <summary>
@@ -131,8 +135,9 @@ public class GoalTests
         Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
 
         // Act
-        bool goalBooleanEvaluation = goalBoolean.Evaluate();
-        bool goalNonBooleanEvaluation = goalNonBoolean.Evaluate();
+        BelieveSet believeSet = new();
+        bool goalBooleanEvaluation = goalBoolean.IsCompleted(believeSet);
+        bool goalNonBooleanEvaluation = goalNonBoolean.IsCompleted(believeSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
