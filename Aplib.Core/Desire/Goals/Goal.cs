@@ -16,7 +16,7 @@ namespace Aplib.Core.Desire.Goals
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics"/>, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="Goal.IsCompleted"/>
+        /// <seealso cref="IsCompleted"/>
         public delegate Heuristics HeuristicFunction(BeliefSet beliefSet);
 
 
