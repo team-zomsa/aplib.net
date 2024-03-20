@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['primitivetactic_2ecs_0',['PrimitiveTactic.cs',['../PrimitiveTactic_8cs.html',1,'']]]
+  ['heuristics_2ecs_0',['Heuristics.cs',['../Heuristics_8cs.html',1,'']]]
 ];

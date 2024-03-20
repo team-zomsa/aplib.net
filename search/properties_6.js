@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['storedguardresult_0',['StoredGuardResult',['../classAplib_1_1Core_1_1GuardedAction.html#a71c7f2d485363c82aff4afb4c08cd88c',1,'Aplib::Core::GuardedAction']]],
-  ['subtactics_1',['SubTactics',['../classAplib_1_1Core_1_1Tactics_1_1AnyOfTactic.html#a0d024cc9eb99b4bdc5a742d84fb04f1d',1,'Aplib::Core::Tactics::AnyOfTactic']]]
+  ['tactic_0',['Tactic',['../classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#a7ab7322918a9b3d7921615e9e25f7045',1,'Aplib::Core::Desire::Goals::Goal']]]
 ];

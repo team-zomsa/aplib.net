@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['description_0',['Description',['../classAplib_1_1Core_1_1Desire_1_1Goal.html#a4419b2b6cdf63b1aa6b0a8271d239455',1,'Aplib::Core::Desire::Goal']]],
-  ['distance_1',['Distance',['../classAplib_1_1Core_1_1Desire_1_1Heuristics.html#a7a734d15403647e79b04977cd5942ad8',1,'Aplib::Core::Desire::Heuristics']]]
+  ['effect_0',['Effect',['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1Action.html#a75e7e43ce75593c088aa85e855ae4f2e',1,'Aplib.Core.Intent.Actions.Action.Effect'],['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#aaceaae9e6b1399020fef8199ff9a6074',1,'Aplib.Core.Intent.Actions.GuardedAction.Effect']]]
 ];
