@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
-    /// Represents a primitive tactic in the Aplib.Core namespace.
+    /// Represents a primitive tactic
     /// </summary>
     public class PrimitiveTactic : Tactic
     {
@@ -23,7 +23,7 @@ namespace Aplib.Core.Tactics
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action and guard.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
-        /// <param name="guard">The guard of the tactic.</param>
+        /// <param name="guard">The guard of the primitive tactic.</param>
         public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
 
         /// <inheritdoc/>

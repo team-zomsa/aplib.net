@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aplib.Core
+namespace Aplib.Core.Intent.Actions
 {
     /// <summary>
     /// Describes an action that can be executed and guarded with a query that stores the result of the guard.

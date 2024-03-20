@@ -1,4 +1,4 @@
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.Goals
 {
     /// <summary>
     /// Contains all information on how close the associated state is to its goal.
@@ -17,6 +17,6 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="value">True if completed, False if not completed.</param>
         /// <returns></returns>
-        public static Heuristics BooleanHeuristic(bool value) => new() { Distance = value ? 0f : 1f };
+        public static Heuristics Boolean(bool value) => new() { Distance = value ? 0f : 1f };
     }
 }
