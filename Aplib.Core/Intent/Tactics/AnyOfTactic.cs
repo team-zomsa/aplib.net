@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -17,7 +18,7 @@ namespace Aplib.Core.Intent.Tactics
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(List<Tactic> subTactics)
+        public AnyOfTactic(params Tactic[] subTactics)
         {
             SubTactics = new();
 
@@ -32,19 +33,25 @@ namespace Aplib.Core.Intent.Tactics
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public AnyOfTactic(List<Tactic> subTactics, Func<bool> guard) : this(subTactics) => Guard = guard;
+        public AnyOfTactic(Func<bool> guard, params Tactic[] subTactics) : this(subTactics) => Guard = guard;
 
         /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledTactics()
+        public override Action? GetAction()
         {
-            List<PrimitiveTactic> primitiveTactics = new();
+            List<Action> actions = new();
 
             foreach (Tactic subTactic in SubTactics)
             {
-                primitiveTactics.AddRange(subTactic.GetFirstEnabledTactics());
+                Action? action = subTactic.GetAction();
+
+                if (action is not null)
+                    actions.Add(action);
             }
 
-            return primitiveTactics;
+            if (actions.Count == 0)
+                return null;
+
+            return actions[ThreadSafeRandom.Next(actions.Count)];
         }
     }
 }

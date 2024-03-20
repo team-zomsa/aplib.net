@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -12,7 +12,7 @@ namespace Aplib.Core.Intent.Tactics
         /// Initializes a new instance of the <see cref="FirstOfTactic"/> class with the specified sub-tactics.
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(List<Tactic> subTactics) : base(subTactics)
+        public FirstOfTactic(params Tactic[] subTactics) : base(subTactics)
         {
         }
 
@@ -21,22 +21,22 @@ namespace Aplib.Core.Intent.Tactics
         /// </summary>
         /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public FirstOfTactic(List<Tactic> subTactics, Func<bool> guard) : base(subTactics, guard)
+        public FirstOfTactic(Func<bool> guard, params Tactic[] subTactics) : base(guard, subTactics)
         {
         }
 
-        /// <inheritdoc/>
-        public override List<PrimitiveTactic> GetFirstEnabledTactics()
+        /// <inheritdoc />
+        public override Action? GetAction()
         {
             foreach (Tactic subTactic in SubTactics)
             {
-                List<PrimitiveTactic> firstOfTactics = subTactic.GetFirstEnabledTactics();
+                Action? action = subTactic.GetAction();
 
-                if (firstOfTactics.Count > 0)
-                    return firstOfTactics;
+                if (action is not null)
+                    return action;
             }
 
-            return new();
+            return null;
         }
     }
 }

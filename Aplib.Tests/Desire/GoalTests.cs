@@ -3,6 +3,7 @@ using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Stubs.Desire;
 using Aplib.Tests.Tools;
 using FluentAssertions;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Desire;
 
@@ -17,7 +18,7 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(() => { });
+        Tactic tactic = new TacticStub(new Action(() => { }));
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
@@ -41,7 +42,7 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Tactic tactic = new TacticStub(() => iterations++);
+        Tactic tactic = new TacticStub(new Action(() => iterations++));
 
         // Act
         Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
@@ -53,21 +54,20 @@ public class GoalTests
     /// <summary>
     /// Given the Goal is created properly using its constructor,
     /// When the goal is being iterated over,
-    /// Then the given tactic has has been applied at least once
+    /// Then next returned action should be the one given in its tactic
     /// </summary>
     [Fact]
-    public void Goal_WhenIterating_DoesIterate()
+    public void Goal_WhenIteratedOver_ReturnsCorrectGoal()
     {
         // Arrange
-        int iterations = 0;
-        Tactic tactic = new TacticStub(() => iterations++);
+        Action action = new(() => Console.WriteLine("ZOMSA rocks!"));
+        Tactic tactic = new TacticStub(action);
 
         // Act
         Goal goal = new TestGoalBuilder().UseTactic(tactic).Build();
-        goal.Iterate();
 
         // Assert
-        iterations.Should().BeGreaterThan(0);
+        goal.GetNextAction().Should().Be(action);
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given the Goal's different constructors have been called with semantically equal argumetns
+    /// Given the Goal's different constructors have been called with semantically equal arguments
     /// when the Evaluate() method of all goals are used,
     /// then all returned values should equal.
     /// </summary>
@@ -120,7 +120,7 @@ public class GoalTests
     public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
     {
         // Arrange
-        Tactic tactic = new TacticStub(() => { });
+        Tactic tactic = new TacticStub(new Action(() => { }));
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 

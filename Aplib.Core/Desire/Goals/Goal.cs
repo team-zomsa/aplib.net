@@ -1,7 +1,5 @@
 using Aplib.Core.Intent.Tactics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Core.Desire.Goals
@@ -56,7 +54,7 @@ namespace Aplib.Core.Desire.Goals
         /// The <see cref="Tactic"/> used to achieve this <see cref="Goal"/>, which is executed during every iteration
         /// of the BDI cycle.
         /// </summary>
-        /// <seealso cref="Iterate()"/>
+        /// <seealso cref="GetNextAction()"/>
         private readonly Tactic _tactic;
 
         /// <summary>
@@ -105,14 +103,10 @@ namespace Aplib.Core.Desire.Goals
         }
 
         /// <summary>
-        /// Performs the next steps needed to be taken to approach this goal. Effectively this means that one BDI
-        /// cycle will be executed.
+        /// Gets the next Action needed to be performed to approach this goal. Effectively this means that one BDI
+        /// cycle will be executed when this Action is performed.
         /// </summary>
-        public void Iterate()
-        {
-            IEnumerable<Action> possibleActions = _tactic.GetFirstEnabledTactics().Select(x => x.Action);
-            possibleActions.First().Execute(); // FIXME TODO this code is just to make things compile
-        }
+        public Action? GetNextAction() => _tactic.GetAction();
 
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction"/> and the

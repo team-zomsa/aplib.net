@@ -1,4 +1,5 @@
 using Aplib.Core.Intent.Tactics;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Stubs.Desire;
 
@@ -9,6 +10,5 @@ namespace Aplib.Tests.Stubs.Desire;
 internal class TacticStub(Action iteration) : Tactic
 {
     /// <inheritdoc />
-    public override List<PrimitiveTactic> GetFirstEnabledTactics() => new List<PrimitiveTactic>(
-        new PrimitiveTactic[]{new PrimitiveTactic(new Aplib.Core.Intent.Actions.Action(iteration))});
+    public override Action? GetAction() => iteration;
 }
