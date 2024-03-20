@@ -3,24 +3,24 @@
 namespace Aplib.Core.Belief
 {
     /// <summary>
-    /// The <see cref="Beliefset"/> class can be inherited to define a set of beliefs for an agent.
+    /// The <see cref="BeliefSet"/> class can be inherited to define a set of beliefs for an agent.
     /// </summary>
     /// <remarks>
     /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
     /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
     /// </remarks>
-    public abstract class Beliefset
+    public abstract class BeliefSet
     {
         private readonly IBelief[] _beliefs;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Beliefset"/> class.
+        /// Initializes a new instance of the <see cref="BeliefSet"/> class.
         /// </summary>
         /// <remarks>
         /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
         /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
         /// </remarks>
-        protected Beliefset()
+        protected BeliefSet()
         {
             _beliefs =
                 GetType().GetFields()
@@ -30,7 +30,7 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
-        /// Updates all objects of type <see cref="IBelief"/> that are defined as <i>public fields</i> in <see cref="Beliefset"/>.
+        /// Updates all objects of type <see cref="IBelief"/> that are defined as <i>public fields</i> in <see cref="BeliefSet"/>.
         /// </summary>
         public void UpdateBeliefs()
         {
