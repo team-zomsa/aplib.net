@@ -1,10 +1,10 @@
 ﻿using Aplib.Core.Belief;
 
 namespace Aplib.Tests.Core.Belief;
-public class BeliefsetTests
+public class BeliefSetTests
 {
     /// <summary>
-    /// Given a Beliefset instance with multiple beliefs,
+    /// Given a BeliefSet instance with multiple beliefs,
     /// When UpdateBeliefs is called,
     /// Then all beliefs are updated.
     /// </summary>
@@ -12,14 +12,14 @@ public class BeliefsetTests
     public void UpdateBeliefs_Called_UpdatesAllBeliefs()
     {
         // Arrange
-        TestBeliefSet beliefset = new();
+        TestBeliefSet beliefSet = new();
 
         // Act
-        beliefset.UpdateBeliefs();
+        beliefSet.UpdateBeliefs();
 
         // Assert
-        Assert.True(beliefset.Belief1.Updated);
-        Assert.True(beliefset.Belief2.Updated);
+        Assert.True(beliefSet.Belief1.Updated);
+        Assert.True(beliefSet.Belief2.Updated);
     }
 
     private class TestBeliefSet : BeliefSet
