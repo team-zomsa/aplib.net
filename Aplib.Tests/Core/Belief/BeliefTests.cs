@@ -7,9 +7,9 @@ public class BeliefTests
 
     private static int GetCount<T>(IEnumerable<T> reference) => reference.Count();
 
-    private static bool TrueUpdateIf() => true;
+    private static bool TrueShouldUpdate() => true;
 
-    private static bool FalseUpdateIf() => false;
+    private static bool FalseShouldUpdate() => false;
 
 
     /// <summary>
@@ -37,11 +37,11 @@ public class BeliefTests
     /// Then the observation is updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_UpdateIfConditionIsSatisfied_UpdatesObservation()
+    public void UpdateBelief_ShouldUpdateConditionIsSatisfied_UpdatesObservation()
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, GetCount, TrueUpdateIf);
+        Belief<List<int>, int> belief = new(list, GetCount, TrueShouldUpdate);
 
         // Act
         list.Add(69);
@@ -57,11 +57,11 @@ public class BeliefTests
     /// Then the observation is not updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_UpdateIfConditionIsNotSatisfied_DoesNotUpdateObservation()
+    public void UpdateBelief_ShouldUpdateConditionIsNotSatisfied_DoesNotUpdateObservation()
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, GetCount, FalseUpdateIf);
+        Belief<List<int>, int> belief = new(list, GetCount, FalseShouldUpdate);
 
         // Act
         list.Add(69);
@@ -81,7 +81,7 @@ public class BeliefTests
     {
         // Arrange
         string def = "def";
-        Belief<string, string> belief = new(def, ID, TrueUpdateIf);
+        Belief<string, string> belief = new(def, ID, TrueShouldUpdate);
 
         // Act
         def = "abc";
