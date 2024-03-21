@@ -3,77 +3,77 @@
 namespace Aplib.Core.Belief
 {
     /// <summary>
-    /// The <see cref="Belief{TReference, TResource}"/> class represents a belief.
-    /// Some <i>object reference</i> is used to generate/update a <i>resource</i> 
+    /// The <see cref="Belief{TReference, TObservation}"/> class represents a belief.
+    /// Some <i>object reference</i> is used to generate/update a <i>observation</i> 
     /// (i.e., some piece of information on the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
     /// It implements the <see cref="IBelief"/> interface.
-    /// It supports implicit conversion to <typeparamref name="TResource"/>.
+    /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
-    /// <typeparam name="TReference">The type of the reference used to generate/update the resource.</typeparam>
-    /// <typeparam name="TResource">The type of the resource the belief represents.</typeparam>
-    public class Belief<TReference, TResource> : IBelief
+    /// <typeparam name="TReference">The type of the reference used to generate/update the observation.</typeparam>
+    /// <typeparam name="TObservation">The type of the observation the belief represents.</typeparam>
+    public class Belief<TReference, TObservation> : IBelief
     {
         /// <summary>
-        /// The reference used to generate/update the resource.
+        /// The reference used to generate/update the observation.
         /// </summary>
         private readonly TReference _reference;
 
         /// <summary>
-        /// A function that takes a reference and generates/updates a resource.
+        /// A function that takes a reference and generates/updates an observation.
         /// </summary>
-        private readonly Func<TReference, TResource> _getResourceFromReference;
+        private readonly Func<TReference, TObservation> _getObservationFromReference;
 
         /// <summary>
-        /// A function that sets a condition on when the resource should be updated.
+        /// A function that sets a condition on when the observation should be updated.
         /// </summary>
         private readonly Func<bool> _updateIf = () => true;
 
         /// <summary>
-        /// The resource represented by the belief (i.e., some piece of information on the game state as perceived by an agent).
+        /// The observation represented by the belief (i.e., some piece of information on the game state as perceived by an agent).
         /// </summary>
-        private TResource _resource;
+        private TObservation _observation;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TResource}"/> class with a reference, 
-        /// and a function to generate/update the resource using the reference.
+        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with a reference, 
+        /// and a function to generate/update the observation using the reference.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
-        public Belief(TReference reference, Func<TReference, TResource> getResourceFromReference)
+        /// <param name="reference">A function that takes a reference and generates/updates an observation.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates an observation.</param>
+        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
         {
             _reference = reference;
-            _getResourceFromReference = getResourceFromReference;
-            _resource = _getResourceFromReference(_reference);
+            _getObservationFromReference = getObservationFromReference;
+            _observation = _getObservationFromReference(_reference);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TResource}"/>
+        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/>
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
-        /// <param name="updateIf">A function that sets a condition on when the resource should be updated.</param>
-        public Belief(TReference reference, Func<TReference, TResource> getResourceFromReference, Func<bool> updateIf)
-            : this(reference, getResourceFromReference)
+        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates an observation.</param>
+        /// <param name="updateIf">A function that sets a condition on when the observation should be updated.</param>
+        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference, Func<bool> updateIf)
+            : this(reference, getObservationFromReference)
         {
             _updateIf = updateIf;
         }
 
         /// <summary>
-        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TResource}"/> object 
-        /// to be used where a <typeparamref name="TResource"/> is expected.
+        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TObservation}"/> object 
+        /// to be used where a <typeparamref name="TObservation"/> is expected.
         /// </summary>
-        /// <param name="belief">The <see cref="Belief{TReference, TResource}"/> object to convert.</param>
-        public static implicit operator TResource(Belief<TReference, TResource> belief) => belief._resource;
+        /// <param name="belief">The <see cref="Belief{TReference, TObservation}"/> object to convert.</param>
+        public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief._observation;
 
         /// <summary>
-        /// Generates/updates the resource if the updateIf condition is satisfied.
-        /// The resource is then updated by calling the getResourceFromReference function.
+        /// Generates/updates the observation if the updateIf condition is satisfied.
+        /// The observation is then updated by calling the getObservationFromReference function.
         /// </summary>
         public void UpdateBelief()
         {
-            if (_updateIf()) _resource = _getResourceFromReference(_reference);
+            if (_updateIf()) _observation = _getObservationFromReference(_reference);
         }
     }
 }

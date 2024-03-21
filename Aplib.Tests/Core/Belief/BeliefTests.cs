@@ -14,30 +14,30 @@ public class BeliefTests
 
     /// <summary>
     /// Given a Belief instance,
-    /// When it is assigned to a variable of its resource type,
-    /// Then it is implicitly converted to its resource type.
+    /// When it is assigned to a variable of its observation type,
+    /// Then it is implicitly converted to its observation type.
     /// </summary>
     [Fact]
-    public void Belief_AssignedToResourceType_IsImplicitlyConvertedToResourceType()
+    public void Belief_AssignedToObservationType_IsImplicitlyConvertedToObservationType()
     {
         // Arrange
         string reference = "def";
         Belief<string, string> belief = new(reference, ID);
 
         // Act
-        string resource = belief;
+        string observation = belief;
 
         // Assert
-        Assert.Equal("def", resource);
+        Assert.Equal("def", observation);
     }
 
     /// <summary>
     /// Given a Belief instance with an updateIf condition that is satisfied,
     /// When UpdateBelief is called,
-    /// Then the resource is updated.
+    /// Then the observation is updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_UpdateIfConditionIsSatisfied_UpdatesResource()
+    public void UpdateBelief_UpdateIfConditionIsSatisfied_UpdatesObservation()
     {
         // Arrange
         List<int> list = [];
@@ -54,10 +54,10 @@ public class BeliefTests
     /// <summary>
     /// Given a Belief instance with an updateIf condition that is not satisfied,
     /// When UpdateBelief is called,
-    /// Then the resource is not updated.
+    /// Then the observation is not updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_UpdateIfConditionIsNotSatisfied_DoesNotUpdateResource()
+    public void UpdateBelief_UpdateIfConditionIsNotSatisfied_DoesNotUpdateObservation()
     {
         // Arrange
         List<int> list = [];
@@ -74,10 +74,10 @@ public class BeliefTests
     /// <summary>
     /// Given a Belief instance with a reference,
     /// When the reference is assigned to and UpdateBelief is called,
-    /// Then the resource is not updated.
+    /// Then the observation is not updated.
     /// </summary>
     [Fact]
-    public void UpdateBelief_ReferenceIsAssignedTo_DoesNotUpdateResource()
+    public void UpdateBelief_ReferenceIsAssignedTo_DoesNotUpdateObservation()
     {
         // Arrange
         string def = "def";
