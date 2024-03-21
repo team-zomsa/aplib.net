@@ -5,7 +5,7 @@ namespace Aplib.Core.Belief
     /// <summary>
     /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.
     /// Some <i>object reference</i> is used to generate/update an <i>observation</i> 
-    /// (i.e., some piece of information on the game state as perceived by an agent).
+    /// (i.e., some piece of information of the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
     /// It implements the <see cref="IBelief"/> interface.
@@ -31,7 +31,7 @@ namespace Aplib.Core.Belief
         private readonly Func<bool> _shouldUpdate = () => true;
 
         /// <summary>
-        /// The observation represented by the belief (i.e., some piece of information on the game state as perceived by an agent).
+        /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
         /// </summary>
         private TObservation _observation;
 
