@@ -70,7 +70,7 @@ namespace Aplib.Core.Belief
         public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief._observation;
 
         /// <summary>
-        /// Generates/updates the observation if the updateIf condition is satisfied.
+        /// Generates/updates the observation if the shouldUpdate condition is satisfied.
         /// The observation is then updated by calling the getObservationFromReference function.
         /// </summary>
         public void UpdateBelief()

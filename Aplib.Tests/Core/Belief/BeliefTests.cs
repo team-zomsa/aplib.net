@@ -1,16 +1,24 @@
 ﻿using Aplib.Core.Belief;
+using System.Linq;
 
 namespace Aplib.Tests.Core.Belief;
+
+/// <summary>
+/// Describes a set of tests for the <see cref="Belief{TReference,TObservation}"/> class.
+/// </summary>
 public class BeliefTests
 {
-    private static TReference ID<TReference>(TReference reference) => reference;
+    /// <summary>
+    /// A constant 'true' method for testing.
+    /// </summary>
+    /// <returns>True.</returns>
+    private static bool AlwaysUpdate() => true;
 
-    private static int GetCount<T>(IEnumerable<T> reference) => reference.Count();
-
-    private static bool TrueShouldUpdate() => true;
-
-    private static bool FalseShouldUpdate() => false;
-
+    /// <summary>
+    /// A constant 'false' method for testing.
+    /// </summary>
+    /// <returns>False.</returns>
+    private static bool NeverUpdate() => false;
 
     /// <summary>
     /// Given a Belief instance,
@@ -18,21 +26,21 @@ public class BeliefTests
     /// Then it is implicitly converted to its observation type.
     /// </summary>
     [Fact]
-    public void Belief_AssignedToObservationType_IsImplicitlyConvertedToObservationType()
+    public void Belief_AssignedToObservationType_IsCorrectlyImplicitlyConvertedToObservationType()
     {
         // Arrange
-        string reference = "def";
-        Belief<string, string> belief = new(reference, ID);
+        string def = "def";
+        Belief<string, string> belief = new(def, reference => reference);
 
         // Act
         string observation = belief;
 
         // Assert
-        Assert.Equal("def", observation);
+        Assert.Equal(def, observation);
     }
 
     /// <summary>
-    /// Given a Belief instance with an updateIf condition that is satisfied,
+    /// Given a Belief instance with an shouldUpdate condition that is satisfied,
     /// When UpdateBelief is called,
     /// Then the observation is updated.
     /// </summary>
@@ -41,18 +49,18 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, GetCount, TrueShouldUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
 
         // Act
         list.Add(69);
         belief.UpdateBelief();
 
         // Assert
-        Assert.Equal(1, belief);
+        Assert.Equal(list.Count, belief);
     }
 
     /// <summary>
-    /// Given a Belief instance with an updateIf condition that is not satisfied,
+    /// Given a Belief instance with an shouldUpdate condition that is not satisfied,
     /// When UpdateBelief is called,
     /// Then the observation is not updated.
     /// </summary>
@@ -61,14 +69,14 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, GetCount, FalseShouldUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
 
         // Act
-        list.Add(69);
+        list.Add(420);
         belief.UpdateBelief();
 
         // Assert
-        Assert.Equal(0, belief);
+        Assert.NotEqual(list.Count, belief);
     }
 
     /// <summary>
@@ -81,7 +89,7 @@ public class BeliefTests
     {
         // Arrange
         string def = "def";
-        Belief<string, string> belief = new(def, ID, TrueShouldUpdate);
+        Belief<string, string> belief = new(def, reference => reference, AlwaysUpdate);
 
         // Act
         def = "abc";

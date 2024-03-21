@@ -1,6 +1,10 @@
 ﻿using Aplib.Core.Belief;
 
 namespace Aplib.Tests.Core.Belief;
+
+/// <summary>
+/// Describes a set of tests for the <see cref="BeliefSet"/> class.
+/// </summary>
 public class BeliefSetTests
 {
     /// <summary>
