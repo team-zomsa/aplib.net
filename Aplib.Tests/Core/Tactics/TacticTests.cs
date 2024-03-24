@@ -7,9 +7,9 @@ namespace Aplib.Tests.Core.Tactics;
 [SuppressMessage("ReSharper", "StringLiteralTypo")]
 public class TacticTests
 {
-    private readonly Action _emptyAction = new(effect: () => { });
+    private readonly Action _emptyAction = new(() => { }, "empty");
     private static string _result = "abc";
-    private readonly Action _filledAction = new(effect: () => _result = "def");
+    private readonly Action _filledAction = new(() => _result = "def", "filled");
 
     private static bool TrueGuard() => true;
 

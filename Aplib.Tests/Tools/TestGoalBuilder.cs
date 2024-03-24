@@ -8,7 +8,7 @@ namespace Aplib.Tests.Tools;
 internal sealed class TestGoalBuilder
 {
     // ReSharper disable once StringLiteralTypo
-    private Tactic _tactic = new TacticStub(new Action(() => { }), "tictac");
+    private Tactic _tactic = new TacticStub(new Action(() => { }, "a1"), "tictac");
     private Goal.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions.Constant(0);
     private string _name = "Such a good goal name";
     private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
