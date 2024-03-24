@@ -1,4 +1,5 @@
 using Aplib.Core.Intent.Tactics;
+using FluentAssertions;
 using System.Diagnostics.CodeAnalysis;
 using Action = Aplib.Core.Intent.Actions.Action;
 
@@ -14,6 +15,37 @@ public class TacticTests
     private static bool TrueGuard() => true;
 
     private static bool FalseGuard() => false;
+
+    [Fact]
+    public void Tactic_WhenConstructed_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "Typical airbender tactic";
+        const string description = "Avoid and evade";
+
+        // Act
+        Tactic tactic = new PrimitiveTactic(_emptyAction, name, description);
+
+        // Assert
+        tactic.Should().NotBeNull();
+        tactic.Metadata.Name.Should().Be(name);
+        tactic.Metadata.Description.Should().Be(description);
+    }
+    
+    [Fact]
+    public void Tactic_WithoutDescription_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "Tictac";
+
+        // Act
+        Tactic tactic = new PrimitiveTactic(_emptyAction, name);
+
+        // Assert
+        tactic.Should().NotBeNull();
+        tactic.Metadata.Name.Should().Be(name);
+        tactic.Metadata.Description.Should().BeNull();
+    }
 
     /// <summary>
     /// Given a parent of type <see cref="FirstOfTactic"/> with two subtactics,
