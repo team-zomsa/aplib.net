@@ -93,9 +93,9 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given a valid goal and believe,
+    /// Given a valid goal and belief,
     /// when the goal's heuristic function is evaluated,
-    /// the believeset is not altered
+    /// the beliefset is not altered
     /// </summary>
     [Fact]
     public void Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()
