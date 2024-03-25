@@ -1,11 +1,8 @@
 ﻿namespace Aplib.Core.Belief
 {
     /// <summary>
-    /// The <see cref="IBelief"/> interface defines a contract for classes that represent a belief.
+    /// A belief represents/encapsulates an observation (i.e., piece of information of the game state as perceived by an agent).
     /// </summary>
-    /// <remarks>
-    /// A belief is some piece of information on the game state as perceived by an agent.
-    /// </remarks>
     public interface IBelief
     {
         /// <summary>

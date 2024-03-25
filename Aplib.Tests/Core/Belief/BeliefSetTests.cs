@@ -1,6 +1,10 @@
 ﻿using Aplib.Core.Belief;
 
 namespace Aplib.Tests.Core.Belief;
+
+/// <summary>
+/// Describes a set of tests for the <see cref="BeliefSet"/> class.
+/// </summary>
 public class BeliefSetTests
 {
     /// <summary>
@@ -26,7 +30,7 @@ public class BeliefSetTests
     /// <summary>
     /// Given a BeliefSet instance with multiple <i>public property</i> beliefs,
     /// When UpdateBeliefs is called,
-    /// Then all beliefs are updated.
+    /// Then no beliefs are updated.
     /// </summary>
     [Fact]
     public void UpdateBeliefs_PublicBeliefProperties_DoesNotUpdateAnyBeliefs()
@@ -46,7 +50,7 @@ public class BeliefSetTests
     /// <summary>
     /// Given a BeliefSet instance with multiple <i>private field</i> beliefs,
     /// When UpdateBeliefs is called,
-    /// Then all beliefs are updated.
+    /// Then no beliefs are updated.
     /// </summary>
     [Fact]
     public void UpdateBeliefs_PrivateBeliefFields_DoesNotUpdateAnyBeliefs()
