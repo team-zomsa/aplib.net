@@ -1,5 +1,5 @@
-﻿using Aplib.Core;
-using Action = Aplib.Core.Action;
+﻿using Aplib.Core.Intent.Actions;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core;
 

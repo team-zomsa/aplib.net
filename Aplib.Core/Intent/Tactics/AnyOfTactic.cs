@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a tactic that executes any of the provided sub-tactics.

@@ -1,6 +1,5 @@
-﻿using Aplib.Core.Tactics;
-using FluentAssertions;
-using Action = Aplib.Core.Action;
+using Aplib.Core.Intent.Tactics;
+using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core.Tactics;
 public class TacticTests
@@ -14,7 +13,7 @@ public class TacticTests
     private static bool FalseGuard() => false;
 
     /// <summary>
-    /// Given a parent of type <see cref="TacticType.FirstOf"/> with two subtactics,
+    /// Given a parent of type <see cref="FirstOfTactic"/> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the first subtactic.
     /// </summary>
@@ -30,11 +29,12 @@ public class TacticTests
         Action? enabledAction = parentTactic.GetAction();
 
         // Assert
+        Assert.NotNull(enabledAction);
         Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="TacticType.FirstOf"/> with two subtactics and a guard that is true,
+    /// Given a parent of type <see cref="FirstOfTactic"/> with two subtactics and a guard that is true,
     /// When getting the next tactic,
     /// Then the result should be the first subtactic.
     /// </summary>
@@ -50,11 +50,12 @@ public class TacticTests
         Action? enabledAction = parentTactic.GetAction();
 
         // Assert
+        Assert.NotNull(enabledAction);
         Assert.Equal(_emptyAction, enabledAction);
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="TacticType.AnyOf"/> with two subtactics,
+    /// Given a parent of type <see cref="AnyOfTactic"/> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should contain all the subtactics.
     /// </summary>
@@ -70,6 +71,7 @@ public class TacticTests
         Action? enabledAction = parentTactic.GetAction();
 
         // Assert
+        Assert.NotNull(enabledAction);
         Assert.Equal(_emptyAction, enabledAction);
     }
 
@@ -88,6 +90,7 @@ public class TacticTests
         Action? enabledAction = tactic.GetAction();
 
         // Assert
+        Assert.NotNull(enabledAction);
         Assert.Equal(_emptyAction, enabledAction);
     }
 
