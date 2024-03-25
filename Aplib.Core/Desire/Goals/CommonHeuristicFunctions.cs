@@ -1,4 +1,4 @@
-using Aplib.Core.Believe;
+using Aplib.Core.Belief;
 using System;
 
 namespace Aplib.Core.Desire.Goals

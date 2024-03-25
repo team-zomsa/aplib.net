@@ -1,4 +1,4 @@
-using Aplib.Core.Believe;
+using Aplib.Core.Belief;
 using Aplib.Core.Intent.Tactics;
 using System;
 
