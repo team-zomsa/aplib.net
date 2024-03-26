@@ -4,55 +4,62 @@ using System.Collections.Generic;
 namespace Aplib.Core.Belief
 {
 	/// <summary>
-    /// The <see cref="MultipleMemoryBelief{TReference, TResource}"/> class represents a belief with "memory".
+    /// The <see cref="MemoryBelief{TReference, TResource}"/> class represents a belief with "memory".
     /// Some <i>object reference</i> is used to generate/update a <i>resource</i> 
     /// (i.e., some piece of information on the game state as perceived by an agent).
     /// 
     /// </summary>
     /// <remarks>
     /// It implements the <see cref="IBelief"/> interface.
-    /// It supports implicit conversion to <typeparamref name="TResource"/>.
+    /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
     /// <typeparam name="TReference">The type of the reference used to generate/update the resource.</typeparam>
-    /// <typeparam name="TResource">The type of the resource the belief represents.</typeparam>
-	public class MultipleMemoryBelief<TReference, TResource> : Belief<TReference, TResource>
+    /// <typeparam name="TObservation">The type of the resource the belief represents.</typeparam>
+	public class MemoryBelief<TReference, TObservation> : Belief<TReference, TObservation>
 	{
         /// <summary>
         /// A "memorized" resouce, from the last time the belief was updated.
-        /// TODO:: Create a circular array to store the last n frames, so you can also access an index i.
+        /// TODO: Create a circular array to store the last n frames, so you can also access an index i.
         /// </summary>
-        private List<TResource> _memorizedResource;
+        private List<TObservation> _memorizedObservations;
 
         /// <summary>
         /// The number of frames to hold in memory.
         /// </summary>
         private int _framesToRemember;
 
+        // TODO: Remove once belief is up to date and merged
+        private readonly Func<bool> _shouldUpdate = () => true;
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultipleMemoryBelief{TReference, TResource}"/>
+        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/>
         /// </summary>
         /// <param name="reference">The reference used to generate/update the resource.</param>
         /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
-        public MultipleMemoryBelief(TReference reference, Func<TReference, TResource> getResourceFromReference, int framesToRemember)
+        public MemoryBelief(TReference reference, Func<TReference, TObservation> getResourceFromReference, int framesToRemember)
             : base(reference, getResourceFromReference, () => true)
         {
-            _memorizedResource = new(framesToRemember);
+            _memorizedObservations = new(framesToRemember);
             _framesToRemember = framesToRemember;
+
+            _shouldUpdate = () => true;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MultipleMemoryBelief{TReference, TResource}"/>
+        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/>
         /// </summary>
         /// <param name="reference">The reference used to generate/update the resource.</param>
         /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
-        /// <param name="updateIf">A function that sets a condition on when the resource should be updated.</param>
-        public MultipleMemoryBelief(TReference reference, Func<TReference, TResource> getResourceFromReference, int framesToRemember, 
-            Func<bool> updateIf)
-            : base(reference, getResourceFromReference, updateIf)
+        /// <param name="shouldUpdate">A function that sets a condition on when the resource should be updated.</param>
+        public MemoryBelief(TReference reference, Func<TReference, TObservation> getResourceFromReference, int framesToRemember, 
+            Func<bool> shouldUpdate)
+            : base(reference, getResourceFromReference, shouldUpdate)
         {
-            _memorizedResource = new(framesToRemember);
+            _memorizedObservations = new(framesToRemember);
+
+            _shouldUpdate = shouldUpdate;
         }
 
         /// <summary>
@@ -61,29 +68,32 @@ namespace Aplib.Core.Belief
         /// </summary>
         public new void UpdateBelief()
         {
+            if (_shouldUpdate())
+            {
+                // TODO: This should be a circular array, 
+                // should be something like "put"
+                // We use the implicit conversion to TObservation to store the observation
+                _memorizedObservations.Add(this);
+            }
             base.UpdateBelief();
-            // if (_updateIf())
-            // {
-            //     _memorizedResource = _resource;
-            // }
         }
 
         /// <summary>
         /// Gets the most recently memorized resource
         /// </summary>
         /// <returns> The most recent memory of the resource.</returns>
-        public TResource GetMostRecentMemory() => _memorizedResource[^1];
+        public TObservation GetMostRecentMemory() => _memorizedObservations[^1];
 
         /// <summary>
         /// Gets the memorized resource at a specific index
         /// </summary>
         /// <returns> The memory of the resource at the specified index.</returns>
-        public TResource GetMemoryAt(int index) => _memorizedResource[index];
+        public TObservation GetMemoryAt(int index) => _memorizedObservations[index];
 
         /// <summary>
         /// Gets all the memorized resources
         /// </summary>
         /// <returns> A list of all the memorized resources.</returns>
-        public List<TResource> GetAllMemories() => _memorizedResource;
+        public List<TObservation> GetAllMemories() => _memorizedObservations;
     }
 }
