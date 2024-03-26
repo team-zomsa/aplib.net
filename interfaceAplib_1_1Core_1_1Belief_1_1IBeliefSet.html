@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>aplib.net: Aplib.Core.Believe.BeliefSet Class Reference</title>
+<title>aplib.net: Aplib.Core.Belief.IBeliefSet Interface Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,47 +73,61 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="namespaceAplib.html">Aplib</a></li><li class="navelem"><a class="el" href="namespaceAplib_1_1Core.html">Core</a></li><li class="navelem"><a class="el" href="namespaceAplib_1_1Core_1_1Believe.html">Believe</a></li><li class="navelem"><a class="el" href="classAplib_1_1Core_1_1Believe_1_1BeliefSet.html">BeliefSet</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespaceAplib.html">Aplib</a></li><li class="navelem"><a class="el" href="namespaceAplib_1_1Core.html">Core</a></li><li class="navelem"><a class="el" href="namespaceAplib_1_1Core_1_1Belief.html">Belief</a></li><li class="navelem"><a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="classAplib_1_1Core_1_1Believe_1_1BeliefSet-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Aplib.Core.Believe.BeliefSet Class Reference</div></div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Aplib.Core.Belief.IBeliefSet Interface Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is a summary.  
+<p>A belief set defines beliefs for an agent.  
  <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Aplib.Core.Belief.IBeliefSet:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.png" usemap="#Aplib.Core.Belief.IBeliefSet_map" alt=""/>
+  <map id="Aplib.Core.Belief.IBeliefSet_map" name="Aplib.Core.Belief.IBeliefSet_map">
+<area href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html" title="The BeliefSet class can be inherited to define a set of beliefs for an agent. All public fields of ty..." alt="Aplib.Core.Belief.BeliefSet" shape="rect" coords="0,56,166,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a56fa67b55a4f2eaaa54ddd3c671c49b4" id="r_a56fa67b55a4f2eaaa54ddd3c671c49b4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56fa67b55a4f2eaaa54ddd3c671c49b4">State</a> = &quot;kaas&quot;</td></tr>
-<tr class="memdesc:a56fa67b55a4f2eaaa54ddd3c671c49b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is merely here to allow some unit test.  <br /></td></tr>
-<tr class="separator:a56fa67b55a4f2eaaa54ddd3c671c49b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a29a21f606c6763c18f2be8e39212e0cf" id="r_a29a21f606c6763c18f2be8e39212e0cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29a21f606c6763c18f2be8e39212e0cf">UpdateBeliefs</a> ()</td></tr>
+<tr class="memdesc:a29a21f606c6763c18f2be8e39212e0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates all beliefs in the belief set.  <br /></td></tr>
+<tr class="separator:a29a21f606c6763c18f2be8e39212e0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is a summary. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a56fa67b55a4f2eaaa54ddd3c671c49b4" name="a56fa67b55a4f2eaaa54ddd3c671c49b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56fa67b55a4f2eaaa54ddd3c671c49b4">&#9670;&#160;</a></span>State</h2>
+<div class="textblock"><p>A belief set defines beliefs for an agent. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a29a21f606c6763c18f2be8e39212e0cf" name="a29a21f606c6763c18f2be8e39212e0cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a21f606c6763c18f2be8e39212e0cf">&#9670;&#160;</a></span>UpdateBeliefs()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">string Aplib.Core.Believe.BeliefSet.State = &quot;kaas&quot;</td>
+          <td class="memname">void Aplib.Core.Belief.IBeliefSet.UpdateBeliefs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>This is merely here to allow some unit test. </p>
+<p>Updates all beliefs in the belief set. </p>
+
+<p>Implemented in <a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html#a7059b6ee28da048bfdd4208b8a6bd7c0">Aplib.Core.Belief.BeliefSet</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>Aplib.Core/Believe/<a class="el" href="BeliefSet_8cs.html">BeliefSet.cs</a></li>
+<hr/>The documentation for this interface was generated from the following file:<ul>
+<li>Aplib.Core/Belief/<a class="el" href="IBeliefSet_8cs.html">IBeliefSet.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

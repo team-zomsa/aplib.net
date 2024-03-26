@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['primitivetactic_2ecs_0',['PrimitiveTactic.cs',['../PrimitiveTactic_8cs.html',1,'']]]
+  ['ibelief_2ecs_0',['IBelief.cs',['../IBelief_8cs.html',1,'']]],
+  ['ibeliefset_2ecs_1',['IBeliefSet.cs',['../IBeliefSet_8cs.html',1,'']]]
 ];

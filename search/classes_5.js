@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['primitivetactic_0',['PrimitiveTactic',['../classAplib_1_1Core_1_1Intent_1_1Tactics_1_1PrimitiveTactic.html',1,'Aplib::Core::Intent::Tactics']]]
+  ['ibelief_0',['IBelief',['../interfaceAplib_1_1Core_1_1Belief_1_1IBelief.html',1,'Aplib::Core::Belief']]],
+  ['ibeliefset_1',['IBeliefSet',['../interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html',1,'Aplib::Core::Belief']]]
 ];
