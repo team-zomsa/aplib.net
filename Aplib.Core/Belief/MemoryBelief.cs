@@ -21,7 +21,7 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// A "memorized" resouce, from the last time the belief was updated.
         /// </summary>
-        private CircularArray<TObservation> _memorizedObservations;
+        private readonly CircularArray<TObservation> _memorizedObservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/>
