@@ -1,4 +1,5 @@
 ﻿using Aplib.Core.Intent.Actions;
+using FluentAssertions;
 using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core;
@@ -8,6 +9,37 @@ namespace Aplib.Tests.Core;
 /// </summary>
 public class ActionTests
 {
+    [Fact]
+    public void Action_WhenConstructed_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "Action";
+        const string description = "A cheap store where I get all my stuff";
+
+        // Act
+        Action action = new(name, description);
+
+        // Assert
+        action.Should().NotBeNull();
+        action.Metadata.Name.Should().Be(name);
+        action.Metadata.Description.Should().Be(description);
+    }
+
+    [Fact]
+    public void Action_WithoutDescription_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "my action";
+
+        // Act
+        Action action = new(name);
+
+        // Assert
+        action.Should().NotBeNull();
+        action.Metadata.Name.Should().Be(name);
+        action.Metadata.Description.Should().BeNull();
+    }
+    
     /// <summary>
     /// Given a side effect action with a string guard,
     /// When the action is executed,
@@ -18,7 +50,7 @@ public class ActionTests
     {
         // Arrange
         string? result = "abc";
-        Action action = new(effect: () => result = "def");
+        Action action = new(() => result = "def", "a1");
 
         // Act
         action.Execute();
@@ -36,7 +68,7 @@ public class ActionTests
     public void IsActionable_NoQuery_AlwaysTrue()
     {
         // Arrange
-        Action action = new(effect: () => { });
+        Action action = new(() => { }, "a1");
 
         // Act
         bool actionable = action.IsActionable();
@@ -54,7 +86,7 @@ public class ActionTests
     public void IsActionable_QueryWithTrue_ReturnsTrue()
     {
         // Arrange
-        Action action = new(effect: () => { }, guard: () => true);
+        Action action = new(() => { }, () => true, "a1");
 
         // Act
         bool actionable = action.IsActionable();
@@ -72,7 +104,7 @@ public class ActionTests
     public void IsActionable_QueryWithFalse_ReturnsFalse()
     {
         // Arrange
-        Action action = new(effect: () => { }, guard: () => false);
+        Action action = new(() => { }, () => false, "a1");
 
         // Act
         bool actionable = action.IsActionable();
@@ -91,7 +123,7 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => result = guard);
+        GuardedAction<int> action = new(guard: () => 42, effect: guard => result = guard, name: "a1");
 
         // Act
         _ = action.IsActionable();
@@ -110,7 +142,7 @@ public class ActionTests
     public void IsActionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
-        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
+        GuardedAction<int> action = new(guard: () => 10, effect: b => { }, name: "a1");
 
         // Act
         bool result = action.IsActionable();
@@ -128,7 +160,7 @@ public class ActionTests
     public void IsActionable_QueryIsFalse_IsActionable()
     {
         // Arrange
-        GuardedAction<bool> action = new(guard: () => false, effect: b => { });
+        GuardedAction<bool> action = new(guard: () => false, effect: b => { }, name: "a1");
 
         // Act
         bool result = action.IsActionable();
@@ -146,7 +178,7 @@ public class ActionTests
     public void IsActionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
-        GuardedAction<object> action = new(guard: () => null!, effect: b => { });
+        GuardedAction<object> action = new(guard: () => null!, effect: b => { }, name: "a1");
 
         // Act
         bool result = action.IsActionable();

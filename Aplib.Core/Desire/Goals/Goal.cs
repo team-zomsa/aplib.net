@@ -28,14 +28,9 @@ namespace Aplib.Core.Desire.Goals
             => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
-        /// The name used to display the current goal during debugging, logging, or general overviews.
+        /// Data about the Goal such as a name and description, this may be useful for debugging or logging.
         /// </summary>
-        public string Name { get; }
-
-        /// <summary>
-        /// The description used to describe the current goal during debugging, logging, or general overviews.
-        /// </summary>
-        public string Description { get; }
+        public Metadata Metadata { get; }
 
         /// <summary>
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
@@ -67,19 +62,25 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
-        /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
+        /// <param name="name">The name of this Goal, used to quickly display this goal in several contexts.</param>
+        /// <param name="description">The description of this Goal, used to explain this goal in several contexts.</param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
         /// this value.
         /// </param>
-        public Goal(Tactic tactic, HeuristicFunction heuristicFunction, string name, string description, double epsilon = 0.005d)
+        public Goal
+        (
+            Tactic tactic,
+            HeuristicFunction heuristicFunction,
+            string name,
+            string? description = null,
+            double epsilon = 0.005d
+        )
         {
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
-            Name = name;
-            Description = description;
             _epsilon = epsilon;
+            Metadata = new Metadata(name, description);
         }
 
         /// <summary>
@@ -87,19 +88,27 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached</param>
-        /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
+        /// <param name="name">The name of this Goal, used to quickly display this goal in several contexts.</param>
+        /// <param name="description">
+        /// The description of this Goal, used to explain this goal in several contexts.
+        /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
         /// this value.
         /// </param>
-        public Goal(Tactic tactic, Func<bool> predicate, string name, string description, double epsilon = 0.005d)
+        public Goal
+        (
+            Tactic tactic,
+            Func<bool> predicate,
+            string name,
+            string? description = null,
+            double epsilon = 0.005d
+        )
         {
             Tactic = tactic;
             _heuristicFunction = CommonHeuristicFunctions.Boolean(predicate);
-            Name = name;
-            Description = description;
             _epsilon = epsilon;
+            Metadata = new Metadata(name, description);
         }
 
         /// <summary>
