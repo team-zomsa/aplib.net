@@ -65,25 +65,19 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
-        /// <param name="name">The name of this Goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">The description of this Goal, used to explain this goal in several contexts.</param>
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
         /// this value.
         /// </param>
-        public Goal
-        (
-            Tactic tactic,
-            HeuristicFunction heuristicFunction,
-            string name,
-            string? description = null,
-            double epsilon = 0.005d
-        )
+        public Goal(Tactic tactic, HeuristicFunction heuristicFunction, Metadata metadata, double epsilon = 0.005d)
         {
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
+            Metadata = metadata;
             _epsilon = epsilon;
-            Metadata = new Metadata(name, description);
         }
 
         /// <summary>
@@ -91,27 +85,19 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached</param>
-        /// <param name="name">The name of this Goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Goal, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics"/> is below
         /// this value.
         /// </param>
-        public Goal
-        (
-            Tactic tactic,
-            Func<bool> predicate,
-            string name,
-            string? description = null,
-            double epsilon = 0.005d
-        )
+        public Goal(Tactic tactic, Func<bool> predicate, Metadata metadata, double epsilon = 0.005d)
         {
             Tactic = tactic;
             _heuristicFunction = CommonHeuristicFunctions.Boolean(predicate);
+            Metadata = metadata;
             _epsilon = epsilon;
-            Metadata = new Metadata(name, description);
         }
 
         /// <summary>

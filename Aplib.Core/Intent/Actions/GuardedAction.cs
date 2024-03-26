@@ -29,12 +29,11 @@ namespace Aplib.Core.Intent.Actions
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
         /// <param name="guard">The guard of the action.</param>
-        /// <param name="name">The name of this Action, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Action, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public GuardedAction(Action<TQuery> effect, Func<TQuery?> guard, string name, string? description = null)
-            : base(name, description)
+        public GuardedAction(Action<TQuery> effect, Func<TQuery?> guard, Metadata metadata)
+            : base(metadata)
         {
             Effect = effect;
             Guard = guard;

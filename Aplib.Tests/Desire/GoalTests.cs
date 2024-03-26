@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Believe;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
@@ -21,13 +22,14 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }, "a1"), "tictac");
+        Tactic tactic = new TacticStub(new Action(() => { }, new Metadata("a1")), "tictac");
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
-
+        Metadata metadata = new(name, description);
+        
         // Act
-        Goal goal = new(tactic, heuristicFunction, name, description); // Does not use helper methods on purpose
+        Goal goal = new(tactic, heuristicFunction, metadata);
 
         // Assert
         goal.Should().NotBeNull();
@@ -39,12 +41,13 @@ public class GoalTests
     public void Goal_WithoutDescription_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }, "a1"), "tictac");
+        Tactic tactic = new TacticStub(new Action(() => { }, new Metadata("a1")), "tictac");
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
+        Metadata metadata = new(name);
 
         // Act
-        Goal goal = new(tactic, heuristicFunction, name); // Does not use helper methods on purpose
+        Goal goal = new(tactic, heuristicFunction, metadata);
 
         // Assert
         goal.Should().NotBeNull();
@@ -62,7 +65,7 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Tactic tactic = new TacticStub(new Action(() => iterations++, "a1"), "tictac");
+        Tactic tactic = new TacticStub(new Action(() => iterations++, new Metadata("a1")), "tictac");
 
         // Act
         Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
@@ -143,15 +146,16 @@ public class GoalTests
     public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }, "a1"), "tictac");
+        Tactic tactic = new TacticStub(new Action(() => { }, new Metadata("a1")), "tictac");
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
-
+        Metadata goalMetadata = new(name, description);
+        
         Func<bool> heuristicFunctionBoolean = () => goalCompleted;
         Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
 
-        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, name, description);
-        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
+        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, goalMetadata);
+        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, goalMetadata);
 
         // Act
         BeliefSet beliefSet = new();

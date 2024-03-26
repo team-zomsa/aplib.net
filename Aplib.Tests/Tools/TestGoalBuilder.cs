@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Stubs.Desire;
@@ -8,7 +9,7 @@ namespace Aplib.Tests.Tools;
 internal sealed class TestGoalBuilder
 {
     // ReSharper disable once StringLiteralTypo
-    private Tactic _tactic = new TacticStub(new Action(() => { }, "a1"), "tictac");
+    private Tactic _tactic = new TacticStub(new Action(() => { }, new Metadata("a1")), "tictac");
     private Goal.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions.Constant(0);
     private string _name = "Such a good goal name";
     private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
@@ -37,5 +38,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal Build() => new(_tactic, _heuristicFunction, _name, _description);
+    public Goal Build() => new(_tactic, _heuristicFunction, new Metadata(_name, _description));
 }

@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using System.Diagnostics.CodeAnalysis;
@@ -8,9 +9,9 @@ namespace Aplib.Tests.Core.Tactics;
 [SuppressMessage("ReSharper", "StringLiteralTypo")]
 public class TacticTests
 {
-    private readonly Action _emptyAction = new(() => { }, "empty");
+    private readonly Action _emptyAction = new(() => { }, new Metadata("empty"));
     private static string _result = "abc";
-    private readonly Action _filledAction = new(() => _result = "def", "filled");
+    private readonly Action _filledAction = new(() => _result = "def", new Metadata("filled"));
 
     private static bool TrueGuard() => true;
 
