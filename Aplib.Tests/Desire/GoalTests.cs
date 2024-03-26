@@ -1,4 +1,4 @@
-using Aplib.Core.Believe;
+using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Stubs.Desire;
@@ -61,7 +61,7 @@ public class GoalTests
     public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
-        BeliefSet beliefSet = new();
+        MyBeliefSet beliefSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
 
         // Act
@@ -81,7 +81,7 @@ public class GoalTests
     public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        BeliefSet beliefSet = new();
+        MyBeliefSet beliefSet = new();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Uncompleted();
 
         // Act
@@ -93,23 +93,22 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given a valid goal and believe,
+    /// Given a valid goal and belief,
     /// when the goal's heuristic function is evaluated,
-    /// the believeset is not altered
+    /// the beliefset is not altered
     /// </summary>
     [Fact]
     public void Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()
     {
         // Arrange
-        BeliefSet beliefSet = new();
+        MyBeliefSet beliefSet = new();
 
         // Act
-        string currentBelieveSetState = beliefSet.State;
         Goal goal = new TestGoalBuilder().Build();
         _ = goal.IsCompleted(beliefSet);
 
         // Assert
-        beliefSet.State.Should().Be(currentBelieveSetState);
+        beliefSet.MyBelief.Updated.Should().Be(false);
     }
 
     /// <summary>
@@ -135,11 +134,41 @@ public class GoalTests
         Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
 
         // Act
-        BeliefSet beliefSet = new();
+        MyBeliefSet beliefSet = new();
         bool goalBooleanEvaluation = goalBoolean.IsCompleted(beliefSet);
         bool goalNonBooleanEvaluation = goalNonBoolean.IsCompleted(beliefSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
+    }
+
+    /// <summary>
+    /// A test belief set that contains two public simple beliefs.
+    /// </summary>
+    private class MyBeliefSet : BeliefSet
+    {
+        /// <summary>
+        /// Belief that sets Updated to true when UpdateBelief is called.
+        /// </summary>
+        public SimpleBelief MyBelief = new();
+    }
+
+    /// <summary>
+    /// A simple belief that can be used to test whether <see cref="UpdateBelief"/> has been called.
+    /// </summary>
+    private class SimpleBelief : IBelief
+    {
+        /// <summary>
+        /// Stores whether <see cref="UpdateBelief"/> has been called.
+        /// </summary>
+        public bool Updated { get; private set; } = false;
+
+        /// <summary>
+        /// Sets <see cref="Updated"/> to true.
+        /// </summary>
+        public void UpdateBelief()
+        {
+            Updated = true;
+        }
     }
 }
