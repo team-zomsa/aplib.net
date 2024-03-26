@@ -7,8 +7,11 @@ namespace Aplib.Core.Belief
     /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
     /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
     /// </summary>
-    public abstract class BeliefSet
+    public abstract class BeliefSet : IBeliefSet
     {
+        /// <summary>
+        /// An array storing all <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class.
+        /// </summary>
         private readonly IBelief[] _beliefs;
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
-        /// Updates all objects of type <see cref="IBelief"/> that are defined as <i>public fields</i> in <see cref="BeliefSet"/>.
+        /// Updates all objects of type <see cref="IBelief"/> that are defined as <i>public fields</i> in the inheriting class.
         /// </summary>
         public void UpdateBeliefs()
         {

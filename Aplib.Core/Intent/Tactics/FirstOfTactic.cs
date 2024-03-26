@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Tactics
+namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a tactic that executes the first enabled action from a list of sub-tactics.
@@ -25,7 +25,7 @@ namespace Aplib.Core.Tactics
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override Action? GetAction()
         {
             foreach (Tactic subTactic in SubTactics)
