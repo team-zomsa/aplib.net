@@ -9,7 +9,7 @@ namespace Aplib.Tests.Core.Belief;
 public class MemoryBeliefTests
 {
     /// <summary>
-    /// Given a MultipleMemoryBelief instance with an observation,
+    /// Given a MemoryBelief instance with an observation,
     /// When the observation is updated and GetMostRecentMemory is called,
     /// Then the last observation is returned.
     /// </summary>
@@ -28,6 +28,11 @@ public class MemoryBeliefTests
         Assert.Equal(1, belief.GetMostRecentMemory());
     }
 
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When the observation is updated and GetMemoryAt is called with an index,
+    /// Then the observation at the specified index is returned.
+    /// </summary>
     [Fact]
     public void GetMemoryAt_WhenObservationIsUpdated_ShouldReturnObservationAtSpecifiedIndex()
     {
@@ -46,6 +51,11 @@ public class MemoryBeliefTests
         Assert.Equal(4, belief.GetMemoryAt(2));
     }
 
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When the observation is updated and GetAllMemories is called,
+    /// Then all the currently saved observations are returned.
+    /// </summary>
     [Fact]
     public void GetAllMemories_ReturnsAllMemories()
     {

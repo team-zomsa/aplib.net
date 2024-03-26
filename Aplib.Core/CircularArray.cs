@@ -51,8 +51,7 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Puts an element at the head of the array.
-        /// The head is then incremented.
+        /// Puts an element at the end of the array.
         /// </summary>
         /// <param name="value">The element to add to the array</param>
         public void Put(T value)
