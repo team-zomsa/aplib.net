@@ -28,7 +28,7 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        private readonly Func<bool> _shouldUpdate = () => true;
+        protected readonly Func<bool> _shouldUpdate = () => true;
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
@@ -73,7 +73,7 @@ namespace Aplib.Core.Belief
         /// Generates/updates the observation if the shouldUpdate condition is satisfied.
         /// The observation is then updated by calling the getObservationFromReference function.
         /// </summary>
-        public void UpdateBelief()
+        public virtual void UpdateBelief()
         {
             if (_shouldUpdate()) _observation = _getObservationFromReference(_reference);
         }

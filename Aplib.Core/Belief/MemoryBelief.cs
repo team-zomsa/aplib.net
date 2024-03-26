@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Aplib.Core;
 
 namespace Aplib.Core.Belief
 {
@@ -19,17 +20,8 @@ namespace Aplib.Core.Belief
 	{
         /// <summary>
         /// A "memorized" resouce, from the last time the belief was updated.
-        /// TODO: Create a circular array to store the last n frames, so you can also access an index i.
         /// </summary>
-        private List<TObservation> _memorizedObservations;
-
-        /// <summary>
-        /// The number of frames to hold in memory.
-        /// </summary>
-        private int _framesToRemember;
-
-        // TODO: Remove once belief is up to date and merged
-        private readonly Func<bool> _shouldUpdate = () => true;
+        private CircularArray<TObservation> _memorizedObservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/>
@@ -41,9 +33,6 @@ namespace Aplib.Core.Belief
             : base(reference, getResourceFromReference, () => true)
         {
             _memorizedObservations = new(framesToRemember);
-            _framesToRemember = framesToRemember;
-
-            _shouldUpdate = () => true;
         }
 
         /// <summary>
@@ -58,23 +47,16 @@ namespace Aplib.Core.Belief
             : base(reference, getResourceFromReference, shouldUpdate)
         {
             _memorizedObservations = new(framesToRemember);
-
-            _shouldUpdate = shouldUpdate;
         }
 
         /// <summary>
-        /// Generates/updates the resource if the updateIf condition is satisfied.
-        /// The resource is then updated by calling the getResourceFromReference function.
+        /// Generates/updates the resource if the shouldUpdate condition is satisfied.
+        /// Also stores the previous observation in memory.
         /// </summary>
-        public new void UpdateBelief()
+        public override void UpdateBelief()
         {
-            if (_shouldUpdate())
-            {
-                // TODO: This should be a circular array, 
-                // should be something like "put"
-                // We use the implicit conversion to TObservation to store the observation
-                _memorizedObservations.Add(this);
-            }
+            // We use the implicit conversion to TObservation to store the observation
+            if (_shouldUpdate()) _memorizedObservations.Put(this);
             base.UpdateBelief();
         }
 
@@ -82,7 +64,7 @@ namespace Aplib.Core.Belief
         /// Gets the most recently memorized resource
         /// </summary>
         /// <returns> The most recent memory of the resource.</returns>
-        public TObservation GetMostRecentMemory() => _memorizedObservations[^1];
+        public TObservation GetMostRecentMemory() => _memorizedObservations.GetLast();
 
         /// <summary>
         /// Gets the memorized resource at a specific index
@@ -94,6 +76,6 @@ namespace Aplib.Core.Belief
         /// Gets all the memorized resources
         /// </summary>
         /// <returns> A list of all the memorized resources.</returns>
-        public List<TObservation> GetAllMemories() => _memorizedObservations;
+        public TObservation[] GetAllMemories() => _memorizedObservations.ToArray();
     }
 }

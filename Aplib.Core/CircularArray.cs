@@ -71,12 +71,27 @@ namespace Aplib.Core
         }
 
         /// <summary>
+        /// Gets the last element of the array.
+        /// </summary>
+        /// <returns>The last element of the array</returns>
+        public T GetLast()
+        {
+            return _array[(_head - 1 + _array.Length) % _array.Length];
+        }
+
+        /// <summary>
         /// Converts the circular array to an array.
+        /// The head should be the first element of the array.
         /// </summary>
         /// <returns>The circular array as a normal array</returns>
         public T[] ToArray()
         {
-            return _array;
+            T[] result = new T[_array.Length];
+            for (int i = 0; i < _array.Length; i++)
+            {
+                result[i] = this[i];
+            }
+            return result;
         }
     }
 }
