@@ -17,13 +17,12 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
         /// </summary>
-        /// <param name="name">The name of this Tactic, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Tactic, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this Tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(string name, string? description = null, params Tactic[] subTactics)
-            : base(name, description)
+        public AnyOfTactic(Metadata metadata, params Tactic[] subTactics)
+            : base(metadata)
         {
             SubTactics = new();
 
@@ -37,13 +36,12 @@ namespace Aplib.Core.Intent.Tactics
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics and guard condition.
         /// </summary>
         /// <param name="guard">The guard condition.</param>
-        /// <param name="name">The name of this Tactic, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Tactic, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(Func<bool> guard, string name, string? description = null, params Tactic[] subTactics)
-            : this(name, description, subTactics) => Guard = guard;
+        public AnyOfTactic(Func<bool> guard, Metadata metadata, params Tactic[] subTactics)
+            : this(metadata, subTactics) => Guard = guard;
 
         /// <inheritdoc/>
         public override Action? GetAction()

@@ -28,24 +28,22 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/>.
         /// </summary>
-        /// <param name="name">The name of this Tactic, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Tactic, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(string name, string? description = null) => Metadata = new Metadata(name, description);
+        protected Tactic(Metadata metadata) => Metadata = metadata;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
         /// </summary>
         /// <param name="guard">The guard of the tactic.</param>
-        /// <param name="name">The name of this Tactic, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">
-        /// The description of this Tactic, used to explain this goal in several contexts.
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(Func<bool> guard, string name, string? description = null)
+        protected Tactic(Func<bool> guard, Metadata metadata)
         {
             Guard = guard;
-            Metadata = new Metadata(name, description);
+            Metadata = metadata;
         }
 
         /// <summary>
