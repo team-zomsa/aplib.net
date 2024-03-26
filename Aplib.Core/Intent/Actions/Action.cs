@@ -8,8 +8,11 @@ namespace Aplib.Core.Intent.Actions
     public class Action
     {
         /// <summary>
-        ///     Data about the Action such as a name and description, this may be useful for debugging or logging.
+        /// Gets the metadata of the action.
         /// </summary>
+        /// <remark>
+        /// This metadata may be useful for debugging or logging.
+        /// </remark>
         public Metadata Metadata { get; }
         
         /// <summary>

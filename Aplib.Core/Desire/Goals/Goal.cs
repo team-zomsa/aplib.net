@@ -28,8 +28,11 @@ namespace Aplib.Core.Desire.Goals
             => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
-        /// Data about the Goal such as a name and description, this may be useful for debugging or logging.
+        /// Gets the metadata of the goal.
         /// </summary>
+        /// <remark>
+        /// This metadata may be useful for debugging or logging.
+        /// </remark>
         public Metadata Metadata { get; }
 
         /// <summary>

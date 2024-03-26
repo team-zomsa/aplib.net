@@ -13,8 +13,11 @@ namespace Aplib.Core.Intent.Tactics
     public abstract class Tactic
     {
         /// <summary>
-        /// Data about the Tactic such as a name and description, this may be useful for debugging or logging.
+        /// Gets the metadata of the tactic.
         /// </summary>
+        /// <remark>
+        /// This metadata may be useful for debugging or logging.
+        /// </remark>
         public Metadata Metadata { get; }
         
         /// <summary>
