@@ -29,7 +29,7 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="state">The beliefset of the agent.</param>
         /// <param name="desire"></param>
-        public Agent(BeliefSet state, DesireSet desire)
+        public BdiAgent(BeliefSet state, DesireSet desire)
         {
             _state = state;
             _desire = desire;
