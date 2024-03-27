@@ -1,3 +1,5 @@
+using System;
+
 namespace Aplib.Core
 {
     /// <summary>
@@ -6,9 +8,14 @@ namespace Aplib.Core
     public class Metadata
     {
         /// <summary>
+        ///     Gets the unique identifier of the component.
+        /// </summary>
+        public Guid Id { get; }
+        
+        /// <summary>
         /// Gets the name used to display the component during debugging, logging, or general overviews.
         /// </summary>
-        public string Name { get; }
+        public string? Name { get; }
 
         /// <summary>
         /// Gets the description used to describe the component during debugging, logging, or general overviews.
@@ -20,8 +27,9 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="name">The name used to display the component.</param>
         /// <param name="description">The description used to describe the component.</param>
-        public Metadata(string name, string? description = null)
+        public Metadata(string? name = null, string? description = null)
         {
+            Id = Guid.NewGuid();
             Name = name;
             Description = description;
         }
