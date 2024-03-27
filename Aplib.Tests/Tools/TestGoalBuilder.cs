@@ -38,5 +38,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal Build() => new(_tactic, _heuristicFunction, new Metadata(_name, _description));
+    public Goal Build() => new(_tactic, _heuristicFunction, metadata: new Metadata(_name, _description));
 }

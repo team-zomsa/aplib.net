@@ -29,7 +29,7 @@ public class GoalTests
         Metadata metadata = new(name, description);
         
         // Act
-        Goal goal = new(tactic, heuristicFunction, metadata);
+        Goal goal = new(tactic, heuristicFunction, metadata: metadata);
 
         // Assert
         goal.Should().NotBeNull();
@@ -47,7 +47,7 @@ public class GoalTests
         Metadata metadata = new(name);
 
         // Act
-        Goal goal = new(tactic, heuristicFunction, metadata);
+        Goal goal = new(tactic, heuristicFunction, metadata: metadata);
 
         // Assert
         goal.Should().NotBeNull();
@@ -154,8 +154,8 @@ public class GoalTests
         Func<bool> heuristicFunctionBoolean = () => goalCompleted;
         Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
 
-        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, goalMetadata);
-        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, goalMetadata);
+        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, metadata: goalMetadata);
+        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, metadata: goalMetadata);
 
         // Act
         BeliefSet beliefSet = new();
