@@ -1,4 +1,3 @@
-using System;
 
 namespace Aplib.Core
 {
@@ -88,14 +87,18 @@ namespace Aplib.Core
         /// <summary>
         /// Converts the circular array to an array.
         /// The head should be the last element of the array.
+        /// Copies from start to end inclusive.
         /// </summary>
+        /// <param name="start">The start index of the range to copy.</param>
+        /// <param name="end">The end index of the range to copy.</param>
         /// <returns>The circular array as a normal array</returns>
-        public T[] ToArray()
+        public T[] ToArray(int start = 0, int end = -1)
         {
-            T[] result = new T[Length];
-            for (int i = 0; i < Length; i++)
+            end = end == -1 ? Length - 1 : end;
+            T[] result = new T[end - start + 1];
+            for (int i = 0; i < result.Length; i++)
             {
-                result[i] = this[i];
+                result[i] = this[start + i];
             }
             return result;
         }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using Aplib.Core;
 
 namespace Aplib.Core.Belief
 {
@@ -88,13 +86,19 @@ namespace Aplib.Core.Belief
         /// <returns> An array of all the memorized resources.</returns>
         public TObservation[] GetAllMemories()
         {
-            List<TObservation> memories = new();
+            // Keep track of last non-default index in case of empty slots in the middle
+            int lastNonDefaultIndex = -1;
             for (int i = 0; i < _memorizedObservations.Length; i++)
             {
-                if (_memorizedObservations[i].Equals(default(TObservation))) break;
-                memories.Add(_memorizedObservations[i]);
+                if (!_memorizedObservations[i]!.Equals(default(TObservation)))
+                {
+                    lastNonDefaultIndex = i;
+                }
             }
-            return memories.ToArray();
+            if (lastNonDefaultIndex == -1) return Array.Empty<TObservation>();
+
+            TObservation[] memories = _memorizedObservations.ToArray(0, lastNonDefaultIndex);
+            return memories;
         }
     }
 }

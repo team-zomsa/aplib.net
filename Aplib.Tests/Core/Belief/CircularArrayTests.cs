@@ -104,13 +104,13 @@ public class CircularArrayTests
     public void ToArray_HeadIsUpdated_ReturnsCorrectlyOrderedArray()
     {
         // Arrange
-        CircularArray<int> circularArray = new([1, 2, 3]);
+        CircularArray<int> circularArray = new([1, 2, 3, 4, 5]);
 
         // Act
         circularArray.Put(0);
-        int[] array = circularArray.ToArray();
+        int[] array = circularArray.ToArray(1, 3);
 
         // Assert
-        Assert.Equal([0, 1, 2], array);
+        Assert.Equal([1, 2, 3], array);
     }
 }
