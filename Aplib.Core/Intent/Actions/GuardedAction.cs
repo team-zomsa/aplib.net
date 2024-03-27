@@ -32,7 +32,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public GuardedAction(Action<TQuery> effect, Func<TQuery?> guard, Metadata metadata)
+        public GuardedAction(Action<TQuery> effect, Func<TQuery?> guard, Metadata? metadata = null)
             : base(metadata)
         {
             Effect = effect;

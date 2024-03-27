@@ -32,11 +32,11 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        protected internal Action(Metadata metadata)
+        protected internal Action(Metadata? metadata = null)
         {
             Effect = () => { };
             Guard = () => false;
-            Metadata = metadata;
+            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>
@@ -46,10 +46,10 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public Action(System.Action effect, Metadata metadata)
+        public Action(System.Action effect, Metadata? metadata = null)
         {
             Effect = effect;
-            Metadata = metadata;
+            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public Action(System.Action effect, Func<bool> guard, Metadata metadata)
+        public Action(System.Action effect, Func<bool> guard, Metadata? metadata = null)
             : this(effect, metadata) => Guard = guard;
 
         /// <summary>

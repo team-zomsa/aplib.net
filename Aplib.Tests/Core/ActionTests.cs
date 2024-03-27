@@ -53,7 +53,7 @@ public class ActionTests
     {
         // Arrange
         string? result = "abc";
-        Action action = new(() => result = "def", new Metadata("a1"));
+        Action action = new(effect: () => result = "def");
 
         // Act
         action.Execute();
@@ -71,7 +71,7 @@ public class ActionTests
     public void IsActionable_NoQuery_AlwaysTrue()
     {
         // Arrange
-        Action action = new(() => { }, new Metadata("a1"));
+        Action action = new(effect: () => { });
 
         // Act
         bool actionable = action.IsActionable();
@@ -89,7 +89,7 @@ public class ActionTests
     public void IsActionable_QueryWithTrue_ReturnsTrue()
     {
         // Arrange
-        Action action = new(() => { }, () => true, new Metadata("a1"));
+        Action action = new(effect: () => { }, guard: () => true);
 
         // Act
         bool actionable = action.IsActionable();
@@ -107,7 +107,7 @@ public class ActionTests
     public void IsActionable_QueryWithFalse_ReturnsFalse()
     {
         // Arrange
-        Action action = new(() => { }, () => false, new Metadata("a1"));
+        Action action = new(effect: () => { }, guard: () => false);
 
         // Act
         bool actionable = action.IsActionable();
@@ -126,7 +126,7 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<int> action = new(guard: () => 42, effect: guard => result = guard, metadata: new Metadata("a1"));
+        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => result = guard);
 
         // Act
         _ = action.IsActionable();
@@ -145,7 +145,7 @@ public class ActionTests
     public void IsActionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
-        GuardedAction<int> action = new(guard: () => 10, effect: b => { }, metadata: new Metadata("a1"));
+        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
 
         // Act
         bool result = action.IsActionable();
@@ -163,7 +163,7 @@ public class ActionTests
     public void IsActionable_QueryIsFalse_IsActionable()
     {
         // Arrange
-        GuardedAction<bool> action = new(guard: () => false, effect: b => { }, metadata: new Metadata("a1"));
+        GuardedAction<bool> action = new(guard: () => false, effect: b => { });
 
         // Act
         bool result = action.IsActionable();
@@ -181,7 +181,7 @@ public class ActionTests
     public void IsActionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
-        GuardedAction<object> action = new(guard: () => null!, effect: b => { }, metadata: new Metadata("a1"));
+        GuardedAction<object> action = new(guard: () => null!, effect: b => { });
 
         // Act
         bool result = action.IsActionable();
