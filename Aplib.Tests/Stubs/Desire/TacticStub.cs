@@ -18,7 +18,7 @@ internal class TacticStub : Tactic
     /// <param name="metadata">
     /// Metadata about this tactic, used to quickly display the tactic in several contexts.
     /// </param>
-    public TacticStub(Action iteration, Metadata metadata)
+    public TacticStub(Action iteration, Metadata? metadata = null)
         : base(metadata) => _iteration = iteration;
 
     /// <inheritdoc />

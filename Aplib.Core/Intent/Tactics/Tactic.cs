@@ -31,7 +31,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(Metadata metadata) => Metadata = metadata;
+        protected Tactic(Metadata? metadata = null) => Metadata = metadata ?? new Metadata();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
@@ -40,10 +40,10 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(Func<bool> guard, Metadata metadata)
+        protected Tactic(Func<bool> guard, Metadata? metadata = null)
         {
             Guard = guard;
-            Metadata = metadata;
+            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>

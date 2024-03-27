@@ -10,7 +10,6 @@ using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Desire;
 
-[SuppressMessage("ReSharper", "StringLiteralTypo")]
 public class GoalTests
 {
     /// <summary>
@@ -22,7 +21,7 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }), new Metadata("tictac"));
+        Tactic tactic = new TacticStub(new Action(() => { }));
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
@@ -41,7 +40,7 @@ public class GoalTests
     public void Goal_WithoutDescription_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }), new Metadata("tictac"));
+        Tactic tactic = new TacticStub(new Action(() => { }));
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
         Metadata metadata = new(name);
@@ -65,7 +64,7 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Tactic tactic = new TacticStub(new Action(() => iterations++), new Metadata("tictac"));
+        Tactic tactic = new TacticStub(new Action(() => iterations++));
 
         // Act
         Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
@@ -146,7 +145,7 @@ public class GoalTests
     public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }), new Metadata("tictac"));
+        Tactic tactic = new TacticStub(new Action(() => { }));
         const string name = "Such a good goal name";
         const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
         Metadata goalMetadata = new(name, description);

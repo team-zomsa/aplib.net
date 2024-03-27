@@ -15,7 +15,7 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(Metadata metadata, params Tactic[] subTactics)
+        public FirstOfTactic(Metadata? metadata = null, params Tactic[] subTactics)
             : base(metadata, subTactics)
         {
         }
@@ -28,7 +28,7 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(Func<bool> guard, Metadata metadata, params Tactic[] subTactics)
+        public FirstOfTactic(Func<bool> guard, Metadata? metadata = null, params Tactic[] subTactics)
             : base(guard, metadata, subTactics)
         {
         }

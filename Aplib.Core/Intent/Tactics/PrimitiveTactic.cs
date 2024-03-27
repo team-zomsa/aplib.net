@@ -20,7 +20,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        public PrimitiveTactic(Action action, Metadata metadata)
+        public PrimitiveTactic(Action action, Metadata? metadata = null)
             : base(metadata) => Action = action;
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        public PrimitiveTactic(Action action, Func<bool> guard, Metadata metadata)
+        public PrimitiveTactic(Action action, Func<bool> guard, Metadata? metadata = null)
             : base(guard, metadata) => Action = action;
 
         /// <inheritdoc/>
