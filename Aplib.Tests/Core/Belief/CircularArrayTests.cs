@@ -12,36 +12,40 @@ public class CircularArrayTests
     /// and the last element should be the new element)
     /// </summary>
     [Fact]
-    public void Put_ArrayIsFull_UpdatesHead() 
+    public void Put_ArrayIsFull_WrapsAround()
     {
         // Arrange
-        CircularArray<int> circularArray = new([1, 2, 3]);
+        CircularArray<int> circularArray = new([1, 2, 3, 4, 5]);
 
         // Act
-        circularArray.Put(4);
+        circularArray.Put(0);
 
         // Assert
-        Assert.Equal(2, circularArray[0]);
-        Assert.Equal(3, circularArray[1]);
-        Assert.Equal(4, circularArray[2]);
+        Assert.Equal(0, circularArray[0]);
+        Assert.Equal(1, circularArray[1]);
+        Assert.Equal(2, circularArray[2]);
     }
 
     /// <summary>
     /// Given a CircularArray instance,
     /// When the head is updated,
-    /// Setting an element should set the correct index 
+    /// Putting an element should set the correct index 
     /// even if the head is not at the start of the array.
     /// </summary>
     [Fact]
-    public void Set_HeadIsUpdated_SetsCorrectIndex()
+    public void Put_HeadIsUpdated_SetsCorrectIndex()
     {
         // Arrange
         CircularArray<int> circularArray = new(3);
 
         // Act
-        circularArray[1] = 4;
-        circularArray.Put(6);
+        // circularArray.ToArray() == [0, 0, 0]
+        circularArray[1] = 6;
+        // circularArray.ToArray() == [0, 6, 0]
+        circularArray.Put(4);
+        // circularArray.ToArray() == [4, 0, 6]
         circularArray[1] = 5;
+        // circularArray.ToArray() == [4, 5, 6]
 
         // Assert
         Assert.Equal(4, circularArray[0]);
@@ -55,14 +59,14 @@ public class CircularArrayTests
     /// GetHead should return the correct head.
     /// </summary>
     [Fact]
-    public void GetHead_HeadIsUpdated_ReturnsFirstElement()
+    public void GetHead_HeadIsUpdated_ReturnsLastElement()
     {
         // Arrange
         CircularArray<int> circularArray = new([1, 2, 3]);
         int prevHead = circularArray.GetHead();
 
         // Act
-        circularArray.Put(4);
+        circularArray.Put(0);
         int head = circularArray.GetHead();
 
         // Assert
@@ -76,19 +80,19 @@ public class CircularArrayTests
     /// GetLast should return the last element.
     /// </summary>
     [Fact]
-    public void GetLast_HeadIsUpdated_ReturnsLastElement()
+    public void GetFirst_HeadIsUpdated_ReturnsFirstElement()
     {
         // Arrange
         CircularArray<int> circularArray = new([1, 2, 3]);
-        int prevLast = circularArray.GetLast();
+        int prevFirst = circularArray.GetFirst();
 
         // Act
         circularArray.Put(4);
-        int lastElement = circularArray.GetLast();
+        int firstElement = circularArray.GetFirst();
 
         // Assert
-        Assert.NotEqual(prevLast, lastElement);
-        Assert.Equal(4, lastElement);
+        Assert.NotEqual(prevFirst, firstElement);
+        Assert.Equal(4, firstElement);
     }
 
     /// <summary>
@@ -103,10 +107,10 @@ public class CircularArrayTests
         CircularArray<int> circularArray = new([1, 2, 3]);
 
         // Act
-        circularArray.Put(4);
+        circularArray.Put(0);
         int[] array = circularArray.ToArray();
 
         // Assert
-        Assert.Equal([2, 3, 4], array);
+        Assert.Equal([0, 1, 2], array);
     }
 }

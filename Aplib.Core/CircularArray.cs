@@ -4,10 +4,15 @@ namespace Aplib.Core
 {
     /// <summary>
     /// An array that wraps around when it reaches its end.
-    /// Functionally works as a queue with indexing.
+    /// Functionally works sort of like a queue with indexing.
     /// </summary>
     public class CircularArray<T>
     {
+
+        /// <summary>
+        /// The length of the array.
+        /// </summary>
+        public int Length { get; private set; }
         private readonly T[] _array;
         private int _head;
 
@@ -17,8 +22,9 @@ namespace Aplib.Core
         /// <param name="size">The size of the array.</param>
         public CircularArray(int size)
         {
-            _array = new T[size];
-            _head = 0;
+            Length = size;
+            _array = new T[Length];
+            _head = Length - 1;
         }
 
         /// <summary>
@@ -27,8 +33,9 @@ namespace Aplib.Core
         /// <param name="array">An array to use as the circular array.</param>
         public CircularArray(T[] array)
         {
+            Length = array.Length;
             _array = array;
-            _head = 0;
+            _head = Length - 1;
         }
 
         /// <summary>
@@ -38,26 +45,26 @@ namespace Aplib.Core
         /// <returns>The element at the specified index.</returns>
         public T this[int index]
         {
-            get => _array[(index + _head) % _array.Length];
-            set => _array[(index + _head) % _array.Length] = value;
+            get => _array[(index + _head + 1) % Length];
+            set => _array[(index + _head + 1) % Length] = value;
         }
 
         /// <summary>
-        /// Increments the head of the array.
+        /// Decrements the head of the array.
         /// </summary>
-        private void IncrementHead()
+        private void DecrementHead()
         {
-            _head = (_head + 1) % _array.Length;
+            _head = (_head - 1 + Length) % Length;
         }
 
         /// <summary>
-        /// Puts an element at the end of the array.
+        /// Puts an element at the start of the array.
         /// </summary>
         /// <param name="value">The element to add to the array</param>
         public void Put(T value)
         {
             _array[_head] = value;
-            IncrementHead();
+            DecrementHead();
         }
 
         /// <summary>
@@ -70,23 +77,23 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Gets the last element of the array.
+        /// Gets the first element of the array.
         /// </summary>
         /// <returns>The last element of the array</returns>
-        public T GetLast()
+        public T GetFirst()
         {
-            return _array[(_head - 1 + _array.Length) % _array.Length];
+            return this[0];
         }
 
         /// <summary>
         /// Converts the circular array to an array.
-        /// The head should be the first element of the array.
+        /// The head should be the last element of the array.
         /// </summary>
         /// <returns>The circular array as a normal array</returns>
         public T[] ToArray()
         {
-            T[] result = new T[_array.Length];
-            for (int i = 0; i < _array.Length; i++)
+            T[] result = new T[Length];
+            for (int i = 0; i < Length; i++)
             {
                 result[i] = this[i];
             }

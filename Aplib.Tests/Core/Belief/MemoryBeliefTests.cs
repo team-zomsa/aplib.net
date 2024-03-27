@@ -47,8 +47,29 @@ public class MemoryBeliefTests
         belief.UpdateBelief();
 
         // Assert
+        Assert.Equal(4, belief.GetMemoryAt(0));
         Assert.Equal(3, belief.GetMemoryAt(1));
-        Assert.Equal(4, belief.GetMemoryAt(2));
+    }
+
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When asking for an index that is out of bounds,
+    /// Then the closest element that is in bounds is returned.
+    /// </summary>
+    [Fact]
+    public void GetMemoryAt_IndexOutOfBounds_ShouldReturnClosestElement()
+    {
+        // Arrange
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
+
+        // Act
+        list.Add(4);
+        belief.UpdateBelief();
+
+        // Assert
+        Assert.Equal(3, belief.GetMemoryAt(-1));
+        Assert.Equal(0, belief.GetMemoryAt(4));
     }
 
     /// <summary>
@@ -68,6 +89,6 @@ public class MemoryBeliefTests
         belief.UpdateBelief();
 
         // Assert
-        Assert.Equal([0, 0, 3], belief.GetAllMemories());
+        Assert.Equal([3], belief.GetAllMemories());
     }
 }
