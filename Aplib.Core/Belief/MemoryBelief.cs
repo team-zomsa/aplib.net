@@ -82,7 +82,7 @@ namespace Aplib.Core.Belief
             if (clamp)
                 index = Math.Clamp(index, 0, lastMemoryIndex);
             else if (index < 0 || index > lastMemoryIndex)
-                throw new IndexOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(index), $"Index must be between 0 and {lastMemoryIndex}.");
             return _memorizedObservations[index];
         }
 
@@ -95,21 +95,6 @@ namespace Aplib.Core.Belief
         {
             // For now, we return the entire array, but with empty elements for the unused slots
             return _memorizedObservations.ToArray();
-
-            // TODO: If not all slots are filled, returns a smaller array.
-            // Keep track of last non-default index in case of empty slots in the middle
-            // int lastNonDefaultIndex = -1;
-            // for (int i = 0; i < _memorizedObservations.Length; i++)
-            // {
-            //     if (!_memorizedObservations[i]!.Equals(default(TObservation)))
-            //     {
-            //         lastNonDefaultIndex = i;
-            //     }
-            // }
-            // if (lastNonDefaultIndex == -1) return Array.Empty<TObservation>();
-
-            // TObservation[] memories = _memorizedObservations.ToArray(0, lastNonDefaultIndex);
-            // return memories;
         }
     }
 }
