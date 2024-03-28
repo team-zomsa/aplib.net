@@ -16,15 +16,15 @@ namespace Aplib.Core.Desire.Goals
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics"/>, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="IsCompleted"/>
-        public delegate Heuristics HeuristicFunction(BeliefSet beliefSet);
+        /// <seealso cref="Goal.GetState"/>
+        public delegate Heuristics HeuristicFunction(IBeliefSet beliefSet);
 
 
         /// <summary>
         /// Gets the <see cref="Heuristics"/> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics(BeliefSet beliefSet)
+        public virtual Heuristics CurrentHeuristics(IBeliefSet beliefSet)
             => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Aplib.Core.Desire.Goals
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction"/>. Used to test whether this goal is
         /// completed.
         /// </summary>
-        /// <seealso cref="IsCompleted"/>
+        /// <seealso cref="GetState"/>
         protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Aplib.Core.Desire.Goals
         /// Creates a new goal which works with boolean-based <see cref="Heuristics"/>.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached</param>
+        /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached.</param>
         /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
         /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
         /// <param name="epsilon">
@@ -107,8 +107,12 @@ namespace Aplib.Core.Desire.Goals
         /// <see cref="CurrentHeuristics"/>. When the distance of the heuristics is smaller than <see cref="_epsilon"/>,
         /// the goal is considered to be completed.
         /// </summary>
-        /// <returns>A boolean representing whether the goal is considered to be completed.</returns>
+        /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="_epsilon"/>
-        public bool IsCompleted(BeliefSet beliefSet) => CurrentHeuristics(beliefSet).Distance < _epsilon;
+        public GoalState GetState(IBeliefSet beliefSet) => CurrentHeuristics(beliefSet).Distance < _epsilon
+            ? GoalState.Success
+            : GoalState.Unfinished; // TODO what about failure?
     }
+
+    public enum GoalState { Unfinished, Success, Failure }
 }

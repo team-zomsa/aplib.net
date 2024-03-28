@@ -66,7 +66,7 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.IsCompleted(beliefSet);
+        bool isCompleted = goal.GetState(beliefSet);
 
         // Assert
         isCompleted.Should().Be(true);
@@ -86,7 +86,7 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.IsCompleted(beliefSet);
+        bool isCompleted = goal.GetState(beliefSet);
 
         // Assert
         isCompleted.Should().Be(false);
@@ -105,7 +105,7 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().Build();
-        _ = goal.IsCompleted(beliefSet);
+        _ = goal.GetState(beliefSet);
 
         // Assert
         beliefSet.MyBelief.Updated.Should().Be(false);
@@ -135,8 +135,8 @@ public class GoalTests
 
         // Act
         MyBeliefSet beliefSet = new();
-        bool goalBooleanEvaluation = goalBoolean.IsCompleted(beliefSet);
-        bool goalNonBooleanEvaluation = goalNonBoolean.IsCompleted(beliefSet);
+        bool goalBooleanEvaluation = goalBoolean.GetState(beliefSet);
+        bool goalNonBooleanEvaluation = goalNonBoolean.GetState(beliefSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
