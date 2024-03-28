@@ -13,8 +13,8 @@ namespace Aplib.Core.Belief
     /// It implements the <see cref="IBelief"/> interface.
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
-    /// <typeparam name="TReference">The type of the reference used to generate/update the resource.</typeparam>
-    /// <typeparam name="TObservation">The type of the resource the belief represents.</typeparam>
+    /// <typeparam name="TReference">The type of the reference used to generate/update the observation.</typeparam>
+    /// <typeparam name="TObservation">The type of the observation the belief represents.</typeparam>
     public class MemoryBelief<TReference, TObservation> : Belief<TReference, TObservation>
     {
         /// <summary>
@@ -27,8 +27,8 @@ namespace Aplib.Core.Belief
         /// and a function to generate/update the observation using the object reference.
         /// Also initializes the memory array with a specified number of slots.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a resource.</param>
+        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember)
             : base(reference, getObservationFromReference)
@@ -42,10 +42,10 @@ namespace Aplib.Core.Belief
         /// and a condition on when the observation should be updated.
         /// Also initializes the memory array with a specified number of slots.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a resource.</param>
+        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
-        /// <param name="shouldUpdate">A function that sets a condition on when the resource should be updated.</param>
+        /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
         public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember,
             Func<bool> shouldUpdate)
             : base(reference, getObservationFromReference, shouldUpdate)
@@ -54,7 +54,7 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
-        /// Generates/updates the resource.
+        /// Generates/updates the observation.
         /// Also stores the previous observation in memory.
         /// </summary>
         public override void UpdateBelief()
@@ -65,17 +65,17 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
-        /// Gets the most recently memorized resource.
+        /// Gets the most recently memorized observation.
         /// </summary>
-        /// <returns> The most recent memory of the resource.</returns>
+        /// <returns> The most recent memory of the observation.</returns>
         public TObservation GetMostRecentMemory() => _memorizedObservations.GetFirst();
 
         /// <summary>
-        /// Gets the memorized resource at a specific index.
+        /// Gets the memorized observation at a specific index.
         /// A higher index means a memory further back in time.
         /// If the index is out of bounds, returns the closest element that is in bounds.
         /// </summary>
-        /// <returns> The memory of the resource at the specified index.</returns>
+        /// <returns> The memory of the observation at the specified index.</returns>
         public TObservation GetMemoryAt(int index, bool clamp = false)
         {
             int lastMemoryIndex = _memorizedObservations.Length - 1;
@@ -87,10 +87,10 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
-        /// Gets all the memorized resources.
+        /// Gets all the memorized observations.
         /// The first element is the newest memory.
         /// </summary>
-        /// <returns> An array of all the memorized resources.</returns>
+        /// <returns> An array of all the memorized observations.</returns>
         public TObservation[] GetAllMemories()
         {
             // For now, we return the entire array, but with empty elements for the unused slots
