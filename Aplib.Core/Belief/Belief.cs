@@ -28,7 +28,7 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        protected readonly Func<bool> _shouldUpdate = () => true;
+        private readonly Func<bool> _shouldUpdate = () => true;
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).

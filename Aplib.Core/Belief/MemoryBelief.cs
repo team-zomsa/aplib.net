@@ -3,7 +3,8 @@ using System;
 namespace Aplib.Core.Belief
 {
     /// <summary>
-    /// The <see cref="MemoryBelief{TReference, TObservation}"/> class represents a belief with "memory".
+    /// The <see cref="MemoryBelief{TReference, TObservation}"/> class represents the agent's belief of a single object,
+    /// but with additional "memory" of previous observations.
     /// Some <i>object reference</i> is used to generate/update a <i>observation</i> 
     /// (i.e., some piece of information on the game state as perceived by an agent).
     /// This belief also stores a limited amount of previous observations in memory.
@@ -22,27 +23,32 @@ namespace Aplib.Core.Belief
         private readonly CircularArray<TObservation> _memorizedObservations;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/> class.
+        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object reference,
+        /// and a function to generate/update the observation using the object reference.
+        /// Also initializes the memory array with a specified number of slots.
         /// </summary>
         /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a resource.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
-        public MemoryBelief(TReference reference, Func<TReference, TObservation> getResourceFromReference, int framesToRemember)
-            : base(reference, getResourceFromReference, () => true)
+        public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember)
+            : base(reference, getObservationFromReference)
         {
             _memorizedObservations = new(framesToRemember);
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TResource}"/> class.
+        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object reference,
+        /// a function to generate/update the observation using the object reference,
+        /// and a condition on when the observation should be updated.
+        /// Also initializes the memory array with a specified number of slots.
         /// </summary>
         /// <param name="reference">The reference used to generate/update the resource.</param>
-        /// <param name="getResourceFromReference">A function that takes a reference and generates/updates a resource.</param>
+        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a resource.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the resource should be updated.</param>
-        public MemoryBelief(TReference reference, Func<TReference, TObservation> getResourceFromReference, int framesToRemember,
+        public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember,
             Func<bool> shouldUpdate)
-            : base(reference, getResourceFromReference, shouldUpdate)
+            : base(reference, getObservationFromReference, shouldUpdate)
         {
             _memorizedObservations = new(framesToRemember);
         }
@@ -70,35 +76,40 @@ namespace Aplib.Core.Belief
         /// If the index is out of bounds, returns the closest element that is in bounds.
         /// </summary>
         /// <returns> The memory of the resource at the specified index.</returns>
-        public TObservation GetMemoryAt(int index)
+        public TObservation GetMemoryAt(int index, bool clamp = false)
         {
-            if (index < 0) return GetMostRecentMemory();
-            if (index >= _memorizedObservations.Length)
-                return _memorizedObservations[_memorizedObservations.Length - 1];
+            int lastMemoryIndex = _memorizedObservations.Length - 1;
+            if (clamp)
+                index = Math.Clamp(index, 0, lastMemoryIndex);
+            else if (index < 0 || index > lastMemoryIndex)
+                throw new IndexOutOfRangeException();
             return _memorizedObservations[index];
         }
 
         /// <summary>
         /// Gets all the memorized resources.
         /// The first element is the newest memory.
-        /// If not all slots are filled, returns a smaller array.
         /// </summary>
         /// <returns> An array of all the memorized resources.</returns>
         public TObservation[] GetAllMemories()
         {
-            // Keep track of last non-default index in case of empty slots in the middle
-            int lastNonDefaultIndex = -1;
-            for (int i = 0; i < _memorizedObservations.Length; i++)
-            {
-                if (!_memorizedObservations[i]!.Equals(default(TObservation)))
-                {
-                    lastNonDefaultIndex = i;
-                }
-            }
-            if (lastNonDefaultIndex == -1) return Array.Empty<TObservation>();
+            // For now, we return the entire array, but with empty elements for the unused slots
+            return _memorizedObservations.ToArray();
 
-            TObservation[] memories = _memorizedObservations.ToArray(0, lastNonDefaultIndex);
-            return memories;
+            // TODO: If not all slots are filled, returns a smaller array.
+            // Keep track of last non-default index in case of empty slots in the middle
+            // int lastNonDefaultIndex = -1;
+            // for (int i = 0; i < _memorizedObservations.Length; i++)
+            // {
+            //     if (!_memorizedObservations[i]!.Equals(default(TObservation)))
+            //     {
+            //         lastNonDefaultIndex = i;
+            //     }
+            // }
+            // if (lastNonDefaultIndex == -1) return Array.Empty<TObservation>();
+
+            // TObservation[] memories = _memorizedObservations.ToArray(0, lastNonDefaultIndex);
+            // return memories;
         }
     }
 }
