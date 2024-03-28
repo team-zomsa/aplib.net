@@ -1,4 +1,3 @@
-using Aplib.Core;
 using Aplib.Core.Belief;
 
 namespace Aplib.Tests.Core.Belief;

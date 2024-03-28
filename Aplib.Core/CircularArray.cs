@@ -1,13 +1,11 @@
-
 namespace Aplib.Core
 {
     /// <summary>
     /// An array that wraps around when it reaches its end.
-    /// Functionally works sort of like a queue with indexing.
+    /// Functionally works like a queue with indexing.
     /// </summary>
     public class CircularArray<T>
     {
-
         /// <summary>
         /// The length of the array.
         /// </summary>
@@ -97,9 +95,8 @@ namespace Aplib.Core
             end = end == -1 ? Length - 1 : end;
             T[] result = new T[end - start + 1];
             for (int i = 0; i < result.Length; i++)
-            {
                 result[i] = this[start + i];
-            }
+
             return result;
         }
     }
