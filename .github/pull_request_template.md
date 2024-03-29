@@ -1,6 +1,10 @@
-## Describe your changes
+## Description
 
-## How to test your changes
+*Desribe what you have done in this pull request*
+
+## Testability
+
+*Describe how to test your changes*
 
 ## Checklist
 - [ ] Set the proper pull request name
