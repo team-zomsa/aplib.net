@@ -1,7 +1,7 @@
 namespace Aplib.Core.Desire
 {
     /// <summary>
-    /// Represents the state of a <see cref="GoalStructure"/>.
+    /// Represents the state of a <see cref="GoalStructure{TBeliefSet}" />.
     /// </summary>
     public enum GoalStructureState
     {

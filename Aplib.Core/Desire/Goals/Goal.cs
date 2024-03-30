@@ -6,10 +6,11 @@ namespace Aplib.Core.Desire.Goals
 {
     /// <summary>
     /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
-    /// applying the tactic. Goals are combined in a <see cref="GoalStructure" />, and are used to prepare tests or do
+    /// applying the tactic. Goals are combined in a <see cref="GoalStructure{TBeliefSet}" />, and are used to prepare tests
+    /// or do
     /// the testing.
     /// </summary>
-    /// <seealso cref="GoalStructure" />
+    /// <seealso cref="GoalStructure{TBeliefSet}" />
     public class Goal : IGoal
     {
         /// <summary>

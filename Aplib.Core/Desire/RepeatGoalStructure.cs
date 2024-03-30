@@ -16,7 +16,7 @@ namespace Aplib.Core.Desire
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepeatGoalStructure" /> class.
+        /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="goalStructure">The goalstructure to repeat</param>
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : base(

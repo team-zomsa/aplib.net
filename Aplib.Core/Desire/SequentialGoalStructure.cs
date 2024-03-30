@@ -21,7 +21,10 @@ namespace Aplib.Core.Desire
         /// </summary>
         private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; set; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SequentialGoalStructure{TBeliefSet}" /> class.
+        /// </summary>
+        /// <param name="children">The children of the goal structure.</param>
         public SequentialGoalStructure(IList<IGoalStructure<TBeliefSet>> children) : base(children)
         {
             if (children.Count <= 0)

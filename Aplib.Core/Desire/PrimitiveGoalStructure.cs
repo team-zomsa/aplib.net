@@ -20,7 +20,7 @@ namespace Aplib.Core.Desire
         private readonly IGoal _goal;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PrimitiveGoalStructure" /> class.
+        /// Initializes a new instance of the <see cref="PrimitiveGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="goal">The goal to fulfill.</param>
         public PrimitiveGoalStructure(IGoal goal) : base(Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;

@@ -17,6 +17,10 @@ namespace Aplib.Core.Desire
     {
         private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FirstOfGoalStructure{TBeliefSet}" /> class.
+        /// </summary>
+        /// <param name="children">The children of the goal structure.</param>
         public FirstOfGoalStructure(IList<IGoalStructure<TBeliefSet>> children) : base(children)
         {
             _childrenEnumerator = children.GetEnumerator();

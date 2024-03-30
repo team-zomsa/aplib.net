@@ -3,6 +3,9 @@ using Aplib.Core.Intent.Tactics;
 
 namespace Aplib.Core.Desire.Goals
 {
+    /// <summary>
+    /// Defines a goal that can be achieved by a <see cref="Intent.Tactics.Tactic" />.
+    /// </summary>
     public interface IGoal
     {
         /// <summary>
