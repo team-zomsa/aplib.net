@@ -15,50 +15,74 @@ namespace Aplib.Core.Desire
     public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
         where TBeliefSet : IBeliefSet
     {
-        protected IEnumerator<GoalStructure<TBeliefSet>> _childrenEnumerator { get; set; }
+        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
 
-        public FirstOfGoalStructure(IList<GoalStructure<TBeliefSet>> children) : base(children)
+        public FirstOfGoalStructure(IList<IGoalStructure<TBeliefSet>> children) : base(children)
         {
             _childrenEnumerator = children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
-        }
 
-        public override Goal? GetCurrentGoal(TBeliefSet beliefSet)
-        {
-            if (State == GoalStructureState.Success) return null;
-
-            switch (_currentGoalStructure.State)
+            OnReinstate += (_, args) =>
             {
-                case GoalStructureState.Unfinished:
-                    return _currentGoalStructure.GetCurrentGoal(beliefSet);
-                case GoalStructureState.Success:
-                    State = GoalStructureState.Success;
-                    return null;
-                case GoalStructureState.Failure:
-                default:
-                    break;
-            }
+                _childrenEnumerator.Reset();
+                _childrenEnumerator.MoveNext();
 
-            if (_childrenEnumerator.MoveNext())
-            {
                 _currentGoalStructure = _childrenEnumerator.Current!;
-                return _currentGoalStructure.GetCurrentGoal(beliefSet);
-            }
 
-            State = GoalStructureState.Failure;
-            return null;
+                State = _currentGoalStructure.State == GoalStructureState.Failure
+                    ? GoalStructureState.Unfinished
+                    : _currentGoalStructure.State;
+            };
         }
 
+        /// <inheritdoc />
+        public override IGoal? GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+
+        /// <inheritdoc />
+        public override void UpdateState(TBeliefSet beliefSet)
+        {
+            // Loop through all the children until one of them is unfinished or successful.
+            // This loop is here to prevent tail recursion.
+            while (true)
+            {
+                if (State == GoalStructureState.Success) return;
+                _currentGoalStructure!.UpdateState(beliefSet);
+
+                switch (_currentGoalStructure.State)
+                {
+                    case GoalStructureState.Unfinished:
+                        return;
+                    case GoalStructureState.Success:
+                        State = GoalStructureState.Success;
+                        return;
+                }
+
+                if (_childrenEnumerator.MoveNext())
+                {
+                    _currentGoalStructure = _childrenEnumerator.Current;
+                    State = GoalStructureState.Unfinished;
+
+                    // Update the state of the new goal structure
+                    continue;
+                }
+
+                State = GoalStructureState.Failure;
+                return;
+            }
+        }
+
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            _childrenEnumerator.Dispose();
-        }
+        /// <summary>
+        /// Disposes of the goal structure.
+        /// </summary>
+        /// <param name="disposing">Whether we are actually disposing.</param>
+        protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
     }
 }

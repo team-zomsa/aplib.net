@@ -1,6 +1,5 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
-using System;
 using System.Collections.Generic;
 using static Aplib.Core.Desire.GoalStructureState;
 
@@ -17,27 +16,38 @@ namespace Aplib.Core.Desire
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepeatGoalStructure"/> class.
+        /// Initializes a new instance of the <see cref="RepeatGoalStructure" /> class.
         /// </summary>
         /// <param name="goalStructure">The goalstructure to repeat</param>
-        public RepeatGoalStructure(GoalStructure<TBeliefSet> goalStructure) : base(
-            children: new List<GoalStructure<TBeliefSet>> { goalStructure })
-        {
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : base(
+            new List<IGoalStructure<TBeliefSet>> { goalStructure }) =>
             _currentGoalStructure = goalStructure;
-        }
 
         /// <inheritdoc />
-        public override Goal? GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.State switch
+        public override IGoal? GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.State switch
         {
             Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            Success => FinishRepeat(),
-            _ => throw new NotImplementedException()
+            _ => FinishRepeat(beliefSet)
         };
 
-        private Goal? FinishRepeat()
+        /// <inheritdoc />
+        public override void UpdateState(TBeliefSet beliefSet)
+        {
+            _currentGoalStructure!.UpdateState(beliefSet);
+
+            if (_currentGoalStructure.State == Failure) _currentGoalStructure.Reinstate(beliefSet);
+
+            State = _currentGoalStructure.State switch
+            {
+                Failure or Unfinished => Unfinished,
+                _ => Success
+            };
+        }
+
+        private IGoal? FinishRepeat(TBeliefSet beliefSet)
         {
             State = Success;
-            return null;
+            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
 }
