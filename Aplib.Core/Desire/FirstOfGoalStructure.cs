@@ -1,34 +1,64 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
+using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire
 {
-    public class FirstOfGoalStructure : SequentialGoalStructure
+    /// <summary>
+    /// Represents a goal structure that will complete if any of its children complete.
+    /// </summary>
+    /// <remarks>
+    /// The children of this goal structure will be executed in the order they are given.
+    /// </remarks>
+    /// <typeparam name="TBeliefSet">The beliefset of the agent.</typeparam>
+    public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
+        where TBeliefSet : IBeliefSet
     {
-        protected Goal? _currentGoal;
+        protected IEnumerator<GoalStructure<TBeliefSet>> _childrenEnumerator { get; set; }
 
-        /// <inheritdoc />
-        public override Goal? DetermineCurrentGoal(IBeliefSet beliefSet)
+        public FirstOfGoalStructure(IList<GoalStructure<TBeliefSet>> children) : base(children)
         {
-            _currentGoal ??= GetNextGoal(beliefSet); // Should only happen the first time this method is called
-            if (_currentGoal is null) return null; // Can be the case when no next goal can be found
-
-            switch (_currentGoal!.GetState(beliefSet))
-            {
-                case GoalState.Success:
-                    return null;
-                case GoalState.Failure:
-                    _currentGoal = GetNextGoal(beliefSet);
-                    return DetermineCurrentGoal(beliefSet);
-
-                default:
-                    return _currentGoal;
-            }
+            _childrenEnumerator = children.GetEnumerator();
+            _childrenEnumerator.MoveNext();
+            _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <inheritdoc />
-        public FirstOfGoalStructure(IList<GoalStructure> children) : base(children)
-        { }
+        public override Goal? GetCurrentGoal(TBeliefSet beliefSet)
+        {
+            if (State == GoalStructureState.Success) return null;
+
+            switch (_currentGoalStructure.State)
+            {
+                case GoalStructureState.Unfinished:
+                    return _currentGoalStructure.GetCurrentGoal(beliefSet);
+                case GoalStructureState.Success:
+                    State = GoalStructureState.Success;
+                    return null;
+                case GoalStructureState.Failure:
+                default:
+                    break;
+            }
+
+            if (_childrenEnumerator.MoveNext())
+            {
+                _currentGoalStructure = _childrenEnumerator.Current!;
+                return _currentGoalStructure.GetCurrentGoal(beliefSet);
+            }
+
+            State = GoalStructureState.Failure;
+            return null;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            _childrenEnumerator.Dispose();
+        }
     }
 }
