@@ -1,12 +1,12 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
-using Aplib.Tests.Stubs.Desire;
 using Aplib.Tests.Tools;
 using FluentAssertions;
+using Moq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Desire;
+namespace Aplib.Tests.Core.Desire;
 
 public class GoalTests
 {
@@ -19,10 +19,11 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }));
+        Tactic tactic = Mock.Of<Tactic>();
         Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
         const string name = "Such a good goal name";
-        const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
+        const string description =
+            "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
         // Act
         Goal goal = new(tactic, heuristicFunction, name, description); // Does not use helper methods on purpose
@@ -43,12 +44,13 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Tactic tactic = new TacticStub(new Action(() => iterations++));
-
+        Mock<Tactic> tactic = new();
+        tactic.Setup(x => x.GetAction()).Returns(new Action(() => { iterations++; }));
         // Act
-        Goal _ = new TestGoalBuilder().UseTactic(tactic).Build();
+        Goal goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();
 
         // Assert
+        goal.Tactic.Should().Be(tactic.Object);
         iterations.Should().Be(0);
     }
 
@@ -66,10 +68,10 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.GetState(beliefSet);
+        GoalState isCompleted = goal.GetState(beliefSet);
 
         // Assert
-        isCompleted.Should().Be(true);
+        isCompleted.Should().Be(GoalState.Success);
     }
 
     /// <summary>
@@ -86,10 +88,10 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        bool isCompleted = goal.GetState(beliefSet);
+        GoalState isCompleted = goal.GetState(beliefSet);
 
         // Assert
-        isCompleted.Should().Be(false);
+        isCompleted.Should().Be(GoalState.Unfinished);
     }
 
     /// <summary>
@@ -123,9 +125,10 @@ public class GoalTests
     public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
     {
         // Arrange
-        Tactic tactic = new TacticStub(new Action(() => { }));
+        Tactic tactic = Mock.Of<Tactic>();
         const string name = "Such a good goal name";
-        const string description = "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
+        const string description =
+            "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
         Func<bool> heuristicFunctionBoolean = () => goalCompleted;
         Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
@@ -135,8 +138,8 @@ public class GoalTests
 
         // Act
         MyBeliefSet beliefSet = new();
-        bool goalBooleanEvaluation = goalBoolean.GetState(beliefSet);
-        bool goalNonBooleanEvaluation = goalNonBoolean.GetState(beliefSet);
+        GoalState goalBooleanEvaluation = goalBoolean.GetState(beliefSet);
+        GoalState goalNonBooleanEvaluation = goalNonBoolean.GetState(beliefSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
@@ -150,25 +153,22 @@ public class GoalTests
         /// <summary>
         /// Belief that sets Updated to true when UpdateBelief is called.
         /// </summary>
-        public SimpleBelief MyBelief = new();
+        public readonly SimpleBelief MyBelief = new();
     }
 
     /// <summary>
-    /// A simple belief that can be used to test whether <see cref="UpdateBelief"/> has been called.
+    /// A simple belief that can be used to test whether <see cref="UpdateBelief" /> has been called.
     /// </summary>
     private class SimpleBelief : IBelief
     {
         /// <summary>
-        /// Stores whether <see cref="UpdateBelief"/> has been called.
+        /// Stores whether <see cref="UpdateBelief" /> has been called.
         /// </summary>
-        public bool Updated { get; private set; } = false;
+        public bool Updated { get; private set; }
 
         /// <summary>
-        /// Sets <see cref="Updated"/> to true.
+        /// Sets <see cref="Updated" /> to true.
         /// </summary>
-        public void UpdateBelief()
-        {
-            Updated = true;
-        }
+        public void UpdateBelief() => Updated = true;
     }
 }
