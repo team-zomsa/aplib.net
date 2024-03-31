@@ -1,22 +1,22 @@
 ﻿namespace Aplib.Core
 {
     /// <summary>
-    /// Represents the state of a <see cref="GoalStructure{TBeliefSet}" />.
+    /// Represents the state of a completable object.
     /// </summary>
     public enum CompletionStatus
     {
         /// <summary>
-        /// Represents a goal structure that is not yet completed.
+        /// Represents the status of a completable object that is not yet completed.
         /// </summary>
         Unfinished,
 
         /// <summary>
-        /// Represents a goal structure that has been successfully completed.
+        /// Represents the status of a completable object that has been successfully completed.
         /// </summary>
         Success,
 
         /// <summary>
-        /// Represents a goal structure that has failed to complete.
+        /// Represents the status of a completable object that has failed to complete.
         /// </summary>
         Failure
     }
