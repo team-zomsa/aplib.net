@@ -5,9 +5,9 @@
     /// </summary>
     public interface IBeliefSet
     {
-      /// <summary>
-      /// Updates all beliefs in the belief set.
-      /// </summary>
-      void UpdateBeliefs();
+        /// <summary>
+        /// Updates all beliefs in the belief set.
+        /// </summary>
+        void UpdateBeliefs();
     }
 }
