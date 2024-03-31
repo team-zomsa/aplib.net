@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
@@ -10,6 +11,33 @@ namespace Aplib.Tests.Core.Desire;
 
 public class GoalTests
 {
+    /// <summary>
+    /// A test belief set that contains two public simple beliefs.
+    /// </summary>
+    private class MyBeliefSet : BeliefSet
+    {
+        /// <summary>
+        /// Belief that sets Updated to true when UpdateBelief is called.
+        /// </summary>
+        public readonly SimpleBelief MyBelief = new();
+    }
+
+    /// <summary>
+    /// A simple belief that can be used to test whether <see cref="UpdateBelief" /> has been called.
+    /// </summary>
+    private class SimpleBelief : IBelief
+    {
+        /// <summary>
+        /// Stores whether <see cref="UpdateBelief" /> has been called.
+        /// </summary>
+        public bool Updated { get; private set; }
+
+        /// <summary>
+        /// Sets <see cref="Updated" /> to true.
+        /// </summary>
+        public void UpdateBelief() => Updated = true;
+    }
+
     /// <summary>
     /// Given valid parameters and metadata,
     /// When the goal is constructed,
@@ -55,26 +83,6 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given the Goal's heuristic function is configured to have reached its goal
-    /// when the Evaluate() method of a goal is used,
-    /// then the method should return true.
-    /// </summary>
-    [Fact]
-    public void Goal_WhenReached_ReturnsAsCompleted()
-    {
-        // Arrange
-        MyBeliefSet beliefSet = new();
-        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
-
-        // Act
-        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        GoalState isCompleted = goal.GetState(beliefSet);
-
-        // Assert
-        isCompleted.Should().Be(GoalState.Success);
-    }
-
-    /// <summary>
     /// Given the Goal's heuristic function is configured to *not* have reached its goal,
     /// when the Evaluate() method of a goal is used,
     /// then the method should return false.
@@ -88,10 +96,30 @@ public class GoalTests
 
         // Act
         Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        GoalState isCompleted = goal.GetState(beliefSet);
+        CompletionStatus isCompleted = goal.GetState(beliefSet);
 
         // Assert
-        isCompleted.Should().Be(GoalState.Unfinished);
+        isCompleted.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    /// <summary>
+    /// Given the Goal's heuristic function is configured to have reached its goal
+    /// when the Evaluate() method of a goal is used,
+    /// then the method should return true.
+    /// </summary>
+    [Fact]
+    public void Goal_WhenReached_ReturnsAsCompleted()
+    {
+        // Arrange
+        MyBeliefSet beliefSet = new();
+        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
+
+        // Act
+        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
+        CompletionStatus isCompleted = goal.GetState(beliefSet);
+
+        // Assert
+        isCompleted.Should().Be(CompletionStatus.Success);
     }
 
     /// <summary>
@@ -138,37 +166,10 @@ public class GoalTests
 
         // Act
         MyBeliefSet beliefSet = new();
-        GoalState goalBooleanEvaluation = goalBoolean.GetState(beliefSet);
-        GoalState goalNonBooleanEvaluation = goalNonBoolean.GetState(beliefSet);
+        CompletionStatus goalBooleanEvaluation = goalBoolean.GetState(beliefSet);
+        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.GetState(beliefSet);
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
-    }
-
-    /// <summary>
-    /// A test belief set that contains two public simple beliefs.
-    /// </summary>
-    private class MyBeliefSet : BeliefSet
-    {
-        /// <summary>
-        /// Belief that sets Updated to true when UpdateBelief is called.
-        /// </summary>
-        public readonly SimpleBelief MyBelief = new();
-    }
-
-    /// <summary>
-    /// A simple belief that can be used to test whether <see cref="UpdateBelief" /> has been called.
-    /// </summary>
-    private class SimpleBelief : IBelief
-    {
-        /// <summary>
-        /// Stores whether <see cref="UpdateBelief" /> has been called.
-        /// </summary>
-        public bool Updated { get; private set; }
-
-        /// <summary>
-        /// Sets <see cref="Updated" /> to true.
-        /// </summary>
-        public void UpdateBelief() => Updated = true;
     }
 }
