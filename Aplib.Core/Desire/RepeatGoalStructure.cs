@@ -35,8 +35,6 @@ namespace Aplib.Core.Desire
         {
             _currentGoalStructure!.UpdateState(beliefSet);
 
-            if (_currentGoalStructure.Status == Failure) _currentGoalStructure.Reinstate(beliefSet);
-
             Status = _currentGoalStructure.Status switch
             {
                 Failure or Unfinished => Unfinished,
