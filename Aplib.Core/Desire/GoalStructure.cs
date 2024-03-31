@@ -16,14 +16,8 @@ namespace Aplib.Core.Desire
         /// <inheritdoc />
         public event EventHandler<InterruptableEventArgs<TBeliefSet>>? OnReinstate;
 
-        /// <summary>
-        /// Gets or sets the state of the goal structure.
-        /// </summary>
-        /// <remarks>
-        /// By default, the state is set to <see cref="GoalStructureState.Unfinished" />.
-        /// However, this can be changed by the goal structure.
-        /// </remarks>
-        public GoalStructureState State { get; protected set; } = GoalStructureState.Unfinished;
+        /// <inheritdoc />
+        public CompletionStatus Status { get; protected set; }
 
         /// <summary>
         /// The children of the goal structure.
@@ -31,7 +25,7 @@ namespace Aplib.Core.Desire
         protected readonly IEnumerable<IGoalStructure<TBeliefSet>> _children;
 
         /// <summary>
-        /// The goalstructure that is currently being fulfilled.
+        /// The goal structure that is currently being fulfilled.
         /// </summary>
         protected IGoalStructure<TBeliefSet>? _currentGoalStructure;
 
@@ -46,7 +40,7 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         /// <returns>The current goal to be fulfilled.</returns>
-        public abstract IGoal? GetCurrentGoal(TBeliefSet beliefSet);
+        public abstract IGoal GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <inheritdoc />
         public void Interrupt(TBeliefSet beliefSet)

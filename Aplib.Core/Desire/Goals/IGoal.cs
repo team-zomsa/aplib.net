@@ -6,7 +6,7 @@ namespace Aplib.Core.Desire.Goals
     /// <summary>
     /// Defines a goal that can be achieved by a <see cref="Intent.Tactics.Tactic" />.
     /// </summary>
-    public interface IGoal
+    public interface IGoal : ICompletable
     {
         /// <summary>
         /// The <see cref="Intent.Tactics.Tactic" /> used to achieve this <see cref="Goal" />, which is executed during every
@@ -29,6 +29,6 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="Goal._epsilon" />
-        GoalState GetState(IBeliefSet beliefSet);
+        CompletionStatus GetState(IBeliefSet beliefSet);
     }
 }

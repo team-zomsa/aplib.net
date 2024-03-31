@@ -1,7 +1,6 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System;
-using static Aplib.Core.Desire.Goals.GoalState;
 
 namespace Aplib.Core.Desire
 {
@@ -26,15 +25,10 @@ namespace Aplib.Core.Desire
         public PrimitiveGoalStructure(IGoal goal) : base(Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
 
         /// <inheritdoc />
-        public override IGoal? GetCurrentGoal(TBeliefSet beliefSet) => _goal;
+        public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _goal;
 
         /// <inheritdoc />
         public override void UpdateState(TBeliefSet beliefSet) =>
-            State = _goal.GetState(beliefSet) switch
-            {
-                Unfinished => GoalStructureState.Unfinished,
-                Success => GoalStructureState.Success,
-                _ => GoalStructureState.Failure
-            };
+            Status = _goal.GetState(beliefSet);
     }
 }

@@ -1,9 +1,9 @@
-namespace Aplib.Core.Desire
+﻿namespace Aplib.Core
 {
     /// <summary>
     /// Represents the state of a <see cref="GoalStructure{TBeliefSet}" />.
     /// </summary>
-    public enum GoalStructureState
+    public enum CompletionStatus
     {
         /// <summary>
         /// Represents a goal structure that is not yet completed.

@@ -10,24 +10,15 @@ namespace Aplib.Core.Desire
     /// A goal structure is structure of predicates that must be fulfilled in order to complete a test.
     /// </remarks>
     /// <typeparam name="TBeliefSet"></typeparam>
-    public interface IGoalStructure<TBeliefSet> : IInterruptable<TBeliefSet>
+    public interface IGoalStructure<TBeliefSet> : IInterruptable<TBeliefSet>, ICompletable
         where TBeliefSet : IBeliefSet
     {
-        /// <summary>
-        /// Gets or sets the state of the goal structure.
-        /// </summary>
-        /// <remarks>
-        /// By default, the state is set to <see cref="GoalStructureState.Unfinished" />.
-        /// However, this can be changed by the goal structure itself.
-        /// </remarks>
-        GoalStructureState State { get; }
-
         /// <summary>
         /// Gets the current goal using the given <see cref="IBeliefSet" />.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         /// <returns>The current goal to be fulfilled.</returns>
-        IGoal? GetCurrentGoal(TBeliefSet beliefSet);
+        IGoal GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <summary>
         /// Updates the state of the goal structure.

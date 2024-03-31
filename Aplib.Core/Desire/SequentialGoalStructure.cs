@@ -19,7 +19,7 @@ namespace Aplib.Core.Desire
         /// <summary>
         /// Gets or sets the enumerator for the children of the goal structure.
         /// </summary>
-        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; set; }
+        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SequentialGoalStructure{TBeliefSet}" /> class.
@@ -32,8 +32,6 @@ namespace Aplib.Core.Desire
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
-
-            OnReinstate += CheckForGoalCompletion;
         }
 
         /// <inheritdoc />
@@ -46,17 +44,17 @@ namespace Aplib.Core.Desire
             // This loop is here to prevent tail recursion.
             while (true)
             {
-                if (State == GoalStructureState.Success) return;
+                if (Status == CompletionStatus.Success) return;
                 _currentGoalStructure!.UpdateState(beliefSet);
 
-                switch (_currentGoalStructure.State)
+                switch (_currentGoalStructure.Status)
                 {
-                    case GoalStructureState.Unfinished:
+                    case CompletionStatus.Unfinished:
                         return;
-                    case GoalStructureState.Failure:
-                        State = GoalStructureState.Failure;
+                    case CompletionStatus.Failure:
+                        Status = CompletionStatus.Failure;
                         return;
-                    case GoalStructureState.Success:
+                    case CompletionStatus.Success:
                     default:
                         break;
                 }
@@ -64,13 +62,13 @@ namespace Aplib.Core.Desire
                 if (_childrenEnumerator.MoveNext())
                 {
                     _currentGoalStructure = _childrenEnumerator.Current;
-                    State = GoalStructureState.Unfinished;
+                    Status = CompletionStatus.Unfinished;
 
                     // Update the state of the new goal structure
                     continue;
                 }
 
-                State = GoalStructureState.Success;
+                Status = CompletionStatus.Success;
                 return;
             }
         }
@@ -87,24 +85,5 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="disposing">Whether the object is being disposed.</param>
         protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
-
-        private void CheckForGoalCompletion(object sender, InterruptableEventArgs<TBeliefSet> e)
-        {
-            // Check if the previous goals are still completed
-            IEnumerator<IGoalStructure<TBeliefSet>> enumerator = _children.GetEnumerator();
-            while (enumerator.Current != _childrenEnumerator.Current)
-            {
-                enumerator.MoveNext();
-                enumerator.Current!.UpdateState(e.BeliefSet);
-                if (enumerator.Current!.State == GoalStructureState.Success) continue;
-
-                State = GoalStructureState.Unfinished;
-
-                // If the goal is not completed, retry the goal and reset the enumerator.
-                _childrenEnumerator = enumerator;
-                _currentGoalStructure = _childrenEnumerator.Current;
-                return;
-            }
-        }
     }
 }

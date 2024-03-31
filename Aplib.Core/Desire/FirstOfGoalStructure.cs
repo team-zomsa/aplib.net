@@ -26,22 +26,10 @@ namespace Aplib.Core.Desire
             _childrenEnumerator = children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
-
-            OnReinstate += (_, args) =>
-            {
-                _childrenEnumerator.Reset();
-                _childrenEnumerator.MoveNext();
-
-                _currentGoalStructure = _childrenEnumerator.Current!;
-
-                State = _currentGoalStructure.State == GoalStructureState.Failure
-                    ? GoalStructureState.Unfinished
-                    : _currentGoalStructure.State;
-            };
         }
 
         /// <inheritdoc />
-        public override IGoal? GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateState(TBeliefSet beliefSet)
@@ -50,28 +38,28 @@ namespace Aplib.Core.Desire
             // This loop is here to prevent tail recursion.
             while (true)
             {
-                if (State == GoalStructureState.Success) return;
+                if (Status == CompletionStatus.Success) return;
                 _currentGoalStructure!.UpdateState(beliefSet);
 
-                switch (_currentGoalStructure.State)
+                switch (_currentGoalStructure.Status)
                 {
-                    case GoalStructureState.Unfinished:
+                    case CompletionStatus.Unfinished:
                         return;
-                    case GoalStructureState.Success:
-                        State = GoalStructureState.Success;
+                    case CompletionStatus.Success:
+                        Status = CompletionStatus.Success;
                         return;
                 }
 
                 if (_childrenEnumerator.MoveNext())
                 {
                     _currentGoalStructure = _childrenEnumerator.Current;
-                    State = GoalStructureState.Unfinished;
+                    Status = CompletionStatus.Unfinished;
 
-                    // Update the state of the new goal structure
+                    // Update the Status of the new goal structure
                     continue;
                 }
 
-                State = GoalStructureState.Failure;
+                Status = CompletionStatus.Failure;
                 return;
             }
         }

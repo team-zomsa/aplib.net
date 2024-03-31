@@ -37,6 +37,9 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         public Tactic Tactic { get; }
 
+        /// <inheritdoc />
+        public CompletionStatus Status { get; protected set; }
+
         /// <summary>
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
         /// this value.
@@ -112,8 +115,12 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="_epsilon" />
-        public virtual GoalState GetState(IBeliefSet beliefSet) => CurrentHeuristics(beliefSet).Distance < _epsilon
-            ? GoalState.Success
-            : GoalState.Unfinished;
+        public virtual CompletionStatus GetState(IBeliefSet beliefSet)
+        {
+            Status = CurrentHeuristics(beliefSet).Distance < _epsilon
+                ? CompletionStatus.Success
+                : CompletionStatus.Unfinished;
+            return Status;
+        }
     }
 }

@@ -1,7 +1,7 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
-using static Aplib.Core.Desire.GoalStructureState;
+using static Aplib.Core.CompletionStatus;
 
 namespace Aplib.Core.Desire
 {
@@ -24,7 +24,7 @@ namespace Aplib.Core.Desire
             _currentGoalStructure = goalStructure;
 
         /// <inheritdoc />
-        public override IGoal? GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.State switch
+        public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
         {
             Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
             _ => FinishRepeat(beliefSet)
@@ -35,18 +35,18 @@ namespace Aplib.Core.Desire
         {
             _currentGoalStructure!.UpdateState(beliefSet);
 
-            if (_currentGoalStructure.State == Failure) _currentGoalStructure.Reinstate(beliefSet);
+            if (_currentGoalStructure.Status == Failure) _currentGoalStructure.Reinstate(beliefSet);
 
-            State = _currentGoalStructure.State switch
+            Status = _currentGoalStructure.Status switch
             {
                 Failure or Unfinished => Unfinished,
                 _ => Success
             };
         }
 
-        private IGoal? FinishRepeat(TBeliefSet beliefSet)
+        private IGoal FinishRepeat(TBeliefSet beliefSet)
         {
-            State = Success;
+            Status = Success;
             return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
