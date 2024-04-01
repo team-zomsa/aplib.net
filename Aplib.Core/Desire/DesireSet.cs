@@ -1,18 +1,33 @@
-﻿using Aplib.Core.Desire.Goals;
+﻿using Aplib.Core.Belief;
+using Aplib.Core.Desire.Goals;
 
 namespace Aplib.Core.Desire
 {
-    public class DesireSet
+    /// <inheritdoc />
+    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
-        // Collections of goal structure
+        /// <summary>
+        /// Stores the main goal structure of the agent.
+        /// </summary>
+        private IGoalStructure<TBeliefSet> _mainGoal { get; }
 
-        // Stack of goal structures
+        /// <inheritdoc />
+        public CompletionStatus Status => _mainGoal.Status;
 
-        // Temporary, to make my life easier
-        private readonly Goal _currentGoal;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DesireSet{TBeliefSet}" /> class.
+        /// </summary>
+        /// <param name="mainGoal">The main goal structure that the agent needs to complete.</param>
+        public DesireSet(IGoalStructure<TBeliefSet> mainGoal) 
+            => _mainGoal = mainGoal;
 
-        public DesireSet(Goal goal) => _currentGoal = goal;
+        /// <inheritdoc />
+        public IGoal GetCurrentGoal(TBeliefSet beliefSet)
+            => _mainGoal.GetCurrentGoal(beliefSet);
 
-        public Goal GetCurrentGoal() => _currentGoal;
+        /// <inheritdoc />
+        public void UpdateStatus(TBeliefSet beliefSet)
+            => _mainGoal.UpdateStatus(beliefSet);
     }
 }
