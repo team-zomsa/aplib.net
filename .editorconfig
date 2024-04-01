@@ -255,7 +255,7 @@ indent_size = 4
 end_of_line = crlf
 
 # Fields are camelCase and start with _
-dotnet_naming_rule.fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.fields_should_be_camel_case.severity = warning
 dotnet_naming_rule.fields_should_be_camel_case.symbols = underscore_fields
 dotnet_naming_rule.fields_should_be_camel_case.style = underscore_field_style
 
