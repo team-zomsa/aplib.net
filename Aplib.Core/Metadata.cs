@@ -33,5 +33,15 @@ namespace Aplib.Core
             Name = name;
             Description = description;
         }
+
+        /// <summary>
+        /// Store information about a component which may be useful for debugging or logging or general overviews.
+        /// </summary>
+        /// <remarks>This constructor is mainly for testing.</remarks>
+        /// <param name="id">A unique identifier for the component.</param>
+        /// <param name="name">The name used to display the component.</param>
+        /// <param name="description">The description used to describe the component.</param>
+        internal Metadata(Guid id, string? name = null, string? description = null)
+            : this(name, description) => Id = id;
     }
 }
