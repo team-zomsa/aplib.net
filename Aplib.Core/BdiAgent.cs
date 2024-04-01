@@ -16,6 +16,11 @@ namespace Aplib.Core
         public CompletionStatus Status => _desire.Status;
 
         /// <summary>
+        /// Gets the beliefset of the agent.
+        /// </summary>
+        private TBeliefSet _beliefSet { get; }
+
+        /// <summary>
         /// Gets the desire of the agent.
         /// </summary>
         /// <remarks>
@@ -24,18 +29,13 @@ namespace Aplib.Core
         private IDesireSet<TBeliefSet> _desire { get; }
 
         /// <summary>
-        /// Gets the beliefset of the agent.
+        /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class.
         /// </summary>
-        private TBeliefSet _state { get; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Agent" /> class.
-        /// </summary>
-        /// <param name="state">The beliefset of the agent.</param>
+        /// <param name="beliefSet">The beliefset of the agent.</param>
         /// <param name="desire"></param>
-        public BdiAgent(TBeliefSet state, IDesireSet<TBeliefSet> desire)
+        public BdiAgent(TBeliefSet beliefSet, IDesireSet<TBeliefSet> desire)
         {
-            _state = state;
+            _beliefSet = beliefSet;
             _desire = desire;
         }
 
@@ -46,10 +46,10 @@ namespace Aplib.Core
             if (Status != CompletionStatus.Unfinished)
                 return;
 
-            _state.UpdateBeliefs();
+            _beliefSet.UpdateBeliefs();
 
-            _desire.UpdateStatus(_state);
-            IGoal goal = _desire.GetCurrentGoal(_state);
+            _desire.UpdateStatus(_beliefSet);
+            IGoal goal = _desire.GetCurrentGoal(_beliefSet);
             Tactic tactic = goal.Tactic;
             Action action = tactic.GetAction()!;
 
