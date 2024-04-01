@@ -65,15 +65,15 @@ public class GoalStructureTests
         {
             goalStructure1.Object, goalStructure2.Object
         });
-
-        firstOfGoalStructure.UpdateState(beliefSet);
-
+        
         // Act
+        firstOfGoalStructure.UpdateState(beliefSet);
         firstOfGoalStructure.UpdateState(beliefSet);
 
         // Assert
         firstOfGoalStructure.Status.Should().Be(CompletionStatus.Success);
         goalStructure1.Verify(x => x.UpdateState(It.IsAny<BeliefSet>()), Times.Once);
+        goalStructure2.Verify(x => x.UpdateState(It.IsAny<BeliefSet>()), Times.Never);
     }
 
     [Fact]
@@ -295,7 +295,7 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void SequentialGoalStructure_WhenFinished_ShouldEarlyExit()
+    public void SequentialGoalStructure_WhenFirstGoalIsFinished_ShouldNotReturnFirstGoalAgain()
     {
         Mock<IGoalStructure<BeliefSet>> goalStructure1 = new();
         goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
@@ -309,9 +309,8 @@ public class GoalStructureTests
             goalStructure1.Object, goalStructure2.Object
         });
 
-        sequentialGoalStructure.UpdateState(beliefSet);
-
         // Act
+        sequentialGoalStructure.UpdateState(beliefSet);
         sequentialGoalStructure.UpdateState(beliefSet);
 
         // Assert
