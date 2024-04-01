@@ -19,16 +19,16 @@ namespace Aplib.Core.Intent.Tactics
         /// This metadata may be useful for debugging or logging.
         /// </remark>
         public Metadata Metadata { get; }
-        
+
         /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
         protected Func<bool> Guard { get; set; } = () => true;
-        
+
         /// <summary>
         /// Parameterless constructor for internal use.
         /// </summary>
-        internal Tactic() => Metadata = new Metadata();
+        internal Tactic() : this(null) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/>.
@@ -36,7 +36,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(Metadata? metadata = null) => Metadata = metadata ?? new Metadata();
+        protected Tactic(Metadata? metadata) => Metadata = metadata ?? new Metadata();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
