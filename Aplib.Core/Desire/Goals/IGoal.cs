@@ -24,8 +24,7 @@ namespace Aplib.Core.Desire.Goals
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="Goal._heuristicFunction" /> and the
         /// <see cref="Goal.CurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="Goal._epsilon" />
-        /// ,
-        /// the goal is considered to be completed.
+        /// , the goal is considered to be completed.
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="Goal._epsilon" />

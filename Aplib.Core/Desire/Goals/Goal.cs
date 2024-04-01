@@ -32,8 +32,7 @@ namespace Aplib.Core.Desire.Goals
 
         /// <summary>
         /// The <see cref="Intent.Tactics.Tactic" /> used to achieve this <see cref="Goal" />, which is executed during every
-        /// iteration
-        /// of the BDI cycle.
+        /// iteration of the BDI cycle.
         /// </summary>
         public Tactic Tactic { get; }
 
@@ -99,7 +98,6 @@ namespace Aplib.Core.Desire.Goals
             Description = description;
             _epsilon = epsilon;
         }
-
 
         /// <summary>
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
