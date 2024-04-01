@@ -8,7 +8,7 @@ namespace Aplib.Core.Desire
     /// This is the main structure that the agent will use to determine what it should do next.
     /// </summary>
     /// <typeparam name="TBeliefSet"></typeparam>
-    public interface IDesireSet<TBeliefSet> : ICompletable
+    public interface IDesireSet<in TBeliefSet> : ICompletable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -16,10 +16,10 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         /// <returns>The current goal to be fulfilled.</returns>
-        IGoal? GetCurrentGoal(TBeliefSet beliefSet);
+        IGoal GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <summary>
-        /// Updates the status of this <see cref="IDesireSet"/>.
+        /// Updates the status of this <see cref="IDesireSet{TBeliefSet}"/>.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         void UpdateStatus(TBeliefSet beliefSet);
