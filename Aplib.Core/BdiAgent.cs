@@ -9,12 +9,11 @@ namespace Aplib.Core
     /// <summary>
     /// Represents an agent that performs actions based on goals and beliefs.
     /// </summary>
-    public class BdiAgent : IAgent
+    public class BdiAgent<TBeliefSet> : IAgent
+        where TBeliefSet : IBeliefSet
     {
-        /// <summary>
-        /// Gets the beliefset of the agent.
-        /// </summary>
-        private BeliefSet _state { get; }
+        /// <inheritdoc />
+        public CompletionStatus Status => _desire.Status;
 
         /// <summary>
         /// Gets the desire of the agent.
@@ -22,28 +21,37 @@ namespace Aplib.Core
         /// <remarks>
         /// The desire contains all goal structures and the current goal.
         /// </remarks>
-        private DesireSet _desire { get; }
+        private IDesireSet<TBeliefSet> _desire { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Agent"/> class.
+        /// Gets the beliefset of the agent.
+        /// </summary>
+        private TBeliefSet _state { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Agent" /> class.
         /// </summary>
         /// <param name="state">The beliefset of the agent.</param>
         /// <param name="desire"></param>
-        public BdiAgent(BeliefSet state, DesireSet desire)
+        public BdiAgent(TBeliefSet state, IDesireSet<TBeliefSet> desire)
         {
             _state = state;
             _desire = desire;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void Update()
         {
-            // Update the beliefset
+            // If the agent has already finished, do nothing
+            if (Status != CompletionStatus.Unfinished)
+                return;
+
             _state.UpdateBeliefs();
 
-            Goal goal = _desire.GetCurrentGoal();
+            _desire.UpdateStatus(_state);
+            IGoal goal = _desire.GetCurrentGoal(_state);
             Tactic tactic = goal.Tactic;
-            Action action = tactic.GetAction();
+            Action action = tactic.GetAction()!;
 
             // Execute the action
             action.Execute();
