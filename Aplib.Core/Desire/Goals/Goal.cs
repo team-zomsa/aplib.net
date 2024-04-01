@@ -44,8 +44,6 @@ namespace Aplib.Core.Desire.Goals
         /// this value.
         /// </summary>
         protected double _epsilon { get; }
-
-
         /// <summary>
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
         /// completed.

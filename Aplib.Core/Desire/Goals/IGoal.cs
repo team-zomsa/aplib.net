@@ -10,8 +10,7 @@ namespace Aplib.Core.Desire.Goals
     {
         /// <summary>
         /// The <see cref="Intent.Tactics.Tactic" /> used to achieve this <see cref="Goal" />, which is executed during every
-        /// iteration
-        /// of the BDI cycle.
+        /// iteration of the BDI cycle.
         /// </summary>
         Tactic Tactic { get; }
 
