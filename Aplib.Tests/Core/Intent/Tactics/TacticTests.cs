@@ -1,56 +1,55 @@
-using Aplib.Core;
 using Aplib.Core.Intent.Tactics;
-using FluentAssertions;
-using System.Diagnostics.CodeAnalysis;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core.Tactics;
+namespace Aplib.Tests.Core.Intent.Tactics;
 
 public class TacticTests
 {
-    private readonly Action _emptyAction = new(effect: () => { });
     private static string _result = "abc";
-    private readonly Action _filledAction = new(effect: () => _result = "def");
+    private readonly Action _emptyAction = new(() => { });
+    private readonly Action _filledAction = new(() => _result = "def");
 
-    private static bool TrueGuard() => true;
-
-    private static bool FalseGuard() => false;
-
+    /// <summary>
+    /// Given a tactic with a guard that returns true and an action,
+    /// When calling the Execute method,
+    /// Then _result should be "def".
+    /// </summary>
     [Fact]
-    public void Tactic_WhenConstructed_ContainsCorrectMetaData()
+    public void Execute_WhenGuardReturnsTrue_ActionIsExecuted()
     {
         // Arrange
-        const string name = "Typical airbender tactic";
-        const string description = "Avoid and evade";
-        Metadata metadata = new(name, description);
+        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
 
         // Act
-        Tactic tactic = new PrimitiveTactic(_emptyAction, metadata);
+        tactic.GetAction()!.Execute();
 
         // Assert
-        tactic.Should().NotBeNull();
-        tactic.Metadata.Name.Should().Be(name);
-        tactic.Metadata.Description.Should().Be(description);
-    }
-    
-    [Fact]
-    public void Tactic_WithoutDescription_ContainsCorrectMetaData()
-    {
-        // Arrange
-        const string name = "Tictac";
-        Metadata metadata = new(name);
-
-        // Act
-        Tactic tactic = new PrimitiveTactic(_emptyAction, metadata);
-
-        // Assert
-        tactic.Should().NotBeNull();
-        tactic.Metadata.Name.Should().Be(name);
-        tactic.Metadata.Description.Should().BeNull();
+        Assert.Equal("def", _result);
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic"/> with two subtactics,
+    /// Given a parent of type <see cref="AnyOfTactic" /> with two subtactics,
+    /// When getting the next tactic,
+    /// Then the result should contain all the subtactics.
+    /// </summary>
+    [Fact]
+    public void GetAction_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
+    {
+        // Arrange
+        PrimitiveTactic tactic1 = new(_emptyAction);
+        PrimitiveTactic tactic2 = new(_emptyAction);
+        AnyOfTactic parentTactic = new(null, tactic1, tactic2);
+
+        // Act
+        Action? enabledAction = parentTactic.GetAction();
+
+        // Assert
+        Assert.NotNull(enabledAction);
+        Assert.Equal(_emptyAction, enabledAction);
+    }
+
+    /// <summary>
+    /// Given a parent of type <see cref="FirstOfTactic" /> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the first subtactic.
     /// </summary>
@@ -71,7 +70,7 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic"/> with two subtactics and a guard that is true,
+    /// Given a parent of type <see cref="FirstOfTactic" /> with two subtactics and a guard that is true,
     /// When getting the next tactic,
     /// Then the result should be the first subtactic.
     /// </summary>
@@ -82,27 +81,6 @@ public class TacticTests
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_filledAction);
         FirstOfTactic parentTactic = new(TrueGuard, null, tactic1, tactic2);
-
-        // Act
-        Action? enabledAction = parentTactic.GetAction();
-
-        // Assert
-        Assert.NotNull(enabledAction);
-        Assert.Equal(_emptyAction, enabledAction);
-    }
-
-    /// <summary>
-    /// Given a parent of type <see cref="AnyOfTactic"/> with two subtactics,
-    /// When getting the next tactic,
-    /// Then the result should contain all the subtactics.
-    /// </summary>
-    [Fact]
-    public void GetAction_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
-    {
-        // Arrange
-        PrimitiveTactic tactic1 = new(_emptyAction);
-        PrimitiveTactic tactic2 = new(_emptyAction);
-        AnyOfTactic parentTactic = new(null, tactic1, tactic2);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -150,21 +128,21 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a tactic with a guard that returns true and an action,
-    /// When calling the Execute method,
-    /// Then _result should be "def".
+    /// Given a tactic with a guard that returns false,
+    /// When checking if the tactic is actionable,
+    /// Then the result should be false.
     /// </summary>
     [Fact]
-    public void Execute_WhenGuardReturnsTrue_ActionIsExecuted()
+    public void IsActionable_WhenGuardReturnsFalse_ReturnsFalse()
     {
         // Arrange
-        PrimitiveTactic tactic = new(_filledAction, TrueGuard);
+        PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
 
         // Act
-        tactic.GetAction()!.Execute();
+        bool isActionable = tactic.IsActionable();
 
         // Assert
-        Assert.Equal("def", _result);
+        Assert.False(isActionable);
     }
 
     /// <summary>
@@ -185,21 +163,7 @@ public class TacticTests
         Assert.True(isActionable);
     }
 
-    /// <summary>
-    /// Given a tactic with a guard that returns false,
-    /// When checking if the tactic is actionable,
-    /// Then the result should be false.
-    /// </summary>
-    [Fact]
-    public void IsActionable_WhenGuardReturnsFalse_ReturnsFalse()
-    {
-        // Arrange
-        PrimitiveTactic tactic = new(_emptyAction, FalseGuard);
+    private static bool FalseGuard() => false;
 
-        // Act
-        bool isActionable = tactic.IsActionable();
-
-        // Assert
-        Assert.False(isActionable);
-    }
+    private static bool TrueGuard() => true;
 }

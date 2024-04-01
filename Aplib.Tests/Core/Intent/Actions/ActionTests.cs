@@ -3,10 +3,10 @@ using Aplib.Core.Intent.Actions;
 using FluentAssertions;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core;
+namespace Aplib.Tests.Core.Intent.Actions;
 
 /// <summary>
-/// Describes a set of tests for the <see cref="GuardedAction{TQuery}"/> class.
+/// Describes a set of tests for the <see cref="GuardedAction{TQuery}" /> class.
 /// </summary>
 public class ActionTests
 {
@@ -53,67 +53,13 @@ public class ActionTests
     {
         // Arrange
         string? result = "abc";
-        Action action = new(effect: () => result = "def");
+        Action action = new(() => result = "def");
 
         // Act
         action.Execute();
 
         // Assert
         Assert.Equal("def", result);
-    }
-
-    /// <summary>
-    /// Given an action with no query,
-    /// When checking if the action is actionable,
-    /// Then the result should always be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_NoQuery_AlwaysTrue()
-    {
-        // Arrange
-        Action action = new(effect: () => { });
-
-        // Act
-        bool actionable = action.IsActionable();
-
-        // Assert
-        Assert.True(actionable);
-    }
-
-    /// <summary>
-    /// Given an action with a true query,
-    /// When checking if the action is actionable,
-    /// Then the result should be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryWithTrue_ReturnsTrue()
-    {
-        // Arrange
-        Action action = new(effect: () => { }, guard: () => true);
-
-        // Act
-        bool actionable = action.IsActionable();
-
-        // Assert
-        Assert.True(actionable);
-    }
-
-    /// <summary>
-    /// Given an action with a false query,
-    /// When checking if the action is actionable,
-    /// Then the result should be false.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryWithFalse_ReturnsFalse()
-    {
-        // Arrange
-        Action action = new(effect: () => { }, guard: () => false);
-
-        // Act
-        bool actionable = action.IsActionable();
-
-        // Assert
-        Assert.False(actionable);
     }
 
     /// <summary>
@@ -126,7 +72,7 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<int> action = new(guard: () => 42, effect: (guard) => result = guard);
+        GuardedAction<int> action = new(guard: () => 42, effect: guard => result = guard);
 
         // Act
         _ = action.IsActionable();
@@ -137,21 +83,21 @@ public class ActionTests
     }
 
     /// <summary>
-    /// Given an action with a non-null int guard,
+    /// Given an action with no query,
     /// When checking if the action is actionable,
-    /// Then the result should be true.
+    /// Then the result should always be true.
     /// </summary>
     [Fact]
-    public void IsActionable_QueryIsNotNull_IsActionable()
+    public void IsActionable_NoQuery_AlwaysTrue()
     {
         // Arrange
-        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
+        Action action = new(() => { });
 
         // Act
-        bool result = action.IsActionable();
+        bool actionable = action.IsActionable();
 
         // Assert
-        Assert.True(result);
+        Assert.True(actionable);
     }
 
     /// <summary>
@@ -164,6 +110,24 @@ public class ActionTests
     {
         // Arrange
         GuardedAction<bool> action = new(guard: () => false, effect: b => { });
+
+        // Act
+        bool result = action.IsActionable();
+
+        // Assert
+        Assert.True(result);
+    }
+
+    /// <summary>
+    /// Given an action with a non-null int guard,
+    /// When checking if the action is actionable,
+    /// Then the result should be true.
+    /// </summary>
+    [Fact]
+    public void IsActionable_QueryIsNotNull_IsActionable()
+    {
+        // Arrange
+        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
 
         // Act
         bool result = action.IsActionable();
@@ -188,5 +152,41 @@ public class ActionTests
 
         // Assert
         Assert.False(result);
+    }
+
+    /// <summary>
+    /// Given an action with a false query,
+    /// When checking if the action is actionable,
+    /// Then the result should be false.
+    /// </summary>
+    [Fact]
+    public void IsActionable_QueryWithFalse_ReturnsFalse()
+    {
+        // Arrange
+        Action action = new(() => { }, () => false);
+
+        // Act
+        bool actionable = action.IsActionable();
+
+        // Assert
+        Assert.False(actionable);
+    }
+
+    /// <summary>
+    /// Given an action with a true query,
+    /// When checking if the action is actionable,
+    /// Then the result should be true.
+    /// </summary>
+    [Fact]
+    public void IsActionable_QueryWithTrue_ReturnsTrue()
+    {
+        // Arrange
+        Action action = new(() => { }, () => true);
+
+        // Act
+        bool actionable = action.IsActionable();
+
+        // Assert
+        Assert.True(actionable);
     }
 }

@@ -24,6 +24,11 @@ namespace Aplib.Core.Intent.Tactics
         /// Gets or sets the guard of the tactic.
         /// </summary>
         protected Func<bool> Guard { get; set; } = () => true;
+        
+        /// <summary>
+        /// Parameterless constructor for internal use.
+        /// </summary>
+        internal Tactic() => Metadata = new Metadata();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/>.

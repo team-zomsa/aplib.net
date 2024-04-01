@@ -1,25 +1,23 @@
 using Aplib.Core;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
-using Aplib.Tests.Stubs.Desire;
-using Action = Aplib.Core.Intent.Actions.Action;
+using Moq;
 
 namespace Aplib.Tests.Tools;
 
 internal sealed class TestGoalBuilder
 {
-    private Tactic _tactic = new TacticStub(new Action(() => { }));
+    private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
     private Goal.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions.Constant(0);
     private string _name = "Such a good goal name";
-    private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
-
-    public TestGoalBuilder() { }
+    private Tactic _tactic = Mock.Of<Tactic>();
 
     public TestGoalBuilder WithHeuristicFunction(Goal.HeuristicFunction heuristicFunction)
     {
         _heuristicFunction = heuristicFunction;
         return this;
     }
+
     public TestGoalBuilder WithHeuristicFunction(Func<bool> heuristicFunction)
         => WithHeuristicFunction(CommonHeuristicFunctions.Boolean(heuristicFunction));
 
