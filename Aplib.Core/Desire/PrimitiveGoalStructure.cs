@@ -28,7 +28,7 @@ namespace Aplib.Core.Desire
         public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _goal;
 
         /// <inheritdoc />
-        public override void UpdateState(TBeliefSet beliefSet) =>
-            Status = _goal.GetState(beliefSet);
+        public override void UpdateStatus(TBeliefSet beliefSet) =>
+            Status = _goal.GetStatus(beliefSet);
     }
 }

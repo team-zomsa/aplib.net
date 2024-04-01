@@ -17,7 +17,7 @@ namespace Aplib.Core.Desire.Goals
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="Goal.GetState" />
+        /// <seealso cref="Goal.GetStatus" />
         public delegate Heuristics HeuristicFunction(IBeliefSet beliefSet);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Aplib.Core.Desire.Goals
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
         /// completed.
         /// </summary>
-        /// <seealso cref="GetState" />
+        /// <seealso cref="GetStatus" />
         protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="_epsilon" />
-        public virtual CompletionStatus GetState(IBeliefSet beliefSet)
+        public virtual CompletionStatus GetStatus(IBeliefSet beliefSet)
         {
             Status = CurrentHeuristics(beliefSet).Distance < _epsilon
                 ? CompletionStatus.Success

@@ -31,9 +31,9 @@ namespace Aplib.Core.Desire
         };
 
         /// <inheritdoc />
-        public override void UpdateState(TBeliefSet beliefSet)
+        public override void UpdateStatus(TBeliefSet beliefSet)
         {
-            _currentGoalStructure!.UpdateState(beliefSet);
+            _currentGoalStructure!.UpdateStatus(beliefSet);
 
             Status = _currentGoalStructure.Status switch
             {

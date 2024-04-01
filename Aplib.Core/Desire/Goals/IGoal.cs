@@ -29,6 +29,6 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="Goal._epsilon" />
-        CompletionStatus GetState(IBeliefSet beliefSet);
+        CompletionStatus GetStatus(IBeliefSet beliefSet);
     }
 }

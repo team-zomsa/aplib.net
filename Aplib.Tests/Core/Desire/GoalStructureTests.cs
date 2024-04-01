@@ -25,7 +25,7 @@ public class GoalStructureTests
         });
 
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         firstOfGoalStructure.Status.Should().Be(CompletionStatus.Failure);
@@ -67,13 +67,13 @@ public class GoalStructureTests
         });
         
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         firstOfGoalStructure.Status.Should().Be(CompletionStatus.Success);
-        goalStructure1.Verify(x => x.UpdateState(It.IsAny<BeliefSet>()), Times.Once);
-        goalStructure2.Verify(x => x.UpdateState(It.IsAny<BeliefSet>()), Times.Never);
+        goalStructure1.Verify(x => x.UpdateStatus(It.IsAny<BeliefSet>()), Times.Once);
+        goalStructure2.Verify(x => x.UpdateStatus(It.IsAny<BeliefSet>()), Times.Never);
     }
 
     [Fact]
@@ -95,7 +95,7 @@ public class GoalStructureTests
         });
 
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = firstOfGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -117,7 +117,7 @@ public class GoalStructureTests
         });
 
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         firstOfGoalStructure.Status.Should().Be(CompletionStatus.Success);
@@ -145,7 +145,7 @@ public class GoalStructureTests
         });
 
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = firstOfGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -172,7 +172,7 @@ public class GoalStructureTests
         });
 
         // Act
-        firstOfGoalStructure.UpdateState(beliefSet);
+        firstOfGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = firstOfGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -189,12 +189,12 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal> goal = new();
-        goal.Setup(g => g.GetState(It.IsAny<IBeliefSet>())).Returns(status);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(status);
         BeliefSet beliefSet = Mock.Of<BeliefSet>();
         PrimitiveGoalStructure<BeliefSet> primitiveGoalStructure = new(goal.Object);
 
         // Act
-        primitiveGoalStructure.UpdateState(beliefSet);
+        primitiveGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         primitiveGoalStructure.Status.Should().Be(expected);
@@ -205,12 +205,12 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal> goal = new();
-        goal.Setup(g => g.GetState(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
         BeliefSet beliefSet = Mock.Of<BeliefSet>();
         PrimitiveGoalStructure<BeliefSet> primitiveGoalStructure = new(goal.Object);
 
         // Act
-        primitiveGoalStructure.UpdateState(beliefSet);
+        primitiveGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = primitiveGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -222,13 +222,13 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal> goal = new();
-        goal.Setup(g => g.GetState(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
         BeliefSet beliefSet = Mock.Of<BeliefSet>();
         PrimitiveGoalStructure<BeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<BeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
 
         // Act
-        repeatGoalStructure.UpdateState(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = repeatGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -241,13 +241,13 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal> goal = new();
-        goal.Setup(g => g.GetState(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Failure);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Failure);
         BeliefSet beliefSet = Mock.Of<BeliefSet>();
         PrimitiveGoalStructure<BeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<BeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
 
         // Act
-        repeatGoalStructure.UpdateState(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = repeatGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -260,13 +260,13 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal> goal = new();
-        goal.Setup(g => g.GetState(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
         BeliefSet beliefSet = Mock.Of<BeliefSet>();
         PrimitiveGoalStructure<BeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<BeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
 
         // Act
-        repeatGoalStructure.UpdateState(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
         IGoal currentGoal = repeatGoalStructure.GetCurrentGoal(beliefSet);
 
         // Assert
@@ -295,7 +295,7 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void SequentialGoalStructure_WhenFirstGoalIsFinished_ShouldNotReturnFirstGoalAgain()
+    public void SequentialGoalStructure_WhenFirstGoalIsFinished_ShouldNotUseFirstGoalAgain()
     {
         Mock<IGoalStructure<BeliefSet>> goalStructure1 = new();
         goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
@@ -310,12 +310,12 @@ public class GoalStructureTests
         });
 
         // Act
-        sequentialGoalStructure.UpdateState(beliefSet);
-        sequentialGoalStructure.UpdateState(beliefSet);
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+        sequentialGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         sequentialGoalStructure.Status.Should().Be(CompletionStatus.Success);
-        goalStructure1.Verify(x => x.UpdateState(It.IsAny<BeliefSet>()), Times.Once);
+        goalStructure1.Verify(x => x.UpdateStatus(It.IsAny<BeliefSet>()), Times.Once);
     }
 
     [Fact]
@@ -332,7 +332,7 @@ public class GoalStructureTests
         });
 
         // Act
-        sequentialGoalStructure.UpdateState(beliefSet);
+        sequentialGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
@@ -352,7 +352,7 @@ public class GoalStructureTests
         });
 
         // Act
-        sequentialGoalStructure.UpdateState(beliefSet);
+        sequentialGoalStructure.UpdateStatus(beliefSet);
 
         // Assert
         sequentialGoalStructure.Status.Should().Be(CompletionStatus.Failure);

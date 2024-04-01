@@ -38,14 +38,14 @@ namespace Aplib.Core.Desire
         public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
-        public override void UpdateState(TBeliefSet beliefSet)
+        public override void UpdateStatus(TBeliefSet beliefSet)
         {
             // Loop through all the children until one of them is unfinished or successful.
             // This loop is here to prevent tail recursion.
             while (true)
             {
                 if (Status == CompletionStatus.Success) return;
-                _currentGoalStructure!.UpdateState(beliefSet);
+                _currentGoalStructure!.UpdateStatus(beliefSet);
 
                 switch (_currentGoalStructure.Status)
                 {

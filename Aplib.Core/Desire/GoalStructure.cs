@@ -39,6 +39,6 @@ namespace Aplib.Core.Desire
         /// Updates the state of the goal structure.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
-        public abstract void UpdateState(TBeliefSet beliefSet);
+        public abstract void UpdateStatus(TBeliefSet beliefSet);
     }
 }
