@@ -86,51 +86,66 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by applying the tactic. Goals are combined in a GoalStructure, and are used to prepare tests or do the testing.  
+<p>A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by applying the tactic. Goals are combined in a GoalStructure&lt;TBeliefSet&gt;, and are used to prepare tests or do the testing.  
  <a href="#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Aplib.Core.Desire.Goals.Goal:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.png" usemap="#Aplib.Core.Desire.Goals.Goal_map" alt=""/>
+  <map id="Aplib.Core.Desire.Goals.Goal_map" name="Aplib.Core.Desire.Goals.Goal_map">
+<area href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html" title="Defines a goal that can be achieved by a Intent.Tactics.Tactic." alt="Aplib.Core.Desire.Goals.IGoal" shape="rect" coords="0,56,183,80"/>
+<area href="interfaceAplib_1_1Core_1_1ICompletable.html" title="Defines an object that can be completed." alt="Aplib.Core.ICompletable" shape="rect" coords="0,0,183,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a10c3c1052f52f49d9e9c6992bab7bbc5" id="r_a10c3c1052f52f49d9e9c6992bab7bbc5"><td class="memItemLeft" align="right" valign="top">delegate <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10c3c1052f52f49d9e9c6992bab7bbc5">HeuristicFunction</a> (<a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a> beliefSet)</td></tr>
-<tr class="memdesc:a10c3c1052f52f49d9e9c6992bab7bbc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The abstract definition of what is means to test the Goal's heuristic function. Returns Heuristics, as they represent how close we are to matching the heuristic function, and if the goal is completed.  <br /></td></tr>
-<tr class="separator:a10c3c1052f52f49d9e9c6992bab7bbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae741b9a889bbabb72a36275e77e07de4" id="r_ae741b9a889bbabb72a36275e77e07de4"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae741b9a889bbabb72a36275e77e07de4">CurrentHeuristics</a> (<a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a> beliefSet)</td></tr>
-<tr class="memdesc:ae741b9a889bbabb72a36275e77e07de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Heuristics of the current state of the game.  <br /></td></tr>
-<tr class="separator:ae741b9a889bbabb72a36275e77e07de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a542346e3a889f90f663201792aa0ed8d" id="r_a542346e3a889f90f663201792aa0ed8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a542346e3a889f90f663201792aa0ed8d">Goal</a> (<a class="el" href="classAplib_1_1Core_1_1Intent_1_1Tactics_1_1Tactic.html">Tactic</a> tactic, <a class="el" href="#a10c3c1052f52f49d9e9c6992bab7bbc5">HeuristicFunction</a> heuristicFunction, string name, string description, double epsilon=0.005d)</td></tr>
+<tr class="memitem:ab01e5c14ca9ec56bc9463f88225ee651" id="r_ab01e5c14ca9ec56bc9463f88225ee651"><td class="memItemLeft" align="right" valign="top">delegate <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab01e5c14ca9ec56bc9463f88225ee651">HeuristicFunction</a> (<a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a> beliefSet)</td></tr>
+<tr class="memdesc:ab01e5c14ca9ec56bc9463f88225ee651"><td class="mdescLeft">&#160;</td><td class="mdescRight">The abstract definition of what is means to test the Goal's heuristic function. Returns Heuristics, as they represent how close we are to matching the heuristic function, and if the goal is completed.  <br /></td></tr>
+<tr class="separator:ab01e5c14ca9ec56bc9463f88225ee651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542346e3a889f90f663201792aa0ed8d" id="r_a542346e3a889f90f663201792aa0ed8d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a542346e3a889f90f663201792aa0ed8d">Goal</a> (<a class="el" href="classAplib_1_1Core_1_1Intent_1_1Tactics_1_1Tactic.html">Tactic</a> tactic, <a class="el" href="#ab01e5c14ca9ec56bc9463f88225ee651">HeuristicFunction</a> heuristicFunction, string name, string description, double epsilon=0.005d)</td></tr>
 <tr class="memdesc:a542346e3a889f90f663201792aa0ed8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new goal which works with Heuristics.  <br /></td></tr>
 <tr class="separator:a542346e3a889f90f663201792aa0ed8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae900326752818c46ccdc6c3bebcd7db2" id="r_ae900326752818c46ccdc6c3bebcd7db2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae900326752818c46ccdc6c3bebcd7db2">Goal</a> (<a class="el" href="classAplib_1_1Core_1_1Intent_1_1Tactics_1_1Tactic.html">Tactic</a> tactic, Func&lt; bool &gt; predicate, string name, string description, double epsilon=0.005d)</td></tr>
 <tr class="memdesc:ae900326752818c46ccdc6c3bebcd7db2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new goal which works with boolean-based Heuristics.  <br /></td></tr>
 <tr class="separator:ae900326752818c46ccdc6c3bebcd7db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55a99c632e7f63d2e33fb8f69368aefc" id="r_a55a99c632e7f63d2e33fb8f69368aefc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55a99c632e7f63d2e33fb8f69368aefc">IsCompleted</a> (<a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a> beliefSet)</td></tr>
-<tr class="memdesc:a55a99c632e7f63d2e33fb8f69368aefc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether the goal has been achieved, bases on the _heuristicFunction and the CurrentHeuristics. When the distance of the heuristics is smaller than _epsilon, the goal is considered to be completed.  <br /></td></tr>
-<tr class="separator:a55a99c632e7f63d2e33fb8f69368aefc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ada38a1591e2cc15d83a8f1f71faf7" id="r_a08ada38a1591e2cc15d83a8f1f71faf7"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08ada38a1591e2cc15d83a8f1f71faf7">CurrentHeuristics</a> (<a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a> beliefSet)</td></tr>
+<tr class="memdesc:a08ada38a1591e2cc15d83a8f1f71faf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Heuristics of the current state of the game.  <br /></td></tr>
+<tr class="separator:a08ada38a1591e2cc15d83a8f1f71faf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac152538c2bb8a7326696141267bf0a3b" id="r_ac152538c2bb8a7326696141267bf0a3b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61">CompletionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac152538c2bb8a7326696141267bf0a3b">GetStatus</a> (<a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a> beliefSet)</td></tr>
+<tr class="memdesc:ac152538c2bb8a7326696141267bf0a3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether the goal has been achieved, bases on the _heuristicFunction and the CurrentHeuristics. When the distance of the heuristics is smaller than _epsilon, the goal is considered to be completed.  <br /></td></tr>
+<tr class="separator:ac152538c2bb8a7326696141267bf0a3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ac438891c792454704a8d8df5a42bc955" id="r_ac438891c792454704a8d8df5a42bc955"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a10c3c1052f52f49d9e9c6992bab7bbc5">HeuristicFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac438891c792454704a8d8df5a42bc955">_heuristicFunction</a></td></tr>
+<tr class="memitem:ac438891c792454704a8d8df5a42bc955" id="r_ac438891c792454704a8d8df5a42bc955"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ab01e5c14ca9ec56bc9463f88225ee651">HeuristicFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac438891c792454704a8d8df5a42bc955">_heuristicFunction</a></td></tr>
 <tr class="memdesc:ac438891c792454704a8d8df5a42bc955"><td class="mdescLeft">&#160;</td><td class="mdescRight">The concrete implementation of this Goal's HeuristicFunction. Used to test whether this goal is completed.  <br /></td></tr>
 <tr class="separator:ac438891c792454704a8d8df5a42bc955"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a2883b7c07a61137a72b7feaf0af55b59" id="r_a2883b7c07a61137a72b7feaf0af55b59"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2883b7c07a61137a72b7feaf0af55b59">Name</a><code> [get]</code></td></tr>
-<tr class="memdesc:a2883b7c07a61137a72b7feaf0af55b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name used to display the current goal during debugging, logging, or general overviews.  <br /></td></tr>
-<tr class="separator:a2883b7c07a61137a72b7feaf0af55b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a722679b87164baa2a705f6d422a3cbda" id="r_a722679b87164baa2a705f6d422a3cbda"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a722679b87164baa2a705f6d422a3cbda">Description</a><code> [get]</code></td></tr>
 <tr class="memdesc:a722679b87164baa2a705f6d422a3cbda"><td class="mdescLeft">&#160;</td><td class="mdescRight">The description used to describe the current goal during debugging, logging, or general overviews.  <br /></td></tr>
 <tr class="separator:a722679b87164baa2a705f6d422a3cbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cc63631228b6963d53707ba2badc263" id="r_a8cc63631228b6963d53707ba2badc263"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc63631228b6963d53707ba2badc263">_epsilon</a><code> [get]</code></td></tr>
-<tr class="memdesc:a8cc63631228b6963d53707ba2badc263"><td class="mdescLeft">&#160;</td><td class="mdescRight">The goal is considered to be completed, when the distance of the CurrentHeuristics is below this value.  <br /></td></tr>
-<tr class="separator:a8cc63631228b6963d53707ba2badc263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2883b7c07a61137a72b7feaf0af55b59" id="r_a2883b7c07a61137a72b7feaf0af55b59"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2883b7c07a61137a72b7feaf0af55b59">Name</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2883b7c07a61137a72b7feaf0af55b59"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name used to display the current goal during debugging, logging, or general overviews.  <br /></td></tr>
+<tr class="separator:a2883b7c07a61137a72b7feaf0af55b59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ab7322918a9b3d7921615e9e25f7045" id="r_a7ab7322918a9b3d7921615e9e25f7045"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAplib_1_1Core_1_1Intent_1_1Tactics_1_1Tactic.html">Tactic</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ab7322918a9b3d7921615e9e25f7045">Tactic</a><code> [get]</code></td></tr>
 <tr class="memdesc:a7ab7322918a9b3d7921615e9e25f7045"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Intent.Tactics.Tactic used to achieve this Goal, which is executed during every iteration of the BDI cycle.  <br /></td></tr>
 <tr class="separator:a7ab7322918a9b3d7921615e9e25f7045"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a341c4f96e5b8208a496ab53aa4ef1f3a" id="r_a341c4f96e5b8208a496ab53aa4ef1f3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61">CompletionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a341c4f96e5b8208a496ab53aa4ef1f3a">Status</a><code> [get, protected set]</code></td></tr>
+<tr class="memdesc:a341c4f96e5b8208a496ab53aa4ef1f3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the completion status of the object.  <br /></td></tr>
+<tr class="separator:a341c4f96e5b8208a496ab53aa4ef1f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc63631228b6963d53707ba2badc263" id="r_a8cc63631228b6963d53707ba2badc263"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc63631228b6963d53707ba2badc263">_epsilon</a><code> [get]</code></td></tr>
+<tr class="memdesc:a8cc63631228b6963d53707ba2badc263"><td class="mdescLeft">&#160;</td><td class="mdescRight">The goal is considered to be completed, when the distance of the CurrentHeuristics is below this value.  <br /></td></tr>
+<tr class="separator:a8cc63631228b6963d53707ba2badc263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html">Aplib.Core.Desire.Goals.IGoal</a></td></tr>
+<tr class="inherit_header properties_interfaceAplib_1_1Core_1_1ICompletable"><td colspan="2" onclick="javascript:dynsection.toggleInherit('properties_interfaceAplib_1_1Core_1_1ICompletable')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interfaceAplib_1_1Core_1_1ICompletable.html">Aplib.Core.ICompletable</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by applying the tactic. Goals are combined in a GoalStructure, and are used to prepare tests or do the testing. </p>
-<dl class="section see"><dt>See also</dt><dd>GoalStructure</dd></dl>
+<div class="textblock"><p>A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by applying the tactic. Goals are combined in a GoalStructure&lt;TBeliefSet&gt;, and are used to prepare tests or do the testing. </p>
+<dl class="section see"><dt>See also</dt><dd>GoalStructure&lt;TBeliefSet&gt;</dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a542346e3a889f90f663201792aa0ed8d" name="a542346e3a889f90f663201792aa0ed8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a542346e3a889f90f663201792aa0ed8d">&#9670;&#160;</a></span>Goal() <span class="overload">[1/2]</span></h2>
@@ -146,7 +161,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a10c3c1052f52f49d9e9c6992bab7bbc5">HeuristicFunction</a></td>          <td class="paramname"><span class="paramname"><em>heuristicFunction</em>, </span></td>
+          <td class="paramtype"><a class="el" href="#ab01e5c14ca9ec56bc9463f88225ee651">HeuristicFunction</a></td>          <td class="paramname"><span class="paramname"><em>heuristicFunction</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -218,7 +233,7 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tactic</td><td>The tactic used to approach this goal.</td></tr>
-    <tr><td class="paramname">predicate</td><td>The heuristic function (or specifically predicate) which defines whether a goal is reached</td></tr>
+    <tr><td class="paramname">predicate</td><td>The heuristic function (or specifically predicate) which defines whether a goal is reached.</td></tr>
     <tr><td class="paramname">name</td><td>The name of this goal, used to quickly display this goal in several contexts.</td></tr>
     <tr><td class="paramname">description</td><td>The description of this goal, used to explain this goal in several contexts.</td></tr>
     <tr><td class="paramname">epsilon</td><td>The goal is considered to be completed, when the distance of the CurrentHeuristics is below this value. </td></tr>
@@ -229,8 +244,8 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae741b9a889bbabb72a36275e77e07de4" name="ae741b9a889bbabb72a36275e77e07de4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae741b9a889bbabb72a36275e77e07de4">&#9670;&#160;</a></span>CurrentHeuristics()</h2>
+<a id="a08ada38a1591e2cc15d83a8f1f71faf7" name="a08ada38a1591e2cc15d83a8f1f71faf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ada38a1591e2cc15d83a8f1f71faf7">&#9670;&#160;</a></span>CurrentHeuristics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +256,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">virtual <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a> Aplib.Core.Desire.Goals.Goal.CurrentHeuristics </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -255,10 +270,43 @@ Properties</h2></td></tr>
 <p>Gets the Heuristics of the current state of the game. </p>
 <p>If no heuristics have been calculated yet, they will be calculated first.</p>
 
+<p>Implements <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#a91407ff6b534d911c8d84c06fb2dd3b2">Aplib.Core.Desire.Goals.IGoal</a>.</p>
+
 </div>
 </div>
-<a id="a10c3c1052f52f49d9e9c6992bab7bbc5" name="a10c3c1052f52f49d9e9c6992bab7bbc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10c3c1052f52f49d9e9c6992bab7bbc5">&#9670;&#160;</a></span>HeuristicFunction()</h2>
+<a id="ac152538c2bb8a7326696141267bf0a3b" name="ac152538c2bb8a7326696141267bf0a3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac152538c2bb8a7326696141267bf0a3b">&#9670;&#160;</a></span>GetStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61">CompletionStatus</a> Aplib.Core.Desire.Goals.Goal.GetStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tests whether the goal has been achieved, bases on the _heuristicFunction and the CurrentHeuristics. When the distance of the heuristics is smaller than _epsilon, the goal is considered to be completed. </p>
+<dl class="section return"><dt>Returns</dt><dd>An enum representing whether the goal is complete and if so, with what result.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>_epsilon</dd></dl>
+
+<p>Implements <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#a4d1414d8333828cc4ba3f55a6fb493b7">Aplib.Core.Desire.Goals.IGoal</a>.</p>
+
+</div>
+</div>
+<a id="ab01e5c14ca9ec56bc9463f88225ee651" name="ab01e5c14ca9ec56bc9463f88225ee651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab01e5c14ca9ec56bc9463f88225ee651">&#9670;&#160;</a></span>HeuristicFunction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -266,35 +314,14 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">delegate <a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a> Aplib.Core.Desire.Goals.Goal.HeuristicFunction </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
+          <td class="paramtype"><a class="el" href="interfaceAplib_1_1Core_1_1Belief_1_1IBeliefSet.html">IBeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The abstract definition of what is means to test the Goal's heuristic function. Returns Heuristics, as they represent how close we are to matching the heuristic function, and if the goal is completed. </p>
-<dl class="section see"><dt>See also</dt><dd>IsCompleted</dd></dl>
-
-</div>
-</div>
-<a id="a55a99c632e7f63d2e33fb8f69368aefc" name="a55a99c632e7f63d2e33fb8f69368aefc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55a99c632e7f63d2e33fb8f69368aefc">&#9670;&#160;</a></span>IsCompleted()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Aplib.Core.Desire.Goals.Goal.IsCompleted </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classAplib_1_1Core_1_1Belief_1_1BeliefSet.html">BeliefSet</a></td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tests whether the goal has been achieved, bases on the _heuristicFunction and the CurrentHeuristics. When the distance of the heuristics is smaller than _epsilon, the goal is considered to be completed. </p>
-<dl class="section return"><dt>Returns</dt><dd>A boolean representing whether the goal is considered to be completed.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>_epsilon</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>Goal.GetStatus</dd></dl>
 
 </div>
 </div>
@@ -309,7 +336,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a10c3c1052f52f49d9e9c6992bab7bbc5">HeuristicFunction</a> Aplib.Core.Desire.Goals.Goal._heuristicFunction</td>
+          <td class="memname"><a class="el" href="#ab01e5c14ca9ec56bc9463f88225ee651">HeuristicFunction</a> Aplib.Core.Desire.Goals.Goal._heuristicFunction</td>
         </tr>
       </table>
   </td>
@@ -320,7 +347,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The concrete implementation of this Goal's HeuristicFunction. Used to test whether this goal is completed. </p>
-<dl class="section see"><dt>See also</dt><dd>IsCompleted</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>GetStatus</dd></dl>
 
 </div>
 </div>
@@ -397,6 +424,32 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="a341c4f96e5b8208a496ab53aa4ef1f3a" name="a341c4f96e5b8208a496ab53aa4ef1f3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a341c4f96e5b8208a496ab53aa4ef1f3a">&#9670;&#160;</a></span>Status</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61">CompletionStatus</a> Aplib.Core.Desire.Goals.Goal.Status</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the completion status of the object. </p>
+
+<p>Implements <a class="el" href="interfaceAplib_1_1Core_1_1ICompletable.html#a79050e5ae0380308d628b64bb7f79c1a">Aplib.Core.ICompletable</a>.</p>
+
+</div>
+</div>
 <a id="a7ab7322918a9b3d7921615e9e25f7045" name="a7ab7322918a9b3d7921615e9e25f7045"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7ab7322918a9b3d7921615e9e25f7045">&#9670;&#160;</a></span>Tactic</h2>
 
@@ -418,6 +471,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The Intent.Tactics.Tactic used to achieve this Goal, which is executed during every iteration of the BDI cycle. </p>
+
+<p>Implements <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#ae6e5168606bf0a2675e4790b11c95c39">Aplib.Core.Desire.Goals.IGoal</a>.</p>
 
 </div>
 </div>

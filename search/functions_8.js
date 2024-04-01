@@ -1,4 +1,12 @@
 var searchData=
 [
-  ['operator_20tobservation_0',['operator TObservation',['../classAplib_1_1Core_1_1Belief_1_1Belief.html#a6b15e97c204fcf11ea03e586027ea731',1,'Aplib::Core::Belief::Belief']]]
+  ['isactionable_0',['IsActionable',['../classAplib_1_1Core_1_1Intent_1_1Tactics_1_1PrimitiveTactic.html#a8e409a1822c1b200c0d84e6d7a11946a',1,'Aplib.Core.Intent.Tactics.PrimitiveTactic.IsActionable()'],['../classAplib_1_1Core_1_1Intent_1_1Tactics_1_1Tactic.html#a7592464e25af02da38922a9bfb974e9e',1,'Aplib.Core.Intent.Tactics.Tactic.IsActionable()']]],
+  ['isactionable_5fnoquery_5falwaystrue_1',['IsActionable_NoQuery_AlwaysTrue',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#aaec5c7c802477904514ad40c30f2a02d',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fqueryisfalse_5fisactionable_2',['IsActionable_QueryIsFalse_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#ad315dd39ab8e74de446ee4734e2d6648',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fqueryisnotnull_5fisactionable_3',['IsActionable_QueryIsNotNull_IsActionable',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#ae29349af77edd83ef7de976f57d075f0',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fqueryisnull_5fisnotactionable_4',['IsActionable_QueryIsNull_IsNotActionable',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#ac876ce0b78a5e02e10a357ec13e7617a',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fquerywithfalse_5freturnsfalse_5',['IsActionable_QueryWithFalse_ReturnsFalse',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#a0b52d70e7f4148790dcf0658985c09aa',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fquerywithtrue_5freturnstrue_6',['IsActionable_QueryWithTrue_ReturnsTrue',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Actions_1_1ActionTests.html#a4893580b4be687e2bea47bde56813787',1,'Aplib::Tests::Core::Intent::Actions::ActionTests']]],
+  ['isactionable_5fwhenguardreturnsfalse_5freturnsfalse_7',['IsActionable_WhenGuardReturnsFalse_ReturnsFalse',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Tactics_1_1TacticTests.html#a9e5a16399efdc7a89d1a6432e33b1467',1,'Aplib::Tests::Core::Intent::Tactics::TacticTests']]],
+  ['isactionable_5fwhenguardreturnstrue_5freturnstrue_8',['IsActionable_WhenGuardReturnsTrue_ReturnsTrue',['../classAplib_1_1Tests_1_1Core_1_1Intent_1_1Tactics_1_1TacticTests.html#a647014c89174664e1d5a59906ca7dbaa',1,'Aplib::Tests::Core::Intent::Tactics::TacticTests']]]
 ];
