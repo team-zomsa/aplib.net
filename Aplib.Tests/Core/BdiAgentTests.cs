@@ -3,6 +3,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
+using FluentAssertions;
 using Moq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
@@ -10,6 +11,24 @@ namespace Aplib.Tests.Core;
 
 public class BdiAgentTests
 {
+    [Theory]
+    [InlineData(CompletionStatus.Success)]
+    [InlineData(CompletionStatus.Failure)]
+    [InlineData(CompletionStatus.Unfinished)]
+    public void Agent_WhenStatusIsChecked_ShouldBeSameAsDesireSet(CompletionStatus desireSetStatus)
+    {
+        // Arrange
+        Mock<IDesireSet<IBeliefSet>> desireSet = new();
+        desireSet.Setup(d => d.Status).Returns(desireSetStatus);
+        Mock<BdiAgent<IBeliefSet>> agent = new(It.IsAny<IBeliefSet>(), desireSet.Object);
+
+        // Act
+        CompletionStatus agentStatus = agent.Object.Status;
+
+        // Assert
+        agentStatus.Should().Be(desireSetStatus);
+    }
+
     [Theory]
     [InlineData(CompletionStatus.Failure)]
     [InlineData(CompletionStatus.Success)]
@@ -39,7 +58,7 @@ public class BdiAgentTests
         agent.Update();
 
         // Assert
-        beliefSetMock.Verify(b => b.UpdateBeliefs(), Times.Never);
+        desireSetMock.Verify(b => b.GetCurrentGoal(It.IsAny<IBeliefSet>()), Times.Never);
     }
 
     [Fact]
@@ -101,6 +120,6 @@ public class BdiAgentTests
         agent.Update();
 
         // Assert
-        beliefSetMock.Verify(b => b.UpdateBeliefs(), Times.Once);
+        desireSetMock.Verify(b => b.GetCurrentGoal(It.IsAny<IBeliefSet>()), Times.Once);
     }
 }
