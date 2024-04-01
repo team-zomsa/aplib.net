@@ -54,10 +54,10 @@ namespace Aplib.Core
 
             // Intent
             Tactic tactic = goal.Tactic;
-            Action action = tactic.GetAction()!;
+            Action? action = tactic.GetAction();
 
             // Execute the action
-            action.Execute();
+            action?.Execute();
         }
     }
 }
