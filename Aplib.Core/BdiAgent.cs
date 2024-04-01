@@ -39,7 +39,11 @@ namespace Aplib.Core
             _desireSet = desireSet;
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Performs a single BDI cycle, in which the agent updates its beliefs, selects a concrete goal,
+        /// chooses a concrete action to achieve the selected goal, and executes the chosen action.
+        /// </summary>
+        /// <remarks>This method will get called every frame of the game.</remarks>
         public void Update()
         {
             // Belief
