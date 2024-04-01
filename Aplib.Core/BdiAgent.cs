@@ -42,14 +42,17 @@ namespace Aplib.Core
         /// <inheritdoc />
         public void Update()
         {
-            // If the agent has already finished, do nothing
-            if (Status != CompletionStatus.Unfinished)
-                return;
-
+            // Belief
             _beliefSet.UpdateBeliefs();
 
+            // Desire
             _desire.UpdateStatus(_beliefSet);
+            if (Status != CompletionStatus.Unfinished)
+                return;
             IGoal goal = _desire.GetCurrentGoal(_beliefSet);
+
+
+            // Intent
             Tactic tactic = goal.Tactic;
             Action action = tactic.GetAction()!;
 
