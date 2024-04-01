@@ -4,7 +4,6 @@ using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
 using FluentAssertions;
 using Moq;
-using Moq.Protected;
 
 namespace Aplib.Tests.Core.Desire;
 
