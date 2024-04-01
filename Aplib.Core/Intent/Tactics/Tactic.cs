@@ -28,7 +28,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Parameterless constructor for internal use.
         /// </summary>
-        internal Tactic() : this(null) { }
+        private protected Tactic() : this(null) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/>.
