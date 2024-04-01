@@ -1,12 +1,19 @@
 ﻿using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
-using System;
 
 namespace Aplib.Core.Desire
 {
+    /// <summary>
+    /// Represents a set of goals that the agent has.
+    /// This is the main structure that the agent will use to determine what it should do next.
+    /// </summary>
+    /// <typeparam name="TBeliefSet"></typeparam>
     public interface IDesireSet<TBeliefSet> :  ICompletable
         where TBeliefSet : IBeliefSet
     {
+        /// <summary>
+        /// Stores the main goal structure of the agent.
+        /// </summary>
         GoalStructure<TBeliefSet> MainGoal { get; }
         
         /// <summary>
