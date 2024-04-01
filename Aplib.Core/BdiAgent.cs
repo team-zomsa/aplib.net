@@ -55,7 +55,6 @@ namespace Aplib.Core
                 return;
             IGoal goal = _desireSet.GetCurrentGoal(_beliefSet);
 
-
             // Intent
             Tactic tactic = goal.Tactic;
             Action? action = tactic.GetAction();
