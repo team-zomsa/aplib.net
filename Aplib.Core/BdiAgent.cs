@@ -13,7 +13,7 @@ namespace Aplib.Core
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
-        public CompletionStatus Status => _desire.Status;
+        public CompletionStatus Status => _desireSet.Status;
 
         /// <summary>
         /// Gets the beliefset of the agent.
@@ -26,17 +26,17 @@ namespace Aplib.Core
         /// <remarks>
         /// The desire contains all goal structures and the current goal.
         /// </remarks>
-        private IDesireSet<TBeliefSet> _desire { get; }
+        private IDesireSet<TBeliefSet> _desireSet { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="beliefSet">The beliefset of the agent.</param>
-        /// <param name="desire"></param>
-        public BdiAgent(TBeliefSet beliefSet, IDesireSet<TBeliefSet> desire)
+        /// <param name="desireSet"></param>
+        public BdiAgent(TBeliefSet beliefSet, IDesireSet<TBeliefSet> desireSet)
         {
             _beliefSet = beliefSet;
-            _desire = desire;
+            _desireSet = desireSet;
         }
 
         /// <inheritdoc />
@@ -46,10 +46,10 @@ namespace Aplib.Core
             _beliefSet.UpdateBeliefs();
 
             // Desire
-            _desire.UpdateStatus(_beliefSet);
+            _desireSet.UpdateStatus(_beliefSet);
             if (Status != CompletionStatus.Unfinished)
                 return;
-            IGoal goal = _desire.GetCurrentGoal(_beliefSet);
+            IGoal goal = _desireSet.GetCurrentGoal(_beliefSet);
 
 
             // Intent
