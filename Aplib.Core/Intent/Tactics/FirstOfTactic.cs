@@ -32,7 +32,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc />
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
         {
-            foreach (Tactic<TBeliefSet> subTactic in _subTactics)
+            foreach (ITactic<TBeliefSet> subTactic in _subTactics)
             {
                 IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
 
