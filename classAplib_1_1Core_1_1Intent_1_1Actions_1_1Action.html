@@ -99,12 +99,15 @@ Inheritance diagram for Aplib.Core.Intent.Actions.Action:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9dcca8de6928b77c5b4173bc757a5b58" id="r_a9dcca8de6928b77c5b4173bc757a5b58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dcca8de6928b77c5b4173bc757a5b58">Action</a> (System.Action effect)</td></tr>
-<tr class="memdesc:a9dcca8de6928b77c5b4173bc757a5b58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="AnyOfTactic_8cs.html#a749b1f2b5d0ef4a890f282cf8d08563e">Action&lt;TQuery&gt;</a> class.  <br /></td></tr>
-<tr class="separator:a9dcca8de6928b77c5b4173bc757a5b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868f365a508106eceeb41f1101183d0d" id="r_a868f365a508106eceeb41f1101183d0d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a868f365a508106eceeb41f1101183d0d">Action</a> (System.Action effect, <a class="el" href="classAplib_1_1Core_1_1Metadata.html">Metadata</a>? metadata=null)</td></tr>
+<tr class="memdesc:a868f365a508106eceeb41f1101183d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="AnyOfTactic_8cs.html#a749b1f2b5d0ef4a890f282cf8d08563e">Action&lt;TQuery&gt;</a> class.  <br /></td></tr>
+<tr class="separator:a868f365a508106eceeb41f1101183d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:aef9108403d3ded6b22fbe014bf780f30" id="r_aef9108403d3ded6b22fbe014bf780f30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAplib_1_1Core_1_1Metadata.html">Metadata</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef9108403d3ded6b22fbe014bf780f30">Metadata</a><code> [get]</code></td></tr>
+<tr class="memdesc:aef9108403d3ded6b22fbe014bf780f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the metadata of the action.  <br /></td></tr>
+<tr class="separator:aef9108403d3ded6b22fbe014bf780f30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02e4d7224c3f11ef026fab00493fcd52" id="r_a02e4d7224c3f11ef026fab00493fcd52"><td class="memItemLeft" align="right" valign="top">System.Action&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02e4d7224c3f11ef026fab00493fcd52">_effect</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a02e4d7224c3f11ef026fab00493fcd52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the effect of the action.  <br /></td></tr>
 <tr class="separator:a02e4d7224c3f11ef026fab00493fcd52"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,8 +118,8 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Describes an action that can be executed and guarded. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a9dcca8de6928b77c5b4173bc757a5b58" name="a9dcca8de6928b77c5b4173bc757a5b58"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9dcca8de6928b77c5b4173bc757a5b58">&#9670;&#160;</a></span>Action()</h2>
+<a id="a868f365a508106eceeb41f1101183d0d" name="a868f365a508106eceeb41f1101183d0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868f365a508106eceeb41f1101183d0d">&#9670;&#160;</a></span>Action()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,16 +127,21 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">Aplib.Core.Intent.Actions.Action.Action </td>
           <td>(</td>
-          <td class="paramtype">System.Action</td>          <td class="paramname"><span class="paramname"><em>effect</em></span></td><td>)</td>
+          <td class="paramtype">System::Action</td>          <td class="paramname"><span class="paramname"><em>effect</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classAplib_1_1Core_1_1Metadata.html">Metadata</a>?</td>          <td class="paramname"><span class="paramname"><em>metadata</em><span class="paramdefsep"> = </span><span class="paramdefval">null</span></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Initializes a new instance of the <a class="el" href="AnyOfTactic_8cs.html#a749b1f2b5d0ef4a890f282cf8d08563e">Action&lt;TQuery&gt;</a> class. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>= </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">effect</td><td>The effect of the action.</td></tr>
+    <tr><td class="paramname">metadata</td><td>Metadata about this action, used to quickly display the action in several contexts. </td></tr>
   </table>
   </dd>
 </dl>
@@ -186,6 +194,31 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets or sets the guard of the action. </p>
+
+</div>
+</div>
+<a id="aef9108403d3ded6b22fbe014bf780f30" name="aef9108403d3ded6b22fbe014bf780f30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef9108403d3ded6b22fbe014bf780f30">&#9670;&#160;</a></span>Metadata</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAplib_1_1Core_1_1Metadata.html">Metadata</a> Aplib.Core.Intent.Actions.Action.Metadata</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the metadata of the action. </p>
+<p>&lt;remark&gt; This metadata may be useful for debugging or logging. &lt;/remark&gt; </p>
 
 </div>
 </div>

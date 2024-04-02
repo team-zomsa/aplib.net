@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['operator_20tobservation_0',['operator TObservation',['../classAplib_1_1Core_1_1Belief_1_1Belief.html#a6b15e97c204fcf11ea03e586027ea731',1,'Aplib::Core::Belief::Belief']]]
+  ['name_0',['Name',['../classAplib_1_1Core_1_1Metadata.html#abe85f7ef6e97fb7ba6dfa934a29186cc',1,'Aplib::Core::Metadata']]],
+  ['net_1',['aplib.net',['../md_README.html',1,'']]]
 ];

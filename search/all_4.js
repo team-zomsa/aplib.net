@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['description_0',['Description',['../classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#a722679b87164baa2a705f6d422a3cbda',1,'Aplib::Core::Desire::Goals::Goal']]],
+  ['description_0',['Description',['../classAplib_1_1Core_1_1Metadata.html#a0de6be6456e0f082a189ab2b8ad3c8b1',1,'Aplib::Core::Metadata']]],
   ['desireset_1',['DesireSet',['../classAplib_1_1Core_1_1Desire_1_1DesireSet.html',1,'Aplib.Core.Desire.DesireSet&lt; TBeliefSet &gt;'],['../classAplib_1_1Core_1_1Desire_1_1DesireSet.html#ae25dbf1bace20629e0085e7937fdbb08',1,'Aplib.Core.Desire.DesireSet.DesireSet()']]],
   ['desireset_2ecs_2',['DesireSet.cs',['../DesireSet_8cs.html',1,'']]],
   ['desireset_5fwhengetcurrentgoaliscalled_5freturnscurrentgoal_3',['DesireSet_WhenGetCurrentGoalIsCalled_ReturnsCurrentGoal',['../classAplib_1_1Tests_1_1Core_1_1Desire_1_1DesireSetTests.html#a65e75efec9d18092c5666eff010ccdb7',1,'Aplib::Tests::Core::Desire::DesireSetTests']]],
