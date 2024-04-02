@@ -280,3 +280,14 @@ dotnet_naming_symbols.underscore_fields.applicable_accessibilities = internal, p
 
 dotnet_naming_style.underscore_field_style.capitalization = camel_case
 dotnet_naming_style.underscore_field_style.required_prefix = _
+
+# Private properties are now _camelCase
+dotnet_naming_rule.private_property_underscore.severity = warning
+dotnet_naming_rule.private_property_underscore.symbols = underscore_private_properties
+dotnet_naming_rule.private_property_underscore.style = underscore_private_properties_style
+
+dotnet_naming_symbols.underscore_private_properties.applicable_kinds = property
+dotnet_naming_symbols.underscore_private_properties.applicable_accessibilities = internal, private, protected, protected_internal, private_protected
+
+dotnet_naming_style.underscore_private_properties_style.capitalization = camel_case
+dotnet_naming_style.underscore_private_properties_style.required_prefix = _
