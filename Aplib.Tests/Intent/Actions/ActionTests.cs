@@ -4,7 +4,7 @@ using Aplib.Core.Intent.Actions;
 using FluentAssertions;
 using Moq;
 
-namespace Aplib.Tests.Core.Intent.Actions;
+namespace Aplib.Core.Tests.Intent.Actions;
 
 /// <summary>
 /// Describes a set of tests for the <see cref="GuardedAction{TQuery}" /> class.

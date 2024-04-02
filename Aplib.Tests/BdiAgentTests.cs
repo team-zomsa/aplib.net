@@ -1,4 +1,3 @@
-using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
@@ -7,7 +6,7 @@ using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
 
-namespace Aplib.Tests.Core;
+namespace Aplib.Core.Tests;
 
 public class BdiAgentTests
 {

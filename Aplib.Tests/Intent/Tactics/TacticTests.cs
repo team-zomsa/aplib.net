@@ -4,7 +4,7 @@ using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
 
-namespace Aplib.Tests.Core.Intent.Tactics;
+namespace Aplib.Core.Tests.Intent.Tactics;
 
 public class TacticTests
 {
