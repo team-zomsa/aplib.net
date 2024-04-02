@@ -1,4 +1,5 @@
 using Aplib.Core.Belief;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;
 
@@ -16,8 +17,8 @@ public class MemoryBeliefTests
     public void GetMostRecentMemory_WhenObservationIsUpdated_ShouldReturnLastObservation()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [1];
-        MemoryBelief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, 1);
+        List<int> list = [1];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 1);
 
         // Act
         list.Add(2);
@@ -36,8 +37,8 @@ public class MemoryBeliefTests
     public void GetMemoryAt_WhenObservationIsUpdated_ShouldReturnObservationAtSpecifiedIndex()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [1, 2, 3];
-        MemoryBelief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, 3);
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
 
         // Act
         list.Add(4);
@@ -59,8 +60,8 @@ public class MemoryBeliefTests
     public void GetMemoryAt_IndexOutOfBounds_ShouldReturnClosestElement()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [1, 2, 3];
-        MemoryBelief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, 3);
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
 
         // Act
         list.Add(4);
@@ -80,8 +81,8 @@ public class MemoryBeliefTests
     public void GetAllMemories_ReturnsAllMemories()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [1, 2, 3];
-        MemoryBelief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, 3);
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
 
         // Act
         list.Add(4);

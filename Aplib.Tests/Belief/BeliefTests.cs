@@ -1,4 +1,5 @@
 ﻿using Aplib.Core.Belief;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aplib.Core.Tests.Belief;
@@ -48,8 +49,8 @@ public class BeliefTests
     public void UpdateBelief_ShouldUpdateConditionIsSatisfied_UpdatesObservation()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [];
-        Belief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
+        List<int> list = [];
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
 
         // Act
         list.Add(69);
@@ -68,8 +69,8 @@ public class BeliefTests
     public void UpdateBelief_ShouldUpdateConditionIsNotSatisfied_DoesNotUpdateObservation()
     {
         // Arrange
-        System.Collections.Generic.List<int> list = [];
-        Belief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
+        List<int> list = [];
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
 
         // Act
         list.Add(420);
