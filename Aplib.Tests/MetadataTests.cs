@@ -1,7 +1,6 @@
-using Aplib.Core;
 using FluentAssertions;
 
-namespace Aplib.Core.Tests.Core;
+namespace Aplib.Core.Tests;
 
 public class MetadataTests
 {

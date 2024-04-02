@@ -1,4 +1,3 @@
-using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
@@ -7,7 +6,7 @@ using FluentAssertions;
 using Moq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Core.Tests.Core.Desire;
+namespace Aplib.Core.Tests.Desire;
 
 public class GoalTests
 {

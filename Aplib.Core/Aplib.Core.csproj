@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup Label="Tests">
-        <InternalsVisibleTo Include="Aplib.Tests"/>
+        <InternalsVisibleTo Include="Aplib.Core.Tests"/>
         <!-- Required for Moq -->
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
     </ItemGroup>
