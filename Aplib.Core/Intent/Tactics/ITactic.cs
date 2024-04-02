@@ -20,5 +20,11 @@ namespace Aplib.Core.Intent.Tactics
         /// A concrete <see cref="IAction{TBeliefSet}"/> that the tactic can perform, or null if no actions are enabled.
         /// </returns>
         public IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
+
+        /// <summary>
+        /// Determines whether the tactic is actionable.
+        /// </summary>
+        /// <returns>True if the tactic is actionable, false otherwise.</returns>
+        public bool IsActionable(TBeliefSet beliefSet);
     }
 }

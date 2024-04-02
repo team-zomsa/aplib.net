@@ -11,33 +11,6 @@ namespace Aplib.Core.Tests.Desire;
 public class GoalTests
 {
     /// <summary>
-    /// A test belief set that contains two public simple beliefs.
-    /// </summary>
-    private class MyBeliefSet : BeliefSet
-    {
-        /// <summary>
-        /// Belief that sets Updated to true when UpdateBelief is called.
-        /// </summary>
-        public readonly SimpleBelief MyBelief = new();
-    }
-
-    /// <summary>
-    /// A simple belief that can be used to test whether <see cref="UpdateBelief" /> has been called.
-    /// </summary>
-    private class SimpleBelief : IBelief
-    {
-        /// <summary>
-        /// Stores whether <see cref="UpdateBelief" /> has been called.
-        /// </summary>
-        public bool Updated { get; private set; }
-
-        /// <summary>
-        /// Sets <see cref="Updated" /> to true.
-        /// </summary>
-        public void UpdateBelief() => Updated = true;
-    }
-
-    /// <summary>
     /// Given valid parameters and metadata,
     /// When the goal is constructed,
     /// Then the goal should correctly store the metadata.
@@ -91,12 +64,11 @@ public class GoalTests
     public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        MyBeliefSet beliefSet = new();
         Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Uncompleted();
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(beliefSet);
+        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Unfinished);
@@ -111,12 +83,11 @@ public class GoalTests
     public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
-        MyBeliefSet beliefSet = new();
         Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Completed();
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(beliefSet);
+        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Success);
@@ -131,14 +102,14 @@ public class GoalTests
     public void Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()
     {
         // Arrange
-        MyBeliefSet beliefSet = new();
+        Mock<IBeliefSet> beliefSetMock = new();
+        Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
 
         // Act
-        Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
-        _ = goal.GetStatus(beliefSet);
+        _ = goal.GetStatus(It.IsAny<IBeliefSet>());
 
         // Assert
-        beliefSet.MyBelief.Updated.Should().Be(false);
+        beliefSetMock.Verify(beliefSetMock => beliefSetMock.UpdateBeliefs(), Times.Never);
     }
 
     /// <summary>
@@ -162,9 +133,8 @@ public class GoalTests
         Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
 
         // Act
-        MyBeliefSet beliefSet = new();
-        CompletionStatus goalBooleanEvaluation = goalBoolean.GetStatus(beliefSet);
-        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.GetStatus(beliefSet);
+        CompletionStatus goalBooleanEvaluation = goalBoolean.GetStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.GetStatus(It.IsAny<IBeliefSet>());
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);

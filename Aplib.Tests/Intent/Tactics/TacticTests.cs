@@ -8,127 +8,128 @@ namespace Aplib.Core.Tests.Intent.Tactics;
 
 public class TacticTests
 {
-    private static string _result = "abc";
-    private readonly Action<IBeliefSet> _emptyAction = new(_ => { });
-    private readonly Action<IBeliefSet> _filledAction = new(_ => _result = "def");
-
     /// <summary>
-    /// Given a tactic with a guard that returns true and an action,
-    /// When calling the Execute method,
-    /// Then _result should be "def".
+    /// Given a tactic and an action,
+    /// When the guard of the tactic returns true,
+    /// Then an action should be selected.
     /// </summary>
     [Fact]
-    public void Execute_WhenGuardReturnsTrue_ActionIsExecuted()
+    public void PrimitveTacticExecute_WhenGuardReturnsTrue_ActionIsSelected()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic = new(_filledAction, guard: TrueGuard);
+        Mock<IAction<IBeliefSet>> action = new();
+        action.Setup(a => a.IsActionable(It.IsAny<IBeliefSet>())).Returns(true);
+        PrimitiveTactic<IBeliefSet> tactic = new(action.Object, guard: _ => true);
 
         // Act
-        IAction<IBeliefSet> action = tactic.GetAction(It.IsAny<IBeliefSet>())!;
-        action.Execute(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet> selectedAction = tactic.GetAction(It.IsAny<IBeliefSet>())!;
 
         // Assert
-        _result.Should().Be("def");
+        selectedAction.Should().NotBeNull();
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="AnyOfTactic" /> with two subtactics,
+    /// Given a parent of type <see cref="AnyOfTactic{TBeliefSet}" /> with two subtactics,
     /// When getting the next tactic,
-    /// Then the result should contain all the subtactics.
+    /// Then the result should be the action of an enabled tactic.
     /// </summary>
     [Fact]
-    public void GetAction_WhenTacticTypeIsAnyOf_ReturnsEnabledPrimitiveTactics()
+    public void AnyOfTacticGetAction_WhenASubtacticIsEnabled_ReturnsActionOfEnabledSubtactic()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic1 = new(_emptyAction);
-        PrimitiveTactic<IBeliefSet> tactic2 = new(_emptyAction);
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
+        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => false);
         AnyOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
 
         // Act
-        IAction<IBeliefSet>? enabledAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        enabledAction.Should().NotBeNull();
-        enabledAction!.Should().Be(_emptyAction);
+        selectedAction.Should().Be(action1);
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic" /> with two subtactics,
-    /// When getting the next tactic,
+    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
+    /// When both subtactic guards are true,
     /// Then the result should be the first subtactic.
     /// </summary>
     [Fact]
-    public void GetAction_WhenTacticTypeIsFirstOf_ReturnsEnabledPrimitiveTactics()
+    public void FirstOfTacticGetAction_WhenBothSubtacticsEnabled_ReturnsFirstSubtactic()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic1 = new(_emptyAction);
-        PrimitiveTactic<IBeliefSet> tactic2 = new(_filledAction);
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
+        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
         FirstOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
 
         // Act
-        IAction<IBeliefSet>? enabledAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        enabledAction.Should().NotBeNull();
-        enabledAction!.Should().Be(_emptyAction);
+        selectedAction.Should().Be(action1);
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic" /> with two subtactics and a guard that is true,
-    /// When getting the next tactic,
-    /// Then the result should be the first subtactic.
+    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
+    /// When the first subtactic guard is false and the second is true,
+    /// Then the result should be the second subtactic.
     /// </summary>
     [Fact]
-    public void GetAction_WhenTacticTypeIsFirstOfAndGuardEnabled_ReturnsEnabledPrimitiveTactics()
+    public void FirstOfTacticGetAction_WhenFirstSubtacticIsDisabled_ReturnsSecondSubtactic()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic1 = new(_emptyAction);
-        PrimitiveTactic<IBeliefSet> tactic2 = new(_filledAction);
-        FirstOfTactic<IBeliefSet> parentTactic = new(TrueGuard, null, tactic1, tactic2);
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => false);
+        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
+        FirstOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
 
         // Act
-        IAction<IBeliefSet>? enabledAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        enabledAction.Should().NotBeNull();
-        enabledAction!.Should().Be(_emptyAction);
+        selectedAction.Should().Be(action2);
     }
 
     /// <summary>
     /// Given a primitive tactic with an actionable action,
-    /// When getting the first enabled actions,
-    /// Then the result should contain the primitive tactic.
+    /// When calling GetAction,
+    /// Then the result should be the action of the tactic.
     /// </summary>
     [Fact]
-    public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsEnabledPrimitiveTactic()
+    public void PrimitiveTacticGetAction_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsAction()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic = new(_emptyAction, TrueGuard);
+        Action<IBeliefSet> action = new(_ => { }, _ => true);
+        PrimitiveTactic<IBeliefSet> tactic = new(action);
 
         // Act
         IAction<IBeliefSet>? enabledAction = tactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        enabledAction.Should().NotBeNull();
-        enabledAction!.Should().Be(_emptyAction);
+        enabledAction.Should().Be(action);
     }
 
     /// <summary>
     /// Given a primitive tactic with a non-actionable action,
-    /// When getting the first enabled actions,
+    /// When calling GetAction,
     /// Then the result should be null.
     /// </summary>
     [Fact]
-    public void GetAction_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsNoAction()
+    public void PrimitiveTactic_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsNoAction()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic = new(_emptyAction, FalseGuard);
+        Action<IBeliefSet> action = new(_ => { }, _ => false);
+        PrimitiveTactic<IBeliefSet> tactic = new(action);
 
         // Act
         IAction<IBeliefSet>? enabledAction = tactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        enabledAction.Should().BeNull();
+        enabledAction.Should().Be(null);
     }
 
     /// <summary>
@@ -137,10 +138,10 @@ public class TacticTests
     /// Then the result should be false.
     /// </summary>
     [Fact]
-    public void IsActionable_WhenGuardReturnsFalse_ReturnsFalse()
+    public void PrimitiveTacticIsActionable_WhenGuardReturnsFalse_ReturnsFalse()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic = new(_emptyAction, FalseGuard);
+        PrimitiveTactic<IBeliefSet> tactic = new(It.IsAny<IAction<IBeliefSet>>(), _ => false);
 
         // Act
         bool isActionable = tactic.IsActionable(It.IsAny<IBeliefSet>());
@@ -150,15 +151,16 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a tactic with a guard that returns true,
+    /// Given a tactic with a guard that returns true and an actionable action,
     /// When checking if the tactic is actionable,
     /// Then the result should be true.
     /// </summary>
     [Fact]
-    public void IsActionable_WhenGuardReturnsTrue_ReturnsTrue()
+    public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndActionIsActionable_ReturnsTrue()
     {
         // Arrange
-        PrimitiveTactic<IBeliefSet> tactic = new(_filledAction, TrueGuard);
+        Action<IBeliefSet> action = new(_ => { }, _ => true);
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
 
         // Act
         bool isActionable = tactic.IsActionable(It.IsAny<IBeliefSet>());
@@ -166,8 +168,4 @@ public class TacticTests
         // Assert
         isActionable.Should().BeTrue();
     }
-
-    private static bool FalseGuard(IBeliefSet _) => false;
-
-    private static bool TrueGuard(IBeliefSet _) => true;
 }
