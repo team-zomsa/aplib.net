@@ -7,7 +7,8 @@ namespace Aplib.Core.Intent.Actions
     /// Describes an action that can be executed and guarded.
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Action<TBeliefSet> : IAction<TBeliefSet> where TBeliefSet : IBeliefSet
+    public class Action<TBeliefSet> : IAction<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets the metadata of the action.

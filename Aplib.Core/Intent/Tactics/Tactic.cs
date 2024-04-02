@@ -11,7 +11,8 @@ namespace Aplib.Core.Intent.Tactics
     /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
     /// <seealso cref="Action{TBeliefSet}"/>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet> where TBeliefSet : IBeliefSet
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets the metadata of the tactic.
@@ -47,16 +48,10 @@ namespace Aplib.Core.Intent.Tactics
             Metadata = metadata ?? new Metadata();
         }
 
-        /// <summary>
-        /// Gets the enabled action.
-        /// </summary>
-        /// <returns>An action that is enabled.</returns>
+        /// <inheritdoc />
         public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
 
-        /// <summary>
-        /// Determines whether the tactic is actionable.
-        /// </summary>
-        /// <returns>True if the tactic is actionable, false otherwise.</returns>
+        /// <inheritdoc />
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
     }
 }

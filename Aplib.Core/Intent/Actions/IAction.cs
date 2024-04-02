@@ -6,7 +6,8 @@ namespace Aplib.Core.Intent.Actions
     /// Represents an action that can be executed on a belief set.
     /// </summary>
     /// <typeparam name="TBeliefSet">The type of the belief set that the action uses.</typeparam>
-    public interface IAction<in TBeliefSet> where TBeliefSet : IBeliefSet
+    public interface IAction<in TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Executes the action on the specified belief set.

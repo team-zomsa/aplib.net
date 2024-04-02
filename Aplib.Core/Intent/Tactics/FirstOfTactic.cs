@@ -6,7 +6,8 @@ namespace Aplib.Core.Intent.Tactics
     /// <summary>
     /// Represents a tactic that executes the first enabled action from a list of sub-tactics.
     /// </summary>
-    public class FirstOfTactic<TBeliefSet> : AnyOfTactic<TBeliefSet> where TBeliefSet : IBeliefSet
+    public class FirstOfTactic<TBeliefSet> : AnyOfTactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified sub-tactics.

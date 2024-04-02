@@ -12,7 +12,8 @@ namespace Aplib.Core.Desire.Goals
     /// </summary>
     /// <seealso cref="GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Goal<TBeliefSet> : IGoal<TBeliefSet> where TBeliefSet : IBeliefSet
+    public class Goal<TBeliefSet> : IGoal<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as

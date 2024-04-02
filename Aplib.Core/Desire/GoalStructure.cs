@@ -7,7 +7,8 @@ namespace Aplib.Core.Desire
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet> where TBeliefSet : IBeliefSet
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
         public CompletionStatus Status { get; protected set; }

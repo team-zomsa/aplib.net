@@ -7,7 +7,8 @@ namespace Aplib.Core.Intent.Tactics
     /// <summary>
     /// Represents a tactic that executes any of the provided sub-tactics.
     /// </summary>
-    public class AnyOfTactic<TBeliefSet> : Tactic<TBeliefSet> where TBeliefSet : IBeliefSet
+    public class AnyOfTactic<TBeliefSet> : Tactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets or sets the sub-tactics of the tactic.

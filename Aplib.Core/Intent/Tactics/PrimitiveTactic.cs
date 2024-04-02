@@ -7,7 +7,8 @@ namespace Aplib.Core.Intent.Tactics
     /// Represents a primitive tactic
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class PrimitiveTactic<TBeliefSet> : Tactic<TBeliefSet> where TBeliefSet : IBeliefSet
+    public class PrimitiveTactic<TBeliefSet> : Tactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets the action of the primitive tactic.
