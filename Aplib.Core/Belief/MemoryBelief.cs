@@ -94,6 +94,7 @@ namespace Aplib.Core.Belief
         public TObservation[] GetAllMemories()
         {
             // For now, we return the entire array, but with empty elements for the unused slots
+            // TODO: make it return only the used slots
             return _memorizedObservations.ToArray();
         }
     }
