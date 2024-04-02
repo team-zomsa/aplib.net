@@ -46,7 +46,7 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic<IBeliefSet> tactic = Mock.Of<Tactic<IBeliefSet>>();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
         Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Constant(0f);
         const string name = "Such a good goal name";
         const string description =
@@ -72,7 +72,7 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Mock<Tactic<IBeliefSet>> tactic = new();
+        Mock<ITactic<IBeliefSet>> tactic = new();
         tactic.Setup(x => x.GetAction(It.IsAny<IBeliefSet>())).Returns(new Action<IBeliefSet>(_ => { iterations++; }));
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();

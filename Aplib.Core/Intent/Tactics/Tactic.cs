@@ -27,11 +27,6 @@ namespace Aplib.Core.Intent.Tactics
         protected System.Func<TBeliefSet, bool> _guard { get; set; } = _ => true;
 
         /// <summary>
-        /// Parameterless constructor for internal use.
-        /// </summary>
-        private protected Tactic() : this(null) { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/>.
         /// </summary>
         /// <param name="metadata">

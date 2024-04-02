@@ -28,11 +28,6 @@ namespace Aplib.Core.Intent.Actions
         protected Func<TBeliefSet, bool> _guard { get; set; } = _ => true;
 
         /// <summary>
-        /// Parameterless constructor for internal use.
-        /// </summary>
-        internal Action() : this(null) { }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.
         /// </summary>=
         /// <param name="effect">The effect of the action.</param>
@@ -62,7 +57,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        protected internal Action(Metadata? metadata)
+        protected Action(Metadata? metadata)
         {
             _effect = _ => { };
             _guard = _ => false;
