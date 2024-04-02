@@ -1,6 +1,6 @@
 using Aplib.Core.Belief;
 
-namespace Aplib.Tests.Core.Belief;
+namespace Aplib.Core.Tests.Belief;
 
 /// <summary>
 /// Describes a set of tests for the <see cref="MemoryBelief{TReference,TObservation}"/> class.

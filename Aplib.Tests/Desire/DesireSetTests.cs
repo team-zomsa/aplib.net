@@ -1,11 +1,10 @@
-﻿using Aplib.Core;
-using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
 using FluentAssertions;
 using Moq;
 
-namespace Aplib.Tests.Core.Desire;
+namespace Aplib.Core.Tests.Desire;
 
 public class DesireSetTests
 {

@@ -1,7 +1,7 @@
 using Aplib.Core.Intent.Tactics;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core.Intent.Tactics;
+namespace Aplib.Core.Tests.Intent.Tactics;
 
 public class TacticTests
 {
