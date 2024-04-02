@@ -7,7 +7,7 @@ using FluentAssertions;
 using Moq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core.Desire;
+namespace Aplib.Core.Tests.Core.Desire;
 
 public class GoalTests
 {

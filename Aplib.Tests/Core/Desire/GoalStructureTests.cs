@@ -6,7 +6,7 @@ using FluentAssertions;
 using Moq;
 using Moq.Protected;
 
-namespace Aplib.Tests.Core.Desire;
+namespace Aplib.Core.Tests.Core.Desire;
 
 public class GoalStructureTests
 {

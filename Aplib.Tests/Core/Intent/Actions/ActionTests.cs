@@ -3,7 +3,7 @@ using Aplib.Core.Intent.Actions;
 using FluentAssertions;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core.Intent.Actions;
+namespace Aplib.Core.Tests.Core.Intent.Actions;
 
 /// <summary>
 /// Describes a set of tests for the <see cref="GuardedAction{TQuery}" /> class.

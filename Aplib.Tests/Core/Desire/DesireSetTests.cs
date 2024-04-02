@@ -5,7 +5,7 @@ using Aplib.Core.Desire.Goals;
 using FluentAssertions;
 using Moq;
 
-namespace Aplib.Tests.Core.Desire;
+namespace Aplib.Core.Tests.Core.Desire;
 
 public class DesireSetTests
 {

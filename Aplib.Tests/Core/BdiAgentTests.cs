@@ -7,7 +7,7 @@ using FluentAssertions;
 using Moq;
 using Action = Aplib.Core.Intent.Actions.Action;
 
-namespace Aplib.Tests.Core;
+namespace Aplib.Core.Tests.Core;
 
 public class BdiAgentTests
 {
