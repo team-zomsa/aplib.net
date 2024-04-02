@@ -8,14 +8,14 @@ namespace Aplib.Integrations.Unity
     /// <summary>
     /// Represents a test runner for an agent.
     /// </summary>
-    class TestRunner
+    public class AplibRunner
     {
         /// <summary>
         /// The agent that the test runner is testing.
         /// </summary>
         private readonly IAgent _agent;
 
-        public TestRunner(IAgent agent)
+        public AplibRunner(IAgent agent)
         {
             _agent = agent;
         }
