@@ -17,12 +17,12 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the effect of the action.
         /// </summary>
-        protected new System.Action<TQuery> Effect { get; set; }
+        protected new System.Action<TQuery> _effect { get; set; }
 
         /// <summary>
         /// Gets or sets the guard of the action.
         /// </summary>
-        protected new Func<TQuery?> Guard { get; set; }
+        protected new Func<TQuery?> _guard { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuardedAction{TQuery}"/> class.
@@ -35,17 +35,17 @@ namespace Aplib.Core.Intent.Actions
         public GuardedAction(Action<TQuery> effect, Func<TQuery?> guard, Metadata? metadata = null)
             : base(metadata)
         {
-            Effect = effect;
-            Guard = guard;
+            _effect = effect;
+            _guard = guard;
         }
 
         /// <inheritdoc/>
-        internal override void Execute() => Effect(StoredGuardResult!);
+        internal override void Execute() => _effect(StoredGuardResult!);
 
         /// <inheritdoc/>
         internal override bool IsActionable()
         {
-            StoredGuardResult = Guard();
+            StoredGuardResult = _guard();
             return StoredGuardResult is not null;
         }
     }

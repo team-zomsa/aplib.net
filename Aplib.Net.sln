@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplib.Core", "Aplib.Core\Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplib.Tests", "Aplib.Tests\Aplib.Tests.csproj", "{67D4F6C5-758D-489F-A100-8B259B2158D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplib.Integrations.Unity", "Aplib.Integrations.Unity\Aplib.Integrations.Unity.csproj", "{C998991A-37E4-4B77-8A59-2E55AF87E397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{67D4F6C5-758D-489F-A100-8B259B2158D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67D4F6C5-758D-489F-A100-8B259B2158D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67D4F6C5-758D-489F-A100-8B259B2158D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C998991A-37E4-4B77-8A59-2E55AF87E397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C998991A-37E4-4B77-8A59-2E55AF87E397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C998991A-37E4-4B77-8A59-2E55AF87E397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C998991A-37E4-4B77-8A59-2E55AF87E397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
