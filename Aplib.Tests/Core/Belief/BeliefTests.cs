@@ -48,8 +48,8 @@ public class BeliefTests
     public void UpdateBelief_ShouldUpdateConditionIsSatisfied_UpdatesObservation()
     {
         // Arrange
-        List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
+        System.Collections.Generic.List<int> list = [];
+        Belief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
 
         // Act
         list.Add(69);
@@ -68,8 +68,8 @@ public class BeliefTests
     public void UpdateBelief_ShouldUpdateConditionIsNotSatisfied_DoesNotUpdateObservation()
     {
         // Arrange
-        List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
+        System.Collections.Generic.List<int> list = [];
+        Belief<System.Collections.Generic.List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
 
         // Act
         list.Add(420);

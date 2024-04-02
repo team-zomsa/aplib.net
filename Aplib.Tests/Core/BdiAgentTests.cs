@@ -2,10 +2,10 @@ using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
-using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core;
 
@@ -41,11 +41,11 @@ public class BdiAgentTests
         desireSetMock.Setup(d => d.Status).Returns(completionStatus);
 
         // Mock the desire set to return a goal
-        Action action = Mock.Of<Action>();
-        Mock<Tactic> tacticMock = new();
-        tacticMock.Setup(t => t.GetAction()).Returns(action);
+        IAction<IBeliefSet> action = Mock.Of<IAction<IBeliefSet>>();
+        Mock<ITactic<IBeliefSet>> tacticMock = new();
+        tacticMock.Setup(t => t.GetAction(It.IsAny<IBeliefSet>())).Returns(action);
 
-        Mock<IGoal> goalMock = new();
+        Mock<IGoal<IBeliefSet>> goalMock = new();
         goalMock.Setup(g => g.Tactic).Returns(tacticMock.Object);
 
         desireSetMock.Setup(d => d.GetCurrentGoal(It.IsAny<IBeliefSet>()))
@@ -71,13 +71,12 @@ public class BdiAgentTests
         desireSetMock.Setup(d => d.Status).Returns(CompletionStatus.Unfinished);
 
         // Mock the desire set to return a goal
-        Mock<Action> action = new();
-        action.Setup(x => x.Execute());
+        Mock<IAction<IBeliefSet>> action = new();
 
-        Mock<Tactic> tacticMock = new();
-        tacticMock.Setup(t => t.GetAction()).Returns(action.Object);
+        Mock<ITactic<IBeliefSet>> tacticMock = new();
+        tacticMock.Setup(t => t.GetAction(It.IsAny<IBeliefSet>())).Returns(action.Object);
 
-        Mock<IGoal> goalMock = new();
+        Mock<IGoal<IBeliefSet>> goalMock = new();
         goalMock.Setup(g => g.Tactic).Returns(tacticMock.Object);
 
         desireSetMock.Setup(d => d.GetCurrentGoal(It.IsAny<IBeliefSet>()))
@@ -90,7 +89,7 @@ public class BdiAgentTests
         agent.Update();
 
         // Assert
-        action.Verify(b => b.Execute(), Times.Once);
+        action.Verify(b => b.Execute(It.IsAny<IBeliefSet>()), Times.Once);
     }
 
     [Fact]
@@ -103,11 +102,12 @@ public class BdiAgentTests
         desireSetMock.Setup(d => d.Status).Returns(CompletionStatus.Unfinished);
 
         // Mock the desire set to return a goal
-        Action action = Mock.Of<Action>();
-        Mock<Tactic> tacticMock = new();
-        tacticMock.Setup(t => t.GetAction()).Returns(action);
+        IAction<IBeliefSet> action = Mock.Of<IAction<IBeliefSet>>();
 
-        Mock<IGoal> goalMock = new();
+        Mock<ITactic<IBeliefSet>> tacticMock = new();
+        tacticMock.Setup(t => t.GetAction(It.IsAny<IBeliefSet>())).Returns(action);
+
+        Mock<IGoal<IBeliefSet>> goalMock = new();
         goalMock.Setup(g => g.Tactic).Returns(tacticMock.Object);
 
         desireSetMock.Setup(d => d.GetCurrentGoal(It.IsAny<IBeliefSet>()))

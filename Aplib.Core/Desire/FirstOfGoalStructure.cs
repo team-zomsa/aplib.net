@@ -21,15 +21,15 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="FirstOfGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="children">The children of the goal structure.</param>
-        public FirstOfGoalStructure(IList<IGoalStructure<TBeliefSet>> children) : base(children)
+        public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : base(children)
         {
-            _childrenEnumerator = children.GetEnumerator();
+            _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
         /// <inheritdoc />
-        public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet)

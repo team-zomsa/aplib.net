@@ -1,11 +1,11 @@
 using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 using Aplib.Tests.Tools;
 using FluentAssertions;
 using Moq;
-using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core.Desire;
 
@@ -47,8 +47,8 @@ public class GoalTests
     public void Goal_WhenConstructed_ContainsCorrectMetaData()
     {
         // Arrange
-        Tactic tactic = Mock.Of<Tactic>();
-        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Constant(0f);
+        Tactic<IBeliefSet> tactic = Mock.Of<Tactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Constant(0f);
         const string name = "Such a good goal name";
         const string description =
             "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
@@ -56,7 +56,7 @@ public class GoalTests
 
         // Act
         // Does not use helper methods on purpose
-        Goal goal = new(tactic, heuristicFunction: heuristicFunction, metadata: metadata);
+        Goal<IBeliefSet> goal = new(tactic, heuristicFunction: heuristicFunction, metadata: metadata);
 
         // Assert
         goal.Should().NotBeNull();
@@ -73,10 +73,10 @@ public class GoalTests
     {
         // Arrange
         int iterations = 0;
-        Mock<Tactic> tactic = new();
-        tactic.Setup(x => x.GetAction()).Returns(new Action(() => { iterations++; }));
+        Mock<Tactic<IBeliefSet>> tactic = new();
+        tactic.Setup(x => x.GetAction(It.IsAny<IBeliefSet>())).Returns(new Action<IBeliefSet>(_ => { iterations++; }));
         // Act
-        Goal goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();
+        Goal<IBeliefSet> goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();
 
         // Assert
         goal.Tactic.Should().Be(tactic.Object);
@@ -93,10 +93,10 @@ public class GoalTests
     {
         // Arrange
         MyBeliefSet beliefSet = new();
-        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Uncompleted();
+        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Uncompleted();
 
         // Act
-        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
+        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
         CompletionStatus isCompleted = goal.GetStatus(beliefSet);
 
         // Assert
@@ -113,10 +113,10 @@ public class GoalTests
     {
         // Arrange
         MyBeliefSet beliefSet = new();
-        Goal.HeuristicFunction heuristicFunction = CommonHeuristicFunctions.Completed();
+        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Completed();
 
         // Act
-        Goal goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
+        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
         CompletionStatus isCompleted = goal.GetStatus(beliefSet);
 
         // Assert
@@ -135,7 +135,7 @@ public class GoalTests
         MyBeliefSet beliefSet = new();
 
         // Act
-        Goal goal = new TestGoalBuilder().Build();
+        Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
         _ = goal.GetStatus(beliefSet);
 
         // Assert
@@ -154,13 +154,13 @@ public class GoalTests
     public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
     {
         // Arrange
-        Tactic tactic = Mock.Of<Tactic>();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
 
-        Func<bool> heuristicFunctionBoolean = () => goalCompleted;
-        Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
+        bool heuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
+        Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
 
-        Goal goalBoolean = new(tactic, heuristicFunctionBoolean);
-        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
+        Goal<IBeliefSet> goalBoolean = new(tactic, heuristicFunctionBoolean);
+        Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
 
         // Act
         MyBeliefSet beliefSet = new();
