@@ -38,7 +38,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_emptyAction);
-        AnyOfTactic parentTactic = new(tactic1, tactic2);
+        AnyOfTactic parentTactic = new(null, tactic1, tactic2);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -59,7 +59,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_filledAction);
-        FirstOfTactic parentTactic = new(tactic1, tactic2);
+        FirstOfTactic parentTactic = new(null, tactic1, tactic2);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();
@@ -80,7 +80,7 @@ public class TacticTests
         // Arrange
         PrimitiveTactic tactic1 = new(_emptyAction);
         PrimitiveTactic tactic2 = new(_filledAction);
-        FirstOfTactic parentTactic = new(TrueGuard, tactic1, tactic2);
+        FirstOfTactic parentTactic = new(TrueGuard, null, tactic1, tactic2);
 
         // Act
         Action? enabledAction = parentTactic.GetAction();

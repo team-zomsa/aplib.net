@@ -73,7 +73,7 @@ namespace Aplib.Core.Belief
         /// Generates/updates the observation if the shouldUpdate condition is satisfied.
         /// The observation is then updated by calling the getObservationFromReference function.
         /// </summary>
-        public void UpdateBelief()
+        public virtual void UpdateBelief()
         {
             if (_shouldUpdate()) _observation = _getObservationFromReference(_reference);
         }

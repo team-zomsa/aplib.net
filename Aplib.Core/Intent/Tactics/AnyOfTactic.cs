@@ -17,8 +17,12 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(params Tactic[] subTactics)
+        public AnyOfTactic(Metadata? metadata = null, params Tactic[] subTactics)
+            : base(metadata)
         {
             SubTactics = new();
 
@@ -31,9 +35,13 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics and guard condition.
         /// </summary>
-        /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public AnyOfTactic(Func<bool> guard, params Tactic[] subTactics) : this(subTactics) => Guard = guard;
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        /// <param name="subTactics">The list of sub-tactics.</param>
+        public AnyOfTactic(Func<bool> guard, Metadata? metadata = null, params Tactic[] subTactics)
+            : this(metadata, subTactics) => Guard = guard;
 
         /// <inheritdoc/>
         public override Action? GetAction()

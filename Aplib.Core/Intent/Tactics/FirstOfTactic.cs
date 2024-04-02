@@ -11,17 +11,25 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfTactic"/> class with the specified sub-tactics.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(params Tactic[] subTactics) : base(subTactics)
+        public FirstOfTactic(Metadata? metadata = null, params Tactic[] subTactics)
+            : base(metadata, subTactics)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfTactic"/> class with the specified sub-tactics and guard condition.
         /// </summary>
-        /// <param name="subTactics">The list of sub-tactics.</param>
         /// <param name="guard">The guard condition.</param>
-        public FirstOfTactic(Func<bool> guard, params Tactic[] subTactics) : base(guard, subTactics)
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        /// <param name="subTactics">The list of sub-tactics.</param>
+        public FirstOfTactic(Func<bool> guard, Metadata? metadata = null, params Tactic[] subTactics)
+            : base(guard, metadata, subTactics)
         {
         }
 

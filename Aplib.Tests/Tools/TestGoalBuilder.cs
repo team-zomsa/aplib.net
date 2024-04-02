@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Moq;
@@ -34,5 +35,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal Build() => new(_tactic, _heuristicFunction, _name, _description);
+    public Goal Build() => new(_tactic, _heuristicFunction, metadata: new Metadata(_name, _description));
 }
