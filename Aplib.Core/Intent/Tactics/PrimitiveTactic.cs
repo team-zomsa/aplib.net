@@ -17,14 +17,22 @@ namespace Aplib.Core.Intent.Tactics
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
-        public PrimitiveTactic(Action action) => Action = action;
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        public PrimitiveTactic(Action action, Metadata? metadata = null)
+            : base(metadata) => Action = action;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic"/> class with the specified action and guard.
         /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the primitive tactic.</param>
-        public PrimitiveTactic(Action action, Func<bool> guard) : base(guard) => Action = action;
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        public PrimitiveTactic(Action action, Func<bool> guard, Metadata? metadata = null)
+            : base(guard, metadata) => Action = action;
 
         /// <inheritdoc/>
         public override Action? GetAction() => IsActionable() ? Action : null;

@@ -1,4 +1,6 @@
-﻿using Aplib.Core.Intent.Actions;
+﻿using Aplib.Core;
+using Aplib.Core.Intent.Actions;
+using FluentAssertions;
 using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Tests.Core.Intent.Actions;
@@ -8,6 +10,39 @@ namespace Aplib.Tests.Core.Intent.Actions;
 /// </summary>
 public class ActionTests
 {
+    [Fact]
+    public void Action_WhenConstructed_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "Action";
+        const string description = "A cheap store where I get all my stuff";
+        Metadata metadata = new(name, description);
+
+        // Act
+        Action action = new(metadata);
+
+        // Assert
+        action.Should().NotBeNull();
+        action.Metadata.Name.Should().Be(name);
+        action.Metadata.Description.Should().Be(description);
+    }
+
+    [Fact]
+    public void Action_WithoutDescription_ContainsCorrectMetaData()
+    {
+        // Arrange
+        const string name = "my action";
+        Metadata metadata = new(name);
+
+        // Act
+        Action action = new(metadata);
+
+        // Assert
+        action.Should().NotBeNull();
+        action.Metadata.Name.Should().Be(name);
+        action.Metadata.Description.Should().BeNull();
+    }
+    
     /// <summary>
     /// Given a side effect action with a string guard,
     /// When the action is executed,

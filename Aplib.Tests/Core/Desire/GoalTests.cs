@@ -52,14 +52,15 @@ public class GoalTests
         const string name = "Such a good goal name";
         const string description =
             "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
+        Metadata metadata = new(name, description);
 
         // Act
-        Goal goal = new(tactic, heuristicFunction, name, description); // Does not use helper methods on purpose
+        // Does not use helper methods on purpose
+        Goal goal = new(tactic, heuristicFunction: heuristicFunction, metadata: metadata);
 
         // Assert
         goal.Should().NotBeNull();
-        goal.Name.Should().Be(name);
-        goal.Description.Should().Be(description);
+        goal.Metadata.Should().Be(metadata);
     }
 
     /// <summary>
@@ -154,15 +155,12 @@ public class GoalTests
     {
         // Arrange
         Tactic tactic = Mock.Of<Tactic>();
-        const string name = "Such a good goal name";
-        const string description =
-            "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
 
         Func<bool> heuristicFunctionBoolean = () => goalCompleted;
         Goal.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions.Boolean(() => goalCompleted);
 
-        Goal goalBoolean = new(tactic, heuristicFunctionBoolean, name, description);
-        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean, name, description);
+        Goal goalBoolean = new(tactic, heuristicFunctionBoolean);
+        Goal goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
 
         // Act
         MyBeliefSet beliefSet = new();

@@ -13,22 +13,43 @@ namespace Aplib.Core.Intent.Tactics
     public abstract class Tactic
     {
         /// <summary>
+        /// Gets the metadata of the tactic.
+        /// </summary>
+        /// <remark>
+        /// This metadata may be useful for debugging or logging.
+        /// </remark>
+        public Metadata Metadata { get; }
+
+        /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
         protected Func<bool> Guard { get; set; } = () => true;
 
         /// <summary>
+        /// Parameterless constructor for internal use.
+        /// </summary>
+        private protected Tactic() : this(null) { }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/>.
         /// </summary>
-        protected Tactic()
-        {
-        }
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        protected Tactic(Metadata? metadata) => Metadata = metadata ?? new Metadata();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
         /// </summary>
         /// <param name="guard">The guard of the tactic.</param>
-        protected Tactic(Func<bool> guard) => Guard = guard;
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
+        protected Tactic(Func<bool> guard, Metadata? metadata = null)
+        {
+            Guard = guard;
+            Metadata = metadata ?? new Metadata();
+        }
 
         /// <summary>
         /// Gets the enabled action.

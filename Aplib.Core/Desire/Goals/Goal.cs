@@ -21,14 +21,12 @@ namespace Aplib.Core.Desire.Goals
         public delegate Heuristics HeuristicFunction(IBeliefSet beliefSet);
 
         /// <summary>
-        /// The description used to describe the current goal during debugging, logging, or general overviews.
+        /// Gets the metadata of the goal.
         /// </summary>
-        public string Description { get; }
-
-        /// <summary>
-        /// The name used to display the current goal during debugging, logging, or general overviews.
-        /// </summary>
-        public string Name { get; }
+        /// <remark>
+        /// This metadata may be useful for debugging or logging.
+        /// </remark>
+        public Metadata Metadata { get; }
 
         /// <summary>
         /// The <see cref="Intent.Tactics.Tactic" /> used to achieve this <see cref="Goal" />, which is executed during every
@@ -61,40 +59,45 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
-        /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
         /// this value.
         /// </param>
-        public Goal(Tactic tactic, HeuristicFunction heuristicFunction, string name, string description,
-            double epsilon = 0.005d)
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
+        public Goal
+        (
+            Tactic tactic,
+            HeuristicFunction heuristicFunction,
+            double epsilon = 0.005d,
+            Metadata? metadata = null
+        )
         {
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
-            Name = name;
-            Description = description;
             _epsilon = epsilon;
+            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>
         /// Creates a new goal which works with boolean-based <see cref="Heuristics" />.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached.</param>
-        /// <param name="name">The name of this goal, used to quickly display this goal in several contexts.</param>
-        /// <param name="description">The description of this goal, used to explain this goal in several contexts.</param>
+        /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached</param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
         /// this value.
         /// </param>
-        public Goal(Tactic tactic, Func<bool> predicate, string name, string description, double epsilon = 0.005d)
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
+        public Goal(Tactic tactic, Func<bool> predicate, double epsilon = 0.005d, Metadata? metadata = null)
         {
             Tactic = tactic;
             _heuristicFunction = CommonHeuristicFunctions.Boolean(predicate);
-            Name = name;
-            Description = description;
             _epsilon = epsilon;
+            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>
