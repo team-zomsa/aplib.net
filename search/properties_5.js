@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['length_0',['Length',['../classAplib_1_1Core_1_1CircularArray.html#a30b1dd22a33d7b93070fa8f7c2eeb87f',1,'Aplib::Core::CircularArray']]]
+  ['name_0',['Name',['../classAplib_1_1Core_1_1Metadata.html#abe85f7ef6e97fb7ba6dfa934a29186cc',1,'Aplib::Core::Metadata']]]
 ];
