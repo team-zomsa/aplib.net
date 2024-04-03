@@ -1,56 +1,57 @@
-﻿using System;
+﻿using Aplib.Core.Belief;
+using Aplib.Core.Intent.Actions;
 using System.Collections.Generic;
-using Action = Aplib.Core.Intent.Actions.Action;
 
 namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
     /// Represents a tactic that executes any of the provided sub-tactics.
     /// </summary>
-    public class AnyOfTactic : Tactic
+    public class AnyOfTactic<TBeliefSet> : Tactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets or sets the sub-tactics of the tactic.
         /// </summary>
-        protected LinkedList<Tactic> SubTactics { get; set; }
+        protected LinkedList<ITactic<TBeliefSet>> _subTactics { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics.
+        /// Initializes a new instance of the <see cref="AnyOfTactic{TBeliefSet}"/> class with the specified sub-tactics.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(Metadata? metadata = null, params Tactic[] subTactics)
+        public AnyOfTactic(Metadata? metadata = null, params ITactic<TBeliefSet>[] subTactics)
             : base(metadata)
         {
-            SubTactics = new();
+            _subTactics = new();
 
-            foreach (Tactic tactic in subTactics)
+            foreach (ITactic<TBeliefSet> tactic in subTactics)
             {
-                _ = SubTactics.AddLast(tactic);
+                _ = _subTactics.AddLast(tactic);
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnyOfTactic"/> class with the specified sub-tactics and guard condition.
+        /// Initializes a new instance of the <see cref="AnyOfTactic{TBeliefSet}"/> class with the specified sub-tactics and guard condition.
         /// </summary>
         /// <param name="guard">The guard condition.</param>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(Func<bool> guard, Metadata? metadata = null, params Tactic[] subTactics)
-            : this(metadata, subTactics) => Guard = guard;
+        public AnyOfTactic(System.Func<TBeliefSet, bool> guard, Metadata? metadata = null, params ITactic<TBeliefSet>[] subTactics)
+            : this(metadata, subTactics) => _guard = guard;
 
         /// <inheritdoc/>
-        public override Action? GetAction()
+        public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
         {
-            List<Action> actions = new();
+            List<IAction<TBeliefSet>> actions = new();
 
-            foreach (Tactic subTactic in SubTactics)
+            foreach (ITactic<TBeliefSet> subTactic in _subTactics)
             {
-                Action? action = subTactic.GetAction();
+                IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
 
                 if (action is not null)
                     actions.Add(action);

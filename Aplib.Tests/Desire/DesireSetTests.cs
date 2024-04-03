@@ -18,15 +18,14 @@ public class DesireSetTests
     {
         // Arrange
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        IGoal goal = Mock.Of<IGoal>();
-        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
-        goalStructure
-            .Setup(g => g.GetCurrentGoal(It.IsAny<IBeliefSet>()))
+        IGoal<IBeliefSet> goal = Mock.Of<IGoal<IBeliefSet>>();
+        Mock<IDesireSet<IBeliefSet>> desireSet = new();
+        desireSet
+            .Setup(d => d.GetCurrentGoal(It.IsAny<IBeliefSet>()))
             .Returns(goal);
-        Mock<DesireSet<IBeliefSet>> desireSet = new(goalStructure.Object);
 
         // Act
-        IGoal currentGoal = desireSet.Object.GetCurrentGoal(beliefSet);
+        IGoal<IBeliefSet> currentGoal = desireSet.Object.GetCurrentGoal(beliefSet);
 
         // Assert
         currentGoal.Should().Be(goal);

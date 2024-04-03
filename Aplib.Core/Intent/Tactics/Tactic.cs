@@ -1,16 +1,18 @@
-﻿using System;
-using Action = Aplib.Core.Intent.Actions.Action;
+﻿using Aplib.Core.Belief;
+using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
-    /// Tactics are the real meat of <see cref="Desire.Goals.Goal"/>s, as they define how the agent can approach the goal in hopes
+    /// Tactics are the real meat of <see cref="Desire.Goals.Goal{TBeliefSet}"/>s, as they define how the agent can approach the goal in hopes
     /// of finding a solution which makes the Goal's heuristic function evaluate to being completed. A tactic represents
-    /// a smart combination of <see cref="Action"/>s, which are executed in a Believe Desire Intent Cycle.
+    /// a smart combination of <see cref="Action{TBeliefSet}"/>s, which are executed in a Believe Desire Intent Cycle.
     /// </summary>
-    /// <seealso cref="Desire.Goals.Goal"/>
-    /// <seealso cref="Intent.Actions.Action"/>
-    public abstract class Tactic
+    /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
+    /// <seealso cref="Action{TBeliefSet}"/>
+    /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets the metadata of the tactic.
@@ -23,15 +25,10 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
-        protected Func<bool> Guard { get; set; } = () => true;
+        protected System.Func<TBeliefSet, bool> _guard { get; set; } = _ => true;
 
         /// <summary>
-        /// Parameterless constructor for internal use.
-        /// </summary>
-        private protected Tactic() : this(null) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic"/>.
+        /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/>.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
@@ -39,28 +36,22 @@ namespace Aplib.Core.Intent.Tactics
         protected Tactic(Metadata? metadata) => Metadata = metadata ?? new Metadata();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic"/> class with a specified guard.
+        /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/> class with a specified guard.
         /// </summary>
         /// <param name="guard">The guard of the tactic.</param>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(Func<bool> guard, Metadata? metadata = null)
+        protected Tactic(System.Func<TBeliefSet, bool> guard, Metadata? metadata = null)
         {
-            Guard = guard;
+            _guard = guard;
             Metadata = metadata ?? new Metadata();
         }
 
-        /// <summary>
-        /// Gets the enabled action.
-        /// </summary>
-        /// <returns>An action that is enabled.</returns>
-        public abstract Action? GetAction();
+        /// <inheritdoc />
+        public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
 
-        /// <summary>
-        /// Determines whether the tactic is actionable.
-        /// </summary>
-        /// <returns>True if the tactic is actionable, false otherwise.</returns>
-        public virtual bool IsActionable() => Guard();
+        /// <inheritdoc />
+        public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
     }
 }

@@ -1,6 +1,8 @@
-﻿using Aplib.Core.Intent.Actions;
+﻿using Aplib.Core;
+using Aplib.Core.Belief;
+using Aplib.Core.Intent.Actions;
 using FluentAssertions;
-using Action = Aplib.Core.Intent.Actions.Action;
+using Moq;
 
 namespace Aplib.Core.Tests.Intent.Actions;
 
@@ -18,7 +20,7 @@ public class ActionTests
         Metadata metadata = new(name, description);
 
         // Act
-        Action action = new(metadata);
+        Action<IBeliefSet> action = new(_ => { }, metadata);
 
         // Assert
         action.Should().NotBeNull();
@@ -34,7 +36,7 @@ public class ActionTests
         Metadata metadata = new(name);
 
         // Act
-        Action action = new(metadata);
+        Action<IBeliefSet> action = new(_ => { }, metadata);
 
         // Assert
         action.Should().NotBeNull();
@@ -43,22 +45,23 @@ public class ActionTests
     }
 
     /// <summary>
-    /// Given a side effect action with a string guard,
+    /// Given a side effect action,
     /// When the action is executed,
-    /// Then the result should be null.
+    /// Then the result should not be null.
     /// </summary>
     [Fact]
     public void Execute_SideEffects_ReturnsCorrectEffect()
     {
         // Arrange
-        string? result = "abc";
-        Action action = new(() => result = "def");
+        string? result = null;
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        Action<IBeliefSet> action = new(_ => result = "abc");
 
         // Act
-        action.Execute();
+        action.Execute(beliefSet);
 
         // Assert
-        Assert.Equal("def", result);
+        result.Should().Be("abc");
     }
 
     /// <summary>
@@ -71,14 +74,15 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<int> action = new(guard: () => 42, effect: guard => result = guard);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        GuardedAction<IBeliefSet, int> action = new(guard: _ => 42, effect: (_, query) => result = query);
 
         // Act
-        _ = action.IsActionable();
-        action.Execute();
+        _ = action.IsActionable(beliefSet);
+        action.Execute(beliefSet);
 
         // Assert
-        Assert.Equal(42, result);
+        result.Should().Be(42);
     }
 
     /// <summary>
@@ -90,13 +94,14 @@ public class ActionTests
     public void IsActionable_NoQuery_AlwaysTrue()
     {
         // Arrange
-        Action action = new(() => { });
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        Action<IBeliefSet> action = new(_ => { });
 
         // Act
-        bool actionable = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.True(actionable);
+        actionable.Should().BeTrue();
     }
 
     /// <summary>
@@ -108,13 +113,14 @@ public class ActionTests
     public void IsActionable_QueryIsFalse_IsActionable()
     {
         // Arrange
-        GuardedAction<bool> action = new(guard: () => false, effect: b => { });
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        GuardedAction<IBeliefSet, bool> action = new(guard: _ => false, effect: (_, _) => { });
 
         // Act
-        bool result = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.True(result);
+        actionable.Should().BeTrue();
     }
 
     /// <summary>
@@ -126,13 +132,14 @@ public class ActionTests
     public void IsActionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
-        GuardedAction<int> action = new(guard: () => 10, effect: b => { });
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        GuardedAction<IBeliefSet, int> action = new(guard: _ => 10, effect: (_, _) => { });
 
         // Act
-        bool result = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.True(result);
+        actionable.Should().BeTrue();
     }
 
     /// <summary>
@@ -144,13 +151,14 @@ public class ActionTests
     public void IsActionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
-        GuardedAction<object> action = new(guard: () => null!, effect: b => { });
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        GuardedAction<IBeliefSet, object> action = new(guard: _ => null!, effect: (_, _) => { });
 
         // Act
-        bool result = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.False(result);
+        actionable.Should().BeFalse();
     }
 
     /// <summary>
@@ -162,13 +170,14 @@ public class ActionTests
     public void IsActionable_QueryWithFalse_ReturnsFalse()
     {
         // Arrange
-        Action action = new(() => { }, () => false);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        Action<IBeliefSet> action = new(_ => { }, _ => false);
 
         // Act
-        bool actionable = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.False(actionable);
+        actionable.Should().BeFalse();
     }
 
     /// <summary>
@@ -180,12 +189,13 @@ public class ActionTests
     public void IsActionable_QueryWithTrue_ReturnsTrue()
     {
         // Arrange
-        Action action = new(() => { }, () => true);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        Action<IBeliefSet> action = new(_ => { }, _ => true);
 
         // Act
-        bool actionable = action.IsActionable();
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        Assert.True(actionable);
+        actionable.Should().BeTrue();
     }
 }
