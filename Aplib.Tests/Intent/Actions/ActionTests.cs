@@ -54,10 +54,11 @@ public class ActionTests
     {
         // Arrange
         string? result = null;
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         Action<IBeliefSet> action = new(_ => result = "abc");
 
         // Act
-        action.Execute(It.IsAny<IBeliefSet>());
+        action.Execute(beliefSet);
 
         // Assert
         result.Should().Be("abc");
@@ -73,11 +74,12 @@ public class ActionTests
     {
         // Arrange
         int result = 0;
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         GuardedAction<IBeliefSet, int> action = new(guard: _ => 42, effect: (_, query) => result = query);
 
         // Act
-        _ = action.IsActionable(It.IsAny<IBeliefSet>());
-        action.Execute(It.IsAny<IBeliefSet>());
+        _ = action.IsActionable(beliefSet);
+        action.Execute(beliefSet);
 
         // Assert
         result.Should().Be(42);
@@ -92,10 +94,11 @@ public class ActionTests
     public void IsActionable_NoQuery_AlwaysTrue()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         Action<IBeliefSet> action = new(_ => { });
 
         // Act
-        bool actionable = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
         actionable.Should().BeTrue();
@@ -110,13 +113,14 @@ public class ActionTests
     public void IsActionable_QueryIsFalse_IsActionable()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         GuardedAction<IBeliefSet, bool> action = new(guard: _ => false, effect: (_, _) => { });
 
         // Act
-        bool result = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        result.Should().BeTrue();
+        actionable.Should().BeTrue();
     }
 
     /// <summary>
@@ -128,13 +132,14 @@ public class ActionTests
     public void IsActionable_QueryIsNotNull_IsActionable()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         GuardedAction<IBeliefSet, int> action = new(guard: _ => 10, effect: (_, _) => { });
 
         // Act
-        bool result = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
-        result.Should().BeTrue();
+        actionable.Should().BeTrue();
     }
 
     /// <summary>
@@ -146,10 +151,11 @@ public class ActionTests
     public void IsActionable_QueryIsNull_IsNotActionable()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         GuardedAction<IBeliefSet, object> action = new(guard: _ => null!, effect: (_, _) => { });
 
         // Act
-        bool actionable = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
         actionable.Should().BeFalse();
@@ -164,10 +170,11 @@ public class ActionTests
     public void IsActionable_QueryWithFalse_ReturnsFalse()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         Action<IBeliefSet> action = new(_ => { }, _ => false);
 
         // Act
-        bool actionable = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
         actionable.Should().BeFalse();
@@ -182,10 +189,11 @@ public class ActionTests
     public void IsActionable_QueryWithTrue_ReturnsTrue()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         Action<IBeliefSet> action = new(_ => { }, _ => true);
 
         // Act
-        bool actionable = action.IsActionable(It.IsAny<IBeliefSet>());
+        bool actionable = action.IsActionable(beliefSet);
 
         // Assert
         actionable.Should().BeTrue();

@@ -34,7 +34,8 @@ public class GoalStructureTests
         Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
 
-        Mock<FirstOfGoalStructure<IBeliefSet>> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        Mock<FirstOfGoalStructure<IBeliefSet>> firstOfGoalStructure
+            = new([goalStructure1.Object, goalStructure2.Object]) { CallBase = true };
 
         // Act
         firstOfGoalStructure.Object.Dispose();
@@ -258,7 +259,8 @@ public class GoalStructureTests
         Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
 
-        Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure
+            = new([goalStructure1.Object, goalStructure2.Object]) { CallBase = true };
 
         // Act
         sequentialGoalStructure.Object.Dispose();
