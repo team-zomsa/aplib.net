@@ -18,7 +18,7 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         /// <returns>The current goal to be fulfilled.</returns>
-        IGoal GetCurrentGoal(TBeliefSet beliefSet);
+        IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <summary>
         /// Updates the state of the goal structure.

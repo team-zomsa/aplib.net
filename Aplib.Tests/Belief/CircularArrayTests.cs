@@ -1,6 +1,4 @@
-using Aplib.Core;
-
-namespace Aplib.Tests.Core.Belief;
+namespace Aplib.Core.Tests.Belief;
 
 public class CircularArrayTests
 {

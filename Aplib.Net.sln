@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplib.Core", "Aplib.Core\Aplib.Core.csproj", "{0ED50CC0-F90F-44D4-830E-2F3BACE040EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplib.Tests", "Aplib.Tests\Aplib.Tests.csproj", "{67D4F6C5-758D-489F-A100-8B259B2158D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aplib.Core.Tests", "Aplib.Tests\Aplib.Core.Tests.csproj", "{67D4F6C5-758D-489F-A100-8B259B2158D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aplib.Integrations.Unity", "Aplib.Integrations.Unity\Aplib.Integrations.Unity.csproj", "{C998991A-37E4-4B77-8A59-2E55AF87E397}"
 EndProject

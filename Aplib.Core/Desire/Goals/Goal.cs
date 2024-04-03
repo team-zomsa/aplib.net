@@ -11,14 +11,16 @@ namespace Aplib.Core.Desire.Goals
     /// the testing.
     /// </summary>
     /// <seealso cref="GoalStructure{TBeliefSet}" />
-    public class Goal : IGoal
+    /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
+    public class Goal<TBeliefSet> : IGoal<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="Goal.GetStatus" />
-        public delegate Heuristics HeuristicFunction(IBeliefSet beliefSet);
+        /// <seealso cref="Goal{TBeliefSet}.GetStatus" />
+        public delegate Heuristics HeuristicFunction(TBeliefSet beliefSet);
 
         /// <summary>
         /// Gets the metadata of the goal.
@@ -29,10 +31,10 @@ namespace Aplib.Core.Desire.Goals
         public Metadata Metadata { get; }
 
         /// <summary>
-        /// The <see cref="Intent.Tactics.Tactic" /> used to achieve this <see cref="Goal" />, which is executed during every
+        /// The <see cref="Intent.Tactics.Tactic{TBeliefSet}" /> used to achieve this <see cref="Goal{TBeliefSet}" />, which is executed during every
         /// iteration of the BDI cycle.
         /// </summary>
-        public Tactic Tactic { get; }
+        public ITactic<TBeliefSet> Tactic { get; }
 
         /// <inheritdoc />
         public CompletionStatus Status { get; protected set; }
@@ -68,7 +70,7 @@ namespace Aplib.Core.Desire.Goals
         /// </param>
         public Goal
         (
-            Tactic tactic,
+            ITactic<TBeliefSet> tactic,
             HeuristicFunction heuristicFunction,
             double epsilon = 0.005d,
             Metadata? metadata = null
@@ -92,10 +94,10 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
-        public Goal(Tactic tactic, Func<bool> predicate, double epsilon = 0.005d, Metadata? metadata = null)
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = 0.005d, Metadata? metadata = null)
         {
             Tactic = tactic;
-            _heuristicFunction = CommonHeuristicFunctions.Boolean(predicate);
+            _heuristicFunction = CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate);
             _epsilon = epsilon;
             Metadata = metadata ?? new Metadata();
         }
@@ -104,7 +106,7 @@ namespace Aplib.Core.Desire.Goals
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics(IBeliefSet beliefSet)
+        public virtual Heuristics CurrentHeuristics(TBeliefSet beliefSet)
             => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
@@ -114,7 +116,7 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="_epsilon" />
-        public virtual CompletionStatus GetStatus(IBeliefSet beliefSet)
+        public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)
         {
             Status = CurrentHeuristics(beliefSet).Distance < _epsilon
                 ? CompletionStatus.Success

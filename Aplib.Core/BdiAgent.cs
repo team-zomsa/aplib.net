@@ -51,16 +51,15 @@ namespace Aplib.Core
 
             // Desire
             _desireSet.UpdateStatus(_beliefSet);
-            if (Status != CompletionStatus.Unfinished)
-                return;
-            IGoal goal = _desireSet.GetCurrentGoal(_beliefSet);
+            if (Status != CompletionStatus.Unfinished) return;
+            IGoal<TBeliefSet> goal = _desireSet.GetCurrentGoal(_beliefSet);
 
             // Intent
-            Tactic tactic = goal.Tactic;
-            Action? action = tactic.GetAction();
+            ITactic<TBeliefSet> tactic = goal.Tactic;
+            IAction<TBeliefSet>? action = tactic.GetAction(_beliefSet);
 
             // Execute the action
-            action?.Execute();
+            action?.Execute(_beliefSet);
         }
     }
 }

@@ -7,7 +7,8 @@ namespace Aplib.Core.Desire
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet> where TBeliefSet : IBeliefSet
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>
+        where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
         public CompletionStatus Status { get; protected set; }
@@ -33,7 +34,7 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         /// <returns>The current goal to be fulfilled.</returns>
-        public abstract IGoal GetCurrentGoal(TBeliefSet beliefSet);
+        public abstract IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <summary>
         /// Updates the state of the goal structure.

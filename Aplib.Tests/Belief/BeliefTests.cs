@@ -1,7 +1,8 @@
 ﻿using Aplib.Core.Belief;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace Aplib.Tests.Core.Belief;
+namespace Aplib.Core.Tests.Belief;
 
 /// <summary>
 /// Describes a set of tests for the <see cref="Belief{TReference,TObservation}"/> class.

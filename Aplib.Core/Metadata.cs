@@ -11,7 +11,7 @@ namespace Aplib.Core
         ///     Gets the unique identifier of the component.
         /// </summary>
         public Guid Id { get; }
-        
+
         /// <summary>
         /// Gets the name used to display the component during debugging, logging, or general overviews.
         /// </summary>

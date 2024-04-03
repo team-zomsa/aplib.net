@@ -25,9 +25,9 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="SequentialGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="children">The children of the goal structure.</param>
-        public SequentialGoalStructure(IList<IGoalStructure<TBeliefSet>> children) : base(children)
+        public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : base(children)
         {
-            if (children.Count <= 0)
+            if (children.Length <= 0)
                 throw new ArgumentException("Collection of children is empty", nameof(children));
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
@@ -35,7 +35,7 @@ namespace Aplib.Core.Desire
         }
 
         /// <inheritdoc />
-        public override IGoal GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet)
