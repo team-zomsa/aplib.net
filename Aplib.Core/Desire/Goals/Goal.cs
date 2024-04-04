@@ -52,11 +52,6 @@ namespace Aplib.Core.Desire.Goals
         protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
-        /// The backing field of <see cref="Heuristics" />.
-        /// </summary>
-        private Heuristics? _currentHeuristics;
-
-        /// <summary>
         /// Creates a new goal which works with <see cref="Heuristics" />.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
@@ -106,8 +101,7 @@ namespace Aplib.Core.Desire.Goals
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics(TBeliefSet beliefSet)
-            => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
+        public virtual Heuristics CurrentHeuristics(TBeliefSet beliefSet) => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction" /> and the
