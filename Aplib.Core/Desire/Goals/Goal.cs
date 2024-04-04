@@ -40,7 +40,7 @@ namespace Aplib.Core.Desire.Goals
         public CompletionStatus Status { get; protected set; }
 
         /// <summary>
-        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
+        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
         /// this value.
         /// </summary>
         protected double _epsilon { get; }
@@ -52,17 +52,12 @@ namespace Aplib.Core.Desire.Goals
         protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
-        /// The backing field of <see cref="Heuristics" />.
-        /// </summary>
-        private Heuristics? _currentHeuristics;
-
-        /// <summary>
         /// Creates a new goal which works with <see cref="Heuristics" />.
         /// </summary>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
+        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
         /// this value.
         /// </param>
         /// <param name="metadata">
@@ -88,7 +83,7 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="predicate">The heuristic function (or specifically predicate) which defines whether a goal is reached</param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="CurrentHeuristics" /> is below
+        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
         /// this value.
         /// </param>
         /// <param name="metadata">
@@ -106,19 +101,18 @@ namespace Aplib.Core.Desire.Goals
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics CurrentHeuristics(TBeliefSet beliefSet)
-            => _currentHeuristics ??= _heuristicFunction.Invoke(beliefSet);
+        public virtual Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet) => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction" /> and the
-        /// <see cref="CurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="_epsilon" />,
+        /// <see cref="DetermineCurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="_epsilon" />,
         /// the goal is considered to be completed.
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
         /// <seealso cref="_epsilon" />
         public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)
         {
-            Status = CurrentHeuristics(beliefSet).Distance < _epsilon
+            Status = DetermineCurrentHeuristics(beliefSet).Distance < _epsilon
                 ? CompletionStatus.Success
                 : CompletionStatus.Unfinished;
             return Status;

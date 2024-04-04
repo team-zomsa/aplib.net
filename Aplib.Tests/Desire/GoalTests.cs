@@ -2,7 +2,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
-using Aplib.Tests.Tools;
+using Aplib.Core.Tests.Tools;
 using FluentAssertions;
 using Moq;
 
@@ -110,6 +110,29 @@ public class GoalTests
 
         // Assert
         beliefSetMock.Verify(beliefSetMock => beliefSetMock.UpdateBeliefs(), Times.Never);
+    }
+
+    /// <summary>
+    /// Given a valid goal with heuristics
+    /// when the goal's heuristic function's result will be different in the next frame
+    /// the most recent heuristics are used
+    /// </summary>
+    [Fact]
+    public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
+    {
+        // Arrange
+        IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
+        bool shouldSucceed = false;
+        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
+
+        // Act
+        CompletionStatus stateBefore = goal.GetStatus(beliefSetMock);
+        shouldSucceed = true; // Make heuristic function return a different value on next invoke
+        CompletionStatus stateAfter = goal.GetStatus(beliefSetMock);
+
+        // Assert
+        stateBefore.Should().Be(CompletionStatus.Unfinished);
+        stateAfter.Should().Be(CompletionStatus.Success);
     }
 
     /// <summary>

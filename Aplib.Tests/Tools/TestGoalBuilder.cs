@@ -1,10 +1,9 @@
-using Aplib.Core;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Moq;
 
-namespace Aplib.Tests.Tools;
+namespace Aplib.Core.Tests.Tools;
 
 internal sealed class TestGoalBuilder
 {
