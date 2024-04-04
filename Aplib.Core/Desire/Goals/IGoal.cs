@@ -20,11 +20,11 @@ namespace Aplib.Core.Desire.Goals
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        Heuristics CurrentHeuristics(TBeliefSet beliefSet);
+        Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet);
 
         /// <summary>
         /// Tests whether the goal has been achieved, based on the <see cref="Goal{TBeliefSet}._heuristicFunction" /> and the
-        /// <see cref="Goal{TBeliefSet}.CurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="Goal{TBeliefSet}._epsilon" />
+        /// <see cref="Goal{TBeliefSet}.DetermineCurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="Goal{TBeliefSet}._epsilon" />
         /// , the goal is considered to be completed.
         /// </summary>
         /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
