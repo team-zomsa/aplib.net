@@ -109,7 +109,6 @@ $(function() {
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>CircularArray()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1CircularArray.html#ae1c6bbf70f98d5e9403da8de150b39f8">Aplib.Core.CircularArray&lt; T &gt;</a></li>
-<li>CurrentHeuristics()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#ac2cd09bd7b9e63d253840a2fd966e585">Aplib.Core.Desire.Goals.Goal&lt; TBeliefSet &gt;</a>, <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#ac95141ff67292cdf0dbecdce07930a34">Aplib.Core.Desire.Goals.IGoal&lt; in TBeliefSet &gt;</a></li>
 </ul>
 
 
@@ -119,6 +118,7 @@ $(function() {
 <li>DesireSet_WhenGetCurrentGoalIsCalled_ReturnsCurrentGoal()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1DesireSetTests.html#acd71a89efafeb5c8a501b3f44263bdfb">Aplib.Core.Tests.Desire.DesireSetTests</a></li>
 <li>DesireSet_WhenStatusIsChecked_ShouldBeSameAsMainGoal()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1DesireSetTests.html#a84985620de704b4cfbcd17223faf7b62">Aplib.Core.Tests.Desire.DesireSetTests</a></li>
 <li>DesireSet_WhenStatusUpdated_ShouldUpdateGoalStructuresStatus()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1DesireSetTests.html#a14dddde7de6ce3bafd9e43c363eb295f">Aplib.Core.Tests.Desire.DesireSetTests</a></li>
+<li>DetermineCurrentHeuristics()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#add3d20232dff8597f036482e101e76d0">Aplib.Core.Desire.Goals.Goal&lt; TBeliefSet &gt;</a>, <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#aff0dceb6f01b701ce57cd2c9afbc8536">Aplib.Core.Desire.Goals.IGoal&lt; in TBeliefSet &gt;</a></li>
 <li>Dispose()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1FirstOfGoalStructure.html#a9fc870e0cead2fbf012e9f3ba5824b28">Aplib.Core.Desire.FirstOfGoalStructure&lt; TBeliefSet &gt;</a>, <a class="el" href="classAplib_1_1Core_1_1Desire_1_1SequentialGoalStructure.html#abca7cdd300bad5feac972dbd1c3db3d5">Aplib.Core.Desire.SequentialGoalStructure&lt; TBeliefSet &gt;</a></li>
 <li>Distance&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html#af6166eb5687f746c749a88f898f05411">Aplib.Core.Desire.Goals.Heuristics</a></li>
 </ul>
@@ -161,12 +161,13 @@ $(function() {
 <li>GetMostRecentMemory()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Belief_1_1MemoryBelief.html#adf827d0b790f98003928d6029e0eac75">Aplib.Core.Belief.MemoryBelief&lt; TReference, TObservation &gt;</a></li>
 <li>GetMostRecentMemory_WhenObservationIsUpdated_ShouldReturnLastObservation()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Belief_1_1MemoryBeliefTests.html#ac21961f762d0dd4f59838e251d25be86">Aplib.Core.Tests.Belief.MemoryBeliefTests</a></li>
 <li>GetStatus()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#a89cb4a2ab7a8585bbdc00eb7e8007fc1">Aplib.Core.Desire.Goals.Goal&lt; TBeliefSet &gt;</a>, <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html#ac8ccf485cd3633418e762cc3a3986fd1">Aplib.Core.Desire.Goals.IGoal&lt; in TBeliefSet &gt;</a></li>
-<li>Goal()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#a791707aa4df8ee2e83694871edc5107f">Aplib.Core.Desire.Goals.Goal&lt; TBeliefSet &gt;</a></li>
+<li>Goal()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Goal.html#a42e165d4b39718d2da7405622a4e03af">Aplib.Core.Desire.Goals.Goal&lt; TBeliefSet &gt;</a></li>
 <li>Goal_WhenConstructed_ContainsCorrectMetaData()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab7b1424c4083118aa314224e049f584b">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>Goal_WhenConstructed_DidNotIterateYet()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a5835f2d47515137188968968f91c1227">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>Goal_WhenNotReached_DoesNotReturnAsCompleted()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a28a95724894518a07187992107fca71b">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>Goal_WhenReached_ReturnsAsCompleted()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ad84a6f817ef2c7764e7bace68de91a26">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a1e8556e1c858e977e66aee8c5541f68d">Aplib.Core.Tests.Desire.GoalTests</a></li>
+<li>Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a6d9ca1e8ec3fdc51af45758c383bc295">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab3338ca8474ff0b623e14d216850f891">Aplib.Core.Tests.Desire.GoalTests</a></li>
 <li>GoalStructure()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Desire_1_1GoalStructure.html#acad94891caceb43d452c73cff9c90610">Aplib.Core.Desire.GoalStructure&lt; TBeliefSet &gt;</a></li>
 <li>GuardedAction()&#160;:&#160;<a class="el" href="classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#afa39cb6bc4060b74a24f19fff5109389">Aplib.Core.Intent.Actions.GuardedAction&lt; TBeliefSet, TQuery &gt;</a></li>

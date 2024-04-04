@@ -23,13 +23,14 @@ var searchData=
   ['goal_5fwhennotreached_5fdoesnotreturnascompleted_20',['Goal_WhenNotReached_DoesNotReturnAsCompleted',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a28a95724894518a07187992107fca71b',1,'Aplib::Core::Tests::Desire::GoalTests']]],
   ['goal_5fwhenreached_5freturnsascompleted_21',['Goal_WhenReached_ReturnsAsCompleted',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ad84a6f817ef2c7764e7bace68de91a26',1,'Aplib::Core::Tests::Desire::GoalTests']]],
   ['goal_5fwhereevaluationisperformed_5fdoesnotinfluencebelieveset_22',['Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a1e8556e1c858e977e66aee8c5541f68d',1,'Aplib::Core::Tests::Desire::GoalTests']]],
-  ['goalconstructor_5fwhereheuristicfunctiontypediffers_5fhasequalbehaviour_23',['GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab3338ca8474ff0b623e14d216850f891',1,'Aplib::Core::Tests::Desire::GoalTests']]],
-  ['goalstructure_24',['GoalStructure',['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html',1,'Aplib.Core.Desire.GoalStructure&lt; TBeliefSet &gt;'],['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html#acad94891caceb43d452c73cff9c90610',1,'Aplib.Core.Desire.GoalStructure.GoalStructure()']]],
-  ['goalstructure_2ecs_25',['GoalStructure.cs',['../GoalStructure_8cs.html',1,'']]],
-  ['goalstructuretests_26',['GoalStructureTests',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalStructureTests.html',1,'Aplib::Core::Tests::Desire']]],
-  ['goalstructuretests_2ecs_27',['GoalStructureTests.cs',['../GoalStructureTests_8cs.html',1,'']]],
-  ['goaltests_28',['GoalTests',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html',1,'Aplib::Core::Tests::Desire']]],
-  ['goaltests_2ecs_29',['GoalTests.cs',['../GoalTests_8cs.html',1,'']]],
-  ['guardedaction_30',['GuardedAction',['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html',1,'Aplib.Core.Intent.Actions.GuardedAction&lt; TBeliefSet, TQuery &gt;'],['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#afa39cb6bc4060b74a24f19fff5109389',1,'Aplib.Core.Intent.Actions.GuardedAction.GuardedAction()']]],
-  ['guardedaction_2ecs_31',['GuardedAction.cs',['../GuardedAction_8cs.html',1,'']]]
+  ['goal_5fwhereheuristicschange_5fusesupdatedheuristics_23',['Goal_WhereHeuristicsChange_UsesUpdatedHeuristics',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a6d9ca1e8ec3fdc51af45758c383bc295',1,'Aplib::Core::Tests::Desire::GoalTests']]],
+  ['goalconstructor_5fwhereheuristicfunctiontypediffers_5fhasequalbehaviour_24',['GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab3338ca8474ff0b623e14d216850f891',1,'Aplib::Core::Tests::Desire::GoalTests']]],
+  ['goalstructure_25',['GoalStructure',['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html',1,'Aplib.Core.Desire.GoalStructure&lt; TBeliefSet &gt;'],['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html#acad94891caceb43d452c73cff9c90610',1,'Aplib.Core.Desire.GoalStructure.GoalStructure()']]],
+  ['goalstructure_2ecs_26',['GoalStructure.cs',['../GoalStructure_8cs.html',1,'']]],
+  ['goalstructuretests_27',['GoalStructureTests',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalStructureTests.html',1,'Aplib::Core::Tests::Desire']]],
+  ['goalstructuretests_2ecs_28',['GoalStructureTests.cs',['../GoalStructureTests_8cs.html',1,'']]],
+  ['goaltests_29',['GoalTests',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html',1,'Aplib::Core::Tests::Desire']]],
+  ['goaltests_2ecs_30',['GoalTests.cs',['../GoalTests_8cs.html',1,'']]],
+  ['guardedaction_31',['GuardedAction',['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html',1,'Aplib.Core.Intent.Actions.GuardedAction&lt; TBeliefSet, TQuery &gt;'],['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#afa39cb6bc4060b74a24f19fff5109389',1,'Aplib.Core.Intent.Actions.GuardedAction.GuardedAction()']]],
+  ['guardedaction_2ecs_32',['GuardedAction.cs',['../GuardedAction_8cs.html',1,'']]]
 ];

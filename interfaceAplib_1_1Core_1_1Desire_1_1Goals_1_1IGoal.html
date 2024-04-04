@@ -99,11 +99,11 @@ Inheritance diagram for Aplib.Core.Desire.Goals.IGoal&lt; in TBeliefSet &gt;:</d
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac95141ff67292cdf0dbecdce07930a34" id="r_ac95141ff67292cdf0dbecdce07930a34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac95141ff67292cdf0dbecdce07930a34">CurrentHeuristics</a> (TBeliefSet beliefSet)</td></tr>
-<tr class="memdesc:ac95141ff67292cdf0dbecdce07930a34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Heuristics of the current state of the game.  <br /></td></tr>
-<tr class="separator:ac95141ff67292cdf0dbecdce07930a34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff0dceb6f01b701ce57cd2c9afbc8536" id="r_aff0dceb6f01b701ce57cd2c9afbc8536"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff0dceb6f01b701ce57cd2c9afbc8536">DetermineCurrentHeuristics</a> (TBeliefSet beliefSet)</td></tr>
+<tr class="memdesc:aff0dceb6f01b701ce57cd2c9afbc8536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the Heuristics of the current state of the game.  <br /></td></tr>
+<tr class="separator:aff0dceb6f01b701ce57cd2c9afbc8536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8ccf485cd3633418e762cc3a3986fd1" id="r_ac8ccf485cd3633418e762cc3a3986fd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61">CompletionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8ccf485cd3633418e762cc3a3986fd1">GetStatus</a> (TBeliefSet beliefSet)</td></tr>
-<tr class="memdesc:ac8ccf485cd3633418e762cc3a3986fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether the goal has been achieved, based on the Goal&lt;TBeliefSet&gt;._heuristicFunction and the Goal&lt;TBeliefSet&gt;.CurrentHeuristics. When the distance of the heuristics is smaller than Goal&lt;TBeliefSet&gt;._epsilon , the goal is considered to be completed.  <br /></td></tr>
+<tr class="memdesc:ac8ccf485cd3633418e762cc3a3986fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether the goal has been achieved, based on the Goal&lt;TBeliefSet&gt;._heuristicFunction and the Goal&lt;TBeliefSet&gt;.DetermineCurrentHeuristics. When the distance of the heuristics is smaller than Goal&lt;TBeliefSet&gt;._epsilon , the goal is considered to be completed.  <br /></td></tr>
 <tr class="separator:ac8ccf485cd3633418e762cc3a3986fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
@@ -133,14 +133,14 @@ Properties</h2></td></tr>
 </dl>
 </div>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac95141ff67292cdf0dbecdce07930a34" name="ac95141ff67292cdf0dbecdce07930a34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac95141ff67292cdf0dbecdce07930a34">&#9670;&#160;</a></span>CurrentHeuristics()</h2>
+<a id="aff0dceb6f01b701ce57cd2c9afbc8536" name="aff0dceb6f01b701ce57cd2c9afbc8536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff0dceb6f01b701ce57cd2c9afbc8536">&#9670;&#160;</a></span>DetermineCurrentHeuristics()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a> <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html">Aplib.Core.Desire.Goals.IGoal</a>&lt; in TBeliefSet &gt;.CurrentHeuristics </td>
+          <td class="memname"><a class="el" href="classAplib_1_1Core_1_1Desire_1_1Goals_1_1Heuristics.html">Heuristics</a> <a class="el" href="interfaceAplib_1_1Core_1_1Desire_1_1Goals_1_1IGoal.html">Aplib.Core.Desire.Goals.IGoal</a>&lt; in TBeliefSet &gt;.DetermineCurrentHeuristics </td>
           <td>(</td>
           <td class="paramtype">TBeliefSet</td>          <td class="paramname"><span class="paramname"><em>beliefSet</em></span></td><td>)</td>
           <td></td>
@@ -168,7 +168,7 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Tests whether the goal has been achieved, based on the Goal&lt;TBeliefSet&gt;._heuristicFunction and the Goal&lt;TBeliefSet&gt;.CurrentHeuristics. When the distance of the heuristics is smaller than Goal&lt;TBeliefSet&gt;._epsilon , the goal is considered to be completed. </p>
+<p>Tests whether the goal has been achieved, based on the Goal&lt;TBeliefSet&gt;._heuristicFunction and the Goal&lt;TBeliefSet&gt;.DetermineCurrentHeuristics. When the distance of the heuristics is smaller than Goal&lt;TBeliefSet&gt;._epsilon , the goal is considered to be completed. </p>
 <dl class="section return"><dt>Returns</dt><dd>An enum representing whether the goal is complete and if so, with what result.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd>Goal&lt;TBeliefSet&gt;._epsilon</dd></dl>
 

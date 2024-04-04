@@ -20,7 +20,8 @@ var searchData=
   ['goal_5fwhennotreached_5fdoesnotreturnascompleted_17',['Goal_WhenNotReached_DoesNotReturnAsCompleted',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a28a95724894518a07187992107fca71b',1,'Aplib::Core::Tests::Desire::GoalTests']]],
   ['goal_5fwhenreached_5freturnsascompleted_18',['Goal_WhenReached_ReturnsAsCompleted',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ad84a6f817ef2c7764e7bace68de91a26',1,'Aplib::Core::Tests::Desire::GoalTests']]],
   ['goal_5fwhereevaluationisperformed_5fdoesnotinfluencebelieveset_19',['Goal_WhereEvaluationIsPerformed_DoesNotInfluenceBelieveSet',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a1e8556e1c858e977e66aee8c5541f68d',1,'Aplib::Core::Tests::Desire::GoalTests']]],
-  ['goalconstructor_5fwhereheuristicfunctiontypediffers_5fhasequalbehaviour_20',['GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab3338ca8474ff0b623e14d216850f891',1,'Aplib::Core::Tests::Desire::GoalTests']]],
-  ['goalstructure_21',['GoalStructure',['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html#acad94891caceb43d452c73cff9c90610',1,'Aplib::Core::Desire::GoalStructure']]],
-  ['guardedaction_22',['GuardedAction',['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#afa39cb6bc4060b74a24f19fff5109389',1,'Aplib::Core::Intent::Actions::GuardedAction']]]
+  ['goal_5fwhereheuristicschange_5fusesupdatedheuristics_20',['Goal_WhereHeuristicsChange_UsesUpdatedHeuristics',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#a6d9ca1e8ec3fdc51af45758c383bc295',1,'Aplib::Core::Tests::Desire::GoalTests']]],
+  ['goalconstructor_5fwhereheuristicfunctiontypediffers_5fhasequalbehaviour_21',['GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour',['../classAplib_1_1Core_1_1Tests_1_1Desire_1_1GoalTests.html#ab3338ca8474ff0b623e14d216850f891',1,'Aplib::Core::Tests::Desire::GoalTests']]],
+  ['goalstructure_22',['GoalStructure',['../classAplib_1_1Core_1_1Desire_1_1GoalStructure.html#acad94891caceb43d452c73cff9c90610',1,'Aplib::Core::Desire::GoalStructure']]],
+  ['guardedaction_23',['GuardedAction',['../classAplib_1_1Core_1_1Intent_1_1Actions_1_1GuardedAction.html#afa39cb6bc4060b74a24f19fff5109389',1,'Aplib::Core::Intent::Actions::GuardedAction']]]
 ];
