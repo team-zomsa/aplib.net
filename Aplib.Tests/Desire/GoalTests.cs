@@ -121,13 +121,14 @@ public class GoalTests
     public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
     {
         // Arrange
+        IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
         bool shouldSucceed = false;
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
 
         // Act
-        CompletionStatus stateBefore = goal.GetStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus stateBefore = goal.GetStatus(beliefSetMock);
         shouldSucceed = true; // Make heuristic function return a different value on next invoke
-        CompletionStatus stateAfter = goal.GetStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus stateAfter = goal.GetStatus(beliefSetMock);
 
         // Assert
         stateBefore.Should().Be(CompletionStatus.Unfinished);
