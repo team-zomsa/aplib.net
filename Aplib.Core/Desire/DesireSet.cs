@@ -19,11 +19,11 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="DesireSet{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="mainGoal">The main goal structure that the agent needs to complete.</param>
-        public DesireSet(IGoalStructure<TBeliefSet> mainGoal) 
+        public DesireSet(IGoalStructure<TBeliefSet> mainGoal)
             => _mainGoal = mainGoal;
 
         /// <inheritdoc />
-        public IGoal GetCurrentGoal(TBeliefSet beliefSet)
+        public IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _mainGoal.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />

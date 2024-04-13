@@ -1,27 +1,27 @@
-using Aplib.Core;
+using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Tactics;
 using Moq;
 
-namespace Aplib.Tests.Tools;
+namespace Aplib.Core.Tests.Tools;
 
 internal sealed class TestGoalBuilder
 {
     private string _description = "\"A lie is just a good story that someone ruined with the truth.\" ~ Barney Stinson";
-    private Goal.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions.Constant(0);
+    private Goal<IBeliefSet>.HeuristicFunction _heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Constant(0);
     private string _name = "Such a good goal name";
-    private Tactic _tactic = Mock.Of<Tactic>();
+    private ITactic<IBeliefSet> _tactic = Mock.Of<ITactic<IBeliefSet>>();
 
-    public TestGoalBuilder WithHeuristicFunction(Goal.HeuristicFunction heuristicFunction)
+    public TestGoalBuilder WithHeuristicFunction(Goal<IBeliefSet>.HeuristicFunction heuristicFunction)
     {
         _heuristicFunction = heuristicFunction;
         return this;
     }
 
-    public TestGoalBuilder WithHeuristicFunction(Func<bool> heuristicFunction)
-        => WithHeuristicFunction(CommonHeuristicFunctions.Boolean(heuristicFunction));
+    public TestGoalBuilder WithHeuristicFunction(System.Func<IBeliefSet, bool> heuristicFunction)
+        => WithHeuristicFunction(CommonHeuristicFunctions<IBeliefSet>.Boolean(heuristicFunction));
 
-    public TestGoalBuilder UseTactic(Tactic tactic)
+    public TestGoalBuilder UseTactic(ITactic<IBeliefSet> tactic)
     {
         _tactic = tactic;
         return this;
@@ -35,5 +35,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal Build() => new(_tactic, _heuristicFunction, metadata: new Metadata(_name, _description));
+    public Goal<IBeliefSet> Build() => new(_tactic, _heuristicFunction, metadata: new Metadata(_name, _description));
 }
