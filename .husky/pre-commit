@@ -1,7 +1,27 @@
 #!/bin/sh
+
+# Boilerplate husky
 . "$(dirname "$0")/_/husky.sh"
 
-dotnet format -v diag
+# Find all c# related staged files, before doing anything
+FILES_TO_BE_FORMATTED=$(git diff --staged --name-only | grep -E '\.(cs|csproj|sln)$' || echo '')
 
-# Add any changes made by dotnet format to the commit
-git add .
+if [ -z $FILES_TO_BE_FORMATTED ]; then
+	echo "No .NET files to format, skipping dotnet format..."
+	exit 0
+fi
+
+echo "Files to be formatted:"
+for file in $FILES_TO_BE_FORMATTED; do
+    echo " - $file"
+done
+echo "" # new-line for clarity
+
+# Format c# related staged files only
+echo $FILES_TO_BE_FORMATTED | xargs dotnet format -v diag Aplib.Net.sln --include 
+
+# Add all formatted files again, to add changed files
+echo $FILES_TO_BE_FORMATTED | xargs git add
+
+echo -e "\nDone formatting files!\nCheck the log to find out if files have changed.\n"
+
