@@ -6,7 +6,7 @@
 # Find all c# related staged files, before doing anything
 FILES_TO_BE_FORMATTED=$(git diff --staged --name-only | grep -E '\.(cs|csproj|sln)$' || echo '')
 
-if [ -z $FILES_TO_BE_FORMATTED ]; then
+if [ -z "$FILES_TO_BE_FORMATTED" ]; then
 	echo "No .NET files to format, skipping dotnet format..."
 	exit 0
 fi
