@@ -15,7 +15,7 @@ indent_style = space
 tab_width = 4
 
 # New line preferences
-end_of_line = crlf
+end_of_line = lf
 insert_final_newline = true
 
 #### .NET Coding Conventions ####
@@ -262,3 +262,4 @@ dotnet_naming_style.prefix_underscore.required_prefix = _
 dotnet_naming_rule.private_fields_with_underscore.symbols = private_fields
 dotnet_naming_rule.private_fields_with_underscore.style = prefix_underscore
 dotnet_naming_rule.private_fields_with_underscore.severity = warning
+

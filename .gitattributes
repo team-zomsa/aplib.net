@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+*.cs       text diff=csharp eol=lf
+*.cshtml   text diff=html   eol=lf
+*.csx      text diff=csharp eol=lf
+*.sln      text             eol=lf
+*.csproj   text             eol=lf
