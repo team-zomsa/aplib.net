@@ -1,3 +1,4 @@
+using Aplib.Core.DataStructures;
 using System;
 
 namespace Aplib.Core.Belief

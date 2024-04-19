@@ -1,4 +1,6 @@
-namespace Aplib.Core.Tests.Belief;
+using Aplib.Core.DataStructures;
+
+namespace Aplib.Core.Tests.DataStructures;
 
 public class CircularArrayTests
 {
