@@ -130,3 +130,72 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ steps.previoustag.outputs.tag }}
           append_body: true
+
+  create-nuget-package:
+    name: Create NuGet Package
+    runs-on: ubuntu-latest
+    needs: create-release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Get Latest Tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          fallback: v1.0.0
+      - name: Get version from release tag
+        id: get-version
+        run: echo "::set-output name=tag::$(echo "${{ steps.previoustag.outputs.tag }}" | cut -c 2-)"
+      - name: Create NuGet Package
+        run: dotnet pack -c Release -o ./bin --include-source --include-symbols -p:Version=${{ steps.get-version.outputs.tag }} -p:SymbolPackageFormat=snupkg -p:DebugType=embedded
+      - name: Upload NuGet Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-package
+          path: bin
+
+  upload-nuget-package-to-gh-release:
+    name: Upload NuGet Package to GitHub Release
+    needs: create-nuget-package
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Retrieve NuGet Package from artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget-package
+          path: bin
+      - name: Get Latest Tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          fallback: v1.0.0
+      - name: Zip NuGet Package
+        run: zip -r nuget-package.zip bin/*.nupkg bin/*.snupkg
+      - name: Upload NuGet Package to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: nuget-package.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{ steps.previoustag.outputs.tag }}
+          append_body: true
+
+  upload-to-nuget-org:
+    name: Upload NuGet Package to NuGet.org
+    needs: create-nuget-package
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Retrieve NuGet Package from artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget-package
+          path: bin
+      - name: Upload NuGet Package to NuGet.org
+        run: dotnet nuget push bin/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
