@@ -74,8 +74,7 @@ jobs:
 
   create-release:
     name: Create release
-    needs: 
-      - test-build
+    needs: test-build
     runs-on: ubuntu-latest
     permissions:
       contents: write           # To be able to publish a GitHub Release
@@ -193,10 +192,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Retrieve NuGet Package from artifact
         uses: actions/download-artifact@v4
         with:
