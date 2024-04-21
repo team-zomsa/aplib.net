@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-   test-build:
+  test-build:
     name: Build .NET and Analyse with SonarCloud
     runs-on: windows-latest
     steps:
