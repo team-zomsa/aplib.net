@@ -149,7 +149,7 @@ jobs:
         id: get-version
         run: echo "::set-output name=tag::$(echo "${{ steps.previoustag.outputs.tag }}" | cut -c 2-)"
       - name: Create NuGet Package
-        run: dotnet pack -c Release -o ./bin --include-source --include-symbols -p:Version=${{ steps.get-version.outputs.tag }} -p:SymbolPackageFormat=snupkg -p:DebugType=embedded
+        run: dotnet pack -c Release -o ./bin --include-source --include-symbols -p:Version=${{ steps.get-version.outputs.tag }} -p:SymbolPackageFormat=snupkg
       - name: Upload NuGet Package
         uses: actions/upload-artifact@v4
         with:
