@@ -21,7 +21,7 @@
 Aplib.Net is a C# re-implementation of the Agent Programming LIBrary (Aplib) for Java.
 The Java implementation of Aplib can be found [here](https://github.com/iv4xr-project/aplib) and is licensed to Utrecht University, created under the [iv4XR project](https://iv4xr-project.eu/).
 
-Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide additional support for the [Unity game engine](https://unity.com/), due to its large user base.
+Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide support for the [Unity game engine](https://unity.com/), due to its large user base.
 
 A demo game, showcasing the functionality of the library, can be found in [this repository](https://github.com/team-zomsa/aplib.net-demo).
 
