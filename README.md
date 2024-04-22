@@ -33,6 +33,17 @@ Both are available in the [GitHub Release](https://github.com/team-zomsa/aplib.n
 
 An easier way of installing is also provided using the NuGet Gallery at NuGet.org, which can be found [here](https://www.nuget.org/packages/Aplib.Core/).
 
+### Unity Installation
+Unity installation is a bit tricky, but can be done in two ways. The first, and easier way is to install the [NuGet plugin](https://github.com/GlitchEnzo/NuGetForUnity) and import it via NuGet.
+
+For a manual installation, a few steps must be taken. As Unity does not support external libraries in .NET Standard API, the API Compatibility level must be set to `.NET Framework` in Project Settings > Player > Configuration > Api Compatibility Level.
+
+Download the latest dll from the [GitHub Release](https://github.com/team-zomsa/aplib.net/releases) and place them in Assets/Plugins. In the root of your project, add a new file called `csc.rsp` and add the following line:
+
+```
+-r:Assets/Plugins/Aplib.Core.dll
+```
+
 
 ## Analysis
 We provide analysis metrics using SonarCloud, which can be found [here](https://sonarcloud.io/dashboard?id=team-zomsa_aplib.net).
@@ -49,7 +60,7 @@ A quick start guide can be found in the [GitHub Wiki](https://github.com/team-zo
 
 
 ## Contributing
-The contributing guidelines can be found [here](https://github.com/team-zomsa/aplib.net/blob/main/CONTRIBUTING.md).
+The contribution guidelines can be found [here](https://github.com/team-zomsa/aplib.net/blob/main/CONTRIBUTING.md).
 
 
 ## License
