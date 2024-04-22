@@ -19,15 +19,15 @@
 
 ## Overview
 Aplib.Net is a C# re-implementation of the Agent Programming LIBrary (Aplib) for Java.
-The original Aplib can be found [here](https://github.com/iv4xr-project/aplib) and is licensed to Utrecht University, created under the [iv4XR project](https://iv4xr-project.eu/).
+The Java implementation of Aplib can be found [here](https://github.com/iv4xr-project/aplib) and is licensed to Utrecht University, created under the [iv4XR project](https://iv4xr-project.eu/).
 
-Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. However, we provide additional support for the [Unity game engine](https://unity.com/).
+Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide additional support for the [Unity game engine](https://unity.com/), due to its large user base.
 
-To show the functionality of the library, a demo game has also been created and can be found [its respective repository](https://github.com/team-zomsa/aplib.net-demo).
+A demo game, showcasing the functionality of the library, can be found in [this repository](https://github.com/team-zomsa/aplib.net-demo).
 
 
 ## Installation
-Aplib.Net is available as a NuGet package or as a simple dll file, that can then be added as a reference.
+Aplib.Net is available as a NuGet package or as a simple DLL file, that can then be added as a reference.
 
 Both are available in the [GitHub Release](https://github.com/team-zomsa/aplib.net/releases).
 
@@ -38,7 +38,7 @@ Unity installation is a bit tricky, but can be done in two ways. The first, and 
 
 For a manual installation, a few steps must be taken. As Unity does not support external libraries in .NET Standard API, the API Compatibility level must be set to `.NET Framework` in Project Settings > Player > Configuration > Api Compatibility Level.
 
-Download the latest dll from the [GitHub Release](https://github.com/team-zomsa/aplib.net/releases) and place them in Assets/Plugins. In the root of your project, add a new file called `csc.rsp` and add the following line:
+Download the latest DLL from the [GitHub Release](https://github.com/team-zomsa/aplib.net/releases) and place it in Assets/Plugins. In the root of your project, add a new file called `csc.rsp` and add the following line:
 
 ```
 -r:Assets/Plugins/Aplib.Core.dll
