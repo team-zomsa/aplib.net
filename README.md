@@ -45,7 +45,7 @@ Documentation is automatically generated using Doxygen and can be found [here](h
 
 
 ## Quick Start
-A quick start guide can be found in the [GitHub Wiki](https://github.com/team-zomsa/aplib.net/wiki).
+A quick start guide can be found in the [GitHub Wiki](https://github.com/team-zomsa/aplib.net/wiki/Quick-Start-Guide).
 
 
 ## Contributing
