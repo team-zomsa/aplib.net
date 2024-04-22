@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['net_0',['aplib.net',['../md_README.html',1,'']]]
+  ['net_0',['Aplib.Net',['../md_README.html',1,'']]]
 ];

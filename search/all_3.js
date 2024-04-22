@@ -7,5 +7,6 @@ var searchData=
   ['circulararraytests_2ecs_4',['CircularArrayTests.cs',['../CircularArrayTests_8cs.html',1,'']]],
   ['commonheuristicfunctions_2ecs_5',['CommonHeuristicFunctions.cs',['../CommonHeuristicFunctions_8cs.html',1,'']]],
   ['completionstatus_6',['CompletionStatus',['../namespaceAplib_1_1Core.html#a93271610ad874863c692565d1bc2fb61',1,'Aplib::Core']]],
-  ['completionstatus_2ecs_7',['CompletionStatus.cs',['../CompletionStatus_8cs.html',1,'']]]
+  ['completionstatus_2ecs_7',['CompletionStatus.cs',['../CompletionStatus_8cs.html',1,'']]],
+  ['contributing_8',['Contributing',['../md_README.html#autotoc_md7',1,'']]]
 ];
