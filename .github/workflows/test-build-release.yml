@@ -198,4 +198,4 @@ jobs:
           name: nuget-package
           path: bin
       - name: Upload NuGet Package to NuGet.org
-        run: dotnet nuget push bin/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push bin/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
