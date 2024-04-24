@@ -4,7 +4,7 @@
 ](https://github.com/team-zomsa/aplib.net/releases)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/team-zomsa/aplib.net)](https://github.com/team-zomsa/aplib.net/issues)
 [![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/team-zomsa/aplib.net)](https://github.com/team-zomsa/aplib.net/pulls)
-[![GitHub deployments](https://img.shields.io/github/deployments/team-zomsa/aplib.net/github-pages?label=doxygen)
+[![GitHub deployments](https://img.shields.io/github/deployments/team-zomsa/aplib.net/github-pages?label=docfx)
 ](https://team-zomsa.github.io/aplib.net/)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=team-zomsa_aplib.net&metric=alert_status)](https://sonarcloud.io/project/overview?id=team-zomsa_aplib.net)
@@ -52,7 +52,7 @@ It provides information on metrics such as the code coverage, code smells and te
 
 
 ## Documentation
-Documentation is automatically generated using Doxygen and can be found [here](https://team-zomsa.github.io/aplib.net/).
+Documentation is automatically generated using Docfx and can be found [here](https://team-zomsa.github.io/aplib.net/).
 
 
 ## Quick Start
