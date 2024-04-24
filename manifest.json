@@ -12,7 +12,7 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "CONTRIBUTING.MD",
+      "source_relative_path": "CONTRIBUTING.md",
       "output": {
         ".html": {
           "relative_path": "CONTRIBUTING.html"
