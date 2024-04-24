@@ -35,40 +35,9 @@ jobs:
           dotnet-version: 8.x
       - run: dotnet tool update -g docfx
       - run: docfx docfx.json
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     path: _site
-      # - name: Deploy to GitHub Pages
-      #   uses: actions/deploy-pages@v4
-
       - name: Upload Docfx Documentation to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: _site
-
-      # - name: Install Doxygen
-      #   run: |
-      #     sudo apt-get install -y graphviz
-      #     mkdir doxygen-install
-      #     cd doxygen-install
-      #     wget https://www.doxygen.nl/files/doxygen-1.10.0.linux.bin.tar.gz
-      #     tar -xvf doxygen-1.10.0.linux.bin.tar.gz
-      #     sudo mv doxygen-1.10.0/bin/doxygen /usr/bin/doxygen
-      #     cd ..
-      #     sudo rm -rf doxygen-install
-      #   shell: bash
-      # - name: Generate Doxygen Documentation
-      #   run: /usr/bin/doxygen Doxygen/Doxyfile
-      #   shell: bash
-      # - name: Create .nojekyll (ensures pages with underscores work on gh pages)
-      #   run: touch Doxygen/.nojekyll
-      #   shell: bash
-      # - name: Upload Doxygen Documentation to Github Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_branch: gh-pages
-      #     publish_dir: Doxygen/Generated/html
