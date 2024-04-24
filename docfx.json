@@ -40,7 +40,7 @@
       "_appTitle": "Aplib.Net",
       "_enableSearch": true,
       "pdf": true,
-      "disableContribution": true
+      "_disableContribution": true
     }
   }
 }
