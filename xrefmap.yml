@@ -1,0 +1,2166 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Aplib.Core
+  name: Aplib.Core
+  href: api/Aplib.Core.html
+  commentId: N:Aplib.Core
+  fullName: Aplib.Core
+  nameWithType: Aplib.Core
+- uid: Aplib.Core.BdiAgent`1
+  name: BdiAgent<TBeliefSet>
+  href: api/Aplib.Core.BdiAgent-1.html
+  commentId: T:Aplib.Core.BdiAgent`1
+  name.vb: BdiAgent(Of TBeliefSet)
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet)
+  nameWithType: BdiAgent<TBeliefSet>
+  nameWithType.vb: BdiAgent(Of TBeliefSet)
+- uid: Aplib.Core.BdiAgent`1.#ctor(`0,Aplib.Core.Desire.IDesireSet{`0})
+  name: BdiAgent(TBeliefSet, IDesireSet<TBeliefSet>)
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1__ctor__0_Aplib_Core_Desire_IDesireSet__0__
+  commentId: M:Aplib.Core.BdiAgent`1.#ctor(`0,Aplib.Core.Desire.IDesireSet{`0})
+  name.vb: New(TBeliefSet, IDesireSet(Of TBeliefSet))
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.BdiAgent(TBeliefSet, Aplib.Core.Desire.IDesireSet<TBeliefSet>)
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).New(TBeliefSet, Aplib.Core.Desire.IDesireSet(Of TBeliefSet))
+  nameWithType: BdiAgent<TBeliefSet>.BdiAgent(TBeliefSet, IDesireSet<TBeliefSet>)
+  nameWithType.vb: BdiAgent(Of TBeliefSet).New(TBeliefSet, IDesireSet(Of TBeliefSet))
+- uid: Aplib.Core.BdiAgent`1.#ctor*
+  name: BdiAgent
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1__ctor_
+  commentId: Overload:Aplib.Core.BdiAgent`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.BdiAgent
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).New
+  nameWithType: BdiAgent<TBeliefSet>.BdiAgent
+  nameWithType.vb: BdiAgent(Of TBeliefSet).New
+- uid: Aplib.Core.BdiAgent`1.Status
+  name: Status
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1_Status
+  commentId: P:Aplib.Core.BdiAgent`1.Status
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).Status
+  nameWithType: BdiAgent<TBeliefSet>.Status
+  nameWithType.vb: BdiAgent(Of TBeliefSet).Status
+- uid: Aplib.Core.BdiAgent`1.Status*
+  name: Status
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1_Status_
+  commentId: Overload:Aplib.Core.BdiAgent`1.Status
+  isSpec: "True"
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).Status
+  nameWithType: BdiAgent<TBeliefSet>.Status
+  nameWithType.vb: BdiAgent(Of TBeliefSet).Status
+- uid: Aplib.Core.BdiAgent`1.Update
+  name: Update()
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1_Update
+  commentId: M:Aplib.Core.BdiAgent`1.Update
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.Update()
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).Update()
+  nameWithType: BdiAgent<TBeliefSet>.Update()
+  nameWithType.vb: BdiAgent(Of TBeliefSet).Update()
+- uid: Aplib.Core.BdiAgent`1.Update*
+  name: Update
+  href: api/Aplib.Core.BdiAgent-1.html#Aplib_Core_BdiAgent_1_Update_
+  commentId: Overload:Aplib.Core.BdiAgent`1.Update
+  isSpec: "True"
+  fullName: Aplib.Core.BdiAgent<TBeliefSet>.Update
+  fullName.vb: Aplib.Core.BdiAgent(Of TBeliefSet).Update
+  nameWithType: BdiAgent<TBeliefSet>.Update
+  nameWithType.vb: BdiAgent(Of TBeliefSet).Update
+- uid: Aplib.Core.Belief
+  name: Aplib.Core.Belief
+  href: api/Aplib.Core.Belief.html
+  commentId: N:Aplib.Core.Belief
+  fullName: Aplib.Core.Belief
+  nameWithType: Aplib.Core.Belief
+- uid: Aplib.Core.Belief.BeliefSet
+  name: BeliefSet
+  href: api/Aplib.Core.Belief.BeliefSet.html
+  commentId: T:Aplib.Core.Belief.BeliefSet
+  fullName: Aplib.Core.Belief.BeliefSet
+  nameWithType: BeliefSet
+- uid: Aplib.Core.Belief.BeliefSet.#ctor
+  name: BeliefSet()
+  href: api/Aplib.Core.Belief.BeliefSet.html#Aplib_Core_Belief_BeliefSet__ctor
+  commentId: M:Aplib.Core.Belief.BeliefSet.#ctor
+  name.vb: New()
+  fullName: Aplib.Core.Belief.BeliefSet.BeliefSet()
+  fullName.vb: Aplib.Core.Belief.BeliefSet.New()
+  nameWithType: BeliefSet.BeliefSet()
+  nameWithType.vb: BeliefSet.New()
+- uid: Aplib.Core.Belief.BeliefSet.#ctor*
+  name: BeliefSet
+  href: api/Aplib.Core.Belief.BeliefSet.html#Aplib_Core_Belief_BeliefSet__ctor_
+  commentId: Overload:Aplib.Core.Belief.BeliefSet.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Belief.BeliefSet.BeliefSet
+  fullName.vb: Aplib.Core.Belief.BeliefSet.New
+  nameWithType: BeliefSet.BeliefSet
+  nameWithType.vb: BeliefSet.New
+- uid: Aplib.Core.Belief.BeliefSet.UpdateBeliefs
+  name: UpdateBeliefs()
+  href: api/Aplib.Core.Belief.BeliefSet.html#Aplib_Core_Belief_BeliefSet_UpdateBeliefs
+  commentId: M:Aplib.Core.Belief.BeliefSet.UpdateBeliefs
+  fullName: Aplib.Core.Belief.BeliefSet.UpdateBeliefs()
+  nameWithType: BeliefSet.UpdateBeliefs()
+- uid: Aplib.Core.Belief.BeliefSet.UpdateBeliefs*
+  name: UpdateBeliefs
+  href: api/Aplib.Core.Belief.BeliefSet.html#Aplib_Core_Belief_BeliefSet_UpdateBeliefs_
+  commentId: Overload:Aplib.Core.Belief.BeliefSet.UpdateBeliefs
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.BeliefSet.UpdateBeliefs
+  nameWithType: BeliefSet.UpdateBeliefs
+- uid: Aplib.Core.Belief.Belief`2
+  name: Belief<TReference, TObservation>
+  href: api/Aplib.Core.Belief.Belief-2.html
+  commentId: T:Aplib.Core.Belief.Belief`2
+  name.vb: Belief(Of TReference, TObservation)
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation)
+  nameWithType: Belief<TReference, TObservation>
+  nameWithType.vb: Belief(Of TReference, TObservation)
+- uid: Aplib.Core.Belief.Belief`2.#ctor(`0,System.Func{`0,`1})
+  name: Belief(TReference, Func<TReference, TObservation>)
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2__ctor__0_System_Func__0__1__
+  commentId: M:Aplib.Core.Belief.Belief`2.#ctor(`0,System.Func{`0,`1})
+  name.vb: New(TReference, Func(Of TReference, TObservation))
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.Belief(TReference, System.Func<TReference, TObservation>)
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).New(TReference, System.Func(Of TReference, TObservation))
+  nameWithType: Belief<TReference, TObservation>.Belief(TReference, Func<TReference, TObservation>)
+  nameWithType.vb: Belief(Of TReference, TObservation).New(TReference, Func(Of TReference, TObservation))
+- uid: Aplib.Core.Belief.Belief`2.#ctor(`0,System.Func{`0,`1},System.Func{System.Boolean})
+  name: Belief(TReference, Func<TReference, TObservation>, Func<bool>)
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2__ctor__0_System_Func__0__1__System_Func_System_Boolean__
+  commentId: M:Aplib.Core.Belief.Belief`2.#ctor(`0,System.Func{`0,`1},System.Func{System.Boolean})
+  name.vb: New(TReference, Func(Of TReference, TObservation), Func(Of Boolean))
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.Belief(TReference, System.Func<TReference, TObservation>, System.Func<bool>)
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).New(TReference, System.Func(Of TReference, TObservation), System.Func(Of Boolean))
+  nameWithType: Belief<TReference, TObservation>.Belief(TReference, Func<TReference, TObservation>, Func<bool>)
+  nameWithType.vb: Belief(Of TReference, TObservation).New(TReference, Func(Of TReference, TObservation), Func(Of Boolean))
+- uid: Aplib.Core.Belief.Belief`2.#ctor*
+  name: Belief
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2__ctor_
+  commentId: Overload:Aplib.Core.Belief.Belief`2.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.Belief
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).New
+  nameWithType: Belief<TReference, TObservation>.Belief
+  nameWithType.vb: Belief(Of TReference, TObservation).New
+- uid: Aplib.Core.Belief.Belief`2.UpdateBelief
+  name: UpdateBelief()
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2_UpdateBelief
+  commentId: M:Aplib.Core.Belief.Belief`2.UpdateBelief
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.UpdateBelief()
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).UpdateBelief()
+  nameWithType: Belief<TReference, TObservation>.UpdateBelief()
+  nameWithType.vb: Belief(Of TReference, TObservation).UpdateBelief()
+- uid: Aplib.Core.Belief.Belief`2.UpdateBelief*
+  name: UpdateBelief
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2_UpdateBelief_
+  commentId: Overload:Aplib.Core.Belief.Belief`2.UpdateBelief
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.UpdateBelief
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).UpdateBelief
+  nameWithType: Belief<TReference, TObservation>.UpdateBelief
+  nameWithType.vb: Belief(Of TReference, TObservation).UpdateBelief
+- uid: Aplib.Core.Belief.Belief`2.op_Implicit(Aplib.Core.Belief.Belief{`0,`1})~`1
+  name: implicit operator TObservation(Belief<TReference, TObservation>)
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2_op_Implicit_Aplib_Core_Belief_Belief__0__1____1
+  commentId: M:Aplib.Core.Belief.Belief`2.op_Implicit(Aplib.Core.Belief.Belief{`0,`1})~`1
+  name.vb: CType(Belief(Of TReference, TObservation))
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.implicit operator TObservation(Aplib.Core.Belief.Belief<TReference, TObservation>)
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).CType(Aplib.Core.Belief.Belief(Of TReference, TObservation))
+  nameWithType: Belief<TReference, TObservation>.implicit operator TObservation(Belief<TReference, TObservation>)
+  nameWithType.vb: Belief(Of TReference, TObservation).CType(Belief(Of TReference, TObservation))
+- uid: Aplib.Core.Belief.Belief`2.op_Implicit*
+  name: implicit operator
+  href: api/Aplib.Core.Belief.Belief-2.html#Aplib_Core_Belief_Belief_2_op_Implicit_
+  commentId: Overload:Aplib.Core.Belief.Belief`2.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: Aplib.Core.Belief.Belief<TReference, TObservation>.implicit operator
+  fullName.vb: Aplib.Core.Belief.Belief(Of TReference, TObservation).CType
+  nameWithType: Belief<TReference, TObservation>.implicit operator
+  nameWithType.vb: Belief(Of TReference, TObservation).CType
+- uid: Aplib.Core.Belief.IBelief
+  name: IBelief
+  href: api/Aplib.Core.Belief.IBelief.html
+  commentId: T:Aplib.Core.Belief.IBelief
+  fullName: Aplib.Core.Belief.IBelief
+  nameWithType: IBelief
+- uid: Aplib.Core.Belief.IBelief.UpdateBelief
+  name: UpdateBelief()
+  href: api/Aplib.Core.Belief.IBelief.html#Aplib_Core_Belief_IBelief_UpdateBelief
+  commentId: M:Aplib.Core.Belief.IBelief.UpdateBelief
+  fullName: Aplib.Core.Belief.IBelief.UpdateBelief()
+  nameWithType: IBelief.UpdateBelief()
+- uid: Aplib.Core.Belief.IBelief.UpdateBelief*
+  name: UpdateBelief
+  href: api/Aplib.Core.Belief.IBelief.html#Aplib_Core_Belief_IBelief_UpdateBelief_
+  commentId: Overload:Aplib.Core.Belief.IBelief.UpdateBelief
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.IBelief.UpdateBelief
+  nameWithType: IBelief.UpdateBelief
+- uid: Aplib.Core.Belief.IBeliefSet
+  name: IBeliefSet
+  href: api/Aplib.Core.Belief.IBeliefSet.html
+  commentId: T:Aplib.Core.Belief.IBeliefSet
+  fullName: Aplib.Core.Belief.IBeliefSet
+  nameWithType: IBeliefSet
+- uid: Aplib.Core.Belief.IBeliefSet.UpdateBeliefs
+  name: UpdateBeliefs()
+  href: api/Aplib.Core.Belief.IBeliefSet.html#Aplib_Core_Belief_IBeliefSet_UpdateBeliefs
+  commentId: M:Aplib.Core.Belief.IBeliefSet.UpdateBeliefs
+  fullName: Aplib.Core.Belief.IBeliefSet.UpdateBeliefs()
+  nameWithType: IBeliefSet.UpdateBeliefs()
+- uid: Aplib.Core.Belief.IBeliefSet.UpdateBeliefs*
+  name: UpdateBeliefs
+  href: api/Aplib.Core.Belief.IBeliefSet.html#Aplib_Core_Belief_IBeliefSet_UpdateBeliefs_
+  commentId: Overload:Aplib.Core.Belief.IBeliefSet.UpdateBeliefs
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.IBeliefSet.UpdateBeliefs
+  nameWithType: IBeliefSet.UpdateBeliefs
+- uid: Aplib.Core.Belief.MemoryBelief`2
+  name: MemoryBelief<TReference, TObservation>
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html
+  commentId: T:Aplib.Core.Belief.MemoryBelief`2
+  name.vb: MemoryBelief(Of TReference, TObservation)
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation)
+  nameWithType: MemoryBelief<TReference, TObservation>
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation)
+- uid: Aplib.Core.Belief.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32)
+  name: MemoryBelief(TReference, Func<TReference, TObservation>, int)
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32)
+  name.vb: New(TReference, Func(Of TReference, TObservation), Integer)
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.MemoryBelief(TReference, System.Func<TReference, TObservation>, int)
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).New(TReference, System.Func(Of TReference, TObservation), Integer)
+  nameWithType: MemoryBelief<TReference, TObservation>.MemoryBelief(TReference, Func<TReference, TObservation>, int)
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).New(TReference, Func(Of TReference, TObservation), Integer)
+- uid: Aplib.Core.Belief.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,System.Func{System.Boolean})
+  name: MemoryBelief(TReference, Func<TReference, TObservation>, int, Func<bool>)
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_System_Func_System_Boolean__
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,System.Func{System.Boolean})
+  name.vb: New(TReference, Func(Of TReference, TObservation), Integer, Func(Of Boolean))
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.MemoryBelief(TReference, System.Func<TReference, TObservation>, int, System.Func<bool>)
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).New(TReference, System.Func(Of TReference, TObservation), Integer, System.Func(Of Boolean))
+  nameWithType: MemoryBelief<TReference, TObservation>.MemoryBelief(TReference, Func<TReference, TObservation>, int, Func<bool>)
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).New(TReference, Func(Of TReference, TObservation), Integer, Func(Of Boolean))
+- uid: Aplib.Core.Belief.MemoryBelief`2.#ctor*
+  name: MemoryBelief
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2__ctor_
+  commentId: Overload:Aplib.Core.Belief.MemoryBelief`2.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.MemoryBelief
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).New
+  nameWithType: MemoryBelief<TReference, TObservation>.MemoryBelief
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).New
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetAllMemories
+  name: GetAllMemories()
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetAllMemories
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.GetAllMemories
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetAllMemories()
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetAllMemories()
+  nameWithType: MemoryBelief<TReference, TObservation>.GetAllMemories()
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetAllMemories()
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetAllMemories*
+  name: GetAllMemories
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetAllMemories_
+  commentId: Overload:Aplib.Core.Belief.MemoryBelief`2.GetAllMemories
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetAllMemories
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetAllMemories
+  nameWithType: MemoryBelief<TReference, TObservation>.GetAllMemories
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetAllMemories
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetMemoryAt(System.Int32,System.Boolean)
+  name: GetMemoryAt(int, bool)
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetMemoryAt_System_Int32_System_Boolean_
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.GetMemoryAt(System.Int32,System.Boolean)
+  name.vb: GetMemoryAt(Integer, Boolean)
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetMemoryAt(int, bool)
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetMemoryAt(Integer, Boolean)
+  nameWithType: MemoryBelief<TReference, TObservation>.GetMemoryAt(int, bool)
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetMemoryAt(Integer, Boolean)
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetMemoryAt*
+  name: GetMemoryAt
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetMemoryAt_
+  commentId: Overload:Aplib.Core.Belief.MemoryBelief`2.GetMemoryAt
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetMemoryAt
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetMemoryAt
+  nameWithType: MemoryBelief<TReference, TObservation>.GetMemoryAt
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetMemoryAt
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetMostRecentMemory
+  name: GetMostRecentMemory()
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetMostRecentMemory
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.GetMostRecentMemory
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetMostRecentMemory()
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetMostRecentMemory()
+  nameWithType: MemoryBelief<TReference, TObservation>.GetMostRecentMemory()
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetMostRecentMemory()
+- uid: Aplib.Core.Belief.MemoryBelief`2.GetMostRecentMemory*
+  name: GetMostRecentMemory
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_GetMostRecentMemory_
+  commentId: Overload:Aplib.Core.Belief.MemoryBelief`2.GetMostRecentMemory
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.GetMostRecentMemory
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).GetMostRecentMemory
+  nameWithType: MemoryBelief<TReference, TObservation>.GetMostRecentMemory
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).GetMostRecentMemory
+- uid: Aplib.Core.Belief.MemoryBelief`2.UpdateBelief
+  name: UpdateBelief()
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_UpdateBelief
+  commentId: M:Aplib.Core.Belief.MemoryBelief`2.UpdateBelief
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.UpdateBelief()
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).UpdateBelief()
+  nameWithType: MemoryBelief<TReference, TObservation>.UpdateBelief()
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).UpdateBelief()
+- uid: Aplib.Core.Belief.MemoryBelief`2.UpdateBelief*
+  name: UpdateBelief
+  href: api/Aplib.Core.Belief.MemoryBelief-2.html#Aplib_Core_Belief_MemoryBelief_2_UpdateBelief_
+  commentId: Overload:Aplib.Core.Belief.MemoryBelief`2.UpdateBelief
+  isSpec: "True"
+  fullName: Aplib.Core.Belief.MemoryBelief<TReference, TObservation>.UpdateBelief
+  fullName.vb: Aplib.Core.Belief.MemoryBelief(Of TReference, TObservation).UpdateBelief
+  nameWithType: MemoryBelief<TReference, TObservation>.UpdateBelief
+  nameWithType.vb: MemoryBelief(Of TReference, TObservation).UpdateBelief
+- uid: Aplib.Core.CircularArray`1
+  name: CircularArray<T>
+  href: api/Aplib.Core.CircularArray-1.html
+  commentId: T:Aplib.Core.CircularArray`1
+  name.vb: CircularArray(Of T)
+  fullName: Aplib.Core.CircularArray<T>
+  fullName.vb: Aplib.Core.CircularArray(Of T)
+  nameWithType: CircularArray<T>
+  nameWithType.vb: CircularArray(Of T)
+- uid: Aplib.Core.CircularArray`1.#ctor(System.Int32)
+  name: CircularArray(int)
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1__ctor_System_Int32_
+  commentId: M:Aplib.Core.CircularArray`1.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: Aplib.Core.CircularArray<T>.CircularArray(int)
+  fullName.vb: Aplib.Core.CircularArray(Of T).New(Integer)
+  nameWithType: CircularArray<T>.CircularArray(int)
+  nameWithType.vb: CircularArray(Of T).New(Integer)
+- uid: Aplib.Core.CircularArray`1.#ctor(`0[])
+  name: CircularArray(T[])
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1__ctor__0___
+  commentId: M:Aplib.Core.CircularArray`1.#ctor(`0[])
+  name.vb: New(T())
+  fullName: Aplib.Core.CircularArray<T>.CircularArray(T[])
+  fullName.vb: Aplib.Core.CircularArray(Of T).New(T())
+  nameWithType: CircularArray<T>.CircularArray(T[])
+  nameWithType.vb: CircularArray(Of T).New(T())
+- uid: Aplib.Core.CircularArray`1.#ctor*
+  name: CircularArray
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1__ctor_
+  commentId: Overload:Aplib.Core.CircularArray`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.CircularArray<T>.CircularArray
+  fullName.vb: Aplib.Core.CircularArray(Of T).New
+  nameWithType: CircularArray<T>.CircularArray
+  nameWithType.vb: CircularArray(Of T).New
+- uid: Aplib.Core.CircularArray`1.GetFirst
+  name: GetFirst()
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_GetFirst
+  commentId: M:Aplib.Core.CircularArray`1.GetFirst
+  fullName: Aplib.Core.CircularArray<T>.GetFirst()
+  fullName.vb: Aplib.Core.CircularArray(Of T).GetFirst()
+  nameWithType: CircularArray<T>.GetFirst()
+  nameWithType.vb: CircularArray(Of T).GetFirst()
+- uid: Aplib.Core.CircularArray`1.GetFirst*
+  name: GetFirst
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_GetFirst_
+  commentId: Overload:Aplib.Core.CircularArray`1.GetFirst
+  isSpec: "True"
+  fullName: Aplib.Core.CircularArray<T>.GetFirst
+  fullName.vb: Aplib.Core.CircularArray(Of T).GetFirst
+  nameWithType: CircularArray<T>.GetFirst
+  nameWithType.vb: CircularArray(Of T).GetFirst
+- uid: Aplib.Core.CircularArray`1.GetHead
+  name: GetHead()
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_GetHead
+  commentId: M:Aplib.Core.CircularArray`1.GetHead
+  fullName: Aplib.Core.CircularArray<T>.GetHead()
+  fullName.vb: Aplib.Core.CircularArray(Of T).GetHead()
+  nameWithType: CircularArray<T>.GetHead()
+  nameWithType.vb: CircularArray(Of T).GetHead()
+- uid: Aplib.Core.CircularArray`1.GetHead*
+  name: GetHead
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_GetHead_
+  commentId: Overload:Aplib.Core.CircularArray`1.GetHead
+  isSpec: "True"
+  fullName: Aplib.Core.CircularArray<T>.GetHead
+  fullName.vb: Aplib.Core.CircularArray(Of T).GetHead
+  nameWithType: CircularArray<T>.GetHead
+  nameWithType.vb: CircularArray(Of T).GetHead
+- uid: Aplib.Core.CircularArray`1.Item(System.Int32)
+  name: this[int]
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Item_System_Int32_
+  commentId: P:Aplib.Core.CircularArray`1.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: Aplib.Core.CircularArray<T>.this[int]
+  fullName.vb: Aplib.Core.CircularArray(Of T).this[](Integer)
+  nameWithType: CircularArray<T>.this[int]
+  nameWithType.vb: CircularArray(Of T).this[](Integer)
+- uid: Aplib.Core.CircularArray`1.Item*
+  name: this
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Item_
+  commentId: Overload:Aplib.Core.CircularArray`1.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: Aplib.Core.CircularArray<T>.this
+  fullName.vb: Aplib.Core.CircularArray(Of T).this[]
+  nameWithType: CircularArray<T>.this
+  nameWithType.vb: CircularArray(Of T).this[]
+- uid: Aplib.Core.CircularArray`1.Length
+  name: Length
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Length
+  commentId: P:Aplib.Core.CircularArray`1.Length
+  fullName: Aplib.Core.CircularArray<T>.Length
+  fullName.vb: Aplib.Core.CircularArray(Of T).Length
+  nameWithType: CircularArray<T>.Length
+  nameWithType.vb: CircularArray(Of T).Length
+- uid: Aplib.Core.CircularArray`1.Length*
+  name: Length
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Length_
+  commentId: Overload:Aplib.Core.CircularArray`1.Length
+  isSpec: "True"
+  fullName: Aplib.Core.CircularArray<T>.Length
+  fullName.vb: Aplib.Core.CircularArray(Of T).Length
+  nameWithType: CircularArray<T>.Length
+  nameWithType.vb: CircularArray(Of T).Length
+- uid: Aplib.Core.CircularArray`1.Put(`0)
+  name: Put(T)
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Put__0_
+  commentId: M:Aplib.Core.CircularArray`1.Put(`0)
+  fullName: Aplib.Core.CircularArray<T>.Put(T)
+  fullName.vb: Aplib.Core.CircularArray(Of T).Put(T)
+  nameWithType: CircularArray<T>.Put(T)
+  nameWithType.vb: CircularArray(Of T).Put(T)
+- uid: Aplib.Core.CircularArray`1.Put*
+  name: Put
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_Put_
+  commentId: Overload:Aplib.Core.CircularArray`1.Put
+  isSpec: "True"
+  fullName: Aplib.Core.CircularArray<T>.Put
+  fullName.vb: Aplib.Core.CircularArray(Of T).Put
+  nameWithType: CircularArray<T>.Put
+  nameWithType.vb: CircularArray(Of T).Put
+- uid: Aplib.Core.CircularArray`1.ToArray(System.Int32,System.Int32)
+  name: ToArray(int, int)
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_ToArray_System_Int32_System_Int32_
+  commentId: M:Aplib.Core.CircularArray`1.ToArray(System.Int32,System.Int32)
+  name.vb: ToArray(Integer, Integer)
+  fullName: Aplib.Core.CircularArray<T>.ToArray(int, int)
+  fullName.vb: Aplib.Core.CircularArray(Of T).ToArray(Integer, Integer)
+  nameWithType: CircularArray<T>.ToArray(int, int)
+  nameWithType.vb: CircularArray(Of T).ToArray(Integer, Integer)
+- uid: Aplib.Core.CircularArray`1.ToArray*
+  name: ToArray
+  href: api/Aplib.Core.CircularArray-1.html#Aplib_Core_CircularArray_1_ToArray_
+  commentId: Overload:Aplib.Core.CircularArray`1.ToArray
+  isSpec: "True"
+  fullName: Aplib.Core.CircularArray<T>.ToArray
+  fullName.vb: Aplib.Core.CircularArray(Of T).ToArray
+  nameWithType: CircularArray<T>.ToArray
+  nameWithType.vb: CircularArray(Of T).ToArray
+- uid: Aplib.Core.CompletionStatus
+  name: CompletionStatus
+  href: api/Aplib.Core.CompletionStatus.html
+  commentId: T:Aplib.Core.CompletionStatus
+  fullName: Aplib.Core.CompletionStatus
+  nameWithType: CompletionStatus
+- uid: Aplib.Core.CompletionStatus.Failure
+  name: Failure
+  href: api/Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Failure
+  commentId: F:Aplib.Core.CompletionStatus.Failure
+  fullName: Aplib.Core.CompletionStatus.Failure
+  nameWithType: CompletionStatus.Failure
+- uid: Aplib.Core.CompletionStatus.Success
+  name: Success
+  href: api/Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Success
+  commentId: F:Aplib.Core.CompletionStatus.Success
+  fullName: Aplib.Core.CompletionStatus.Success
+  nameWithType: CompletionStatus.Success
+- uid: Aplib.Core.CompletionStatus.Unfinished
+  name: Unfinished
+  href: api/Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Unfinished
+  commentId: F:Aplib.Core.CompletionStatus.Unfinished
+  fullName: Aplib.Core.CompletionStatus.Unfinished
+  nameWithType: CompletionStatus.Unfinished
+- uid: Aplib.Core.Desire
+  name: Aplib.Core.Desire
+  href: api/Aplib.Core.Desire.html
+  commentId: N:Aplib.Core.Desire
+  fullName: Aplib.Core.Desire
+  nameWithType: Aplib.Core.Desire
+- uid: Aplib.Core.Desire.DesireSet`1
+  name: DesireSet<TBeliefSet>
+  href: api/Aplib.Core.Desire.DesireSet-1.html
+  commentId: T:Aplib.Core.Desire.DesireSet`1
+  name.vb: DesireSet(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet)
+  nameWithType: DesireSet<TBeliefSet>
+  nameWithType.vb: DesireSet(Of TBeliefSet)
+- uid: Aplib.Core.Desire.DesireSet`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0})
+  name: DesireSet(IGoalStructure<TBeliefSet>)
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1__ctor_Aplib_Core_Desire_IGoalStructure__0__
+  commentId: M:Aplib.Core.Desire.DesireSet`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0})
+  name.vb: New(IGoalStructure(Of TBeliefSet))
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.DesireSet(Aplib.Core.Desire.IGoalStructure<TBeliefSet>)
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).New(Aplib.Core.Desire.IGoalStructure(Of TBeliefSet))
+  nameWithType: DesireSet<TBeliefSet>.DesireSet(IGoalStructure<TBeliefSet>)
+  nameWithType.vb: DesireSet(Of TBeliefSet).New(IGoalStructure(Of TBeliefSet))
+- uid: Aplib.Core.Desire.DesireSet`1.#ctor*
+  name: DesireSet
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.DesireSet`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.DesireSet
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).New
+  nameWithType: DesireSet<TBeliefSet>.DesireSet
+  nameWithType.vb: DesireSet(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.DesireSet`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.DesireSet`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: DesireSet<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: DesireSet(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.DesireSet`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.DesireSet`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).GetCurrentGoal
+  nameWithType: DesireSet<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: DesireSet(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.DesireSet`1.Status
+  name: Status
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_Status
+  commentId: P:Aplib.Core.Desire.DesireSet`1.Status
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).Status
+  nameWithType: DesireSet<TBeliefSet>.Status
+  nameWithType.vb: DesireSet(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.DesireSet`1.Status*
+  name: Status
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_Status_
+  commentId: Overload:Aplib.Core.Desire.DesireSet`1.Status
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).Status
+  nameWithType: DesireSet<TBeliefSet>.Status
+  nameWithType.vb: DesireSet(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.DesireSet`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.DesireSet`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: DesireSet<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: DesireSet(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.DesireSet`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.DesireSet-1.html#Aplib_Core_Desire_DesireSet_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.DesireSet`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.DesireSet<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.DesireSet(Of TBeliefSet).UpdateStatus
+  nameWithType: DesireSet<TBeliefSet>.UpdateStatus
+  nameWithType.vb: DesireSet(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1
+  name: FirstOfGoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.FirstOfGoalStructure`1
+  name.vb: FirstOfGoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet)
+  nameWithType: FirstOfGoalStructure<TBeliefSet>
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0}[])
+  name: FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[])
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1__ctor_Aplib_Core_Desire_IGoalStructure__0____
+  commentId: M:Aplib.Core.Desire.FirstOfGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0}[])
+  name.vb: New(ParamArray IGoalStructure(Of TBeliefSet)())
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.FirstOfGoalStructure(params Aplib.Core.Desire.IGoalStructure<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).New(ParamArray Aplib.Core.Desire.IGoalStructure(Of TBeliefSet)())
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[])
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).New(ParamArray IGoalStructure(Of TBeliefSet)())
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.#ctor*
+  name: FirstOfGoalStructure
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.FirstOfGoalStructure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.FirstOfGoalStructure
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).New
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.FirstOfGoalStructure
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose
+  name: Dispose()
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_Dispose
+  commentId: M:Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.Dispose()
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).Dispose()
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.Dispose()
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).Dispose()
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_Dispose_System_Boolean_
+  commentId: M:Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.Dispose(bool)
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).Dispose(Boolean)
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.Dispose(bool)
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).Dispose(Boolean)
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose*
+  name: Dispose
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_Dispose_
+  commentId: Overload:Aplib.Core.Desire.FirstOfGoalStructure`1.Dispose
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.Dispose
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).Dispose
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.Dispose
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).Dispose
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.FirstOfGoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.FirstOfGoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.FirstOfGoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.FirstOfGoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.FirstOfGoalStructure-1.html#Aplib_Core_Desire_FirstOfGoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.FirstOfGoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.FirstOfGoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.FirstOfGoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: FirstOfGoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: FirstOfGoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.GoalStructure`1
+  name: GoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.GoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.GoalStructure`1
+  name.vb: GoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet)
+  nameWithType: GoalStructure<TBeliefSet>
+  nameWithType.vb: GoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.GoalStructure`1.#ctor(System.Collections.Generic.IEnumerable{Aplib.Core.Desire.IGoalStructure{`0}})
+  name: GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>>)
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__ctor_System_Collections_Generic_IEnumerable_Aplib_Core_Desire_IGoalStructure__0___
+  commentId: M:Aplib.Core.Desire.GoalStructure`1.#ctor(System.Collections.Generic.IEnumerable{Aplib.Core.Desire.IGoalStructure{`0}})
+  name.vb: New(IEnumerable(Of IGoalStructure(Of TBeliefSet)))
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.GoalStructure(System.Collections.Generic.IEnumerable<Aplib.Core.Desire.IGoalStructure<TBeliefSet>>)
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).New(System.Collections.Generic.IEnumerable(Of Aplib.Core.Desire.IGoalStructure(Of TBeliefSet)))
+  nameWithType: GoalStructure<TBeliefSet>.GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>>)
+  nameWithType.vb: GoalStructure(Of TBeliefSet).New(IEnumerable(Of IGoalStructure(Of TBeliefSet)))
+- uid: Aplib.Core.Desire.GoalStructure`1.#ctor*
+  name: GoalStructure
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.GoalStructure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.GoalStructure
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).New
+  nameWithType: GoalStructure<TBeliefSet>.GoalStructure
+  nameWithType.vb: GoalStructure(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.GoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.GoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: GoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: GoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.GoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.GoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: GoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: GoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.GoalStructure`1.Status
+  name: Status
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_Status
+  commentId: P:Aplib.Core.Desire.GoalStructure`1.Status
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).Status
+  nameWithType: GoalStructure<TBeliefSet>.Status
+  nameWithType.vb: GoalStructure(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.GoalStructure`1.Status*
+  name: Status
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_Status_
+  commentId: Overload:Aplib.Core.Desire.GoalStructure`1.Status
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).Status
+  nameWithType: GoalStructure<TBeliefSet>.Status
+  nameWithType.vb: GoalStructure(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.GoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.GoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: GoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: GoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.GoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.GoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: GoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: GoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.GoalStructure`1._children
+  name: _children
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__children
+  commentId: F:Aplib.Core.Desire.GoalStructure`1._children
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>._children
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet)._children
+  nameWithType: GoalStructure<TBeliefSet>._children
+  nameWithType.vb: GoalStructure(Of TBeliefSet)._children
+- uid: Aplib.Core.Desire.GoalStructure`1._currentGoalStructure
+  name: _currentGoalStructure
+  href: api/Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__currentGoalStructure
+  commentId: F:Aplib.Core.Desire.GoalStructure`1._currentGoalStructure
+  fullName: Aplib.Core.Desire.GoalStructure<TBeliefSet>._currentGoalStructure
+  fullName.vb: Aplib.Core.Desire.GoalStructure(Of TBeliefSet)._currentGoalStructure
+  nameWithType: GoalStructure<TBeliefSet>._currentGoalStructure
+  nameWithType.vb: GoalStructure(Of TBeliefSet)._currentGoalStructure
+- uid: Aplib.Core.Desire.Goals
+  name: Aplib.Core.Desire.Goals
+  href: api/Aplib.Core.Desire.Goals.html
+  commentId: N:Aplib.Core.Desire.Goals
+  fullName: Aplib.Core.Desire.Goals
+  nameWithType: Aplib.Core.Desire.Goals
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1
+  name: CommonHeuristicFunctions<TBeliefSet>
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html
+  commentId: T:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1
+  name.vb: CommonHeuristicFunctions(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet)
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Boolean(System.Func{`0,System.Boolean})
+  name: Boolean(Func<TBeliefSet, bool>)
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Boolean_System_Func__0_System_Boolean__
+  commentId: M:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Boolean(System.Func{`0,System.Boolean})
+  name.vb: Boolean(Func(Of TBeliefSet, Boolean))
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Boolean(System.Func<TBeliefSet, bool>)
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Boolean(System.Func(Of TBeliefSet, Boolean))
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Boolean(Func<TBeliefSet, bool>)
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Boolean(Func(Of TBeliefSet, Boolean))
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Boolean*
+  name: Boolean
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Boolean_
+  commentId: Overload:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Boolean
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Boolean
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Boolean
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Boolean
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Boolean
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Completed
+  name: Completed()
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Completed
+  commentId: M:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Completed
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Completed()
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Completed()
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Completed()
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Completed()
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Completed*
+  name: Completed
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Completed_
+  commentId: Overload:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Completed
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Completed
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Completed
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Completed
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Completed
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Constant(System.Single)
+  name: Constant(float)
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Constant_System_Single_
+  commentId: M:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Constant(System.Single)
+  name.vb: Constant(Single)
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Constant(float)
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Constant(Single)
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Constant(float)
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Constant(Single)
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Constant*
+  name: Constant
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Constant_
+  commentId: Overload:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Constant
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Constant
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Constant
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Constant
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Constant
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Uncompleted
+  name: Uncompleted()
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Uncompleted
+  commentId: M:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Uncompleted
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Uncompleted()
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Uncompleted()
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Uncompleted()
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Uncompleted()
+- uid: Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Uncompleted*
+  name: Uncompleted
+  href: api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html#Aplib_Core_Desire_Goals_CommonHeuristicFunctions_1_Uncompleted_
+  commentId: Overload:Aplib.Core.Desire.Goals.CommonHeuristicFunctions`1.Uncompleted
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.CommonHeuristicFunctions<TBeliefSet>.Uncompleted
+  fullName.vb: Aplib.Core.Desire.Goals.CommonHeuristicFunctions(Of TBeliefSet).Uncompleted
+  nameWithType: CommonHeuristicFunctions<TBeliefSet>.Uncompleted
+  nameWithType.vb: CommonHeuristicFunctions(Of TBeliefSet).Uncompleted
+- uid: Aplib.Core.Desire.Goals.Goal`1
+  name: Goal<TBeliefSet>
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html
+  commentId: T:Aplib.Core.Desire.Goals.Goal`1
+  name.vb: Goal(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet)
+  nameWithType: Goal<TBeliefSet>
+  nameWithType.vb: Goal(Of TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},Aplib.Core.Desire.Goals.Goal{`0}.HeuristicFunction,System.Double,Aplib.Core.Metadata)
+  name: Goal(ITactic<TBeliefSet>, HeuristicFunction, double, Metadata?)
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__Aplib_Core_Desire_Goals_Goal__0__HeuristicFunction_System_Double_Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},Aplib.Core.Desire.Goals.Goal{`0}.HeuristicFunction,System.Double,Aplib.Core.Metadata)
+  name.vb: New(ITactic(Of TBeliefSet), HeuristicFunction, Double, Metadata)
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Goal(Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>, Aplib.Core.Desire.Goals.Goal<TBeliefSet>.HeuristicFunction, double, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).New(Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet), Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).HeuristicFunction, Double, Aplib.Core.Metadata)
+  nameWithType: Goal<TBeliefSet>.Goal(ITactic<TBeliefSet>, Goal<TBeliefSet>.HeuristicFunction, double, Metadata?)
+  nameWithType.vb: Goal(Of TBeliefSet).New(ITactic(Of TBeliefSet), Goal(Of TBeliefSet).HeuristicFunction, Double, Metadata)
+- uid: Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},System.Func{`0,System.Boolean},System.Double,Aplib.Core.Metadata)
+  name: Goal(ITactic<TBeliefSet>, Func<TBeliefSet, bool>, double, Metadata?)
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__System_Func__0_System_Boolean__System_Double_Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},System.Func{`0,System.Boolean},System.Double,Aplib.Core.Metadata)
+  name.vb: New(ITactic(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Double, Metadata)
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Goal(Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>, System.Func<TBeliefSet, bool>, double, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).New(Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet), System.Func(Of TBeliefSet, Boolean), Double, Aplib.Core.Metadata)
+  nameWithType: Goal<TBeliefSet>.Goal(ITactic<TBeliefSet>, Func<TBeliefSet, bool>, double, Metadata?)
+  nameWithType.vb: Goal(Of TBeliefSet).New(ITactic(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Double, Metadata)
+- uid: Aplib.Core.Desire.Goals.Goal`1.#ctor*
+  name: Goal
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Goal
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).New
+  nameWithType: Goal<TBeliefSet>.Goal
+  nameWithType.vb: Goal(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics(`0)
+  name: DetermineCurrentHeuristics(TBeliefSet)
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_
+  commentId: M:Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics(`0)
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.DetermineCurrentHeuristics(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).DetermineCurrentHeuristics(TBeliefSet)
+  nameWithType: Goal<TBeliefSet>.DetermineCurrentHeuristics(TBeliefSet)
+  nameWithType.vb: Goal(Of TBeliefSet).DetermineCurrentHeuristics(TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics*
+  name: DetermineCurrentHeuristics
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.DetermineCurrentHeuristics
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).DetermineCurrentHeuristics
+  nameWithType: Goal<TBeliefSet>.DetermineCurrentHeuristics
+  nameWithType.vb: Goal(Of TBeliefSet).DetermineCurrentHeuristics
+- uid: Aplib.Core.Desire.Goals.Goal`1.GetStatus(`0)
+  name: GetStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_GetStatus__0_
+  commentId: M:Aplib.Core.Desire.Goals.Goal`1.GetStatus(`0)
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.GetStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).GetStatus(TBeliefSet)
+  nameWithType: Goal<TBeliefSet>.GetStatus(TBeliefSet)
+  nameWithType.vb: Goal(Of TBeliefSet).GetStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.Goal`1.GetStatus*
+  name: GetStatus
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_GetStatus_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.GetStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.GetStatus
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).GetStatus
+  nameWithType: Goal<TBeliefSet>.GetStatus
+  nameWithType.vb: Goal(Of TBeliefSet).GetStatus
+- uid: Aplib.Core.Desire.Goals.Goal`1.HeuristicFunction
+  name: Goal<TBeliefSet>.HeuristicFunction
+  href: api/Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html
+  commentId: T:Aplib.Core.Desire.Goals.Goal`1.HeuristicFunction
+  name.vb: Goal(Of TBeliefSet).HeuristicFunction
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.HeuristicFunction
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).HeuristicFunction
+  nameWithType: Goal<TBeliefSet>.HeuristicFunction
+  nameWithType.vb: Goal(Of TBeliefSet).HeuristicFunction
+- uid: Aplib.Core.Desire.Goals.Goal`1.Metadata
+  name: Metadata
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Metadata
+  commentId: P:Aplib.Core.Desire.Goals.Goal`1.Metadata
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Metadata
+  nameWithType: Goal<TBeliefSet>.Metadata
+  nameWithType.vb: Goal(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Desire.Goals.Goal`1.Metadata*
+  name: Metadata
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Metadata_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.Metadata
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Metadata
+  nameWithType: Goal<TBeliefSet>.Metadata
+  nameWithType.vb: Goal(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Desire.Goals.Goal`1.Status
+  name: Status
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Status
+  commentId: P:Aplib.Core.Desire.Goals.Goal`1.Status
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Status
+  nameWithType: Goal<TBeliefSet>.Status
+  nameWithType.vb: Goal(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.Goals.Goal`1.Status*
+  name: Status
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Status_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.Status
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Status
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Status
+  nameWithType: Goal<TBeliefSet>.Status
+  nameWithType.vb: Goal(Of TBeliefSet).Status
+- uid: Aplib.Core.Desire.Goals.Goal`1.Tactic
+  name: Tactic
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Tactic
+  commentId: P:Aplib.Core.Desire.Goals.Goal`1.Tactic
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Tactic
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Tactic
+  nameWithType: Goal<TBeliefSet>.Tactic
+  nameWithType.vb: Goal(Of TBeliefSet).Tactic
+- uid: Aplib.Core.Desire.Goals.Goal`1.Tactic*
+  name: Tactic
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Tactic_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1.Tactic
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>.Tactic
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet).Tactic
+  nameWithType: Goal<TBeliefSet>.Tactic
+  nameWithType.vb: Goal(Of TBeliefSet).Tactic
+- uid: Aplib.Core.Desire.Goals.Goal`1._epsilon
+  name: _epsilon
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__epsilon
+  commentId: P:Aplib.Core.Desire.Goals.Goal`1._epsilon
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>._epsilon
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet)._epsilon
+  nameWithType: Goal<TBeliefSet>._epsilon
+  nameWithType.vb: Goal(Of TBeliefSet)._epsilon
+- uid: Aplib.Core.Desire.Goals.Goal`1._epsilon*
+  name: _epsilon
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__epsilon_
+  commentId: Overload:Aplib.Core.Desire.Goals.Goal`1._epsilon
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>._epsilon
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet)._epsilon
+  nameWithType: Goal<TBeliefSet>._epsilon
+  nameWithType.vb: Goal(Of TBeliefSet)._epsilon
+- uid: Aplib.Core.Desire.Goals.Goal`1._heuristicFunction
+  name: _heuristicFunction
+  href: api/Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__heuristicFunction
+  commentId: F:Aplib.Core.Desire.Goals.Goal`1._heuristicFunction
+  fullName: Aplib.Core.Desire.Goals.Goal<TBeliefSet>._heuristicFunction
+  fullName.vb: Aplib.Core.Desire.Goals.Goal(Of TBeliefSet)._heuristicFunction
+  nameWithType: Goal<TBeliefSet>._heuristicFunction
+  nameWithType.vb: Goal(Of TBeliefSet)._heuristicFunction
+- uid: Aplib.Core.Desire.Goals.Heuristics
+  name: Heuristics
+  href: api/Aplib.Core.Desire.Goals.Heuristics.html
+  commentId: T:Aplib.Core.Desire.Goals.Heuristics
+  fullName: Aplib.Core.Desire.Goals.Heuristics
+  nameWithType: Heuristics
+- uid: Aplib.Core.Desire.Goals.Heuristics.Boolean(System.Boolean)
+  name: Boolean(bool)
+  href: api/Aplib.Core.Desire.Goals.Heuristics.html#Aplib_Core_Desire_Goals_Heuristics_Boolean_System_Boolean_
+  commentId: M:Aplib.Core.Desire.Goals.Heuristics.Boolean(System.Boolean)
+  name.vb: Boolean(Boolean)
+  fullName: Aplib.Core.Desire.Goals.Heuristics.Boolean(bool)
+  fullName.vb: Aplib.Core.Desire.Goals.Heuristics.Boolean(Boolean)
+  nameWithType: Heuristics.Boolean(bool)
+  nameWithType.vb: Heuristics.Boolean(Boolean)
+- uid: Aplib.Core.Desire.Goals.Heuristics.Boolean*
+  name: Boolean
+  href: api/Aplib.Core.Desire.Goals.Heuristics.html#Aplib_Core_Desire_Goals_Heuristics_Boolean_
+  commentId: Overload:Aplib.Core.Desire.Goals.Heuristics.Boolean
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Heuristics.Boolean
+  nameWithType: Heuristics.Boolean
+- uid: Aplib.Core.Desire.Goals.Heuristics.Distance
+  name: Distance
+  href: api/Aplib.Core.Desire.Goals.Heuristics.html#Aplib_Core_Desire_Goals_Heuristics_Distance
+  commentId: P:Aplib.Core.Desire.Goals.Heuristics.Distance
+  fullName: Aplib.Core.Desire.Goals.Heuristics.Distance
+  nameWithType: Heuristics.Distance
+- uid: Aplib.Core.Desire.Goals.Heuristics.Distance*
+  name: Distance
+  href: api/Aplib.Core.Desire.Goals.Heuristics.html#Aplib_Core_Desire_Goals_Heuristics_Distance_
+  commentId: Overload:Aplib.Core.Desire.Goals.Heuristics.Distance
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.Heuristics.Distance
+  nameWithType: Heuristics.Distance
+- uid: Aplib.Core.Desire.Goals.IGoal`1
+  name: IGoal<TBeliefSet>
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html
+  commentId: T:Aplib.Core.Desire.Goals.IGoal`1
+  name.vb: IGoal(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet)
+  nameWithType: IGoal<TBeliefSet>
+  nameWithType.vb: IGoal(Of TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.IGoal`1.DetermineCurrentHeuristics(`0)
+  name: DetermineCurrentHeuristics(TBeliefSet)
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_DetermineCurrentHeuristics__0_
+  commentId: M:Aplib.Core.Desire.Goals.IGoal`1.DetermineCurrentHeuristics(`0)
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.DetermineCurrentHeuristics(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).DetermineCurrentHeuristics(TBeliefSet)
+  nameWithType: IGoal<TBeliefSet>.DetermineCurrentHeuristics(TBeliefSet)
+  nameWithType.vb: IGoal(Of TBeliefSet).DetermineCurrentHeuristics(TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.IGoal`1.DetermineCurrentHeuristics*
+  name: DetermineCurrentHeuristics
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_DetermineCurrentHeuristics_
+  commentId: Overload:Aplib.Core.Desire.Goals.IGoal`1.DetermineCurrentHeuristics
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.DetermineCurrentHeuristics
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).DetermineCurrentHeuristics
+  nameWithType: IGoal<TBeliefSet>.DetermineCurrentHeuristics
+  nameWithType.vb: IGoal(Of TBeliefSet).DetermineCurrentHeuristics
+- uid: Aplib.Core.Desire.Goals.IGoal`1.GetStatus(`0)
+  name: GetStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_GetStatus__0_
+  commentId: M:Aplib.Core.Desire.Goals.IGoal`1.GetStatus(`0)
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.GetStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).GetStatus(TBeliefSet)
+  nameWithType: IGoal<TBeliefSet>.GetStatus(TBeliefSet)
+  nameWithType.vb: IGoal(Of TBeliefSet).GetStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.Goals.IGoal`1.GetStatus*
+  name: GetStatus
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_GetStatus_
+  commentId: Overload:Aplib.Core.Desire.Goals.IGoal`1.GetStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.GetStatus
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).GetStatus
+  nameWithType: IGoal<TBeliefSet>.GetStatus
+  nameWithType.vb: IGoal(Of TBeliefSet).GetStatus
+- uid: Aplib.Core.Desire.Goals.IGoal`1.Tactic
+  name: Tactic
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_Tactic
+  commentId: P:Aplib.Core.Desire.Goals.IGoal`1.Tactic
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.Tactic
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).Tactic
+  nameWithType: IGoal<TBeliefSet>.Tactic
+  nameWithType.vb: IGoal(Of TBeliefSet).Tactic
+- uid: Aplib.Core.Desire.Goals.IGoal`1.Tactic*
+  name: Tactic
+  href: api/Aplib.Core.Desire.Goals.IGoal-1.html#Aplib_Core_Desire_Goals_IGoal_1_Tactic_
+  commentId: Overload:Aplib.Core.Desire.Goals.IGoal`1.Tactic
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.Goals.IGoal<TBeliefSet>.Tactic
+  fullName.vb: Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet).Tactic
+  nameWithType: IGoal<TBeliefSet>.Tactic
+  nameWithType.vb: IGoal(Of TBeliefSet).Tactic
+- uid: Aplib.Core.Desire.IDesireSet`1
+  name: IDesireSet<TBeliefSet>
+  href: api/Aplib.Core.Desire.IDesireSet-1.html
+  commentId: T:Aplib.Core.Desire.IDesireSet`1
+  name.vb: IDesireSet(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.IDesireSet<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.IDesireSet(Of TBeliefSet)
+  nameWithType: IDesireSet<TBeliefSet>
+  nameWithType.vb: IDesireSet(Of TBeliefSet)
+- uid: Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.IDesireSet-1.html#Aplib_Core_Desire_IDesireSet_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.IDesireSet<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.IDesireSet(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: IDesireSet<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: IDesireSet(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.IDesireSet-1.html#Aplib_Core_Desire_IDesireSet_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.IDesireSet<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.IDesireSet(Of TBeliefSet).GetCurrentGoal
+  nameWithType: IDesireSet<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: IDesireSet(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.IDesireSet`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.IDesireSet-1.html#Aplib_Core_Desire_IDesireSet_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.IDesireSet`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.IDesireSet<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.IDesireSet(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: IDesireSet<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: IDesireSet(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.IDesireSet`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.IDesireSet-1.html#Aplib_Core_Desire_IDesireSet_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.IDesireSet`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.IDesireSet<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.IDesireSet(Of TBeliefSet).UpdateStatus
+  nameWithType: IDesireSet<TBeliefSet>.UpdateStatus
+  nameWithType.vb: IDesireSet(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.IGoalStructure`1
+  name: IGoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.IGoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.IGoalStructure`1
+  name.vb: IGoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.IGoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.IGoalStructure(Of TBeliefSet)
+  nameWithType: IGoalStructure<TBeliefSet>
+  nameWithType.vb: IGoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.IGoalStructure-1.html#Aplib_Core_Desire_IGoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.IGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.IGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: IGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: IGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.IGoalStructure-1.html#Aplib_Core_Desire_IGoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.IGoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.IGoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: IGoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: IGoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.IGoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.IGoalStructure-1.html#Aplib_Core_Desire_IGoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.IGoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.IGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.IGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: IGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: IGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.IGoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.IGoalStructure-1.html#Aplib_Core_Desire_IGoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.IGoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.IGoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.IGoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: IGoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: IGoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1
+  name: PrimitiveGoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.PrimitiveGoalStructure`1
+  name.vb: PrimitiveGoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet)
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.#ctor(Aplib.Core.Desire.Goals.IGoal{`0})
+  name: PrimitiveGoalStructure(IGoal<TBeliefSet>)
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1__ctor_Aplib_Core_Desire_Goals_IGoal__0__
+  commentId: M:Aplib.Core.Desire.PrimitiveGoalStructure`1.#ctor(Aplib.Core.Desire.Goals.IGoal{`0})
+  name.vb: New(IGoal(Of TBeliefSet))
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.PrimitiveGoalStructure(Aplib.Core.Desire.Goals.IGoal<TBeliefSet>)
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).New(Aplib.Core.Desire.Goals.IGoal(Of TBeliefSet))
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.PrimitiveGoalStructure(IGoal<TBeliefSet>)
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).New(IGoal(Of TBeliefSet))
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.#ctor*
+  name: PrimitiveGoalStructure
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.PrimitiveGoalStructure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.PrimitiveGoalStructure
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).New
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.PrimitiveGoalStructure
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.PrimitiveGoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.PrimitiveGoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.PrimitiveGoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.PrimitiveGoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.PrimitiveGoalStructure-1.html#Aplib_Core_Desire_PrimitiveGoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.PrimitiveGoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.PrimitiveGoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.PrimitiveGoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: PrimitiveGoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: PrimitiveGoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1
+  name: RepeatGoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.RepeatGoalStructure`1
+  name.vb: RepeatGoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet)
+  nameWithType: RepeatGoalStructure<TBeliefSet>
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0})
+  name: RepeatGoalStructure(IGoalStructure<TBeliefSet>)
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1__ctor_Aplib_Core_Desire_IGoalStructure__0__
+  commentId: M:Aplib.Core.Desire.RepeatGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0})
+  name.vb: New(IGoalStructure(Of TBeliefSet))
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.RepeatGoalStructure(Aplib.Core.Desire.IGoalStructure<TBeliefSet>)
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).New(Aplib.Core.Desire.IGoalStructure(Of TBeliefSet))
+  nameWithType: RepeatGoalStructure<TBeliefSet>.RepeatGoalStructure(IGoalStructure<TBeliefSet>)
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).New(IGoalStructure(Of TBeliefSet))
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.#ctor*
+  name: RepeatGoalStructure
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.RepeatGoalStructure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.RepeatGoalStructure
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).New
+  nameWithType: RepeatGoalStructure<TBeliefSet>.RepeatGoalStructure
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.RepeatGoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: RepeatGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.RepeatGoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: RepeatGoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.RepeatGoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: RepeatGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.RepeatGoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.RepeatGoalStructure-1.html#Aplib_Core_Desire_RepeatGoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.RepeatGoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.RepeatGoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.RepeatGoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: RepeatGoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: RepeatGoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1
+  name: SequentialGoalStructure<TBeliefSet>
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html
+  commentId: T:Aplib.Core.Desire.SequentialGoalStructure`1
+  name.vb: SequentialGoalStructure(Of TBeliefSet)
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet)
+  nameWithType: SequentialGoalStructure<TBeliefSet>
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet)
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0}[])
+  name: SequentialGoalStructure(params IGoalStructure<TBeliefSet>[])
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1__ctor_Aplib_Core_Desire_IGoalStructure__0____
+  commentId: M:Aplib.Core.Desire.SequentialGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0}[])
+  name.vb: New(ParamArray IGoalStructure(Of TBeliefSet)())
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.SequentialGoalStructure(params Aplib.Core.Desire.IGoalStructure<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).New(ParamArray Aplib.Core.Desire.IGoalStructure(Of TBeliefSet)())
+  nameWithType: SequentialGoalStructure<TBeliefSet>.SequentialGoalStructure(params IGoalStructure<TBeliefSet>[])
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).New(ParamArray IGoalStructure(Of TBeliefSet)())
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.#ctor*
+  name: SequentialGoalStructure
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1__ctor_
+  commentId: Overload:Aplib.Core.Desire.SequentialGoalStructure`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.SequentialGoalStructure
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).New
+  nameWithType: SequentialGoalStructure<TBeliefSet>.SequentialGoalStructure
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).New
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.Dispose
+  name: Dispose()
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_Dispose
+  commentId: M:Aplib.Core.Desire.SequentialGoalStructure`1.Dispose
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.Dispose()
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).Dispose()
+  nameWithType: SequentialGoalStructure<TBeliefSet>.Dispose()
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).Dispose()
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_Dispose_System_Boolean_
+  commentId: M:Aplib.Core.Desire.SequentialGoalStructure`1.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.Dispose(bool)
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).Dispose(Boolean)
+  nameWithType: SequentialGoalStructure<TBeliefSet>.Dispose(bool)
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).Dispose(Boolean)
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.Dispose*
+  name: Dispose
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_Dispose_
+  commentId: Overload:Aplib.Core.Desire.SequentialGoalStructure`1.Dispose
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.Dispose
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).Dispose
+  nameWithType: SequentialGoalStructure<TBeliefSet>.Dispose
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).Dispose
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal(`0)
+  name: GetCurrentGoal(TBeliefSet)
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_GetCurrentGoal__0_
+  commentId: M:Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal(`0)
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+  nameWithType: SequentialGoalStructure<TBeliefSet>.GetCurrentGoal(TBeliefSet)
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).GetCurrentGoal(TBeliefSet)
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal*
+  name: GetCurrentGoal
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_GetCurrentGoal_
+  commentId: Overload:Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.GetCurrentGoal
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).GetCurrentGoal
+  nameWithType: SequentialGoalStructure<TBeliefSet>.GetCurrentGoal
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).GetCurrentGoal
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus(`0)
+  name: UpdateStatus(TBeliefSet)
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_UpdateStatus__0_
+  commentId: M:Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus(`0)
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+  nameWithType: SequentialGoalStructure<TBeliefSet>.UpdateStatus(TBeliefSet)
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).UpdateStatus(TBeliefSet)
+- uid: Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus*
+  name: UpdateStatus
+  href: api/Aplib.Core.Desire.SequentialGoalStructure-1.html#Aplib_Core_Desire_SequentialGoalStructure_1_UpdateStatus_
+  commentId: Overload:Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus
+  isSpec: "True"
+  fullName: Aplib.Core.Desire.SequentialGoalStructure<TBeliefSet>.UpdateStatus
+  fullName.vb: Aplib.Core.Desire.SequentialGoalStructure(Of TBeliefSet).UpdateStatus
+  nameWithType: SequentialGoalStructure<TBeliefSet>.UpdateStatus
+  nameWithType.vb: SequentialGoalStructure(Of TBeliefSet).UpdateStatus
+- uid: Aplib.Core.IAgent
+  name: IAgent
+  href: api/Aplib.Core.IAgent.html
+  commentId: T:Aplib.Core.IAgent
+  fullName: Aplib.Core.IAgent
+  nameWithType: IAgent
+- uid: Aplib.Core.IAgent.Status
+  name: Status
+  href: api/Aplib.Core.IAgent.html#Aplib_Core_IAgent_Status
+  commentId: P:Aplib.Core.IAgent.Status
+  fullName: Aplib.Core.IAgent.Status
+  nameWithType: IAgent.Status
+- uid: Aplib.Core.IAgent.Status*
+  name: Status
+  href: api/Aplib.Core.IAgent.html#Aplib_Core_IAgent_Status_
+  commentId: Overload:Aplib.Core.IAgent.Status
+  isSpec: "True"
+  fullName: Aplib.Core.IAgent.Status
+  nameWithType: IAgent.Status
+- uid: Aplib.Core.IAgent.Update
+  name: Update()
+  href: api/Aplib.Core.IAgent.html#Aplib_Core_IAgent_Update
+  commentId: M:Aplib.Core.IAgent.Update
+  fullName: Aplib.Core.IAgent.Update()
+  nameWithType: IAgent.Update()
+- uid: Aplib.Core.IAgent.Update*
+  name: Update
+  href: api/Aplib.Core.IAgent.html#Aplib_Core_IAgent_Update_
+  commentId: Overload:Aplib.Core.IAgent.Update
+  isSpec: "True"
+  fullName: Aplib.Core.IAgent.Update
+  nameWithType: IAgent.Update
+- uid: Aplib.Core.ICompletable
+  name: ICompletable
+  href: api/Aplib.Core.ICompletable.html
+  commentId: T:Aplib.Core.ICompletable
+  fullName: Aplib.Core.ICompletable
+  nameWithType: ICompletable
+- uid: Aplib.Core.ICompletable.Status
+  name: Status
+  href: api/Aplib.Core.ICompletable.html#Aplib_Core_ICompletable_Status
+  commentId: P:Aplib.Core.ICompletable.Status
+  fullName: Aplib.Core.ICompletable.Status
+  nameWithType: ICompletable.Status
+- uid: Aplib.Core.ICompletable.Status*
+  name: Status
+  href: api/Aplib.Core.ICompletable.html#Aplib_Core_ICompletable_Status_
+  commentId: Overload:Aplib.Core.ICompletable.Status
+  isSpec: "True"
+  fullName: Aplib.Core.ICompletable.Status
+  nameWithType: ICompletable.Status
+- uid: Aplib.Core.Intent.Actions
+  name: Aplib.Core.Intent.Actions
+  href: api/Aplib.Core.Intent.Actions.html
+  commentId: N:Aplib.Core.Intent.Actions
+  fullName: Aplib.Core.Intent.Actions
+  nameWithType: Aplib.Core.Intent.Actions
+- uid: Aplib.Core.Intent.Actions.Action`1
+  name: Action<TBeliefSet>
+  href: api/Aplib.Core.Intent.Actions.Action-1.html
+  commentId: T:Aplib.Core.Intent.Actions.Action`1
+  name.vb: Action(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet)
+  nameWithType: Action<TBeliefSet>
+  nameWithType.vb: Action(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.Action`1.#ctor(Aplib.Core.Metadata)
+  name: Action(Metadata?)
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__ctor_Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Actions.Action`1.#ctor(Aplib.Core.Metadata)
+  name.vb: New(Metadata)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Action(Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).New(Aplib.Core.Metadata)
+  nameWithType: Action<TBeliefSet>.Action(Metadata?)
+  nameWithType.vb: Action(Of TBeliefSet).New(Metadata)
+- uid: Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},Aplib.Core.Metadata)
+  name: Action(Action<TBeliefSet>, Metadata?)
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__ctor_System_Action__0__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},Aplib.Core.Metadata)
+  name.vb: New(Action(Of TBeliefSet), Metadata)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Action(System.Action<TBeliefSet>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).New(System.Action(Of TBeliefSet), Aplib.Core.Metadata)
+  nameWithType: Action<TBeliefSet>.Action(Action<TBeliefSet>, Metadata?)
+  nameWithType.vb: Action(Of TBeliefSet).New(Action(Of TBeliefSet), Metadata)
+- uid: Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name: Action(Action<TBeliefSet>, Func<TBeliefSet, bool>, Metadata?)
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__ctor_System_Action__0__System_Func__0_System_Boolean__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name.vb: New(Action(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Metadata)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Action(System.Action<TBeliefSet>, System.Func<TBeliefSet, bool>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).New(System.Action(Of TBeliefSet), System.Func(Of TBeliefSet, Boolean), Aplib.Core.Metadata)
+  nameWithType: Action<TBeliefSet>.Action(Action<TBeliefSet>, Func<TBeliefSet, bool>, Metadata?)
+  nameWithType.vb: Action(Of TBeliefSet).New(Action(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Metadata)
+- uid: Aplib.Core.Intent.Actions.Action`1.#ctor*
+  name: Action
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__ctor_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Action
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).New
+  nameWithType: Action<TBeliefSet>.Action
+  nameWithType.vb: Action(Of TBeliefSet).New
+- uid: Aplib.Core.Intent.Actions.Action`1.Execute(`0)
+  name: Execute(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_Execute__0_
+  commentId: M:Aplib.Core.Intent.Actions.Action`1.Execute(`0)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Execute(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).Execute(TBeliefSet)
+  nameWithType: Action<TBeliefSet>.Execute(TBeliefSet)
+  nameWithType.vb: Action(Of TBeliefSet).Execute(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.Action`1.Execute*
+  name: Execute
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_Execute_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1.Execute
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Execute
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).Execute
+  nameWithType: Action<TBeliefSet>.Execute
+  nameWithType.vb: Action(Of TBeliefSet).Execute
+- uid: Aplib.Core.Intent.Actions.Action`1.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Actions.Action`1.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).IsActionable(TBeliefSet)
+  nameWithType: Action<TBeliefSet>.IsActionable(TBeliefSet)
+  nameWithType.vb: Action(Of TBeliefSet).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.Action`1.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).IsActionable
+  nameWithType: Action<TBeliefSet>.IsActionable
+  nameWithType.vb: Action(Of TBeliefSet).IsActionable
+- uid: Aplib.Core.Intent.Actions.Action`1.Metadata
+  name: Metadata
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_Metadata
+  commentId: P:Aplib.Core.Intent.Actions.Action`1.Metadata
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).Metadata
+  nameWithType: Action<TBeliefSet>.Metadata
+  nameWithType.vb: Action(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Intent.Actions.Action`1.Metadata*
+  name: Metadata
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_Metadata_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1.Metadata
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet).Metadata
+  nameWithType: Action<TBeliefSet>.Metadata
+  nameWithType.vb: Action(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Intent.Actions.Action`1._effect
+  name: _effect
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__effect
+  commentId: P:Aplib.Core.Intent.Actions.Action`1._effect
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>._effect
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet)._effect
+  nameWithType: Action<TBeliefSet>._effect
+  nameWithType.vb: Action(Of TBeliefSet)._effect
+- uid: Aplib.Core.Intent.Actions.Action`1._effect*
+  name: _effect
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__effect_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1._effect
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>._effect
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet)._effect
+  nameWithType: Action<TBeliefSet>._effect
+  nameWithType.vb: Action(Of TBeliefSet)._effect
+- uid: Aplib.Core.Intent.Actions.Action`1._guard
+  name: _guard
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__guard
+  commentId: P:Aplib.Core.Intent.Actions.Action`1._guard
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>._guard
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet)._guard
+  nameWithType: Action<TBeliefSet>._guard
+  nameWithType.vb: Action(Of TBeliefSet)._guard
+- uid: Aplib.Core.Intent.Actions.Action`1._guard*
+  name: _guard
+  href: api/Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1__guard_
+  commentId: Overload:Aplib.Core.Intent.Actions.Action`1._guard
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.Action<TBeliefSet>._guard
+  fullName.vb: Aplib.Core.Intent.Actions.Action(Of TBeliefSet)._guard
+  nameWithType: Action<TBeliefSet>._guard
+  nameWithType.vb: Action(Of TBeliefSet)._guard
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2
+  name: GuardedAction<TBeliefSet, TQuery>
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html
+  commentId: T:Aplib.Core.Intent.Actions.GuardedAction`2
+  name.vb: GuardedAction(Of TBeliefSet, TQuery)
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)
+  nameWithType: GuardedAction<TBeliefSet, TQuery>
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.#ctor(System.Action{`0,`1},System.Func{`0,`1},Aplib.Core.Metadata)
+  name: GuardedAction(Action<TBeliefSet, TQuery>, Func<TBeliefSet, TQuery?>, Metadata?)
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__ctor_System_Action__0__1__System_Func__0__1__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Actions.GuardedAction`2.#ctor(System.Action{`0,`1},System.Func{`0,`1},Aplib.Core.Metadata)
+  name.vb: New(Action(Of TBeliefSet, TQuery), Func(Of TBeliefSet, TQuery), Metadata)
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.GuardedAction(System.Action<TBeliefSet, TQuery>, System.Func<TBeliefSet, TQuery?>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).New(System.Action(Of TBeliefSet, TQuery), System.Func(Of TBeliefSet, TQuery), Aplib.Core.Metadata)
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.GuardedAction(Action<TBeliefSet, TQuery>, Func<TBeliefSet, TQuery?>, Metadata?)
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).New(Action(Of TBeliefSet, TQuery), Func(Of TBeliefSet, TQuery), Metadata)
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.#ctor*
+  name: GuardedAction
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__ctor_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.GuardedAction
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).New
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.GuardedAction
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).New
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.Execute(`0)
+  name: Execute(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2_Execute__0_
+  commentId: M:Aplib.Core.Intent.Actions.GuardedAction`2.Execute(`0)
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.Execute(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).Execute(TBeliefSet)
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.Execute(TBeliefSet)
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).Execute(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.Execute*
+  name: Execute
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2_Execute_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2.Execute
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.Execute
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).Execute
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.Execute
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).Execute
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Actions.GuardedAction`2.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).IsActionable(TBeliefSet)
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.IsActionable(TBeliefSet)
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery).IsActionable
+  nameWithType: GuardedAction<TBeliefSet, TQuery>.IsActionable
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery).IsActionable
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._effect
+  name: _effect
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__effect
+  commentId: P:Aplib.Core.Intent.Actions.GuardedAction`2._effect
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._effect
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._effect
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._effect
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._effect
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._effect*
+  name: _effect
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__effect_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2._effect
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._effect
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._effect
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._effect
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._effect
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._guard
+  name: _guard
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__guard
+  commentId: P:Aplib.Core.Intent.Actions.GuardedAction`2._guard
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._guard
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._guard
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._guard
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._guard
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._guard*
+  name: _guard
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__guard_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2._guard
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._guard
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._guard
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._guard
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._guard
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._storedGuardResult
+  name: _storedGuardResult
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__storedGuardResult
+  commentId: P:Aplib.Core.Intent.Actions.GuardedAction`2._storedGuardResult
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._storedGuardResult
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._storedGuardResult
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._storedGuardResult
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._storedGuardResult
+- uid: Aplib.Core.Intent.Actions.GuardedAction`2._storedGuardResult*
+  name: _storedGuardResult
+  href: api/Aplib.Core.Intent.Actions.GuardedAction-2.html#Aplib_Core_Intent_Actions_GuardedAction_2__storedGuardResult_
+  commentId: Overload:Aplib.Core.Intent.Actions.GuardedAction`2._storedGuardResult
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.GuardedAction<TBeliefSet, TQuery>._storedGuardResult
+  fullName.vb: Aplib.Core.Intent.Actions.GuardedAction(Of TBeliefSet, TQuery)._storedGuardResult
+  nameWithType: GuardedAction<TBeliefSet, TQuery>._storedGuardResult
+  nameWithType.vb: GuardedAction(Of TBeliefSet, TQuery)._storedGuardResult
+- uid: Aplib.Core.Intent.Actions.IAction`1
+  name: IAction<TBeliefSet>
+  href: api/Aplib.Core.Intent.Actions.IAction-1.html
+  commentId: T:Aplib.Core.Intent.Actions.IAction`1
+  name.vb: IAction(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Actions.IAction<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Actions.IAction(Of TBeliefSet)
+  nameWithType: IAction<TBeliefSet>
+  nameWithType.vb: IAction(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.IAction`1.Execute(`0)
+  name: Execute(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.IAction-1.html#Aplib_Core_Intent_Actions_IAction_1_Execute__0_
+  commentId: M:Aplib.Core.Intent.Actions.IAction`1.Execute(`0)
+  fullName: Aplib.Core.Intent.Actions.IAction<TBeliefSet>.Execute(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.IAction(Of TBeliefSet).Execute(TBeliefSet)
+  nameWithType: IAction<TBeliefSet>.Execute(TBeliefSet)
+  nameWithType.vb: IAction(Of TBeliefSet).Execute(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.IAction`1.Execute*
+  name: Execute
+  href: api/Aplib.Core.Intent.Actions.IAction-1.html#Aplib_Core_Intent_Actions_IAction_1_Execute_
+  commentId: Overload:Aplib.Core.Intent.Actions.IAction`1.Execute
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.IAction<TBeliefSet>.Execute
+  fullName.vb: Aplib.Core.Intent.Actions.IAction(Of TBeliefSet).Execute
+  nameWithType: IAction<TBeliefSet>.Execute
+  nameWithType.vb: IAction(Of TBeliefSet).Execute
+- uid: Aplib.Core.Intent.Actions.IAction`1.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Actions.IAction-1.html#Aplib_Core_Intent_Actions_IAction_1_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Actions.IAction`1.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Actions.IAction<TBeliefSet>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Actions.IAction(Of TBeliefSet).IsActionable(TBeliefSet)
+  nameWithType: IAction<TBeliefSet>.IsActionable(TBeliefSet)
+  nameWithType.vb: IAction(Of TBeliefSet).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Actions.IAction`1.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Actions.IAction-1.html#Aplib_Core_Intent_Actions_IAction_1_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Actions.IAction`1.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Actions.IAction<TBeliefSet>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Actions.IAction(Of TBeliefSet).IsActionable
+  nameWithType: IAction<TBeliefSet>.IsActionable
+  nameWithType.vb: IAction(Of TBeliefSet).IsActionable
+- uid: Aplib.Core.Intent.Tactics
+  name: Aplib.Core.Intent.Tactics
+  href: api/Aplib.Core.Intent.Tactics.html
+  commentId: N:Aplib.Core.Intent.Tactics
+  fullName: Aplib.Core.Intent.Tactics
+  nameWithType: Aplib.Core.Intent.Tactics
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1
+  name: AnyOfTactic<TBeliefSet>
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html
+  commentId: T:Aplib.Core.Intent.Tactics.AnyOfTactic`1
+  name.vb: AnyOfTactic(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet)
+  nameWithType: AnyOfTactic<TBeliefSet>
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])
+  name: AnyOfTactic(Metadata?, params ITactic<TBeliefSet>[])
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_ITactic__0____
+  commentId: M:Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])
+  name.vb: New(Metadata, ParamArray ITactic(Of TBeliefSet)())
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>.AnyOfTactic(Aplib.Core.Metadata?, params Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet).New(Aplib.Core.Metadata, ParamArray Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet)())
+  nameWithType: AnyOfTactic<TBeliefSet>.AnyOfTactic(Metadata?, params ITactic<TBeliefSet>[])
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet).New(Metadata, ParamArray ITactic(Of TBeliefSet)())
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])
+  name: AnyOfTactic(Func<TBeliefSet, bool>, Metadata?, params ITactic<TBeliefSet>[])
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_ITactic__0____
+  commentId: M:Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])
+  name.vb: New(Func(Of TBeliefSet, Boolean), Metadata, ParamArray ITactic(Of TBeliefSet)())
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>.AnyOfTactic(System.Func<TBeliefSet, bool>, Aplib.Core.Metadata?, params Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet).New(System.Func(Of TBeliefSet, Boolean), Aplib.Core.Metadata, ParamArray Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet)())
+  nameWithType: AnyOfTactic<TBeliefSet>.AnyOfTactic(Func<TBeliefSet, bool>, Metadata?, params ITactic<TBeliefSet>[])
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet).New(Func(Of TBeliefSet, Boolean), Metadata, ParamArray ITactic(Of TBeliefSet)())
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor*
+  name: AnyOfTactic
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_
+  commentId: Overload:Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>.AnyOfTactic
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet).New
+  nameWithType: AnyOfTactic<TBeliefSet>.AnyOfTactic
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet).New
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction(`0)
+  name: GetAction(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1_GetAction__0_
+  commentId: M:Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction(`0)
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>.GetAction(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet).GetAction(TBeliefSet)
+  nameWithType: AnyOfTactic<TBeliefSet>.GetAction(TBeliefSet)
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet).GetAction(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction*
+  name: GetAction
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1_GetAction_
+  commentId: Overload:Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>.GetAction
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet).GetAction
+  nameWithType: AnyOfTactic<TBeliefSet>.GetAction
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet).GetAction
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1._subTactics
+  name: _subTactics
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__subTactics
+  commentId: P:Aplib.Core.Intent.Tactics.AnyOfTactic`1._subTactics
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>._subTactics
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet)._subTactics
+  nameWithType: AnyOfTactic<TBeliefSet>._subTactics
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet)._subTactics
+- uid: Aplib.Core.Intent.Tactics.AnyOfTactic`1._subTactics*
+  name: _subTactics
+  href: api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__subTactics_
+  commentId: Overload:Aplib.Core.Intent.Tactics.AnyOfTactic`1._subTactics
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.AnyOfTactic<TBeliefSet>._subTactics
+  fullName.vb: Aplib.Core.Intent.Tactics.AnyOfTactic(Of TBeliefSet)._subTactics
+  nameWithType: AnyOfTactic<TBeliefSet>._subTactics
+  nameWithType.vb: AnyOfTactic(Of TBeliefSet)._subTactics
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1
+  name: FirstOfTactic<TBeliefSet>
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html
+  commentId: T:Aplib.Core.Intent.Tactics.FirstOfTactic`1
+  name.vb: FirstOfTactic(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet)
+  nameWithType: FirstOfTactic<TBeliefSet>
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])
+  name: FirstOfTactic(Metadata?, params Tactic<TBeliefSet>[])
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html#Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_Tactic__0____
+  commentId: M:Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])
+  name.vb: New(Metadata, ParamArray Tactic(Of TBeliefSet)())
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>.FirstOfTactic(Aplib.Core.Metadata?, params Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet).New(Aplib.Core.Metadata, ParamArray Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet)())
+  nameWithType: FirstOfTactic<TBeliefSet>.FirstOfTactic(Metadata?, params Tactic<TBeliefSet>[])
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet).New(Metadata, ParamArray Tactic(Of TBeliefSet)())
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])
+  name: FirstOfTactic(Func<TBeliefSet, bool>, Metadata?, params Tactic<TBeliefSet>[])
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html#Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_Tactic__0____
+  commentId: M:Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])
+  name.vb: New(Func(Of TBeliefSet, Boolean), Metadata, ParamArray Tactic(Of TBeliefSet)())
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>.FirstOfTactic(System.Func<TBeliefSet, bool>, Aplib.Core.Metadata?, params Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>[])
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet).New(System.Func(Of TBeliefSet, Boolean), Aplib.Core.Metadata, ParamArray Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet)())
+  nameWithType: FirstOfTactic<TBeliefSet>.FirstOfTactic(Func<TBeliefSet, bool>, Metadata?, params Tactic<TBeliefSet>[])
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet).New(Func(Of TBeliefSet, Boolean), Metadata, ParamArray Tactic(Of TBeliefSet)())
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor*
+  name: FirstOfTactic
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html#Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_
+  commentId: Overload:Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>.FirstOfTactic
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet).New
+  nameWithType: FirstOfTactic<TBeliefSet>.FirstOfTactic
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet).New
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1.GetAction(`0)
+  name: GetAction(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html#Aplib_Core_Intent_Tactics_FirstOfTactic_1_GetAction__0_
+  commentId: M:Aplib.Core.Intent.Tactics.FirstOfTactic`1.GetAction(`0)
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>.GetAction(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet).GetAction(TBeliefSet)
+  nameWithType: FirstOfTactic<TBeliefSet>.GetAction(TBeliefSet)
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet).GetAction(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.FirstOfTactic`1.GetAction*
+  name: GetAction
+  href: api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.html#Aplib_Core_Intent_Tactics_FirstOfTactic_1_GetAction_
+  commentId: Overload:Aplib.Core.Intent.Tactics.FirstOfTactic`1.GetAction
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.FirstOfTactic<TBeliefSet>.GetAction
+  fullName.vb: Aplib.Core.Intent.Tactics.FirstOfTactic(Of TBeliefSet).GetAction
+  nameWithType: FirstOfTactic<TBeliefSet>.GetAction
+  nameWithType.vb: FirstOfTactic(Of TBeliefSet).GetAction
+- uid: Aplib.Core.Intent.Tactics.ITactic`1
+  name: ITactic<TBeliefSet>
+  href: api/Aplib.Core.Intent.Tactics.ITactic-1.html
+  commentId: T:Aplib.Core.Intent.Tactics.ITactic`1
+  name.vb: ITactic(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet)
+  nameWithType: ITactic<TBeliefSet>
+  nameWithType.vb: ITactic(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.ITactic`1.GetAction(`0)
+  name: GetAction(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.ITactic-1.html#Aplib_Core_Intent_Tactics_ITactic_1_GetAction__0_
+  commentId: M:Aplib.Core.Intent.Tactics.ITactic`1.GetAction(`0)
+  fullName: Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>.GetAction(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet).GetAction(TBeliefSet)
+  nameWithType: ITactic<TBeliefSet>.GetAction(TBeliefSet)
+  nameWithType.vb: ITactic(Of TBeliefSet).GetAction(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.ITactic`1.GetAction*
+  name: GetAction
+  href: api/Aplib.Core.Intent.Tactics.ITactic-1.html#Aplib_Core_Intent_Tactics_ITactic_1_GetAction_
+  commentId: Overload:Aplib.Core.Intent.Tactics.ITactic`1.GetAction
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>.GetAction
+  fullName.vb: Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet).GetAction
+  nameWithType: ITactic<TBeliefSet>.GetAction
+  nameWithType.vb: ITactic(Of TBeliefSet).GetAction
+- uid: Aplib.Core.Intent.Tactics.ITactic`1.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.ITactic-1.html#Aplib_Core_Intent_Tactics_ITactic_1_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Tactics.ITactic`1.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet).IsActionable(TBeliefSet)
+  nameWithType: ITactic<TBeliefSet>.IsActionable(TBeliefSet)
+  nameWithType.vb: ITactic(Of TBeliefSet).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.ITactic`1.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Tactics.ITactic-1.html#Aplib_Core_Intent_Tactics_ITactic_1_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Tactics.ITactic`1.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.ITactic<TBeliefSet>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Tactics.ITactic(Of TBeliefSet).IsActionable
+  nameWithType: ITactic<TBeliefSet>.IsActionable
+  nameWithType.vb: ITactic(Of TBeliefSet).IsActionable
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1
+  name: PrimitiveTactic<TBeliefSet>
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html
+  commentId: T:Aplib.Core.Intent.Tactics.PrimitiveTactic`1
+  name.vb: PrimitiveTactic(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet)
+  nameWithType: PrimitiveTactic<TBeliefSet>
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},Aplib.Core.Metadata)
+  name: PrimitiveTactic(IAction<TBeliefSet>, Metadata?)
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},Aplib.Core.Metadata)
+  name.vb: New(IAction(Of TBeliefSet), Metadata)
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.PrimitiveTactic(Aplib.Core.Intent.Actions.IAction<TBeliefSet>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).New(Aplib.Core.Intent.Actions.IAction(Of TBeliefSet), Aplib.Core.Metadata)
+  nameWithType: PrimitiveTactic<TBeliefSet>.PrimitiveTactic(IAction<TBeliefSet>, Metadata?)
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).New(IAction(Of TBeliefSet), Metadata)
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name: PrimitiveTactic(IAction<TBeliefSet>, Func<TBeliefSet, bool>, Metadata?)
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__System_Func__0_System_Boolean__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name.vb: New(IAction(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Metadata)
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.PrimitiveTactic(Aplib.Core.Intent.Actions.IAction<TBeliefSet>, System.Func<TBeliefSet, bool>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).New(Aplib.Core.Intent.Actions.IAction(Of TBeliefSet), System.Func(Of TBeliefSet, Boolean), Aplib.Core.Metadata)
+  nameWithType: PrimitiveTactic<TBeliefSet>.PrimitiveTactic(IAction<TBeliefSet>, Func<TBeliefSet, bool>, Metadata?)
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).New(IAction(Of TBeliefSet), Func(Of TBeliefSet, Boolean), Metadata)
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*
+  name: PrimitiveTactic
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_
+  commentId: Overload:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.PrimitiveTactic
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).New
+  nameWithType: PrimitiveTactic<TBeliefSet>.PrimitiveTactic
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).New
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.GetAction(`0)
+  name: GetAction(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1_GetAction__0_
+  commentId: M:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.GetAction(`0)
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.GetAction(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).GetAction(TBeliefSet)
+  nameWithType: PrimitiveTactic<TBeliefSet>.GetAction(TBeliefSet)
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).GetAction(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.GetAction*
+  name: GetAction
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1_GetAction_
+  commentId: Overload:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.GetAction
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.GetAction
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).GetAction
+  nameWithType: PrimitiveTactic<TBeliefSet>.GetAction
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).GetAction
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).IsActionable(TBeliefSet)
+  nameWithType: PrimitiveTactic<TBeliefSet>.IsActionable(TBeliefSet)
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet).IsActionable
+  nameWithType: PrimitiveTactic<TBeliefSet>.IsActionable
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet).IsActionable
+- uid: Aplib.Core.Intent.Tactics.PrimitiveTactic`1._action
+  name: _action
+  href: api/Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html#Aplib_Core_Intent_Tactics_PrimitiveTactic_1__action
+  commentId: F:Aplib.Core.Intent.Tactics.PrimitiveTactic`1._action
+  fullName: Aplib.Core.Intent.Tactics.PrimitiveTactic<TBeliefSet>._action
+  fullName.vb: Aplib.Core.Intent.Tactics.PrimitiveTactic(Of TBeliefSet)._action
+  nameWithType: PrimitiveTactic<TBeliefSet>._action
+  nameWithType.vb: PrimitiveTactic(Of TBeliefSet)._action
+- uid: Aplib.Core.Intent.Tactics.Tactic`1
+  name: Tactic<TBeliefSet>
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html
+  commentId: T:Aplib.Core.Intent.Tactics.Tactic`1
+  name.vb: Tactic(Of TBeliefSet)
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet)
+  nameWithType: Tactic<TBeliefSet>
+  nameWithType.vb: Tactic(Of TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.#ctor(Aplib.Core.Metadata)
+  name: Tactic(Metadata?)
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__ctor_Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Tactics.Tactic`1.#ctor(Aplib.Core.Metadata)
+  name.vb: New(Metadata)
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.Tactic(Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).New(Aplib.Core.Metadata)
+  nameWithType: Tactic<TBeliefSet>.Tactic(Metadata?)
+  nameWithType.vb: Tactic(Of TBeliefSet).New(Metadata)
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name: Tactic(Func<TBeliefSet, bool>, Metadata?)
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Metadata_
+  commentId: M:Aplib.Core.Intent.Tactics.Tactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata)
+  name.vb: New(Func(Of TBeliefSet, Boolean), Metadata)
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.Tactic(System.Func<TBeliefSet, bool>, Aplib.Core.Metadata?)
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).New(System.Func(Of TBeliefSet, Boolean), Aplib.Core.Metadata)
+  nameWithType: Tactic<TBeliefSet>.Tactic(Func<TBeliefSet, bool>, Metadata?)
+  nameWithType.vb: Tactic(Of TBeliefSet).New(Func(Of TBeliefSet, Boolean), Metadata)
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.#ctor*
+  name: Tactic
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__ctor_
+  commentId: Overload:Aplib.Core.Intent.Tactics.Tactic`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.Tactic
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).New
+  nameWithType: Tactic<TBeliefSet>.Tactic
+  nameWithType.vb: Tactic(Of TBeliefSet).New
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.GetAction(`0)
+  name: GetAction(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_GetAction__0_
+  commentId: M:Aplib.Core.Intent.Tactics.Tactic`1.GetAction(`0)
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.GetAction(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).GetAction(TBeliefSet)
+  nameWithType: Tactic<TBeliefSet>.GetAction(TBeliefSet)
+  nameWithType.vb: Tactic(Of TBeliefSet).GetAction(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.GetAction*
+  name: GetAction
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_GetAction_
+  commentId: Overload:Aplib.Core.Intent.Tactics.Tactic`1.GetAction
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.GetAction
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).GetAction
+  nameWithType: Tactic<TBeliefSet>.GetAction
+  nameWithType.vb: Tactic(Of TBeliefSet).GetAction
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.IsActionable(`0)
+  name: IsActionable(TBeliefSet)
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_IsActionable__0_
+  commentId: M:Aplib.Core.Intent.Tactics.Tactic`1.IsActionable(`0)
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.IsActionable(TBeliefSet)
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).IsActionable(TBeliefSet)
+  nameWithType: Tactic<TBeliefSet>.IsActionable(TBeliefSet)
+  nameWithType.vb: Tactic(Of TBeliefSet).IsActionable(TBeliefSet)
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.IsActionable*
+  name: IsActionable
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_IsActionable_
+  commentId: Overload:Aplib.Core.Intent.Tactics.Tactic`1.IsActionable
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.IsActionable
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).IsActionable
+  nameWithType: Tactic<TBeliefSet>.IsActionable
+  nameWithType.vb: Tactic(Of TBeliefSet).IsActionable
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.Metadata
+  name: Metadata
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_Metadata
+  commentId: P:Aplib.Core.Intent.Tactics.Tactic`1.Metadata
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).Metadata
+  nameWithType: Tactic<TBeliefSet>.Metadata
+  nameWithType.vb: Tactic(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Intent.Tactics.Tactic`1.Metadata*
+  name: Metadata
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_Metadata_
+  commentId: Overload:Aplib.Core.Intent.Tactics.Tactic`1.Metadata
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>.Metadata
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet).Metadata
+  nameWithType: Tactic<TBeliefSet>.Metadata
+  nameWithType.vb: Tactic(Of TBeliefSet).Metadata
+- uid: Aplib.Core.Intent.Tactics.Tactic`1._guard
+  name: _guard
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard
+  commentId: P:Aplib.Core.Intent.Tactics.Tactic`1._guard
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>._guard
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet)._guard
+  nameWithType: Tactic<TBeliefSet>._guard
+  nameWithType.vb: Tactic(Of TBeliefSet)._guard
+- uid: Aplib.Core.Intent.Tactics.Tactic`1._guard*
+  name: _guard
+  href: api/Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard_
+  commentId: Overload:Aplib.Core.Intent.Tactics.Tactic`1._guard
+  isSpec: "True"
+  fullName: Aplib.Core.Intent.Tactics.Tactic<TBeliefSet>._guard
+  fullName.vb: Aplib.Core.Intent.Tactics.Tactic(Of TBeliefSet)._guard
+  nameWithType: Tactic<TBeliefSet>._guard
+  nameWithType.vb: Tactic(Of TBeliefSet)._guard
+- uid: Aplib.Core.Metadata
+  name: Metadata
+  href: api/Aplib.Core.Metadata.html
+  commentId: T:Aplib.Core.Metadata
+  fullName: Aplib.Core.Metadata
+  nameWithType: Metadata
+- uid: Aplib.Core.Metadata.#ctor(System.String,System.String)
+  name: Metadata(string?, string?)
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata__ctor_System_String_System_String_
+  commentId: M:Aplib.Core.Metadata.#ctor(System.String,System.String)
+  name.vb: New(String, String)
+  fullName: Aplib.Core.Metadata.Metadata(string?, string?)
+  fullName.vb: Aplib.Core.Metadata.New(String, String)
+  nameWithType: Metadata.Metadata(string?, string?)
+  nameWithType.vb: Metadata.New(String, String)
+- uid: Aplib.Core.Metadata.#ctor*
+  name: Metadata
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata__ctor_
+  commentId: Overload:Aplib.Core.Metadata.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Aplib.Core.Metadata.Metadata
+  fullName.vb: Aplib.Core.Metadata.New
+  nameWithType: Metadata.Metadata
+  nameWithType.vb: Metadata.New
+- uid: Aplib.Core.Metadata.Description
+  name: Description
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Description
+  commentId: P:Aplib.Core.Metadata.Description
+  fullName: Aplib.Core.Metadata.Description
+  nameWithType: Metadata.Description
+- uid: Aplib.Core.Metadata.Description*
+  name: Description
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Description_
+  commentId: Overload:Aplib.Core.Metadata.Description
+  isSpec: "True"
+  fullName: Aplib.Core.Metadata.Description
+  nameWithType: Metadata.Description
+- uid: Aplib.Core.Metadata.Id
+  name: Id
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Id
+  commentId: P:Aplib.Core.Metadata.Id
+  fullName: Aplib.Core.Metadata.Id
+  nameWithType: Metadata.Id
+- uid: Aplib.Core.Metadata.Id*
+  name: Id
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Id_
+  commentId: Overload:Aplib.Core.Metadata.Id
+  isSpec: "True"
+  fullName: Aplib.Core.Metadata.Id
+  nameWithType: Metadata.Id
+- uid: Aplib.Core.Metadata.Name
+  name: Name
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Name
+  commentId: P:Aplib.Core.Metadata.Name
+  fullName: Aplib.Core.Metadata.Name
+  nameWithType: Metadata.Name
+- uid: Aplib.Core.Metadata.Name*
+  name: Name
+  href: api/Aplib.Core.Metadata.html#Aplib_Core_Metadata_Name_
+  commentId: Overload:Aplib.Core.Metadata.Name
+  isSpec: "True"
+  fullName: Aplib.Core.Metadata.Name
+  nameWithType: Metadata.Name
