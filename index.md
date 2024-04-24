@@ -2,10 +2,6 @@
 _layout: landing
 ---
 
-# This is the **HOMEPAGE**.
+# Aplib.Net
 
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-
-## Quick Start Notes:
-
-1. Add images to the *images* folder if the file is referencing an image.
+Refer to the [GitHub Wiki](https://github.com/team-zomsa/aplib.net/wiki) and its [https://github.com/team-zomsa/aplib.net/wiki/Quick-Start-Guide](quick start guide) to start.
