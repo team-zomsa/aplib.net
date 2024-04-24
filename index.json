@@ -7,7 +7,7 @@
   "README.html": {
     "href": "README.html",
     "title": "Aplib.Net | Aplib.Net",
-    "keywords": "Aplib.Net Overview Aplib.Net is a C# re-implementation of the Agent Programming LIBrary (Aplib) for Java. The Java implementation of Aplib can be found here and is licensed to Utrecht University, created under the iv4XR project. Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide support for the Unity game engine, due to its large user base. A demo game, showcasing the functionality of the library, can be found in this repository. Installation Aplib.Net is available as a NuGet package or as a simple DLL file, that can then be added as a reference. Both are available in the GitHub Release. An easier way of installing is also provided using the NuGet Gallery at NuGet.org, which can be found here. Unity Installation Unity installation is a bit tricky, but can be done in two ways. The first, and easier way is to install the NuGet plugin and import it via NuGet. For a manual installation, a few steps must be taken. As Unity does not support external libraries in .NET Standard API, the API Compatibility level must be set to .NET Framework in Project Settings > Player > Configuration > Api Compatibility Level. Download the latest DLL from the GitHub Release and place it in Assets/Plugins. In the root of your project, add a new file called csc.rsp and add the following line: -r:Assets/Plugins/Aplib.Core.dll Analysis We provide analysis metrics using SonarCloud, which can be found here. It provides information on metrics such as the code coverage, code smells and technical debt. Documentation Documentation is automatically generated using Doxygen and can be found here. Quick Start A quick start guide can be found in the GitHub Wiki. Contributing The contribution guidelines can be found here. License The project is provided under the BSD 3 License, which can be found here."
+    "keywords": "Aplib.Net Overview Aplib.Net is a C# re-implementation of the Agent Programming LIBrary (Aplib) for Java. The Java implementation of Aplib can be found here and is licensed to Utrecht University, created under the iv4XR project. Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide support for the Unity game engine, due to its large user base. A demo game, showcasing the functionality of the library, can be found in this repository. Installation Aplib.Net is available as a NuGet package or as a simple DLL file, that can then be added as a reference. Both are available in the GitHub Release. An easier way of installing is also provided using the NuGet Gallery at NuGet.org, which can be found here. Unity Installation Unity installation is a bit tricky, but can be done in two ways. The first, and easier way is to install the NuGet plugin and import it via NuGet. For a manual installation, a few steps must be taken. As Unity does not support external libraries in .NET Standard API, the API Compatibility level must be set to .NET Framework in Project Settings > Player > Configuration > Api Compatibility Level. Download the latest DLL from the GitHub Release and place it in Assets/Plugins. In the root of your project, add a new file called csc.rsp and add the following line: -r:Assets/Plugins/Aplib.Core.dll Analysis We provide analysis metrics using SonarCloud, which can be found here. It provides information on metrics such as the code coverage, code smells and technical debt. Documentation Documentation is automatically generated using Docfx and can be found here. Quick Start A quick start guide can be found in the GitHub Wiki. Contributing The contribution guidelines can be found here. License The project is provided under the BSD 3 License, which can be found here."
   },
   "api/Aplib.Core.BdiAgent-1.html": {
     "href": "api/Aplib.Core.BdiAgent-1.html",
@@ -198,16 +198,6 @@
     "href": "api/Aplib.Core.html",
     "title": "Namespace Aplib.Core | Aplib.Net",
     "keywords": "Namespace Aplib.Core Classes BdiAgent<TBeliefSet> Represents an agent that performs actions based on goals and beliefs. CircularArray<T> An array that wraps around when it reaches its end. Functionally works like a queue with indexing. Metadata Data structure to store information about a component which may be useful for debugging or logging. Interfaces IAgent Defines an agent that can play a game. ICompletable Defines an object that can be completed. Enums CompletionStatus Represents the state of a completable object."
-  },
-  "docs/getting-started.html": {
-    "href": "docs/getting-started.html",
-    "title": "Getting Started | Aplib.Net",
-    "keywords": "Getting Started"
-  },
-  "docs/introduction.html": {
-    "href": "docs/introduction.html",
-    "title": "Introduction | Aplib.Net",
-    "keywords": "Introduction"
   },
   "index.html": {
     "href": "index.html",
