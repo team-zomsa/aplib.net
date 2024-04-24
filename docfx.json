@@ -3,7 +3,7 @@
     {
       "src": [
         {
-          "src": "../src",
+          "src": "./Aplib.Core",
           "files": [
             "**/*.csproj"
           ]
