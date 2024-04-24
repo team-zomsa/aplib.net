@@ -199,9 +199,14 @@
     "title": "Namespace Aplib.Core | Aplib.Net",
     "keywords": "Namespace Aplib.Core Classes BdiAgent<TBeliefSet> Represents an agent that performs actions based on goals and beliefs. CircularArray<T> An array that wraps around when it reaches its end. Functionally works like a queue with indexing. Metadata Data structure to store information about a component which may be useful for debugging or logging. Interfaces IAgent Defines an agent that can play a game. ICompletable Defines an object that can be completed. Enums CompletionStatus Represents the state of a completable object."
   },
+  "docs/bla.html": {
+    "href": "docs/bla.html",
+    "title": "| Aplib.Net",
+    "keywords": "test bla"
+  },
   "index.html": {
     "href": "index.html",
-    "title": "This is the HOMEPAGE. | Aplib.Net",
-    "keywords": "This is the HOMEPAGE. Refer to Markdown for how to write markdown files. Quick Start Notes: Add images to the images folder if the file is referencing an image."
+    "title": "Aplib.Net | Aplib.Net",
+    "keywords": "Aplib.Net Refer to the GitHub Wiki and its [https://github.com/team-zomsa/aplib.net/wiki/Quick-Start-Guide](quick start guide) to start."
   }
 }
