@@ -425,20 +425,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "docs/bla.md",
+      "source_relative_path": "docs/getting-started.md",
       "output": {
         ".html": {
-          "relative_path": "docs/bla.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "docs/quick-start-guide.md",
-      "output": {
-        ".html": {
-          "relative_path": "docs/quick-start-guide.html"
+          "relative_path": "docs/getting-started.html"
         }
       },
       "version": ""
