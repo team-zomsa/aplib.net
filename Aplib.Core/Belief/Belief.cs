@@ -8,8 +8,7 @@ namespace Aplib.Core.Belief
     /// (i.e., some piece of information of the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
-    /// It implements the <see cref="IBelief"/> interface.
-    /// It supports implicit conversion to <typeparamref name="TObservation"/>.
+    /// Implicit conversion to <typeparamref name="TObservation"/> is supported, see <see cref="op_Implicit"/>.
     /// </remarks>
     /// <typeparam name="TReference">The type of the object reference used to generate/update the observation.</typeparam>
     /// <typeparam name="TObservation">The type of the observation that the belief represents.</typeparam>
@@ -36,11 +35,13 @@ namespace Aplib.Core.Belief
         private TObservation _observation;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
-        /// and a function to generate/update the observation using the object reference.
+        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object
+        /// reference, and a function to generate/update the observation using the object reference.
         /// </summary>
-        /// <param name="reference">A function that takes an object reference and generates/updates an observation.</param>
-        /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
+        /// <param name="reference">The object reference used to generate/update the observation.</param>
+        /// <param name="getObservationFromReference">
+        /// A function that takes an object reference and generates/updates an observation.
+        /// </param>
         public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
         {
             _reference = reference;
@@ -70,8 +71,8 @@ namespace Aplib.Core.Belief
         public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief._observation;
 
         /// <summary>
-        /// Generates/updates the observation if the shouldUpdate condition is satisfied.
-        /// The observation is then updated by calling the getObservationFromReference function.
+        /// Generates/updates the observation if the shouldUpdate condition is satisfied. The observation is then
+        /// updated by calling the <c>getObservationFromReference</c> function.
         /// </summary>
         public virtual void UpdateBelief()
         {
