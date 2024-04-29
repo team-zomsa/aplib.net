@@ -38,6 +38,14 @@ namespace Aplib.Core.Intent.Tactics
             Metadata? metadata = null)
             : base(guard, metadata) => _action = action;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action and guard.
+        /// </summary>
+        /// <param name="queryAction">The queryable action of the primitive tactic.</param>
+        /// <param name="guard">The guard of the primitive tactic.</param>
+        /// <param name="metadata">
+        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
+        /// </param>
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction,
             System.Func<TBeliefSet, bool> guard,
             Metadata? metadata = null)
