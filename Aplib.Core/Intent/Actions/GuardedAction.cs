@@ -9,7 +9,7 @@ namespace Aplib.Core.Intent.Actions
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
     /// <typeparam name="TQuery">The type of the query of the action</typeparam>
-    public class GuardedAction<TBeliefSet, TQuery> : Action<TBeliefSet>
+    public class GuardedAction<TBeliefSet, TQuery> : Action<TBeliefSet>, IQueryable<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -25,30 +25,39 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the guard of the action.
         /// </summary>
-        protected new System.Func<TBeliefSet, TQuery?> _guard { get; set; }
+        protected System.Func<TBeliefSet, TQuery?> _query { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuardedAction{TBeliefSet,TQuery}"/> class.
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
-        /// <param name="guard">The guard of the action.</param>
+        /// <param name="query">The guard of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public GuardedAction(System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> guard, Metadata? metadata = null)
+        public GuardedAction(System.Action<TBeliefSet, TQuery> effect,
+            System.Func<TBeliefSet, TQuery?> query,
+            Metadata? metadata = null)
             : base(metadata)
         {
             _effect = effect;
-            _guard = guard;
+            _query = query;
         }
 
         /// <inheritdoc/>
         public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, _storedGuardResult!);
 
-        /// <inheritdoc/>
-        public override bool IsActionable(TBeliefSet beliefSet)
+        /// <summary>
+        /// Queries the environment for the guarded item and returns whether the guard is not null.
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
+        /// <returns>True if the guard is not null; otherwise, false.</returns>
+        public bool Query(TBeliefSet beliefSet)
         {
-            _storedGuardResult = _guard(beliefSet);
+            // Query the environment for the guarded item
+            _storedGuardResult = _query(beliefSet);
+
+            // Only return true if the guard is not null
             return _storedGuardResult is not null;
         }
     }

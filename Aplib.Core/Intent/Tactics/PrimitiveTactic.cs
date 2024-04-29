@@ -33,13 +33,24 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        public PrimitiveTactic(IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard, Metadata? metadata = null)
+        public PrimitiveTactic(IAction<TBeliefSet> action,
+            System.Func<TBeliefSet, bool> guard,
+            Metadata? metadata = null)
             : base(guard, metadata) => _action = action;
 
-        /// <inheritdoc/>
-        public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet) => IsActionable(beliefSet) ? _action : null;
+        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction,
+            System.Func<TBeliefSet, bool> guard,
+            Metadata? metadata = null)
+            : base((beliefset) => guard(beliefset) && queryAction.Query(beliefset))
+        {
+            _action = queryAction;
+        }
 
         /// <inheritdoc/>
-        public override bool IsActionable(TBeliefSet beliefSet) => base.IsActionable(beliefSet) && _action.IsActionable(beliefSet);
+        public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
+            => IsActionable(beliefSet) ? _action : null;
+
+        /// <inheritdoc/>
+        public override bool IsActionable(TBeliefSet beliefSet) => base.IsActionable(beliefSet);
     }
 }
