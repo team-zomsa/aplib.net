@@ -1,0 +1,30 @@
+name: Rebase dev branch on main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Fetch all branches
+        run: git fetch --all
+
+      - name: Reset dev branch to main
+        run: |
+          git checkout dev
+          git reset --hard origin/main
+
+      - name: Push changes to dev branch
+        run: git push origin dev --force

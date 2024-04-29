@@ -1,0 +1,33 @@
+name: Create Pull Request from dev to main
+
+on:
+  workflow_dispatch:
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Fetch All
+        run: git fetch --all
+
+      - name: Get Latest Tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1.4.0
+        with:
+          fallback: v1.0.0
+
+      - name: Create Dev to Main Pull Request
+        run: |
+          git checkout dev
+          git pull
+          git checkout -b dev-${{ steps.previoustag.outputs.tag }}
+          git push origin dev-${{ steps.previoustag.outputs.tag }}
+          gh pr create --base main --head dev-${{ steps.previoustag.outputs.tag }} --title "Merge dev at version ${{ steps.previoustag.outputs.tag }} to main" --body "This PR merges the dev branch at version ${{ steps.previoustag.outputs.tag }} to the main branch."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
