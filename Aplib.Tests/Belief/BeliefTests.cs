@@ -58,6 +58,7 @@ public class BeliefTests
 
         // Assert
         Assert.Equal(list.Count, belief);
+        Assert.Equal(list.Count, belief.Observation);
     }
 
     /// <summary>
@@ -78,6 +79,7 @@ public class BeliefTests
 
         // Assert
         Assert.NotEqual(list.Count, belief);
+        Assert.NotEqual(list.Count, belief.Observation);
     }
 
     /// <summary>
@@ -98,5 +100,6 @@ public class BeliefTests
 
         // Assert
         Assert.NotEqual(def, belief);
+        Assert.NotEqual(def, belief.Observation);
     }
 }
