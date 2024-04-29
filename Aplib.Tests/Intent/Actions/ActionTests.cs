@@ -7,7 +7,7 @@ using Moq;
 namespace Aplib.Core.Tests.Intent.Actions;
 
 /// <summary>
-/// Describes a set of tests for the <see cref="GuardedAction{TQuery}" /> class.
+/// Describes a set of tests for the <see cref="QueryAction{TBeliefSet,TQuery}" /> class.
 /// </summary>
 public class ActionTests
 {
@@ -75,7 +75,7 @@ public class ActionTests
         // Arrange
         int result = 0;
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        GuardedAction<IBeliefSet, int> action = new(query: _ => 42, effect: (_, query) => result = query);
+        QueryAction<IBeliefSet, int> action = new(query: _ => 42, effect: (_, query) => result = query);
 
         // Act
         _ = action.Query(beliefSet);

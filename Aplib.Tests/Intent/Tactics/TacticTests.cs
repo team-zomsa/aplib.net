@@ -173,7 +173,7 @@ public class TacticTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<IBeliefSet, int> action = new((_, b) => result = b, _ => 42);
+        QueryAction<IBeliefSet, int> action = new((_, b) => result = b, _ => 42);
         PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
 
@@ -191,7 +191,7 @@ public class TacticTests
     {
         // Arrange
         int result = 0;
-        GuardedAction<IBeliefSet, int?> action = new((_, b) => result = b!.Value,
+        QueryAction<IBeliefSet, int?> action = new((_, b) => result = b!.Value,
             _ =>
             {
                 int? x = null;

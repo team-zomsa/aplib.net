@@ -9,7 +9,7 @@ namespace Aplib.Core.Intent.Actions
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
     /// <typeparam name="TQuery">The type of the query of the action</typeparam>
-    public class GuardedAction<TBeliefSet, TQuery> : Action<TBeliefSet>, IQueryable<TBeliefSet>
+    public class QueryAction<TBeliefSet, TQuery> : Action<TBeliefSet>, IQueryable<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -28,14 +28,14 @@ namespace Aplib.Core.Intent.Actions
         protected System.Func<TBeliefSet, TQuery?> _query { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GuardedAction{TBeliefSet,TQuery}"/> class.
+        /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}"/> class.
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
         /// <param name="query">The guard of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public GuardedAction(System.Action<TBeliefSet, TQuery> effect,
+        public QueryAction(System.Action<TBeliefSet, TQuery> effect,
             System.Func<TBeliefSet, TQuery?> query,
             Metadata? metadata = null)
             : base(metadata)
