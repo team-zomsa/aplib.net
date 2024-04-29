@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -26,7 +26,7 @@ jobs:
         run: |
           git checkout dev
           git pull
-          git checkout -b dev-${{ steps.previoustag.outputs.tag }}
+          git switch -c dev-${{ steps.previoustag.outputs.tag }}
           git push origin dev-${{ steps.previoustag.outputs.tag }}
           gh pr create --base main --head dev-${{ steps.previoustag.outputs.tag }} --title "Merge dev at version ${{ steps.previoustag.outputs.tag }} to main" --body "This PR merges the dev branch at version ${{ steps.previoustag.outputs.tag }} to the main branch."
         env:
