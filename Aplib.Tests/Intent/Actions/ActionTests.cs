@@ -75,127 +75,13 @@ public class ActionTests
         // Arrange
         int result = 0;
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        GuardedAction<IBeliefSet, int> action = new(guard: _ => 42, effect: (_, query) => result = query);
+        GuardedAction<IBeliefSet, int> action = new(query: _ => 42, effect: (_, query) => result = query);
 
         // Act
-        _ = action.IsActionable(beliefSet);
+        _ = action.Query(beliefSet);
         action.Execute(beliefSet);
 
         // Assert
         result.Should().Be(42);
-    }
-
-    /// <summary>
-    /// Given an action with no query,
-    /// When checking if the action is actionable,
-    /// Then the result should always be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_NoQuery_AlwaysTrue()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        Action<IBeliefSet> action = new(_ => { });
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeTrue();
-    }
-
-    /// <summary>
-    /// Given an action with a false bool guard,
-    /// When checking if the action is actionable,
-    /// Then the result should be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryIsFalse_IsActionable()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        GuardedAction<IBeliefSet, bool> action = new(guard: _ => false, effect: (_, _) => { });
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeTrue();
-    }
-
-    /// <summary>
-    /// Given an action with a non-null int guard,
-    /// When checking if the action is actionable,
-    /// Then the result should be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryIsNotNull_IsActionable()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        GuardedAction<IBeliefSet, int> action = new(guard: _ => 10, effect: (_, _) => { });
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeTrue();
-    }
-
-    /// <summary>
-    /// Given an action with a null object guard,
-    /// When checking if the action is actionable,
-    /// Then the result should be false.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryIsNull_IsNotActionable()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        GuardedAction<IBeliefSet, object> action = new(guard: _ => null!, effect: (_, _) => { });
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeFalse();
-    }
-
-    /// <summary>
-    /// Given an action with a false query,
-    /// When checking if the action is actionable,
-    /// Then the result should be false.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryWithFalse_ReturnsFalse()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        Action<IBeliefSet> action = new(_ => { }, _ => false);
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeFalse();
-    }
-
-    /// <summary>
-    /// Given an action with a true query,
-    /// When checking if the action is actionable,
-    /// Then the result should be true.
-    /// </summary>
-    [Fact]
-    public void IsActionable_QueryWithTrue_ReturnsTrue()
-    {
-        // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        Action<IBeliefSet> action = new(_ => { }, _ => true);
-
-        // Act
-        bool actionable = action.IsActionable(beliefSet);
-
-        // Assert
-        actionable.Should().BeTrue();
     }
 }
