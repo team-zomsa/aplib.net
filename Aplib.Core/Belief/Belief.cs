@@ -10,9 +10,12 @@ namespace Aplib.Core.Belief
     /// <remarks>
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
-    /// <typeparam name="TReference">The type of the object reference used to generate/update the observation.</typeparam>
+    /// <typeparam name="TReference">
+    /// The type of the object reference used to generate/update the observation. This <i>must</i> be a reference type,
+    /// be aware that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+    /// </typeparam>
     /// <typeparam name="TObservation">The type of the observation that the belief represents.</typeparam>
-    public class Belief<TReference, TObservation> : IBelief
+    public class Belief<TReference, TObservation> : IBelief where TReference : class
     {
         /// <summary>
         /// The object reference used to generate/update the observation.
@@ -38,7 +41,11 @@ namespace Aplib.Core.Belief
         /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
         /// and a function to generate/update the observation using the object reference.
         /// </summary>
-        /// <param name="reference">A function that takes an object reference and generates/updates an observation.</param>
+        /// <param name="reference">
+        /// A function that takes an object reference and generates/updates an observation. This <i>must</i> be a
+        /// reference type, be aware that this is not enforced by C# if <typeparamref name="TReference"/> is an
+        /// interface.
+        /// </param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
         {
@@ -52,7 +59,10 @@ namespace Aplib.Core.Belief
         /// a function to generate/update the observation using the object reference,
         /// and a condition on when the observation should be updated.
         /// </summary>
-        /// <param name="reference">The object reference used to generate/update the observation.</param>
+        /// <param name="reference">
+        /// The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
+        /// that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+        /// </param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
         public Belief(TReference reference,
