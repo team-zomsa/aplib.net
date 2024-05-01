@@ -37,7 +37,7 @@ public class ListBeliefTests
     }
 
     /// <summary>
-    /// Given a ListBelief with an shouldUpdate condition that is not satisfied,
+    /// Given a ListBelief with a shouldUpdate condition that is not satisfied,
     /// When UpdateBelief is called,
     /// Then the observation is not updated.
     /// </summary>
@@ -72,10 +72,9 @@ public class ListBeliefTests
 
         // Act
         ListBelief<byte, byte> belief = new(stack, b => b);
-        belief.UpdateBelief();
 
         // Assert
-        Assert.Equal(new List<byte>(), belief);
+        Assert.Empty(belief.Observation);
     }
 
     // [Fact]
