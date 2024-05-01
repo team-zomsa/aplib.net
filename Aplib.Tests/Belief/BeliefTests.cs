@@ -30,6 +30,7 @@ public class BeliefTests
     public void Belief_AssignedToObservationType_IsCorrectlyImplicitlyConvertedToObservationType()
     {
         // Arrange
+        // ReSharper disable once ConvertToConstant.Local
         string def = "def";
         Belief<string, string> belief = new(def, reference => reference);
 
@@ -38,6 +39,8 @@ public class BeliefTests
 
         // Assert
         Assert.Equal(def, observation);
+        Assert.Equal(def, belief.Observation);
+        Assert.Equal(belief.Observation, belief);
     }
 
     /// <summary>
@@ -101,5 +104,24 @@ public class BeliefTests
         // Assert
         Assert.NotEqual(def, belief);
         Assert.NotEqual(def, belief.Observation);
+    }
+
+    /// <summary>
+    /// Given a reference,
+    /// When a new Belief is constructed,
+    /// Then the observation is also initialized.
+    /// </summary>
+    [Fact]
+    public void Belief_DuringConstruction_UpdatesTheObservation()
+    {
+        // Arrange
+        // ReSharper disable once ConvertToConstant.Local
+        string def = "def";
+
+        // Act
+        Belief<string, string> belief = new(def, str => str);
+
+        // Assert
+        Assert.Equal(def, belief.Observation);
     }
 }
