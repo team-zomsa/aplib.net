@@ -194,4 +194,37 @@ public class SampledMemoryBeliefTests
         int expected = sampleInterval + 1;
         Assert.Equal(expected, belief.Observation);
     }
+
+    /// <summary>
+    /// Given a SampledMemoryBelief instance with a shouldUpdate method,
+    /// When shouldUpdate returns false,
+    /// Then Observation should not be updated regardless of the update mode.
+    /// </summary>
+    [Fact]
+    public void Observation_WhenShouldUpdateReturnsFalse_ShouldNotBeUpdated()
+    {
+        // Arrange
+        List<int> list = [];
+        int sampleInterval = 2, framesToRemember = 3;
+        SampledMemoryBelief<List<int>, int> belief
+            = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, () => false);
+
+        // Act
+        // Expected values:
+        // -----------------------------------------
+        //             | list.Count | Observation 
+        // -----------------------------------------
+        // Initial     | 0          | 0              (set initial observation)
+        // Iteration 0 | 1          | 0              
+        // Iteration 1 | 2          | 0              
+        // -----------------------------------------
+        for (int i = 0; i < 2; i++)
+        {
+            list.Add(0);
+            belief.UpdateBelief();
+        }
+
+        // Assert
+        Assert.Equal(0, belief.Observation);
+    }
 }
