@@ -11,22 +11,22 @@ namespace Aplib.Core.Intent.Actions
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
+        /// Gets or sets the effect of the action.
+        /// </summary>
+        protected readonly System.Action<TBeliefSet> _effect;
+
+        /// <summary>
+        /// Gets or sets the guard of the action.
+        /// </summary>
+        protected readonly Func<TBeliefSet, bool> _guard = _ => true;
+
+        /// <summary>
         /// Gets the metadata of the action.
         /// </summary>
         /// <remark>
         /// This metadata may be useful for debugging or logging.
         /// </remark>
         public Metadata Metadata { get; }
-
-        /// <summary>
-        /// Gets or sets the effect of the action.
-        /// </summary>
-        protected System.Action<TBeliefSet> _effect { get; set; }
-
-        /// <summary>
-        /// Gets or sets the guard of the action.
-        /// </summary>
-        protected Func<TBeliefSet, bool> _guard { get; set; } = _ => true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.

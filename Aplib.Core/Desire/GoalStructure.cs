@@ -10,9 +10,6 @@ namespace Aplib.Core.Desire
     public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
-        /// <inheritdoc />
-        public CompletionStatus Status { get; protected set; }
-
         /// <summary>
         /// The children of the goal structure.
         /// </summary>
@@ -22,6 +19,9 @@ namespace Aplib.Core.Desire
         /// The goal structure that is currently being fulfilled.
         /// </summary>
         protected IGoalStructure<TBeliefSet>? _currentGoalStructure;
+
+        /// <inheritdoc />
+        public CompletionStatus Status { get; protected set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalStructure{TBeliefSet}" /> class.

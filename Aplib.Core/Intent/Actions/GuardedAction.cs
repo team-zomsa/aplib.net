@@ -15,17 +15,17 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the result of the guard.
         /// </summary>
-        protected TQuery? _storedGuardResult { get; set; }
+        protected TQuery? _storedGuardResult;
 
         /// <summary>
         /// Gets or sets the effect of the action.
         /// </summary>
-        protected new System.Action<TBeliefSet, TQuery> _effect { get; set; }
+        protected new readonly System.Action<TBeliefSet, TQuery> _effect;
 
         /// <summary>
         /// Gets or sets the guard of the action.
         /// </summary>
-        protected new System.Func<TBeliefSet, TQuery?> _guard { get; set; }
+        protected new readonly System.Func<TBeliefSet, TQuery?> _guard;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuardedAction{TBeliefSet,TQuery}"/> class.

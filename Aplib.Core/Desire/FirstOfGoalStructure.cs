@@ -15,7 +15,7 @@ namespace Aplib.Core.Desire
     public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
         where TBeliefSet : IBeliefSet
     {
-        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
+        private readonly IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfGoalStructure{TBeliefSet}" /> class.

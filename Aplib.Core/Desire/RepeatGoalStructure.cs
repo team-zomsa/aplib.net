@@ -23,6 +23,12 @@ namespace Aplib.Core.Desire
             new List<IGoalStructure<TBeliefSet>> { goalStructure }) =>
             _currentGoalStructure = goalStructure;
 
+        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
+        {
+            Status = Success;
+            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        }
+
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
         {
@@ -40,12 +46,6 @@ namespace Aplib.Core.Desire
                 Failure or Unfinished => Unfinished,
                 _ => Success
             };
-        }
-
-        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
-        {
-            Status = Success;
-            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
 }

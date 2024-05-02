@@ -10,7 +10,7 @@ namespace Aplib.Core.Desire
         /// <summary>
         /// Stores the main goal structure of the agent.
         /// </summary>
-        private IGoalStructure<TBeliefSet> _mainGoal { get; }
+        private readonly IGoalStructure<TBeliefSet> _mainGoal;
 
         /// <inheritdoc />
         public CompletionStatus Status => _mainGoal.Status;

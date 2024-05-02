@@ -19,17 +19,6 @@ namespace Aplib.Core.Belief
     /// <typeparam name="TObservation">The type of the observation the belief represents.</typeparam>
     public class SampledMemoryBelief<TReference, TObservation> : MemoryBelief<TReference, TObservation>
     {
-        private int _counter = 0;
-
-        /// <summary>
-        /// The number of cycles that have passed since the last memory sample was stored.
-        /// </summary>
-        private int Counter
-        {
-            get => _counter;
-            set => _counter = value % _sampleInterval;
-        }
-
         /// <summary>
         /// The sample interval of the memory (inverse of the sample rate).
         /// One observation memory (i.e., snapshot) is stored every <see cref="_sampleInterval"/>-th cycle.
@@ -40,6 +29,17 @@ namespace Aplib.Core.Belief
         /// Specifies how this sampled memory belief should be updated.
         /// </summary>
         private readonly UpdateMode _updateMode;
+
+        private int _counter = 0;
+
+        /// <summary>
+        /// The number of cycles that have passed since the last memory sample was stored.
+        /// </summary>
+        private int Counter
+        {
+            get => _counter;
+            set => _counter = value % _sampleInterval;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an object reference,
@@ -101,6 +101,13 @@ namespace Aplib.Core.Belief
         }
 
         /// <summary>
+        /// Determines whether the memory should be sampled.
+        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
+        /// </summary>
+        /// <returns>Whether a memory sample should be stored in the current cycle.</returns>
+        private bool ShouldSampleMemory() => Counter++ == 0;
+
+        /// <summary>
         /// Generates/updates the observation if applicable.
         /// Also stores the previous observation in memory every <c>sampleInterval</c>-th cycle.
         /// </summary>
@@ -116,13 +123,6 @@ namespace Aplib.Core.Belief
             else if (_updateMode is AlwaysUpdate && _shouldUpdate())
                 UpdateObservation();
         }
-
-        /// <summary>
-        /// Determines whether the memory should be sampled.
-        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
-        /// </summary>
-        /// <returns>Whether a memory sample should be stored in the current cycle.</returns>
-        private bool ShouldSampleMemory() => Counter++ == 0;
     }
 }
 
