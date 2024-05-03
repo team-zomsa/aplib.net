@@ -49,10 +49,8 @@ namespace Aplib.Core.Intent.Tactics
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction,
             System.Func<TBeliefSet, bool> guard,
             Metadata? metadata = null)
-            : base((beliefset) => guard(beliefset) && queryAction.Query(beliefset))
-        {
-            _action = queryAction;
-        }
+            : base(beliefSet => guard(beliefSet) && queryAction.Query(beliefSet), metadata)
+        =>  _action = queryAction;
 
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)

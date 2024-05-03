@@ -31,7 +31,7 @@ namespace Aplib.Core.Intent.Actions
         /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}"/> class.
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
-        /// <param name="query">The guard of the action.</param>
+        /// <param name="query">The query of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
@@ -54,10 +54,10 @@ namespace Aplib.Core.Intent.Actions
         /// <returns>True if the guard is not null; otherwise, false.</returns>
         public bool Query(TBeliefSet beliefSet)
         {
-            // Query the environment for the guarded item
+            // Query the environment for the guarded item.
             _storedGuardResult = _query(beliefSet);
 
-            // Only return true if the guard is not null
+            // Only return true if the guard is not null.
             return _storedGuardResult is not null;
         }
     }
