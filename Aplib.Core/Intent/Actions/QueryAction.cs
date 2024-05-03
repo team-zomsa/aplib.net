@@ -15,7 +15,7 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the result of the guard.
         /// </summary>
-        protected TQuery? _storedGuardResult { get; set; }
+        protected TQuery? _storedQueryResult { get; set; }
 
         /// <summary>
         /// Gets or sets the effect of the action.
@@ -45,7 +45,7 @@ namespace Aplib.Core.Intent.Actions
         }
 
         /// <inheritdoc/>
-        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, _storedGuardResult!);
+        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, _storedQueryResult!);
 
         /// <summary>
         /// Queries the environment for the guarded item and returns whether the guard is not null.
@@ -55,10 +55,10 @@ namespace Aplib.Core.Intent.Actions
         public bool Query(TBeliefSet beliefSet)
         {
             // Query the environment for the guarded item.
-            _storedGuardResult = _query(beliefSet);
+            _storedQueryResult = _query(beliefSet);
 
             // Only return true if the guard is not null.
-            return _storedGuardResult is not null;
+            return _storedQueryResult is not null;
         }
     }
 }
