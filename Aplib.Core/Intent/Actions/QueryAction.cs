@@ -1,10 +1,10 @@
 ﻿using Aplib.Core.Belief;
-using Aplib.Core.Intent.Actions;
+using System;
 
 namespace Aplib.Core.Intent.Actions
 {
     /// <summary>
-    /// Describes an action that can be executed and guarded with a query that stores the result of the guard.
+    /// Describes an action that can be executed and guarded with a query that stores a result.
     /// The result can be used in the effect.
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
@@ -13,30 +13,30 @@ namespace Aplib.Core.Intent.Actions
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
-        /// Gets or sets the result of the guard.
+        /// Gets or sets the effect of the action.
+        /// </summary>
+        protected new Action<TBeliefSet, TQuery> _effect { get; set; }
+
+        /// <summary>
+        /// Gets or sets the query of the action.
+        /// </summary>
+        protected Func<TBeliefSet, TQuery?> _query { get; set; }
+
+        /// <summary>
+        /// Gets or sets the result of the query.
         /// </summary>
         protected TQuery? _storedQueryResult { get; set; }
 
         /// <summary>
-        /// Gets or sets the effect of the action.
-        /// </summary>
-        protected new System.Action<TBeliefSet, TQuery> _effect { get; set; }
-
-        /// <summary>
-        /// Gets or sets the guard of the action.
-        /// </summary>
-        protected System.Func<TBeliefSet, TQuery?> _query { get; set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}"/> class.
+        /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}" /> class.
         /// </summary>
         /// <param name="effect">The effect of the action.</param>
         /// <param name="query">The query of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public QueryAction(System.Action<TBeliefSet, TQuery> effect,
-            System.Func<TBeliefSet, TQuery?> query,
+        public QueryAction(Action<TBeliefSet, TQuery> effect,
+            Func<TBeliefSet, TQuery?> query,
             Metadata? metadata = null)
             : base(metadata)
         {
@@ -44,20 +44,20 @@ namespace Aplib.Core.Intent.Actions
             _query = query;
         }
 
-        /// <inheritdoc/>
-        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, _storedQueryResult!);
+        /// <inheritdoc />
+        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, arg2: _storedQueryResult!);
 
         /// <summary>
-        /// Queries the environment for the guarded item and returns whether the guard is not null.
+        /// Queries the environment for the guarded item and returns whether the query is not null.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
-        /// <returns>True if the guard is not null; otherwise, false.</returns>
+        /// <returns>True if the query is not null; otherwise, false.</returns>
         public bool Query(TBeliefSet beliefSet)
         {
             // Query the environment for the guarded item.
             _storedQueryResult = _query(beliefSet);
 
-            // Only return true if the guard is not null.
+            // Only return true if the query is not null.
             return _storedQueryResult is not null;
         }
     }
