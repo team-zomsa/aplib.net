@@ -114,12 +114,7 @@ namespace Aplib.Core.Belief
         public override void UpdateBelief()
         {
             if (ShouldSampleMemory())
-            {
-                // We use the implicit conversion to TObservation to store the observation.
-                _memorizedObservations.Put(this);
-
-                if (_shouldUpdate()) UpdateObservation();
-            }
+                base.UpdateBelief();
             else if (_updateMode is AlwaysUpdate && _shouldUpdate())
                 UpdateObservation();
         }
