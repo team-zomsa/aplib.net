@@ -1,5 +1,4 @@
 ﻿using Aplib.Core.Belief;
-using System;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -15,12 +14,12 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the effect of the action.
         /// </summary>
-        protected new Action<TBeliefSet, TQuery> _effect { get; set; }
+        protected new System.Action<TBeliefSet, TQuery> _effect { get; set; }
 
         /// <summary>
         /// Gets or sets the query of the action.
         /// </summary>
-        protected Func<TBeliefSet, TQuery?> _query { get; set; }
+        protected System.Func<TBeliefSet, TQuery?> _query { get; set; }
 
         /// <summary>
         /// Gets or sets the result of the query.
@@ -35,8 +34,8 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public QueryAction(Action<TBeliefSet, TQuery> effect,
-            Func<TBeliefSet, TQuery?> query,
+        public QueryAction(System.Action<TBeliefSet, TQuery> effect,
+            System.Func<TBeliefSet, TQuery?> query,
             Metadata? metadata = null)
             : base(metadata)
         {
@@ -45,7 +44,7 @@ namespace Aplib.Core.Intent.Actions
         }
 
         /// <inheritdoc />
-        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, arg2: _storedQueryResult!);
+        public override void Execute(TBeliefSet beliefSet) => _effect(beliefSet, _storedQueryResult!);
 
         /// <summary>
         /// Queries the environment for the queried item and returns whether the query is not null.
