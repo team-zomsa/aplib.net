@@ -30,15 +30,15 @@ namespace Aplib.Core.Belief
         /// </summary>
         private readonly UpdateMode _updateMode;
 
-        private int _counter = 0;
+        private int _moduloCounter = 0;
 
         /// <summary>
         /// The number of cycles that have passed since the last memory sample was stored.
         /// </summary>
-        private int Counter
+        private int ModuloCounter
         {
-            get => _counter;
-            set => _counter = value % _sampleInterval;
+            get => _moduloCounter;
+            set => _moduloCounter = value % _sampleInterval;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Aplib.Core.Belief
         /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
         /// </summary>
         /// <returns>Whether a memory sample should be stored in the current cycle.</returns>
-        private bool ShouldSampleMemory() => Counter++ == 0;
+        private bool ShouldSampleMemory() => ModuloCounter++ == 0;
 
         /// <summary>
         /// Generates/updates the observation if applicable.
