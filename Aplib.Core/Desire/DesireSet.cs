@@ -19,7 +19,7 @@ namespace Aplib.Core.Desire
         /// (i.e., push the goal structure on top of the goal structure stack).
         /// All active goal structures of the agent that still need to be finished are pushed on the stack.
         /// </summary>
-        private OptimizedActivationStack<(IGoalStructure<TBeliefSet>, System.Func<TBeliefSet, bool>)> _goalStructureStack { get; }
+        private OptimizedActivationStack<(IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)> _goalStructureStack;
 
         /// <summary>
         /// If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.
@@ -41,7 +41,7 @@ namespace Aplib.Core.Desire
             _goalStructureStack = new(sideGoals);
 
             // Push the main goal structure on the stack.
-            _goalStructureStack.Push(new((_mainGoal, _ => false), _goalStructureStack));
+            _goalStructureStack.Activate(new((_mainGoal, _ => false), _goalStructureStack));
         }
 
         /// <summary>
@@ -52,18 +52,18 @@ namespace Aplib.Core.Desire
         {
             foreach (var goalStructureStackItem in _goalStructureStack.ActivatableStackItems)
             {
-                (_, System.Func<TBeliefSet, bool> guard) = goalStructureStackItem.Item;
+                System.Func<TBeliefSet, bool> guard = goalStructureStackItem.Item.guard;
 
                 if (!guard(beliefSet)) continue;
 
-                _goalStructureStack.Push(goalStructureStackItem);
+                _goalStructureStack.Activate(goalStructureStackItem);
             }
         }
 
         /// <inheritdoc />
         public IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
         {
-            (IGoalStructure<TBeliefSet> currentGoalStructure, _) = _goalStructureStack.Peek();
+            IGoalStructure<TBeliefSet> currentGoalStructure = _goalStructureStack.Peek().goalStructure;
 
             return currentGoalStructure.GetCurrentGoal(beliefSet);
         }
@@ -76,7 +76,7 @@ namespace Aplib.Core.Desire
             // Each loop, either the size of the stack is decremented or the loop is exited early.
             while (_goalStructureStack.Count > 0)
             {
-                (IGoalStructure<TBeliefSet> currentGoalStructure, _) = _goalStructureStack.Peek();
+                IGoalStructure<TBeliefSet> currentGoalStructure = _goalStructureStack.Peek().goalStructure;
 
                 currentGoalStructure.UpdateStatus(beliefSet);
 
