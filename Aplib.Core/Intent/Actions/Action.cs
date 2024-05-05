@@ -1,5 +1,4 @@
 ﻿using Aplib.Core.Belief;
-using System;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -11,17 +10,17 @@ namespace Aplib.Core.Intent.Actions
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
+        /// Gets or sets the effect of the action.
+        /// </summary>
+        protected readonly System.Action<TBeliefSet> _effect;
+
+        /// <summary>
         /// Gets the metadata of the action.
         /// </summary>
         /// <remark>
         /// This metadata may be useful for debugging or logging.
         /// </remark>
         public Metadata Metadata { get; }
-
-        /// <summary>
-        /// Gets or sets the effect of the action.
-        /// </summary>
-        protected System.Action<TBeliefSet> _effect { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.

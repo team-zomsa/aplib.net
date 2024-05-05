@@ -14,17 +14,17 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Gets or sets the effect of the action.
         /// </summary>
-        protected new System.Action<TBeliefSet, TQuery> _effect { get; set; }
+        protected readonly new System.Action<TBeliefSet, TQuery> _effect;
 
         /// <summary>
         /// Gets or sets the query of the action.
         /// </summary>
-        protected System.Func<TBeliefSet, TQuery?> _query { get; set; }
+        protected readonly System.Func<TBeliefSet, TQuery?> _query;
 
         /// <summary>
         /// Gets or sets the result of the query.
         /// </summary>
-        protected TQuery? _storedQueryResult { get; set; }
+        protected TQuery? _storedQueryResult;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}" /> class.

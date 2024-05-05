@@ -8,7 +8,6 @@ namespace Aplib.Core.Belief
     /// (i.e., some piece of information of the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
-    /// It implements the <see cref="IBelief"/> interface.
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
     /// <typeparam name="TReference">The type of the object reference used to generate/update the observation.</typeparam>
@@ -18,26 +17,22 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// The object reference used to generate/update the observation.
         /// </summary>
-        private readonly TReference _reference;
+        protected readonly TReference _reference;
 
         /// <summary>
         /// A function that takes an object reference and generates/updates an observation.
         /// </summary>
-        private readonly Func<TReference, TObservation> _getObservationFromReference;
+        protected readonly Func<TReference, TObservation> _getObservationFromReference;
 
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        private readonly Func<bool> _shouldUpdate = () => true;
+        protected readonly Func<bool> _shouldUpdate = () => true;
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
         /// </summary>
-        public TObservation Observation
-        {
-            get;
-            protected set;
-        }
+        public TObservation Observation { get; protected set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
@@ -81,7 +76,13 @@ namespace Aplib.Core.Belief
         /// </summary>
         public virtual void UpdateBelief()
         {
-            if (_shouldUpdate()) Observation = _getObservationFromReference(_reference);
+            if (_shouldUpdate()) UpdateObservation();
         }
+
+        /// <summary>
+        /// Generates/updates the observation.
+        /// </summary>
+        protected void UpdateObservation()
+            => Observation = _getObservationFromReference(_reference);
     }
 }

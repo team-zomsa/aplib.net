@@ -10,7 +10,6 @@ namespace Aplib.Core.Belief
     /// This belief also stores a limited amount of previous observations in memory.
     /// </summary>
     /// <remarks>
-    /// It implements the <see cref="IBelief"/> interface.
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
     /// <typeparam name="TReference">The type of the reference used to generate/update the observation.</typeparam>
@@ -18,9 +17,9 @@ namespace Aplib.Core.Belief
     public class MemoryBelief<TReference, TObservation> : Belief<TReference, TObservation>
     {
         /// <summary>
-        /// A "memorized" resouce, from the last time the belief was updated.
+        /// A "memorized" resource, from the last time the belief was updated.
         /// </summary>
-        private readonly CircularArray<TObservation> _memorizedObservations;
+        protected readonly CircularArray<TObservation> _memorizedObservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object reference,
@@ -30,7 +29,12 @@ namespace Aplib.Core.Belief
         /// <param name="reference">The reference used to generate/update the observation.</param>
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
-        public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember)
+        public MemoryBelief
+        (
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int framesToRemember
+        )
             : base(reference, getObservationFromReference)
         {
             _memorizedObservations = new(framesToRemember);
@@ -46,8 +50,13 @@ namespace Aplib.Core.Belief
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
-        public MemoryBelief(TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember,
-            Func<bool> shouldUpdate)
+        public MemoryBelief
+        (
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int framesToRemember,
+            Func<bool> shouldUpdate
+        )
             : base(reference, getObservationFromReference, shouldUpdate)
         {
             _memorizedObservations = new(framesToRemember);
@@ -59,9 +68,10 @@ namespace Aplib.Core.Belief
         /// </summary>
         public override void UpdateBelief()
         {
-            // We use the implicit conversion to TObservation to store the observation
+            // We use the implicit conversion to TObservation to store the observation.
             _memorizedObservations.Put(this);
-            base.UpdateBelief();
+
+            if (_shouldUpdate()) UpdateObservation();
         }
 
         /// <summary>
@@ -75,7 +85,7 @@ namespace Aplib.Core.Belief
         /// A higher index means a memory further back in time.
         /// If the index is out of bounds, returns the element closest to the index that is in bounds.
         /// </summary>
-        /// <returns> The memory of the observation at the specified index.</returns>
+        /// <returns>The memory of the observation at the specified index.</returns>
         public TObservation GetMemoryAt(int index, bool clamp = false)
         {
             int lastMemoryIndex = _memorizedObservations.Length - 1;
@@ -93,8 +103,8 @@ namespace Aplib.Core.Belief
         /// <returns> An array of all the memorized observations.</returns>
         public TObservation[] GetAllMemories()
         {
-            // For now, we return the entire array, but with empty elements for the unused slots
-            // TODO: make it return only the used slots
+            // For now, we return the entire array, but with empty elements for the unused slots.
+            // TODO: make it return only the used slots.
             return _memorizedObservations.ToArray();
         }
     }

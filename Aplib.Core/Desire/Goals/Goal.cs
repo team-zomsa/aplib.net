@@ -16,6 +16,19 @@ namespace Aplib.Core.Desire.Goals
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
+        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
+        /// this value.
+        /// </summary>
+        protected readonly double _epsilon;
+
+        /// <summary>
+        /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
+        /// completed.
+        /// </summary>
+        /// <seealso cref="GetStatus" />
+        protected readonly HeuristicFunction _heuristicFunction;
+
+        /// <summary>
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
@@ -38,18 +51,6 @@ namespace Aplib.Core.Desire.Goals
 
         /// <inheritdoc />
         public CompletionStatus Status { get; protected set; }
-
-        /// <summary>
-        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
-        /// this value.
-        /// </summary>
-        protected double _epsilon { get; }
-        /// <summary>
-        /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
-        /// completed.
-        /// </summary>
-        /// <seealso cref="GetStatus" />
-        protected HeuristicFunction _heuristicFunction;
 
         /// <summary>
         /// Creates a new goal which works with <see cref="Heuristics" />.

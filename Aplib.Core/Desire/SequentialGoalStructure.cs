@@ -19,7 +19,7 @@ namespace Aplib.Core.Desire
         /// <summary>
         /// Gets or sets the enumerator for the children of the goal structure.
         /// </summary>
-        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
+        private readonly IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SequentialGoalStructure{TBeliefSet}" /> class.
@@ -33,6 +33,12 @@ namespace Aplib.Core.Desire
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
         }
+
+        /// <summary>
+        /// Disposes the enumerator.
+        /// </summary>
+        /// <param name="disposing">Whether the object is being disposed.</param>
+        protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
@@ -79,11 +85,5 @@ namespace Aplib.Core.Desire
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
-        /// <summary>
-        /// Disposes the enumerator.
-        /// </summary>
-        /// <param name="disposing">Whether the object is being disposed.</param>
-        protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
     }
 }

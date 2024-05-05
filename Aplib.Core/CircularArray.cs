@@ -6,12 +6,13 @@ namespace Aplib.Core
     /// </summary>
     public class CircularArray<T>
     {
+        private readonly T[] _array;
+        private int _head;
+
         /// <summary>
         /// The length of the array.
         /// </summary>
         public int Length { get; private set; }
-        private readonly T[] _array;
-        private int _head;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CircularArray{T}"/> class.

@@ -12,13 +12,10 @@ namespace Aplib.Core
     public class BdiAgent<TBeliefSet> : IAgent
         where TBeliefSet : IBeliefSet
     {
-        /// <inheritdoc />
-        public CompletionStatus Status => _desireSet.Status;
-
         /// <summary>
         /// Gets the beliefset of the agent.
         /// </summary>
-        private TBeliefSet _beliefSet { get; }
+        private readonly TBeliefSet _beliefSet;
 
         /// <summary>
         /// Gets the desire of the agent.
@@ -26,7 +23,10 @@ namespace Aplib.Core
         /// <remarks>
         /// The desire contains all goal structures and the current goal.
         /// </remarks>
-        private IDesireSet<TBeliefSet> _desireSet { get; }
+        private readonly IDesireSet<TBeliefSet> _desireSet;
+
+        /// <inheritdoc />
+        public CompletionStatus Status => _desireSet.Status;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class.
