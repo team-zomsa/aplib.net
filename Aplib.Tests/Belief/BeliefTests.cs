@@ -1,4 +1,6 @@
 ﻿using Aplib.Core.Belief;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -123,5 +125,43 @@ public class BeliefTests
 
         // Assert
         Assert.Equal(def, belief.Observation);
+    }
+
+    /// <summary>
+    /// Given a reference that is actually a value type, hidden behind an interface,
+    /// When a new Belief is constructed from this reference,
+    /// The constructor throws an ArgumentException.
+    /// </summary>
+    [Fact]
+    public void Belief_ConstructedWithAValueTypeViaAnInterface_IsRejected()
+    {
+        // Arrange
+        MyEnumerable value = new(1);
+        const string paramName = "reference";
+        // ReSharper disable once ConvertToLocalFunction
+        Action construction = () =>
+        {
+            // The bug is the fact that we can get around the constraint that `TReference` should be a reference type.
+            Belief<IEnumerable<int>, List<int>> _ = new(value, values => values.ToList());
+        };
+
+        // Act, Assert
+        Assert.Throws<ArgumentException>(paramName, construction);
+    }
+
+    private struct MyEnumerable : IEnumerable<int>
+    {
+        private readonly int _number;
+
+        private const int MAX = 3;
+
+        public MyEnumerable(int number) => _number = number;
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            for (int i = 0; i < MAX; i++) yield return _number;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

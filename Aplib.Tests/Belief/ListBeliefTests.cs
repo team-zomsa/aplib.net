@@ -76,36 +76,4 @@ public class ListBeliefTests
         // Assert
         Assert.Empty(belief.Observation);
     }
-
-    // [Fact]
-    // public void Bug()
-    // {
-    //     // Arrange
-    //     MyEnumerable value = new(1);
-    //     // The bug is the fact that we can get around the constraint that `TReference` should be a reference type.
-    //     Belief<IEnumerable<int>, List<int>> belief = new(value, vs => vs.ToList());
-    //
-    //     // Act
-    //     value.Number = 2;
-    //     belief.UpdateBelief();
-    //
-    //     // Assert
-    //     Assert.Equal(new List<int> { 2, 2, 2 }, belief);
-    // }
-    //
-    // private struct MyEnumerable : IEnumerable<int>
-    // {
-    //     public int Number { get; set; }
-    //
-    //     private const int MAX = 3;
-    //
-    //     public MyEnumerable(int number) => Number = number;
-    //
-    //     public IEnumerator<int> GetEnumerator()
-    //     {
-    //         for (int i = 0; i < MAX; i++) yield return Number;
-    //     }
-    //
-    //     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-    // }
 }

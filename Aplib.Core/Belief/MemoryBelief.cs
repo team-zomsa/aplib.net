@@ -35,6 +35,7 @@ namespace Aplib.Core.Belief
         /// </param>
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
+        /// <exception cref="ArgumentException">Thrown when <see cref="reference"/> is not a reference type.</exception>
         public MemoryBelief
         (
             TReference reference,
@@ -59,6 +60,7 @@ namespace Aplib.Core.Belief
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
+        /// <exception cref="ArgumentException">Thrown when <see cref="reference"/> is not a reference type.</exception>
         public MemoryBelief
         (
             TReference reference,

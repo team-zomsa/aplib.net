@@ -32,6 +32,7 @@ namespace Aplib.Core.Belief
         /// <param name="getObservationFromReference">
         /// A function that takes an object reference and generates an observation.
         /// </param>
+        /// <exception cref="ArgumentException">Thrown when <see cref="references"/> is not a reference type.</exception>
         public ListBelief
         (
             IEnumerable<TReference> references,
@@ -53,6 +54,7 @@ namespace Aplib.Core.Belief
         /// A function that takes an object reference and generates an observation.
         /// </param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
+        /// <exception cref="ArgumentException">Thrown when <see cref="references"/> is not a reference type.</exception>
         public ListBelief
         (
             IEnumerable<TReference> references,
