@@ -90,12 +90,15 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
-        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = 0.005d, Metadata? metadata = null)
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            Func<TBeliefSet, bool> predicate,
+            double epsilon = 0.005d,
+            Metadata? metadata = null
+        )
+            : this(tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon, metadata)
         {
-            Tactic = tactic;
-            _heuristicFunction = CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate);
-            _epsilon = epsilon;
-            Metadata = metadata ?? new Metadata();
         }
 
         /// <summary>
