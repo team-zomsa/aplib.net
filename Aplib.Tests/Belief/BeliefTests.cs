@@ -34,14 +34,15 @@ public class BeliefTests
         // Arrange
         // ReSharper disable once ConvertToConstant.Local
         string def = "def";
-        Belief<string, string> belief = new(def, reference => reference);
+        // Observation: Get the first letter.
+        Belief<string, char> belief = new(def, reference => reference[0]);
 
         // Act
-        string observation = belief;
+        char observation = belief;
 
         // Assert
-        Assert.Equal(def, observation);
-        Assert.Equal(def, belief.Observation);
+        Assert.Equal('d', observation);
+        Assert.Equal('d', belief.Observation);
         Assert.Equal(belief.Observation, belief);
     }
 
@@ -104,7 +105,6 @@ public class BeliefTests
         belief.UpdateBelief();
 
         // Assert
-        Assert.NotEqual(def, belief);
         Assert.NotEqual(def, belief.Observation);
     }
 
