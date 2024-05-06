@@ -42,11 +42,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        protected Action(Metadata? metadata = null)
-        {
-            _effect = _ => { };
-            Metadata = metadata ?? new Metadata();
-        }
+        protected Action(Metadata? metadata = null) : this(_ => { }, metadata) { }
 
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);
