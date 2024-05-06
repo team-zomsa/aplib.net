@@ -47,7 +47,9 @@ namespace Aplib.Core.Belief
         /// interface.
         /// </param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
-        /// <exception cref="ArgumentException">Thrown when <see cref="reference"/> is not a reference type.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// </exception>
         public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
         {
             Type referenceType = reference.GetType();
@@ -70,7 +72,9 @@ namespace Aplib.Core.Belief
         /// </param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        /// <exception cref="ArgumentException">Thrown when <see cref="reference"/> is not a reference type.</exception>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// </exception>
         public Belief(TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             Func<bool> shouldUpdate)
