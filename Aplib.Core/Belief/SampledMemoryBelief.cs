@@ -41,20 +41,7 @@ namespace Aplib.Core.Belief
             set => _moduloCounter = value % _sampleInterval;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an object reference,
-        /// and a function to generate/update the observation using the object reference.
-        /// This belief also stores a limited amount of previous observation samples in memory.
-        /// Optionally, the belief can always store the most recent observation, regardless of the sample rate.
-        /// </summary>
-        /// <param name="reference">The reference used to generate/update the observation.</param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
-        /// <param name="sampleInterval">
-        /// The sample interval of the memory.
-        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
-        /// </param>
-        /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
-        /// <param name="framesToRemember">The number of frames to remember back.</param>
+        /// <inheritdoc cref="SampledMemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})"/>
         public SampledMemoryBelief
         (
             TReference reference,
@@ -63,10 +50,8 @@ namespace Aplib.Core.Belief
             UpdateMode updateMode,
             int framesToRemember
         )
-            : base(reference, getObservationFromReference, framesToRemember)
+            : this(reference, getObservationFromReference, sampleInterval, updateMode, framesToRemember, () => true)
         {
-            _sampleInterval = sampleInterval;
-            _updateMode = updateMode;
         }
 
         /// <summary>
