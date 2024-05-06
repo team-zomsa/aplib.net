@@ -21,23 +21,15 @@ namespace Aplib.Core.Belief
         /// </summary>
         protected readonly CircularArray<TObservation> _memorizedObservations;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object reference,
-        /// and a function to generate/update the observation using the object reference.
-        /// Also initializes the memory array with a specified number of slots.
-        /// </summary>
-        /// <param name="reference">The reference used to generate/update the observation.</param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
-        /// <param name="framesToRemember">The number of frames to remember back.</param>
+        /// <inheritdoc cref="MemoryBelief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},int,System.Func{bool})" />
         public MemoryBelief
         (
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember
         )
-            : base(reference, getObservationFromReference)
+            : this(reference, getObservationFromReference, framesToRemember, () => true)
         {
-            _memorizedObservations = new(framesToRemember);
         }
 
         /// <summary>
@@ -57,10 +49,8 @@ namespace Aplib.Core.Belief
             int framesToRemember,
             Func<bool> shouldUpdate
         )
-            : base(reference, getObservationFromReference, shouldUpdate)
-        {
-            _memorizedObservations = new(framesToRemember);
-        }
+            : base(reference, getObservationFromReference, shouldUpdate) =>
+            _memorizedObservations = new CircularArray<TObservation>(framesToRemember);
 
         /// <summary>
         /// Generates/updates the observation.
