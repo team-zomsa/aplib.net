@@ -12,18 +12,6 @@ namespace Aplib.Core.Tests.Belief;
 public class BeliefTests
 {
     /// <summary>
-    /// A constant 'true' method for testing.
-    /// </summary>
-    /// <returns>True.</returns>
-    private static bool AlwaysUpdate() => true;
-
-    /// <summary>
-    /// A constant 'false' method for testing.
-    /// </summary>
-    /// <returns>False.</returns>
-    private static bool NeverUpdate() => false;
-
-    /// <summary>
     /// Given a Belief instance,
     /// When it is assigned to a variable of its observation type,
     /// Then it is implicitly converted to its observation type.
@@ -56,7 +44,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => true);
 
         // Act
         list.Add(69);
@@ -77,7 +65,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => false);
 
         // Act
         list.Add(420);
@@ -98,7 +86,7 @@ public class BeliefTests
     {
         // Arrange
         string def = "def";
-        Belief<string, string> belief = new(def, reference => reference, AlwaysUpdate);
+        Belief<string, string> belief = new(def, reference => reference, () => true);
 
         // Act
         def = "abc";

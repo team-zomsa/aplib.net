@@ -9,12 +9,6 @@ namespace Aplib.Core.Tests.Belief;
 public class ListBeliefTests
 {
     /// <summary>
-    /// A constant 'false' method for testing.
-    /// </summary>
-    /// <returns><c>false</c>.</returns>
-    private static bool NeverUpdate() => false;
-
-    /// <summary>
     /// Given a ListBelief without an explicit shouldUpdate parameter,
     /// When UpdateBelief is called,
     /// Then the observation is updated.
@@ -47,7 +41,7 @@ public class ListBeliefTests
         // Arrange
         List<string> strings = ["foo", "bar"];
         // Observation: What is the last character?
-        ListBelief<string, char> belief = new(strings, str => str[^1], NeverUpdate);
+        ListBelief<string, char> belief = new(strings, str => str[^1], () => false);
 
         // Act
         // Append 'x' to each string
