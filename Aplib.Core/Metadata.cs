@@ -27,12 +27,7 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="name">The name used to display the component.</param>
         /// <param name="description">The description used to describe the component.</param>
-        public Metadata(string? name = null, string? description = null)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Description = description;
-        }
+        public Metadata(string? name = null, string? description = null) : this(Guid.NewGuid(), name, description) { }
 
         /// <summary>
         /// Store information about a component which may be useful for debugging or logging or general overviews.
@@ -42,6 +37,10 @@ namespace Aplib.Core
         /// <param name="name">The name used to display the component.</param>
         /// <param name="description">The description used to describe the component.</param>
         internal Metadata(Guid id, string? name = null, string? description = null)
-            : this(name, description) => Id = id;
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+        }
     }
 }
