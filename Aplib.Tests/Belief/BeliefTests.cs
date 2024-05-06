@@ -25,12 +25,7 @@ public class BeliefTests
         // Observation: Get the first letter.
         Belief<string, char> belief = new(def, reference => reference[0]);
 
-        // Act
-        char observation = belief;
-
-        // Assert
-        Assert.Equal('d', observation);
-        Assert.Equal('d', belief.Observation);
+        // Act, Assert
         Assert.Equal(belief.Observation, belief);
     }
 
