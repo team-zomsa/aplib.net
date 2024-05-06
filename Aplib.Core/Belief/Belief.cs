@@ -27,24 +27,17 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        protected readonly Func<bool> _shouldUpdate = () => true;
+        protected readonly Func<bool> _shouldUpdate;
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
         /// </summary>
         public TObservation Observation { get; protected set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
-        /// and a function to generate/update the observation using the object reference.
-        /// </summary>
-        /// <param name="reference">A function that takes an object reference and generates/updates an observation.</param>
-        /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
+        /// <inheritdoc cref="Belief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},System.Func{bool})"/>
         public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
+            : this(reference, getObservationFromReference, () => true)
         {
-            _reference = reference;
-            _getObservationFromReference = getObservationFromReference;
-            Observation = _getObservationFromReference(_reference);
         }
 
         /// <summary>
@@ -55,11 +48,16 @@ namespace Aplib.Core.Belief
         /// <param name="reference">The object reference used to generate/update the observation.</param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        public Belief(TReference reference,
+        public Belief
+        (
+            TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate)
-            : this(reference, getObservationFromReference)
+            Func<bool> shouldUpdate
+        )
         {
+            _reference = reference;
+            _getObservationFromReference = getObservationFromReference;
+            Observation = _getObservationFromReference(_reference);
             _shouldUpdate = shouldUpdate;
         }
 
