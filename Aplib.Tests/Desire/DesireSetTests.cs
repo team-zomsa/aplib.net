@@ -3,7 +3,6 @@ using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
 using FluentAssertions;
 using Moq;
-using System;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -108,10 +107,10 @@ public class DesireSetTests
 
         // Act
         desireSet.Update(It.IsAny<IBeliefSet>());
-        Action getCurrentGoal = () => desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
+        System.Action getCurrentGoal = () => desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
 
         // Assert
-        getCurrentGoal.Should().Throw<InvalidOperationException>();
+        getCurrentGoal.Should().Throw<System.InvalidOperationException>();
     }
 
     /// <summary>

@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -107,10 +106,10 @@ public class OptimizedActivationStackTests
             = otherActivationStack.ActivatableStackItems.First();
 
         // Act
-        Action activateItem = () => activationStack.Activate(stackItemToActivate);
+        System.Action activateItem = () => activationStack.Activate(stackItemToActivate);
 
         // Assert
-        activateItem.Should().Throw<ArgumentException>();
+        activateItem.Should().Throw<System.ArgumentException>();
     }
 
     /// <summary>
@@ -150,10 +149,10 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Act
-        Func<int> peekItem = activationStack.Peek;
+        System.Func<int> peekItem = activationStack.Peek;
 
         // Assert
-        peekItem.Should().Throw<InvalidOperationException>();
+        peekItem.Should().Throw<System.InvalidOperationException>();
     }
 
     /// <summary>
@@ -218,10 +217,10 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Act
-        Func<int> popItem = activationStack.Pop;
+        System.Func<int> popItem = activationStack.Pop;
 
         // Assert
-        popItem.Should().Throw<InvalidOperationException>();
+        popItem.Should().Throw<System.InvalidOperationException>();
     }
 
     /// <summary>
