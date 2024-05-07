@@ -69,7 +69,11 @@ namespace Aplib.Core.Desire
             return currentGoalStructure.GetCurrentGoal(beliefSet);
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Activates side goal structures when their guard is satisfied, and updates the activation stack
+        /// by popping goal structures from the top of the stack when they are finished.
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
         public void Update(TBeliefSet beliefSet)
         {
             ActivateRelevantGoalStructures(beliefSet);
