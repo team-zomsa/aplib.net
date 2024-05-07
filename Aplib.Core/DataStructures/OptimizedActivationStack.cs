@@ -59,7 +59,7 @@ namespace Aplib.Core.DataStructures
         public void Activate(ActivationStackItem item)
         {
             if (item.ActivationStack != this)
-                throw new System.ArgumentException("Cannot push an item that is not on this stack.");
+                throw new System.ArgumentException("Cannot push an item that is not an activatable of this activation stack.");
 
             // Handle the case when the stack is empty.
             if (_top is null)
@@ -76,7 +76,8 @@ namespace Aplib.Core.DataStructures
             else Count++;
 
             // Push the new item on top of the stack.
-            _top.PushAfter(item);
+            item.PushOnStackAfter(_top);
+            _top = item;
         }
 
         /// <summary>
@@ -188,10 +189,10 @@ namespace Aplib.Core.DataStructures
             /// when an item is already on the stack,
             /// or when an item is pushed after an item that is not on the stack.
             /// </exception>
-            public void PushAfter(ActivationStackItem item)
+            public void PushOnStackAfter(ActivationStackItem item)
             {
                 if (ActivationStack != item.ActivationStack)
-                    throw new System.ArgumentException("Cannot push an item after an item that is not on the same stack.");
+                    throw new System.ArgumentException("Cannot push an item after an item that is not an activatable of the same stack.");
                 if (IsActive)
                     throw new System.ArgumentException("Cannot push an item that is already on the stack.");
                 if (!item.IsActive)

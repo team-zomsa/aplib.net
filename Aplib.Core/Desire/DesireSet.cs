@@ -69,7 +69,7 @@ namespace Aplib.Core.Desire
         }
 
         /// <inheritdoc />
-        public void UpdateStatus(TBeliefSet beliefSet)
+        public void Update(TBeliefSet beliefSet)
         {
             ActivateRelevantGoalStructures(beliefSet);
 

@@ -22,6 +22,6 @@ namespace Aplib.Core.Desire
         /// Updates the status of this <see cref="IDesireSet{TBeliefSet}"/>.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
-        void UpdateStatus(TBeliefSet beliefSet);
+        void Update(TBeliefSet beliefSet);
     }
 }
