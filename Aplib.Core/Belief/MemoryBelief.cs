@@ -12,9 +12,12 @@ namespace Aplib.Core.Belief
     /// <remarks>
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
-    /// <typeparam name="TReference">The type of the reference used to generate/update the observation.</typeparam>
+    /// <typeparam name="TReference">
+    /// The type of the reference used to generate/update the observation. This <i>must</i> be a reference type, be aware that
+    /// this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+    /// </typeparam>
     /// <typeparam name="TObservation">The type of the observation the belief represents.</typeparam>
-    public class MemoryBelief<TReference, TObservation> : Belief<TReference, TObservation>
+    public class MemoryBelief<TReference, TObservation> : Belief<TReference, TObservation> where TReference : class
     {
         /// <summary>
         /// A "memorized" resource, from the last time the belief was updated.
@@ -26,9 +29,15 @@ namespace Aplib.Core.Belief
         /// and a function to generate/update the observation using the object reference.
         /// Also initializes the memory array with a specified number of slots.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="reference">
+        /// The reference used to generate/update the observation. This <i>must</i> be a reference type, be aware that
+        /// this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+        /// </param>
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// </exception>
         public MemoryBelief
         (
             TReference reference,
@@ -46,10 +55,16 @@ namespace Aplib.Core.Belief
         /// and a condition on when the observation should be updated.
         /// Also initializes the memory array with a specified number of slots.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="reference">
+        /// The reference used to generate/update the observation. This <i>must</i> be a reference type, be aware that
+        /// this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+        /// </param>
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// </exception>
         public MemoryBelief
         (
             TReference reference,
