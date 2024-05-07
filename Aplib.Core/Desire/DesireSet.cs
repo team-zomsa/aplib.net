@@ -15,11 +15,12 @@ namespace Aplib.Core.Desire
 
         /// <summary>
         /// Stores the side goal structures of the agent.
-        /// Each of these goal structures has an accompanying guard that must be fulfilled to activate the goal structure
-        /// (i.e., push the goal structure on top of the goal structure stack).
+        /// Each of these goal structures has an accompanying guard that must be fulfilled to
+        /// activate the goal structure (i.e., push the goal structure on top of the goal structure stack).
         /// All active goal structures of the agent that still need to be finished are pushed on the stack.
         /// </summary>
-        private OptimizedActivationStack<(IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)> _goalStructureStack;
+        private readonly OptimizedActivationStack
+            <(IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)> _goalStructureStack;
 
         /// <summary>
         /// If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.
