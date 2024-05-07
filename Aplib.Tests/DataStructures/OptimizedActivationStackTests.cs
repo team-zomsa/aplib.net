@@ -229,7 +229,7 @@ public class OptimizedActivationStackTests
     /// Then the count of the optimized activation stack should be decreased by one.
     /// </summary>
     [Fact]
-    public void Pop_WhenCalled_CountShouldStayTheSame()
+    public void Pop_WhenCalled_CountShouldDecrement()
     {
         // Arrange
         int[] activatables = [1, 2, 3];
