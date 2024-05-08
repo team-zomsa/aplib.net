@@ -4,11 +4,10 @@ namespace Aplib.Core.Belief
 {
     /// <summary>
     /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.
-    /// Some <i>object reference</i> is used to generate/update an <i>observation</i> 
+    /// Some <i>object reference</i> is used to generate/update an <i>observation</i>
     /// (i.e., some piece of information of the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
-    /// It implements the <see cref="IBelief"/> interface.
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
     /// <typeparam name="TReference">The type of the object reference used to generate/update the observation.</typeparam>
@@ -18,22 +17,22 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// The object reference used to generate/update the observation.
         /// </summary>
-        private readonly TReference _reference;
+        protected readonly TReference _reference;
 
         /// <summary>
         /// A function that takes an object reference and generates/updates an observation.
         /// </summary>
-        private readonly Func<TReference, TObservation> _getObservationFromReference;
+        protected readonly Func<TReference, TObservation> _getObservationFromReference;
 
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        private readonly Func<bool> _shouldUpdate = () => true;
+        protected readonly Func<bool> _shouldUpdate = () => true;
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
         /// </summary>
-        private TObservation _observation;
+        public TObservation Observation { get; protected set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
@@ -45,7 +44,7 @@ namespace Aplib.Core.Belief
         {
             _reference = reference;
             _getObservationFromReference = getObservationFromReference;
-            _observation = _getObservationFromReference(_reference);
+            Observation = _getObservationFromReference(_reference);
         }
 
         /// <summary>
@@ -56,18 +55,20 @@ namespace Aplib.Core.Belief
         /// <param name="reference">The object reference used to generate/update the observation.</param>
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference, Func<bool> shouldUpdate)
+        public Belief(TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            Func<bool> shouldUpdate)
             : this(reference, getObservationFromReference)
         {
             _shouldUpdate = shouldUpdate;
         }
 
         /// <summary>
-        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TObservation}"/> object 
+        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TObservation}"/> object
         /// to be used where a <typeparamref name="TObservation"/> is expected.
         /// </summary>
         /// <param name="belief">The <see cref="Belief{TReference, TObservation}"/> object to convert.</param>
-        public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief._observation;
+        public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief.Observation;
 
         /// <summary>
         /// Generates/updates the observation if the shouldUpdate condition is satisfied.
@@ -75,7 +76,13 @@ namespace Aplib.Core.Belief
         /// </summary>
         public virtual void UpdateBelief()
         {
-            if (_shouldUpdate()) _observation = _getObservationFromReference(_reference);
+            if (_shouldUpdate()) UpdateObservation();
         }
+
+        /// <summary>
+        /// Generates/updates the observation.
+        /// </summary>
+        protected void UpdateObservation()
+            => Observation = _getObservationFromReference(_reference);
     }
 }

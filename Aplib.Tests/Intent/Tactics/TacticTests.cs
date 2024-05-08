@@ -18,7 +18,6 @@ public class TacticTests
     {
         // Arrange
         Mock<IAction<IBeliefSet>> action = new();
-        action.Setup(a => a.IsActionable(It.IsAny<IBeliefSet>())).Returns(true);
         PrimitiveTactic<IBeliefSet> tactic = new(action.Object, guard: _ => true);
 
         // Act
@@ -103,7 +102,7 @@ public class TacticTests
     public void PrimitiveTacticGetAction_WhenTacticTypeIsPrimitiveAndActionIsActionable_ReturnsAction()
     {
         // Arrange
-        Action<IBeliefSet> action = new(_ => { }, _ => true);
+        Action<IBeliefSet> action = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic = new(action);
 
         // Act
@@ -122,8 +121,8 @@ public class TacticTests
     public void PrimitiveTactic_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsNoAction()
     {
         // Arrange
-        Action<IBeliefSet> action = new(_ => { }, _ => false);
-        PrimitiveTactic<IBeliefSet> tactic = new(action);
+        Action<IBeliefSet> action = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => false);
 
         // Act
         IAction<IBeliefSet>? enabledAction = tactic.GetAction(It.IsAny<IBeliefSet>());
@@ -159,7 +158,7 @@ public class TacticTests
     public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndActionIsActionable_ReturnsTrue()
     {
         // Arrange
-        Action<IBeliefSet> action = new(_ => { }, _ => true);
+        Action<IBeliefSet> action = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
 
         // Act
@@ -167,5 +166,46 @@ public class TacticTests
 
         // Assert
         isActionable.Should().BeTrue();
+    }
+
+    [Fact]
+    public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndHasQuery_ReturnsCorrectQuery()
+    {
+        // Arrange
+        int result = 0;
+        QueryAction<IBeliefSet, int> action = new((_, b) => result = b, _ => 42);
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        bool isActionable = tactic.IsActionable(beliefSet);
+        tactic.GetAction(beliefSet)!.Execute(beliefSet);
+
+        // Assert
+        isActionable.Should().BeTrue();
+        result.Should().Be(42);
+    }
+
+    [Fact]
+    public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndHasNullQuery_IsNotActionable()
+    {
+        // Arrange
+        int result = 0;
+        QueryAction<IBeliefSet, int?> action = new((_, b) => result = b!.Value,
+            _ =>
+            {
+                int? x = null;
+                return x;
+            }
+        );
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        bool isActionable = tactic.IsActionable(beliefSet);
+
+        // Assert
+        isActionable.Should().BeFalse();
+        result.Should().Be(0);
     }
 }

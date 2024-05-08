@@ -8,7 +8,7 @@ namespace Aplib.Core
     public class Metadata
     {
         /// <summary>
-        ///     Gets the unique identifier of the component.
+        /// Gets the unique identifier of the component.
         /// </summary>
         public Guid Id { get; }
 
