@@ -52,10 +52,10 @@ namespace Aplib.Core
         /// <param name="count">The number of actual elements in the array.</param>
         public ExposedQueue(T[] array, int count = -1)
         {
-            Count = count;
             MaxCount = array.Length;
             _array = array;
             _head = MaxCount - 1;
+            Count = count == -1 ? MaxCount : count;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Aplib.Core
         public T this[int index]
         {
             get => _array[(index + _head + 1) % MaxCount];
-            set => _array[(index + _head + 1) % MaxCount] = value;
+            private set => _array[(index + _head + 1) % MaxCount] = value;
         }
 
         /// <summary>
