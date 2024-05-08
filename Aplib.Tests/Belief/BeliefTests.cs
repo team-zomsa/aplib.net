@@ -1,4 +1,6 @@
 ﻿using Aplib.Core.Belief;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,18 +12,6 @@ namespace Aplib.Core.Tests.Belief;
 public class BeliefTests
 {
     /// <summary>
-    /// A constant 'true' method for testing.
-    /// </summary>
-    /// <returns>True.</returns>
-    private static bool AlwaysUpdate() => true;
-
-    /// <summary>
-    /// A constant 'false' method for testing.
-    /// </summary>
-    /// <returns>False.</returns>
-    private static bool NeverUpdate() => false;
-
-    /// <summary>
     /// Given a Belief instance,
     /// When it is assigned to a variable of its observation type,
     /// Then it is implicitly converted to its observation type.
@@ -30,14 +20,13 @@ public class BeliefTests
     public void Belief_AssignedToObservationType_IsCorrectlyImplicitlyConvertedToObservationType()
     {
         // Arrange
+        // ReSharper disable once ConvertToConstant.Local
         string def = "def";
-        Belief<string, string> belief = new(def, reference => reference);
+        // Observation: Get the first letter.
+        Belief<string, char> belief = new(def, reference => reference[0]);
 
-        // Act
-        string observation = belief;
-
-        // Assert
-        Assert.Equal(def, observation);
+        // Act, Assert
+        Assert.Equal(belief.Observation, belief);
     }
 
     /// <summary>
@@ -50,7 +39,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, AlwaysUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => true);
 
         // Act
         list.Add(69);
@@ -58,6 +47,7 @@ public class BeliefTests
 
         // Assert
         Assert.Equal(list.Count, belief);
+        Assert.Equal(list.Count, belief.Observation);
     }
 
     /// <summary>
@@ -70,7 +60,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, NeverUpdate);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => false);
 
         // Act
         list.Add(420);
@@ -78,6 +68,7 @@ public class BeliefTests
 
         // Assert
         Assert.NotEqual(list.Count, belief);
+        Assert.NotEqual(list.Count, belief.Observation);
     }
 
     /// <summary>
@@ -90,13 +81,70 @@ public class BeliefTests
     {
         // Arrange
         string def = "def";
-        Belief<string, string> belief = new(def, reference => reference, AlwaysUpdate);
+        Belief<string, string> belief = new(def, reference => reference, () => true);
 
         // Act
         def = "abc";
         belief.UpdateBelief();
 
         // Assert
-        Assert.NotEqual(def, belief);
+        Assert.NotEqual(def, belief.Observation);
+    }
+
+    /// <summary>
+    /// Given a reference,
+    /// When a new Belief is constructed,
+    /// Then the observation is also initialized.
+    /// </summary>
+    [Fact]
+    public void Belief_DuringConstruction_UpdatesTheObservation()
+    {
+        // Arrange
+        // ReSharper disable once ConvertToConstant.Local
+        string def = "def";
+
+        // Act
+        Belief<string, string> belief = new(def, str => str);
+
+        // Assert
+        Assert.Equal(def, belief.Observation);
+    }
+
+    /// <summary>
+    /// Given a reference that is actually a value type, hidden behind an interface,
+    /// When a new Belief is constructed from this reference,
+    /// The constructor throws an ArgumentException.
+    /// </summary>
+    [Fact]
+    public void Belief_ConstructedWithAValueTypeViaAnInterface_IsRejected()
+    {
+        // Arrange
+        MyEnumerable value = new(1);
+        const string paramName = "reference";
+        // ReSharper disable once ConvertToLocalFunction
+        Action construction = () =>
+        {
+            // The bug is the fact that we can get around the constraint that `TReference` should be a reference type.
+            Belief<IEnumerable<int>, List<int>> _ = new(value, values => values.ToList());
+        };
+
+        // Act, Assert
+        Assert.Throws<ArgumentException>(paramName, construction);
+    }
+
+    private struct MyEnumerable : IEnumerable<int>
+    {
+        private readonly int _number;
+
+        private const int MAX = 3;
+
+        public MyEnumerable(int number) => _number = number;
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            for (int i = 0; i < MAX; i++) yield return _number;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

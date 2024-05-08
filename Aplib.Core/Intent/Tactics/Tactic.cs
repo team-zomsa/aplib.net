@@ -15,17 +15,17 @@ namespace Aplib.Core.Intent.Tactics
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
+        /// Gets or sets the guard of the tactic.
+        /// </summary>
+        protected System.Func<TBeliefSet, bool> _guard = _ => true;
+
+        /// <summary>
         /// Gets the metadata of the tactic.
         /// </summary>
         /// <remark>
         /// This metadata may be useful for debugging or logging.
         /// </remark>
         public Metadata Metadata { get; }
-
-        /// <summary>
-        /// Gets or sets the guard of the tactic.
-        /// </summary>
-        protected System.Func<TBeliefSet, bool> _guard { get; set; } = _ => true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/>.

@@ -446,3 +446,6 @@ fabric.properties
 
 *.iml
 modules.xml
+
+# JetBrains IDE files
+**/.idea/

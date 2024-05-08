@@ -15,13 +15,14 @@ namespace Aplib.Core.Desire
     public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
         where TBeliefSet : IBeliefSet
     {
-        private IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator { get; }
+        private readonly IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="children">The children of the goal structure.</param>
-        public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : base(children)
+        public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children)
+            : base(children)
         {
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
@@ -29,7 +30,8 @@ namespace Aplib.Core.Desire
         }
 
         /// <inheritdoc />
-        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
+            => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet)
