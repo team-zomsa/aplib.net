@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -45,10 +46,13 @@ namespace Aplib.Core
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class.
+        /// By default, assumes the array is filled.
         /// </summary>
         /// <param name="array">An array to use as the circular array.</param>
-        public ExposedQueue(T[] array)
+        /// <param name="count">The number of actual elements in the array.</param>
+        public ExposedQueue(T[] array, int count = -1)
         {
+            Count = count;
             MaxCount = array.Length;
             _array = array;
             _head = MaxCount - 1;
@@ -68,10 +72,7 @@ namespace Aplib.Core
         /// <summary>
         /// Decrements the head of the array.
         /// </summary>
-        private void DecrementHead()
-        {
-            _head = (_head - 1 + MaxCount) % MaxCount;
-        }
+        private void DecrementHead() => _head = (_head - 1 + MaxCount) % MaxCount;
 
         /// <summary>
         /// Puts an element at the start of the array.
@@ -91,19 +92,13 @@ namespace Aplib.Core
         /// Gets the element at the head of the array.
         /// </summary>
         /// <returns>The element at the head of the array</returns>
-        public T GetHead()
-        {
-            return _array[_head];
-        }
+        public T GetHead() => _array[_head];
 
         /// <summary>
         /// Gets the first element of the array.
         /// </summary>
         /// <returns>The last element of the array</returns>
-        public T GetFirst()
-        {
-            return this[0];
-        }
+        public T GetFirst() => this[0];
 
         /// <summary>
         /// Copies the circular array to an array.
@@ -116,14 +111,14 @@ namespace Aplib.Core
         /// <returns>The circular array as a normal array</returns>
         public void CopyTo(T[] array, int arrayIndex, int endIndex)
         {
-            if (arrayIndex < 0 || arrayIndex >= MaxCount)
-                throw new System.ArgumentOutOfRangeException(nameof(arrayIndex));
-            if (endIndex < 0 || endIndex >= MaxCount)
-                throw new System.ArgumentOutOfRangeException(nameof(endIndex));
+            if (arrayIndex < 0 || arrayIndex >= Count)
+                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+            if (endIndex < 0 || endIndex >= Count)
+                throw new ArgumentOutOfRangeException(nameof(endIndex));
             if (arrayIndex > endIndex)
-                throw new System.ArgumentException("Start index must be less than or equal to end index.");
+                throw new ArgumentException("Start index must be less than or equal to end index.");
             if (array.Length < endIndex - arrayIndex + 1)
-                throw new System.ArgumentException("Array is too small to copy the range.");
+                throw new ArgumentException("Array is too small to copy the range.");
 
             for (int i = 0; i < endIndex - arrayIndex + 1; i++)
                 array[i] = this[arrayIndex + i];
@@ -138,13 +133,23 @@ namespace Aplib.Core
         /// <param name="start">The start index of the range to convert.</param>
         /// <param name="end">The end index of the range to convert.</param>
         /// <returns>An array containing the elements within the specified range.</returns>
-        public T[] ToArray(int start = 0, int end = -1)
+        public T[] ToArray(int start, int end)
         {
-            end = end == -1 ? Count - 1 : end;
+            Console.WriteLine($"Start: {start}, End: {end}");
+            if (start < 0 || start >= Count)
+                throw new ArgumentOutOfRangeException(nameof(start), "Start index must be within the bounds of the array.");
+            if (end < 0 || end >= Count)
+                throw new ArgumentOutOfRangeException(nameof(end), "End index must be within the bounds of the array.");
             T[] result = new T[end - start + 1];
             CopyTo(result, start, end);
             return result;
         }
+
+        /// <summary>
+        /// Converts the ExposedQueue to an array. Only returns the used slots.
+        /// </summary>
+        /// <returns>An array containing the elements within the specified range.</returns>
+        public T[] ToArray() => ToArray(0, Count - 1);
 
         /// <inheritdoc/>
         public void Clear()

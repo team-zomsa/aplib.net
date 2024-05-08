@@ -89,6 +89,6 @@ public class MemoryBeliefTests
         belief.UpdateBelief();
 
         // Assert
-        Assert.Equal([3, 0, 0], belief.GetAllMemories());
+        Assert.Equal([3], belief.GetAllMemories());
     }
 }

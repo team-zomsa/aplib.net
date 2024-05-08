@@ -20,7 +20,7 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// A "memorized" resouce, from the last time the belief was updated.
         /// </summary>
-        private readonly CircularArray<TObservation> _memorizedObservations;
+        private readonly ExposedQueue<TObservation> _memorizedObservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object reference,
@@ -73,12 +73,12 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// Gets the memorized observation at a specific index.
         /// A higher index means a memory further back in time.
-        /// If the index is out of bounds, returns the element closest to the index that is in bounds.
+        /// If the index is out of bounds, when clamped, returns the element closest to the index that is in bounds.
         /// </summary>
         /// <returns> The memory of the observation at the specified index.</returns>
         public TObservation GetMemoryAt(int index, bool clamp = false)
         {
-            int lastMemoryIndex = _memorizedObservations.Length - 1;
+            int lastMemoryIndex = _memorizedObservations.Count;
             if (clamp)
                 index = Math.Clamp(index, 0, lastMemoryIndex);
             else if (index < 0 || index > lastMemoryIndex)
@@ -91,12 +91,7 @@ namespace Aplib.Core.Belief
         /// The first element is the newest memory.
         /// </summary>
         /// <returns> An array of all the memorized observations.</returns>
-        public TObservation[] GetAllMemories()
-        {
-            // For now, we return the entire array, but with empty elements for the unused slots
-            // TODO: make it return only the used slots
-            return _memorizedObservations.ToArray();
-        }
+        public TObservation[] GetAllMemories() => _memorizedObservations.ToArray();
     }
 }
 
