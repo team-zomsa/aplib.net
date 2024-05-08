@@ -53,7 +53,7 @@ namespace Aplib.Core.Desire
         {
             foreach (var goalStructureStackItem in _goalStructureStack.ActivatableStackItems)
             {
-                System.Func<TBeliefSet, bool> guard = goalStructureStackItem.Item.guard;
+                System.Func<TBeliefSet, bool> guard = goalStructureStackItem.Data.guard;
 
                 if (!guard(beliefSet)) continue;
 

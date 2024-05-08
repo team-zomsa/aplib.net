@@ -22,9 +22,9 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Act
-        IEnumerable<OptimizedActivationStack<int>.StackItem> activatableStackItems
+        IEnumerable<OptimizedActivationStack<int>.Item> activatableStackItems
             = activationStack.ActivatableStackItems;
-        IEnumerable<int> items = activatableStackItems.Select(stackItem => stackItem.Item);
+        IEnumerable<int> items = activatableStackItems.Select(stackItem => stackItem.Data);
 
         // Assert
         items.Should().BeEquivalentTo(activatables);
@@ -43,21 +43,21 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        OptimizedActivationStack<int>.StackItem[] activationStackItems
+        OptimizedActivationStack<int>.Item[] activationStackItems
             = activationStack.ActivatableStackItems.ToArray();
 
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStackItems[0..^1])
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStackItems[0..^1])
             activationStack.Activate(stackItem);
 
         // Select the first stack item, because it is not on top of the stack.
-        OptimizedActivationStack<int>.StackItem stackItemToActivate = activationStackItems[^1];
+        OptimizedActivationStack<int>.Item stackItemToActivate = activationStackItems[^1];
 
         // Act
         activationStack.Activate(stackItemToActivate);
         int topItem = activationStack.Peek();
 
         // Assert
-        topItem.Should().Be(stackItemToActivate.Item);
+        topItem.Should().Be(stackItemToActivate.Data);
     }
 
     /// <summary>
@@ -73,11 +73,11 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStack.ActivatableStackItems)
             activationStack.Activate(stackItem);
 
         // Select the first stack item, because it is not on top of the stack.
-        OptimizedActivationStack<int>.StackItem stackItemToActivate
+        OptimizedActivationStack<int>.Item stackItemToActivate
             = activationStack.ActivatableStackItems.First();
 
         // Act
@@ -85,7 +85,7 @@ public class OptimizedActivationStackTests
         int topItem = activationStack.Peek();
 
         // Assert
-        topItem.Should().Be(stackItemToActivate.Item);
+        topItem.Should().Be(stackItemToActivate.Data);
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public class OptimizedActivationStackTests
 
         int[] otherActivatables = [4, 5, 6];
         OptimizedActivationStack<int> otherActivationStack = new(otherActivatables);
-        OptimizedActivationStack<int>.StackItem stackItemToActivate
+        OptimizedActivationStack<int>.Item stackItemToActivate
             = otherActivationStack.ActivatableStackItems.First();
 
         // Act
@@ -125,7 +125,7 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStack.ActivatableStackItems)
             activationStack.Activate(stackItem);
 
         // Act
@@ -168,7 +168,7 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStack.ActivatableStackItems)
             activationStack.Activate(stackItem);
 
         // Act
@@ -193,7 +193,7 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStack.ActivatableStackItems)
             activationStack.Activate(stackItem);
 
         // Act
@@ -236,7 +236,7 @@ public class OptimizedActivationStackTests
         OptimizedActivationStack<int> activationStack = new(activatables);
 
         // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+        foreach (OptimizedActivationStack<int>.Item stackItem in activationStack.ActivatableStackItems)
             activationStack.Activate(stackItem);
 
         // Act
