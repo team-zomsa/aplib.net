@@ -1,5 +1,6 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using System.Linq;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -45,14 +46,10 @@ namespace Aplib.Core.Intent.Tactics
         {
             if (!IsActionable(beliefSet)) return null;
 
-            foreach (ITactic<TBeliefSet> subTactic in _subTactics)
-            {
-                IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
-
-                if (action is not null) return action;
-            }
-
-            return null;
+            return _subTactics
+                .Select(subTactic => subTactic.GetAction(beliefSet))
+                .OfType<IAction<TBeliefSet>>()
+                .FirstOrDefault();
         }
     }
 }

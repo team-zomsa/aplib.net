@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
@@ -6,12 +6,12 @@ namespace Aplib.Core.Intent.Tactics
     /// <summary>
     /// Tactics are the real meat of <see cref="Desire.Goals.Goal{TBeliefSet}"/>s, as they define how the agent can approach the goal in hopes
     /// of finding a solution which makes the Goal's heuristic function evaluate to being completed. A tactic represents
-    /// a smart combination of <see cref="Action{TBeliefSet}"/>s, which are executed in a Believe Desire Intent Cycle.
+    /// a smart combination of <see cref="Action{TBeliefSet}"/>s, which are executed in a Belief Desire Intent Cycle.
     /// </summary>
     /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
     /// <seealso cref="Action{TBeliefSet}"/>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -19,13 +19,8 @@ namespace Aplib.Core.Intent.Tactics
         /// </summary>
         protected System.Func<TBeliefSet, bool> _guard;
 
-        /// <summary>
-        /// Gets the metadata of the tactic.
-        /// </summary>
-        /// <remark>
-        /// This metadata may be useful for debugging or logging.
-        /// </remark>
-        public Metadata Metadata { get; }
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/> class with a specified guard.
@@ -54,5 +49,13 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc />
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
+
+
+        /// <summary>
+        /// Implicitly lifts an action into a tactic.
+        /// </summary>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet})" path="/param[@name='action']"/>
+        /// <returns>The most logically matching tactic, wrapping around <paramref name="action"/>.</returns>
+        public static implicit operator Tactic<TBeliefSet>(Action<TBeliefSet> action) => action.Lift();
     }
 }

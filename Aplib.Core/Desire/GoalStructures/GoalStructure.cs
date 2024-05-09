@@ -1,3 +1,4 @@
+using Aplib.Core;
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
@@ -7,9 +8,12 @@ namespace Aplib.Core.Desire.GoalStructures
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, IDocumented
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
+
         /// <summary>
         /// The children of the goal structure.
         /// </summary>
@@ -17,14 +21,6 @@ namespace Aplib.Core.Desire.GoalStructures
 
         /// <inheritdoc />
         public CompletionStatus Status { get; protected set; }
-
-        /// <summary>
-        /// Gets the metadata of the GoalStructure.
-        /// </summary>
-        /// <remark>
-        /// This metadata may be useful for debugging or logging.
-        /// </remark>
-        public Metadata Metadata { get; }
 
         /// <summary>
         /// The goal structure that is currently being fulfilled.
@@ -59,5 +55,12 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         public abstract void UpdateStatus(TBeliefSet beliefSet);
+
+        /// <summary>
+        /// Implicitly lifts a goal into a goal structure.
+        /// </summary>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet})" path="/param[@name='goal']"/>
+        /// <returns>The most logically matching goal structure, wrapping around <paramref name="goal"/>.</returns>
+        public static implicit operator GoalStructure<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
     }
 }
