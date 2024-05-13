@@ -15,9 +15,13 @@ namespace Aplib.Core.Belief
     /// <remarks>
     /// It supports implicit conversion to <typeparamref name="TObservation"/>.
     /// </remarks>
-    /// <typeparam name="TReference">The type of the reference used to generate/update the observation.</typeparam>
+    /// <typeparam name="TReference">
+    /// The type of the reference used to generate/update the observation. This <i>must</i> be a reference type, be
+    /// aware that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+    /// </typeparam>
     /// <typeparam name="TObservation">The type of the observation the belief represents.</typeparam>
     public class SampledMemoryBelief<TReference, TObservation> : MemoryBelief<TReference, TObservation>
+        where TReference : class
     {
         /// <summary>
         /// The sample interval of the memory (inverse of the sample rate).
@@ -61,7 +65,9 @@ namespace Aplib.Core.Belief
         /// This belief also stores a limited amount of previous observation samples in memory.
         /// Optionally, the belief can always store the most recent observation, regardless of the sample rate.
         /// </summary>
-        /// <param name="reference">The reference used to generate/update the observation.</param>
+        /// <param name="reference">
+        /// The reference used to generate/update the observation. This <i>must</i> be a reference type.
+        /// </param>
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="sampleInterval">
         /// The sample rate of the memory.
@@ -70,6 +76,9 @@ namespace Aplib.Core.Belief
         /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
+        /// <exception cref="ArgumentException">
+        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// </exception>
         public SampledMemoryBelief
         (
             TReference reference,
