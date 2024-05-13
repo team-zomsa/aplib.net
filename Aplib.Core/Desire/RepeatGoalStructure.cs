@@ -19,9 +19,12 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="goalStructure">The goalstructure to repeat</param>
-        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : base(
-            new List<IGoalStructure<TBeliefSet>> { goalStructure }) =>
-            _currentGoalStructure = goalStructure;
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure, Metadata? metadata = null)
+            : base(new List<IGoalStructure<TBeliefSet>> { goalStructure }, metadata)
+            => _currentGoalStructure = goalStructure;
 
         private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
         {
