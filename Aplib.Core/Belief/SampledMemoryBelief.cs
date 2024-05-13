@@ -63,6 +63,9 @@ namespace Aplib.Core.Belief
         /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
@@ -73,25 +76,36 @@ namespace Aplib.Core.Belief
             int sampleInterval,
             UpdateMode updateMode,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            Func<bool> shouldUpdate,
+            Metadata? metadata = null
         )
-            : base(reference, getObservationFromReference, framesToRemember, shouldUpdate)
+            : base(reference, getObservationFromReference, framesToRemember, shouldUpdate, metadata)
         {
             _sampleInterval = sampleInterval;
             _updateMode = updateMode;
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool},Metadata?)" />
         public SampledMemoryBelief
         (
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
             UpdateMode updateMode,
-            int framesToRemember
+            int framesToRemember,
+            Metadata? metadata = null
         )
-            : this(reference, getObservationFromReference, sampleInterval, updateMode, framesToRemember, () => true)
+            : this
+            (
+                reference,
+                getObservationFromReference,
+                sampleInterval,
+                updateMode,
+                framesToRemember,
+                () => true,
+                metadata
+            )
         {
         }
 
