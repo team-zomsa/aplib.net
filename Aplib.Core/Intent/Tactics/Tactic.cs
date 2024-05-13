@@ -17,7 +17,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
-        protected System.Func<TBeliefSet, bool> _guard = _ => true;
+        protected System.Func<TBeliefSet, bool> _guard;
 
         /// <summary>
         /// Gets the metadata of the tactic.
@@ -26,14 +26,6 @@ namespace Aplib.Core.Intent.Tactics
         /// This metadata may be useful for debugging or logging.
         /// </remark>
         public Metadata Metadata { get; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/>.
-        /// </summary>
-        /// <param name="metadata">
-        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
-        /// </param>
-        protected Tactic(Metadata? metadata) => Metadata = metadata ?? new Metadata();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/> class with a specified guard.
@@ -47,6 +39,9 @@ namespace Aplib.Core.Intent.Tactics
             _guard = guard;
             Metadata = metadata ?? new Metadata();
         }
+
+        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata?)"/>
+        protected Tactic(Metadata metadata) : this(_ => true, metadata) { }
 
         /// <inheritdoc />
         public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
