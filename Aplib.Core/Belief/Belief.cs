@@ -37,12 +37,6 @@ namespace Aplib.Core.Belief
         /// </summary>
         public TObservation Observation { get; protected set; }
 
-        /// <inheritdoc cref="Belief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},System.Func{bool})"/>
-        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
-            : this(reference, getObservationFromReference, () => true)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
         /// a function to generate/update the observation using the object reference,
@@ -72,6 +66,12 @@ namespace Aplib.Core.Belief
             _getObservationFromReference = getObservationFromReference;
             Observation = _getObservationFromReference(_reference);
             _shouldUpdate = shouldUpdate;
+        }
+
+        /// <inheritdoc cref="Belief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},System.Func{bool})" />
+        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
+            : this(reference, getObservationFromReference, () => true)
+        {
         }
 
         /// <summary>

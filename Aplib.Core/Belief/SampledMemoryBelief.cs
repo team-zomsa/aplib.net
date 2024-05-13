@@ -45,19 +45,6 @@ namespace Aplib.Core.Belief
             set => _moduloCounter = value % _sampleInterval;
         }
 
-        /// <inheritdoc cref="SampledMemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})"/>
-        public SampledMemoryBelief
-        (
-            TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
-            int sampleInterval,
-            UpdateMode updateMode,
-            int framesToRemember
-        )
-            : this(reference, getObservationFromReference, sampleInterval, updateMode, framesToRemember, () => true)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an object reference,
         /// a function to generate/update the observation using the object reference,
@@ -92,6 +79,20 @@ namespace Aplib.Core.Belief
         {
             _sampleInterval = sampleInterval;
             _updateMode = updateMode;
+        }
+
+        /// <inheritdoc
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        public SampledMemoryBelief
+        (
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int sampleInterval,
+            UpdateMode updateMode,
+            int framesToRemember
+        )
+            : this(reference, getObservationFromReference, sampleInterval, updateMode, framesToRemember, () => true)
+        {
         }
 
         /// <summary>

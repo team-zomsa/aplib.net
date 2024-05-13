@@ -35,13 +35,7 @@ namespace Aplib.Core.Intent.Actions
             Metadata = metadata ?? new Metadata();
         }
 
-        /// <summary>
-        /// Initializes a new empty instance of the <see cref="Action{TQuery}" /> class.
-        /// </summary>
-        /// <remarks>Only meant for internal use</remarks>
-        /// <param name="metadata">
-        /// Metadata about this action, used to quickly display the action in several contexts.
-        /// </param>
+        /// <inheritdoc cref="Action{TBeliefSet}(System.Action{TBeliefSet},Aplib.Core.Metadata?)" />
         protected Action(Metadata? metadata = null) : this(_ => { }, metadata) { }
 
         /// <inheritdoc/>
