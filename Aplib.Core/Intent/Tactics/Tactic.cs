@@ -34,14 +34,20 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(System.Func<TBeliefSet, bool> guard, Metadata? metadata = null)
+        protected Tactic(System.Func<TBeliefSet, bool> guard, Metadata metadata)
         {
             _guard = guard;
-            Metadata = metadata ?? new Metadata();
+            Metadata = metadata;
         }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata?)"/>
+        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
+        protected Tactic(System.Func<TBeliefSet, bool> guard) : this(guard, new Metadata()) { }
+
+        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
         protected Tactic(Metadata metadata) : this(_ => true, metadata) { }
+
+        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
+        protected Tactic() : this(_ => true, new Metadata()) { }
 
         /// <inheritdoc />
         public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
