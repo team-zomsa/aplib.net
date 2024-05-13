@@ -16,6 +16,12 @@ namespace Aplib.Core.Desire.Goals
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
+        /// The default value for the epsilon parameter in the Goal constructors.
+        /// The epsilon parameter defines the threshold distance for a goal to be considered completed.
+        /// </summary>
+        protected const double _defaultEpsilon = 0.005d;
+
+        /// <summary>
         /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
         /// this value.
         /// </summary>
@@ -64,18 +70,30 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
-        public Goal
-        (
-            ITactic<TBeliefSet> tactic,
-            HeuristicFunction heuristicFunction,
-            double epsilon = 0.005d,
-            Metadata? metadata = null
-        )
+        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon, Metadata metadata)
         {
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
             _epsilon = epsilon;
-            Metadata = metadata ?? new Metadata();
+            Metadata = metadata;
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},HeuristicFunction,double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon)
+            : this(tactic, heuristicFunction, epsilon, new Metadata())
+        {
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},HeuristicFunction,double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, Metadata metadata)
+            : this(tactic, heuristicFunction, _defaultEpsilon, metadata)
+        {
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},HeuristicFunction,double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction)
+            : this(tactic, heuristicFunction, _defaultEpsilon, new Metadata())
+        {
         }
 
         /// <summary>
@@ -90,14 +108,26 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
-        public Goal
-        (
-            ITactic<TBeliefSet> tactic,
-            Func<TBeliefSet, bool> predicate,
-            double epsilon = 0.005d,
-            Metadata? metadata = null
-        )
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon, Metadata metadata)
             : this(tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon, metadata)
+        {
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},Func{TBeliefSet,bool},double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon)
+            : this(tactic, predicate, epsilon, new Metadata())
+        {
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},Func{TBeliefSet,bool},double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, Metadata metadata)
+            : this(tactic, predicate, _defaultEpsilon, metadata)
+        {
+        }
+
+        /// <inheritdoc cref="Goal{TBeliefSet}(ITactic{TBeliefSet},Func{TBeliefSet,bool},double,Aplib.Core.Metadata)" />
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate)
+            : this(tactic, predicate, _defaultEpsilon, new Metadata())
         {
         }
 
