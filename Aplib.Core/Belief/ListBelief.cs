@@ -34,6 +34,9 @@ namespace Aplib.Core.Belief
         /// A function that takes an object reference and generates an observation.
         /// </param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.
         /// </exception>
@@ -41,20 +44,22 @@ namespace Aplib.Core.Belief
         (
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate
+            Func<bool> shouldUpdate,
+            Metadata? metadata = null
         )
-            : base(references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate)
+            : base(references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate, metadata)
         {
         }
 
         /// <inheritdoc
-        ///     cref="ListBelief{TReference,TObservation}(System.Collections.Generic.IEnumerable{TReference},System.Func{TReference,TObservation},System.Func{bool})" />
+        ///     cref="ListBelief{TReference,TObservation}(IEnumerable{TReference},Func{TReference,TObservation},Func{bool},Metadata?)" />
         public ListBelief
         (
             IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference
+            Func<TReference, TObservation> getObservationFromReference,
+            Metadata? metadata = null
         )
-            : this(references, getObservationFromReference, () => true)
+            : this(references, getObservationFromReference, () => true, metadata)
         {
         }
     }
