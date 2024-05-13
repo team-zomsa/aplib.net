@@ -4,7 +4,7 @@ using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 
-namespace Aplib.Core
+namespace Aplib.Core.Agent
 {
     /// <summary>
     /// Represents an agent that performs actions based on goals and beliefs.
@@ -12,6 +12,9 @@ namespace Aplib.Core
     public class BdiAgent<TBeliefSet> : IAgent
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public CompletionStatus Status => _desireSet.Status;
+
         /// <summary>
         /// Gets the beliefset of the agent.
         /// </summary>
@@ -24,9 +27,6 @@ namespace Aplib.Core
         /// The desire contains all goal structures and the current goal.
         /// </remarks>
         private readonly IDesireSet<TBeliefSet> _desireSet;
-
-        /// <inheritdoc />
-        public CompletionStatus Status => _desireSet.Status;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class.
@@ -51,7 +51,11 @@ namespace Aplib.Core
 
             // Desire
             _desireSet.UpdateStatus(_beliefSet);
-            if (Status != CompletionStatus.Unfinished) return;
+            if (Status != CompletionStatus.Unfinished)
+            {
+                return;
+            }
+
             IGoal<TBeliefSet> goal = _desireSet.GetCurrentGoal(_beliefSet);
 
             // Intent

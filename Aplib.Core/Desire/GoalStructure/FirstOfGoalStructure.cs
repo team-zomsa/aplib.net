@@ -3,7 +3,7 @@ using Aplib.Core.Desire.Goals;
 using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructure
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.
@@ -40,7 +40,11 @@ namespace Aplib.Core.Desire
             // This loop is here to prevent tail recursion.
             while (true)
             {
-                if (Status == CompletionStatus.Success) return;
+                if (Status == CompletionStatus.Success)
+                {
+                    return;
+                }
+
                 _currentGoalStructure!.UpdateStatus(beliefSet);
 
                 switch (_currentGoalStructure.Status)

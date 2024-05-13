@@ -3,7 +3,7 @@ using Aplib.Core.Desire.Goals;
 using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructure
 {
     /// <summary>
     /// Represents a sequential goal structure.
@@ -25,23 +25,22 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="SequentialGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="children">The children of the goal structure.</param>
-        public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : base(children)
+        public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children)
+            : base(children)
         {
             if (children.Length <= 0)
+            {
                 throw new ArgumentException("Collection of children is empty", nameof(children));
+            }
+
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <summary>
-        /// Disposes the enumerator.
-        /// </summary>
-        /// <param name="disposing">Whether the object is being disposed.</param>
-        protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
-
         /// <inheritdoc />
-        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.GetCurrentGoal(beliefSet);
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
+            => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet)
@@ -50,7 +49,11 @@ namespace Aplib.Core.Desire
             // This loop is here to prevent tail recursion.
             while (true)
             {
-                if (Status == CompletionStatus.Success) return;
+                if (Status == CompletionStatus.Success)
+                {
+                    return;
+                }
+
                 _currentGoalStructure!.UpdateStatus(beliefSet);
 
                 switch (_currentGoalStructure.Status)
@@ -85,5 +88,11 @@ namespace Aplib.Core.Desire
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// Disposes the enumerator.
+        /// </summary>
+        /// <param name="disposing">Whether the object is being disposed.</param>
+        protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
     }
 }

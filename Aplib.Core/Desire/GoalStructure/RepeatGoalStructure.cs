@@ -3,7 +3,7 @@ using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
 using static Aplib.Core.CompletionStatus;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructure
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.
@@ -19,21 +19,17 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="goalStructure">The goalstructure to repeat</param>
-        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : base(
-            new List<IGoalStructure<TBeliefSet>> { goalStructure }) =>
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure)
+            : base(
+                new List<IGoalStructure<TBeliefSet>> { goalStructure }
+            ) =>
             _currentGoalStructure = goalStructure;
-
-        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
-        {
-            Status = Success;
-            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
-        }
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
         {
             Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            _ => FinishRepeat(beliefSet)
+            _ => FinishRepeat(beliefSet),
         };
 
         /// <inheritdoc />
@@ -44,8 +40,14 @@ namespace Aplib.Core.Desire
             Status = _currentGoalStructure.Status switch
             {
                 Failure or Unfinished => Unfinished,
-                _ => Success
+                _ => Success,
             };
+        }
+
+        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
+        {
+            Status = Success;
+            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
 }

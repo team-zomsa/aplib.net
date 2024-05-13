@@ -1,9 +1,11 @@
 using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Desire.GoalStructure;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
+using System;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -18,7 +20,7 @@ public class GoalStructureTests
         goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Failure);
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -35,7 +37,7 @@ public class GoalStructureTests
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
 
         Mock<FirstOfGoalStructure<IBeliefSet>> firstOfGoalStructure
-            = new([goalStructure1.Object, goalStructure2.Object]) { CallBase = true };
+            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
 
         // Act
         firstOfGoalStructure.Object.Dispose();
@@ -54,7 +56,7 @@ public class GoalStructureTests
         goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -79,7 +81,7 @@ public class GoalStructureTests
             .Returns(goal);
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -98,7 +100,7 @@ public class GoalStructureTests
         goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -123,7 +125,7 @@ public class GoalStructureTests
 
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -147,7 +149,7 @@ public class GoalStructureTests
         goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Unfinished);
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         firstOfGoalStructure.UpdateStatus(beliefSet);
@@ -260,7 +262,7 @@ public class GoalStructureTests
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
 
         Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure
-            = new([goalStructure1.Object, goalStructure2.Object]) { CallBase = true };
+            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
 
         // Act
         sequentialGoalStructure.Object.Dispose();
@@ -279,7 +281,8 @@ public class GoalStructureTests
         goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         sequentialGoalStructure.UpdateStatus(beliefSet);
@@ -298,7 +301,8 @@ public class GoalStructureTests
         goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         sequentialGoalStructure.UpdateStatus(beliefSet);
@@ -315,7 +319,8 @@ public class GoalStructureTests
         goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Failure);
         Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure = new([goalStructure1.Object, goalStructure2.Object]);
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(goalStructure1.Object, goalStructure2.Object);
 
         // Act
         sequentialGoalStructure.UpdateStatus(beliefSet);
@@ -327,13 +332,14 @@ public class GoalStructureTests
     [Fact]
     public void SequentialGoalStructure_WhenProvidingNoGoalStructure_ShouldThrowException()
     {
-        // Arrange 
+        // Arrange
         IGoalStructure<IBeliefSet>[] goalStructures = [];
 
         // Act
-        System.Func<SequentialGoalStructure<IBeliefSet>> act = () => new SequentialGoalStructure<IBeliefSet>(goalStructures);
+        Func<SequentialGoalStructure<IBeliefSet>> act =
+            () => new SequentialGoalStructure<IBeliefSet>(goalStructures);
 
         // Assert
-        act.Should().Throw<System.ArgumentException>();
+        act.Should().Throw<ArgumentException>();
     }
 }

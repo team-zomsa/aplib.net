@@ -1,4 +1,4 @@
-namespace Aplib.Core
+namespace Aplib.Core.Agent
 {
     /// <summary>
     /// Defines an agent that can play a game.

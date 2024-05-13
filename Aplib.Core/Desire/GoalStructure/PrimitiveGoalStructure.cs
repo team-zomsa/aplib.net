@@ -2,7 +2,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructure
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.
@@ -22,7 +22,8 @@ namespace Aplib.Core.Desire
         /// Initializes a new instance of the <see cref="PrimitiveGoalStructure{TBeliefSet}" /> class.
         /// </summary>
         /// <param name="goal">The goal to fulfill.</param>
-        public PrimitiveGoalStructure(IGoal<TBeliefSet> goal) : base(Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
+        public PrimitiveGoalStructure(IGoal<TBeliefSet> goal)
+            : base(Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _goal;

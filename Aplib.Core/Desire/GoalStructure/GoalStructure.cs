@@ -2,7 +2,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructure
 {
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
@@ -10,6 +10,9 @@ namespace Aplib.Core.Desire
     public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public CompletionStatus Status { get; protected set; }
+
         /// <summary>
         /// The children of the goal structure.
         /// </summary>
@@ -19,9 +22,6 @@ namespace Aplib.Core.Desire
         /// The goal structure that is currently being fulfilled.
         /// </summary>
         protected IGoalStructure<TBeliefSet>? _currentGoalStructure;
-
-        /// <inheritdoc />
-        public CompletionStatus Status { get; protected set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalStructure{TBeliefSet}" /> class.
