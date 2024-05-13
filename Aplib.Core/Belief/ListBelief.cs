@@ -23,30 +23,8 @@ namespace Aplib.Core.Belief
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListBelief{TReference,TObservation}" /> class from an object
-        /// reference collection, and a function to generate an observation from an object reference.
-        /// </summary>
-        /// <param name="references">
-        /// The collection of reference objects. The underlying type implementing <see cref="IEnumerable{TReference}" />
-        /// <i>must</i> be a reference type, note that this is not enforced by C#.
-        /// </param>
-        /// <param name="getObservationFromReference">
-        /// A function that takes an object reference and generates an observation.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown when <paramref name="references"/> is not a reference type.
-        /// </exception>
-        public ListBelief
-        (
-            IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference
-        )
-            : base(references, refer => refer.Select(getObservationFromReference).ToList())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ListBelief{TReference,TObservation}" /> class from an object
-        /// reference collection, a function to generate an observation from an object reference, and an update guard.
+        /// reference collection, a function to generate an observation from an object reference, and optionally an
+        /// update guard.
         /// </summary>
         /// <param name="references">
         /// The collection of reference objects. The underlying type implementing <see cref="IEnumerable{TReference}" />
@@ -66,6 +44,17 @@ namespace Aplib.Core.Belief
             Func<bool> shouldUpdate
         )
             : base(references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="ListBelief{TReference,TObservation}(System.Collections.Generic.IEnumerable{TReference},System.Func{TReference,TObservation},System.Func{bool})" />
+        public ListBelief
+        (
+            IEnumerable<TReference> references,
+            Func<TReference, TObservation> getObservationFromReference
+        )
+            : this(references, getObservationFromReference, () => true)
         {
         }
     }
