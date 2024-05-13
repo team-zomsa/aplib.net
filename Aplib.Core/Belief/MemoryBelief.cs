@@ -37,6 +37,9 @@ namespace Aplib.Core.Belief
         /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
@@ -45,20 +48,22 @@ namespace Aplib.Core.Belief
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            Func<bool> shouldUpdate,
+            Metadata? metadata = null
         )
-            : base(reference, getObservationFromReference, shouldUpdate) =>
+            : base(reference, getObservationFromReference, shouldUpdate, metadata) =>
             _memorizedObservations = new CircularArray<TObservation>(framesToRemember);
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},int,System.Func{bool})" />
+        ///     cref="MemoryBelief{TReference,TObservation}(TReference,Func{TReference,TObservation},int,Func{bool},Metadata?)" />
         public MemoryBelief
         (
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
-            int framesToRemember
+            int framesToRemember,
+            Metadata? metadata = null
         )
-            : this(reference, getObservationFromReference, framesToRemember, () => true)
+            : this(reference, getObservationFromReference, framesToRemember, () => true, metadata)
         {
         }
 
