@@ -57,7 +57,7 @@ namespace Aplib.Core.Belief
         /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
         /// <param name="metadata">
-        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// Metadata about this Belief, used to quickly display the goal in several contexts.
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.

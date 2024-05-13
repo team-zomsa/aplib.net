@@ -36,7 +36,7 @@ namespace Aplib.Core.Desire
         /// </summary>
         /// <param name="children">The children of the goal structure.</param>
         /// <param name="metadata">
-        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         protected GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>> children, Metadata? metadata = null)
         {

@@ -35,7 +35,7 @@ namespace Aplib.Core.Belief
         /// </param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
         /// <param name="metadata">
-        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// Metadata about this Belief, used to quickly display the goal in several contexts.
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.

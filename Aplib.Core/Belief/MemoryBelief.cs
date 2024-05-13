@@ -38,7 +38,7 @@ namespace Aplib.Core.Belief
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
         /// <param name="metadata">
-        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// Metadata about this Belief, used to quickly display the goal in several contexts.
         /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
