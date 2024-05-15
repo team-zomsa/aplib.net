@@ -46,50 +46,71 @@ namespace Aplib.Core.Belief
         public TObservation Observation { get; protected set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object reference,
-        /// a function to generate/update the observation using the object reference,
+        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object
+        /// reference, a function to generate/update the observation using the object reference,
         /// and a condition on when the observation should be updated.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this Belief, used to quickly display the goal in several contexts.
+        /// </param>
         /// <param name="reference">
         /// The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
         /// that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
         /// </param>
-        /// <param name="getObservationFromReference">A function that takes an object reference and generates/updates an observation.</param>
-        /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        /// <param name="metadata">
-        /// Metadata about this Belief, used to quickly display the goal in several contexts.
+        /// <param name="getObservationFromReference">
+        /// A function that takes an object reference and generates/updates an observation.
         /// </param>
+        /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
         public Belief
         (
+            Metadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate,
-            Metadata? metadata = null
+            Func<bool> shouldUpdate
         )
         {
             Type referenceType = reference.GetType();
             if (referenceType.IsValueType)
                 throw new ArgumentException($"{referenceType.FullName} is not a reference type.", nameof(reference));
 
+            Metadata = metadata;
             _reference = reference;
             _getObservationFromReference = getObservationFromReference;
             Observation = _getObservationFromReference(_reference);
             _shouldUpdate = shouldUpdate;
-            Metadata = metadata ?? new Metadata();
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(TReference,System.Func{TReference,TObservation},System.Func{bool},Aplib.Core.Metadata?)" />
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})"/>
         public Belief
         (
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
-            Metadata? metadata = null
+            Func<bool> shouldUpdate
         )
-            : this(reference, getObservationFromReference, () => true, metadata)
+            : this(new Metadata(), reference, getObservationFromReference, shouldUpdate)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})" />
+        public Belief
+        (
+            Metadata metadata,
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference
+        )
+            : this(metadata, reference, getObservationFromReference, () => true)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})" />
+        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
+            : this(new Metadata(), reference, getObservationFromReference)
         {
         }
 
