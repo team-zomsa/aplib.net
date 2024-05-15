@@ -70,12 +70,6 @@ namespace Aplib.Core
                     throw new ArgumentOutOfRangeException(nameof(index));
                 return _array[(index + _head + 1) % MaxCount];
             }
-            private set
-            {
-                if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException(nameof(index));
-                _array[(index + _head + 1) % MaxCount] = value;
-            }
         }
 
         /// <summary>

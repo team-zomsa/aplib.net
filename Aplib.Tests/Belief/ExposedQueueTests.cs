@@ -39,8 +39,8 @@ public class ExposedQueueTests
     public void ExposedQueue_WhenInitializedWithArrayAndCount_ShouldThrowExceptions()
     {
         // Arrange
-        void CountExceedsLength() => new ExposedQueue<int>([1, 2, 3], 4);
-        void NegativeCount() => new ExposedQueue<int>([1, 2, 3], -1);
+        void CountExceedsLength() => _ = new ExposedQueue<int>([1, 2, 3], 4);
+        void NegativeCount() => _ = new ExposedQueue<int>([1, 2, 3], -1);
 
         // Assert
         Assert.Throws<ArgumentOutOfRangeException>(CountExceedsLength);
