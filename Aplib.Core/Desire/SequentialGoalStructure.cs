@@ -28,8 +28,8 @@ namespace Aplib.Core.Desire
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="children">The children of the goal structure.</param>
-        public SequentialGoalStructure(Metadata? metadata, params IGoalStructure<TBeliefSet>[] children)
-            : base(children, metadata)
+        public SequentialGoalStructure(Metadata metadata, params IGoalStructure<TBeliefSet>[] children)
+            : base(metadata, children)
         {
             if (children.Length <= 0)
                 throw new ArgumentException("Collection of children is empty", nameof(children));
@@ -39,7 +39,7 @@ namespace Aplib.Core.Desire
         }
 
         /// <inheritdoc cref="SequentialGoalStructure{TBeliefSet}(Metadata?,IGoalStructure{TBeliefSet}[])" />
-        public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(null, children)
+        public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children)
         {
         }
 

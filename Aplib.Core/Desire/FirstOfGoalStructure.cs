@@ -24,19 +24,16 @@ namespace Aplib.Core.Desire
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="children">The children of the goal structure.</param>
-        public FirstOfGoalStructure(Metadata? metadata, params IGoalStructure<TBeliefSet>[] children)
-            : base(children, metadata)
+        public FirstOfGoalStructure(Metadata metadata, params IGoalStructure<TBeliefSet>[] children)
+            : base(metadata, children)
         {
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FirstOfGoalStructure{TBeliefSet}" /> class.
-        /// </summary>
-        /// <param name="children">The children of the goal structure.</param>
-        public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(null, children) { }
+        /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])"/>
+        public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children) { }
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)

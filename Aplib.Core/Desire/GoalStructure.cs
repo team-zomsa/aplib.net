@@ -34,15 +34,18 @@ namespace Aplib.Core.Desire
         /// <summary>
         /// Initializes a new instance of the <see cref="GoalStructure{TBeliefSet}" /> class.
         /// </summary>
-        /// <param name="children">The children of the goal structure.</param>
         /// <param name="metadata">
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
-        protected GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>> children, Metadata? metadata = null)
+        /// <param name="children">The children of the goal structure.</param>
+        protected GoalStructure(Metadata metadata, IEnumerable<IGoalStructure<TBeliefSet>> children)
         {
             _children = children;
-            Metadata = metadata ?? new Metadata();
+            Metadata = metadata;
         }
+
+        /// <inheritdoc cref="GoalStructure{TBeliefSet}(Aplib.Core.Metadata,IEnumerable{IGoalStructure{TBeliefSet}})" />
+        protected GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>> children) : this(new Metadata(), children) { }
 
         /// <summary>
         /// Gets the current goal using the given <see cref="IBeliefSet" />.
