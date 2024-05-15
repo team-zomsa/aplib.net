@@ -98,15 +98,12 @@ namespace Aplib.Core.Belief
         /// <summary>
         /// Gets the memorized observation at a specific index.
         /// A higher index means a memory further back in time.
-        /// If the index is out of bounds, when clamped, returns the element closest to the index that is in bounds.
         /// </summary>
         /// <returns>The memory of the observation at the specified index.</returns>
-        public TObservation GetMemoryAt(int index, bool clamp = false)
+        public TObservation GetMemoryAt(int index)
         {
             int lastMemoryIndex = _memorizedObservations.Count;
-            if (clamp)
-                index = Math.Clamp(index, 0, lastMemoryIndex);
-            else if (index < 0 || index > lastMemoryIndex)
+            if (index < 0 || index > lastMemoryIndex)
                 throw new ArgumentOutOfRangeException(nameof(index), $"Index must be between 0 and {lastMemoryIndex}.");
             return _memorizedObservations[index];
         }

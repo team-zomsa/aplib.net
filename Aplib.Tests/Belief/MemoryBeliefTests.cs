@@ -1,4 +1,5 @@
 using Aplib.Core.Belief;
+using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;
@@ -54,22 +55,22 @@ public class MemoryBeliefTests
     /// <summary>
     /// Given a MemoryBelief instance with an observation,
     /// When asking for an index that is out of bounds,
-    /// Then the closest element that is in bounds is returned.
+    /// Then an exception should be thrown.
     /// </summary>
     [Fact]
-    public void GetMemoryAt_IndexOutOfBounds_ShouldReturnClosestElement()
+    public void GetMemoryAt_IndexOutOfBounds_ShouldThrowException()
     {
         // Arrange
         List<int> list = [1, 2, 3];
         MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
 
         // Act
-        list.Add(4);
-        belief.UpdateBelief();
+        void GetMemoryAtNegativeIndex() => belief.GetMemoryAt(-1);
+        void GetMemoryAtIndexGreaterThanCount() => belief.GetMemoryAt(3);
 
         // Assert
-        Assert.Equal(3, belief.GetMemoryAt(-1, true));
-        Assert.Equal(0, belief.GetMemoryAt(5, true));
+        Assert.Throws<ArgumentOutOfRangeException>(GetMemoryAtNegativeIndex);
+        Assert.Throws<ArgumentOutOfRangeException>(GetMemoryAtIndexGreaterThanCount);
     }
 
     /// <summary>

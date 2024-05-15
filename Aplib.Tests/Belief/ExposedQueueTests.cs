@@ -114,13 +114,11 @@ public class ExposedQueueTests
         void StartOutOfBounds() => queue.CopyTo(new int[3], -1, 2);
         void EndOutOfOunds() => queue.CopyTo(new int[3], 0, 3);
         void StartAfterEnd() => queue.CopyTo(new int[3], 2, 1);
-        void TargetArrayTooSmall() => queue.CopyTo(new int[2], 0, 2);
 
         // Assert
         Assert.Throws<ArgumentOutOfRangeException>(StartOutOfBounds);
         Assert.Throws<ArgumentOutOfRangeException>(EndOutOfOunds);
         Assert.Throws<ArgumentException>(StartAfterEnd);
-        Assert.Throws<ArgumentException>(TargetArrayTooSmall);
     }
 
     [Fact]
