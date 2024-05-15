@@ -35,5 +35,5 @@ internal sealed class TestGoalBuilder
     }
 
 
-    public Goal<IBeliefSet> Build() => new(_tactic, _heuristicFunction, metadata: new Metadata(_name, _description));
+    public Goal<IBeliefSet> Build() => new(new Metadata(_name, _description), _tactic, _heuristicFunction);
 }
