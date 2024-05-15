@@ -48,6 +48,22 @@ public class ExposedQueueTests
     }
 
     [Fact]
+    public void AccessIndex_WhenIndexIsOutOfBounds_ThrowsException()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new(3);
+        int elem;
+
+        // Act
+        void AccessNegativeIndex() => elem = queue[-1];
+        void AccessIndexGreaterThanCount() => elem = queue[queue.Count];
+
+        // Assert
+        Assert.Throws<ArgumentOutOfRangeException>(AccessNegativeIndex);
+        Assert.Throws<ArgumentOutOfRangeException>(AccessIndexGreaterThanCount);
+    }
+
+    [Fact]
     public void Put_ArrayIsFull_WrapsAround()
     {
         // Arrange
@@ -72,7 +88,7 @@ public class ExposedQueueTests
         queue.Put(4);
 
         // Assert
-        Assert.Equal(2, queue.GetHead());
+        Assert.Equal(2, queue.GetLast());
     }
 
     [Fact]
@@ -108,7 +124,7 @@ public class ExposedQueueTests
     }
 
     [Fact]
-    public void CopyTo_CopiesCorrectly()
+    public void CopyTo_WhenCalled_CopiesCorrectly()
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);
@@ -136,7 +152,7 @@ public class ExposedQueueTests
     }
 
     [Fact]
-    public void ToArray_ReturnsCorrectArray()
+    public void ToArray_WhenCalled_ReturnsCorrectArray()
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);
@@ -188,21 +204,7 @@ public class ExposedQueueTests
     }
 
     [Fact]
-    public void Remove_ElementExists_RemovesElement()
-    {
-        // Arrange
-        ExposedQueue<int> queue = new([3, 2, 1]);
-
-        // Act
-        bool removed = queue.Remove(2);
-
-        // Assert
-        Assert.True(removed);
-        Assert.Equal(queue.ToArray(), [3, 0, 1]);
-    }
-
-    [Fact]
-    public void Remove_ElementDoesNotExist_ReturnsFalse()
+    public void Remove_WhenCalled_ReturnsFalse()
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);

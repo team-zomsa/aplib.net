@@ -17,7 +17,6 @@ namespace Aplib.Core
 
         /// <summary>
         /// Actual number of elements in the array.
-        /// Limited to <see cref="MaxCount"/>.
         /// </summary>
         public int Count { get; private set; }
 
@@ -34,6 +33,7 @@ namespace Aplib.Core
         public ExposedQueue(int size)
         {
             MaxCount = size;
+            Count = 0;
             _array = new T[MaxCount];
             _head = MaxCount - 1;
         }
@@ -58,20 +58,30 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Gets the element at the specified index.
+        /// Gets the element at the specified index. Throws an exception if the index is out of bounds.
         /// </summary>
         /// <param name="index">The index of the element to get.</param>
         /// <returns>The element at the specified index.</returns>
         public T this[int index]
         {
-            get => _array[(index + _head + 1) % MaxCount];
-            private set => _array[(index + _head + 1) % MaxCount] = value;
+            get 
+            {
+                if (index < 0 || index >= Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                return _array[(index + _head + 1) % MaxCount];
+            }
+            private set
+            {
+                if (index < 0 || index >= Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                _array[(index + _head + 1) % MaxCount] = value;
+            }
         }
 
         /// <summary>
-        /// Puts an element at the start of the array.
+        /// Puts an element at the start of the queue.
         /// </summary>
-        /// <param name="value">The element to add to the array</param>
+        /// <param name="value">The element to add to the queue.</param>
         public void Put(T value)
         {
             _array[_head] = value;
@@ -84,26 +94,26 @@ namespace Aplib.Core
         public void Add(T item) => Put(item);
 
         /// <summary>
-        /// Gets the element at the head of the array.
+        /// Gets the element at the end of the queue.
         /// </summary>
-        /// <returns>The element at the head of the array</returns>
-        public T GetHead() => _array[_head];
+        /// <returns>The element at the end of the queue.</returns>
+        public T GetLast() => _array[_head];
 
         /// <summary>
-        /// Gets the first element of the array.
+        /// Gets the first element of the queue.
         /// </summary>
-        /// <returns>The last element of the array</returns>
+        /// <returns>The first element of the queue.</returns>
         public T GetFirst() => this[0];
 
         /// <summary>
-        /// Copies the circular array to an array.
+        /// Copies the ExposedQueue to an array.
         /// The head should be the last element of the array.
         /// Copies from start to end inclusive.
         /// </summary>
         /// <param name="array">The array to copy to."</param>
         /// <param name="arrayIndex">The start index of the range to copy.</param>
         /// <param name="endIndex">The end index of the range to copy.</param>
-        /// <returns>The circular array as a normal array</returns>
+        /// <returns>The ExposedQueue as a regular array.</returns>
         public void CopyTo(T[] array, int arrayIndex, int endIndex)
         {
             if (arrayIndex < 0 || arrayIndex >= Count)
@@ -112,8 +122,6 @@ namespace Aplib.Core
                 throw new ArgumentOutOfRangeException(nameof(endIndex));
             if (arrayIndex > endIndex)
                 throw new ArgumentException("Start index must be less than or equal to end index.");
-            if (array.Length < endIndex - arrayIndex + 1)
-                throw new ArgumentException("Array is too small to copy the range.");
 
             for (int i = 0; i < endIndex - arrayIndex + 1; i++)
                 array[i] = this[arrayIndex + i];
@@ -163,17 +171,15 @@ namespace Aplib.Core
             return false;
         }
 
-        /// <inheritdoc/>
-        public bool Remove(T item)
-        {
-            for (int i = 0; i < Count; i++)
-                if (this[i]!.Equals(item))
-                {
-                    this[i] = default!;
-                    return true;
-                }
-            return false;
-        }
+        /// <summary>
+        /// DOES NOT DO ANYTHING.
+        /// </summary>
+        /// <returns>False.</returns>
+        /// <remarks>
+        /// Method is there to comply with the ICollection interface. 
+        /// Does not actually do anything since this is a queue, and queues do not allow removal of specific elements.
+        /// </remarks>
+        public bool Remove(T item) => false;
 
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
