@@ -30,24 +30,24 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/> class with a specified guard.
         /// </summary>
-        /// <param name="guard">The guard of the tactic.</param>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        protected Tactic(System.Func<TBeliefSet, bool> guard, Metadata metadata)
+        /// <param name="guard">The guard of the tactic.</param>
+        protected Tactic(Metadata metadata, System.Func<TBeliefSet, bool> guard)
         {
             _guard = guard;
             Metadata = metadata;
         }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
-        protected Tactic(System.Func<TBeliefSet, bool> guard) : this(guard, new Metadata()) { }
+        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
+        protected Tactic(System.Func<TBeliefSet, bool> guard) : this(new Metadata(), guard) { }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
-        protected Tactic(Metadata metadata) : this(_ => true, metadata) { }
+        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
+        protected Tactic(Metadata metadata) : this(metadata, _ => true) { }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(System.Func{TBeliefSet,bool},Aplib.Core.Metadata)" />
-        protected Tactic() : this(_ => true, new Metadata()) { }
+        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
+        protected Tactic() : this(new Metadata()) { }
 
         /// <inheritdoc />
         public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);

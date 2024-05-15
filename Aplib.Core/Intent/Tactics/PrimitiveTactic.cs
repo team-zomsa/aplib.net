@@ -16,41 +16,55 @@ namespace Aplib.Core.Intent.Tactics
         protected readonly IAction<TBeliefSet> _action;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action.
+        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action
+        /// and guard.
         /// </summary>
-        /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        public PrimitiveTactic(IAction<TBeliefSet> action, Metadata? metadata = null)
-            : base(metadata) => _action = action;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action and guard.
-        /// </summary>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the primitive tactic.</param>
+        public PrimitiveTactic(Metadata metadata, IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+            : base(metadata, guard) => _action = action;
+
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(Metadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        public PrimitiveTactic(IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+            : this(new Metadata(), action, guard)
+        {
+        }
+
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(Metadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        public PrimitiveTactic(Metadata metadata, IAction<TBeliefSet> action) : this(metadata, action, _ => true) { }
+
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(Metadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        public PrimitiveTactic(IAction<TBeliefSet> action) : this(new Metadata(), action) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action
+        /// and guard.
+        /// </summary>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        public PrimitiveTactic(IAction<TBeliefSet> action,
-            System.Func<TBeliefSet, bool> guard,
-            Metadata? metadata = null)
-            : base(guard, metadata) => _action = action;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action and guard.
-        /// </summary>
         /// <param name="queryAction">The queryable action of the primitive tactic.</param>
         /// <param name="guard">The guard of the primitive tactic.</param>
-        /// <param name="metadata">
-        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
-        /// </param>
-        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction,
-            System.Func<TBeliefSet, bool> guard,
-            Metadata? metadata = null)
-            : base(beliefSet => guard(beliefSet) && queryAction.Query(beliefSet), metadata)
-        => _action = queryAction;
+        public PrimitiveTactic
+            (Metadata metadata, IQueryable<TBeliefSet> queryAction, System.Func<TBeliefSet, bool> guard)
+            : this
+            (
+                metadata,
+                (IAction<TBeliefSet>)queryAction,
+                beliefSet => guard(beliefSet) && queryAction.Query(beliefSet)
+            )
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="PrimitiveTactic{TBeliefSet}(Metadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction, System.Func<TBeliefSet, bool> guard)
+            : this(new Metadata(), queryAction, guard)
+        {
+        }
 
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
