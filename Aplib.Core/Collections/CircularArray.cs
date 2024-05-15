@@ -1,4 +1,4 @@
-namespace Aplib.Core.DataStructures
+namespace Aplib.Core.Collections
 {
     /// <summary>
     /// An array that wraps around when it reaches its end.

@@ -1,6 +1,8 @@
 ﻿using Aplib.Core.Belief;
-using Aplib.Core.DataStructures;
+using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
+using System.Collections;
+using System.Linq;
 
 namespace Aplib.Core.Desire
 {
@@ -51,14 +53,13 @@ namespace Aplib.Core.Desire
         /// <param name="beliefSet">The belief set to check the guards of the goal structures with.</param>
         private void ActivateRelevantGoalStructures(TBeliefSet beliefSet)
         {
-            foreach (var goalStructureStackItem in _goalStructureStack.ActivatableStackItems)
-            {
-                System.Func<TBeliefSet, bool> guard = goalStructureStackItem.Data.guard;
+            // Filter all the goal structures by their guards.
+            var itemsToActivate = _goalStructureStack.ActivatableStackItems
+                .Where(item => item.Data.guard(beliefSet));
 
-                if (!guard(beliefSet)) continue;
-
-                _goalStructureStack.Activate(goalStructureStackItem);
-            }
+            // (Re)activate the filtered goal structures.
+            foreach (var item in itemsToActivate)
+                _goalStructureStack.Activate(item);
         }
 
         /// <inheritdoc />

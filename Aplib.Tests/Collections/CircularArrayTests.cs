@@ -1,6 +1,6 @@
-using Aplib.Core.DataStructures;
+using Aplib.Core.Collections;
 
-namespace Aplib.Core.Tests.DataStructures;
+namespace Aplib.Core.Tests.Collections;
 
 public class CircularArrayTests
 {

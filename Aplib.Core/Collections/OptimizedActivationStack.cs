@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Aplib.Core.DataStructures
+namespace Aplib.Core.Collections
 {
     /// <summary>
     /// A stack that has a predefined set of items that can be <i>activated</i>
@@ -19,21 +19,36 @@ namespace Aplib.Core.DataStructures
         /// <summary>
         /// The top item on the stack.
         /// </summary>
-        private Item? _top;
+        private StackItem? _top;
 
         /// <summary>
         /// Gets the activatable stack items.
         /// </summary>
         /// <remarks>
         /// The stack items are exposed, since they should be accessible from the outside to
-        /// provide O(1) activation of a stack item with <see cref="Activate(Item)"/>.
+        /// provide O(1) activation of a stack item with <see cref="Activate(StackItem)"/>.
         /// </remarks>
-        public IEnumerable<Item> ActivatableStackItems { get; }
+        public IEnumerable<StackItem> ActivatableStackItems { get; }
+
+        private int _count = 0;
 
         /// <summary>
         /// Gets the number of items that are currently activated (i.e., on the stack).
         /// </summary>
-        public int Count { get; private set; } = 0;
+        /// <exception cref="System.InvalidOperationException">
+        /// Thrown when the stack count is negative.
+        /// </exception>"
+        public int Count
+        {
+            get => _count;
+            private set
+            {
+                if (value < 0)
+                    throw new System.InvalidOperationException("The stack count cannot be negative.");
+
+                _count = value;
+            }
+        }
 
         /// <summary>
         /// Initializes an optimized activation stack with a set of activatable data.
@@ -42,7 +57,7 @@ namespace Aplib.Core.DataStructures
         public OptimizedActivationStack(T[] activatables)
         {
             // Setup the activatable stack items.
-            ActivatableStackItems = activatables.Select(activatable => new Item(activatable, this));
+            ActivatableStackItems = activatables.Select(activatable => new StackItem(activatable, this));
         }
 
         /// <summary>
@@ -56,13 +71,13 @@ namespace Aplib.Core.DataStructures
         /// <exception cref="System.ArgumentException">
         /// Thrown when an item is pushed that belongs to a different stack.
         /// </exception>
-        public void Activate(Item item)
+        public void Activate(StackItem item)
         {
             if (item.ActivationStack != this)
                 throw new System.ArgumentException("Cannot push an item that is not an activatable of this activation stack.");
 
             // Handle the case when the stack is empty.
-            if (_top is null)
+            if (Count == 0)
             {
                 _top = item;
                 item.IsActive = true;
@@ -76,7 +91,7 @@ namespace Aplib.Core.DataStructures
             else Count++;
 
             // Push the new item on top of the stack.
-            item.PushOnStackAfter(_top);
+            item.PushOnStackAfter(_top!);
             _top = item;
         }
 
@@ -104,7 +119,7 @@ namespace Aplib.Core.DataStructures
                 throw new System.InvalidOperationException("The stack is empty.");
 
             // Pop the top item from the stack.
-            Item _oldTop = _top;
+            StackItem _oldTop = _top;
             _top = _top.Previous;
             _oldTop.RemoveFromStack();
 
@@ -118,9 +133,9 @@ namespace Aplib.Core.DataStructures
         /// </summary>
         /// <remarks>
         /// This class is public, because the whole stack item should be accessible from the outside to
-        /// provide O(1) activation of a stack item with <see cref="Activate(Item)"/>.
+        /// provide O(1) activation of a stack item with <see cref="Activate(StackItem)"/>.
         /// </remarks>
-        public class Item
+        public sealed class StackItem
         {
             /// <summary>
             /// Gets the data that this stack item represents.
@@ -135,12 +150,12 @@ namespace Aplib.Core.DataStructures
             /// <summary>
             /// Gets or sets the previous (below) item on the stack.
             /// </summary>
-            public Item? Previous { get; set; }
+            public StackItem? Previous { get; set; }
 
             /// <summary>
             /// Gets or sets the next (above) item on the stack.
             /// </summary>
-            public Item? Next { get; set; }
+            public StackItem? Next { get; set; }
 
             /// <summary>
             /// Gets or sets a value indicating whether the item is currently on the stack.
@@ -152,7 +167,7 @@ namespace Aplib.Core.DataStructures
             /// </summary>
             /// <param name="data">The data to put on the stack.</param>
             /// <param name="activationStack">The activation stack instance that this stack item belongs to.</param>
-            public Item(T data, OptimizedActivationStack<T> activationStack)
+            public StackItem(T data, OptimizedActivationStack<T> activationStack)
             {
                 Data = data;
                 ActivationStack = activationStack;
@@ -162,7 +177,7 @@ namespace Aplib.Core.DataStructures
             /// Links this item before another item.
             /// </summary>
             /// <param name="item">The item that should be on top.</param>
-            private void SetNext(Item? item)
+            private void SetNext(StackItem? item)
             {
                 Next = item;
 
@@ -173,7 +188,7 @@ namespace Aplib.Core.DataStructures
             /// Links this item after another item.
             /// </summary>
             /// <param name="item">The item that should be below.</param>
-            private void SetPrevious(Item? item)
+            private void SetPrevious(StackItem? item)
             {
                 Previous = item;
 
@@ -189,7 +204,7 @@ namespace Aplib.Core.DataStructures
             /// when an item is already on the stack,
             /// or when an item is pushed after an item that is not on the stack.
             /// </exception>
-            public void PushOnStackAfter(Item item)
+            public void PushOnStackAfter(StackItem item)
             {
                 if (ActivationStack != item.ActivationStack)
                     throw new System.ArgumentException("Cannot push an item after an item that is not an activatable of the same stack.");
