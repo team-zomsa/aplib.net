@@ -84,7 +84,8 @@ namespace Aplib.Core.Desire.Goals
             _epsilon = epsilon;
         }
 
-        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},HeuristicFunction,double)" />
+        /// <inheritdoc
+        ///     cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
         public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = _defaultEpsilon)
             : this(new Metadata(), tactic, heuristicFunction, epsilon)
         {
