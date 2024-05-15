@@ -19,16 +19,10 @@ namespace Aplib.Core
         /// Actual number of elements in the array.
         /// Limited to <see cref="MaxCount"/>.
         /// </summary>
-        public int Count
-        {
-            get => _count;
-            private set => _count = value > MaxCount ? MaxCount : value;
-        }
+        public int Count { get; private set; }
 
         /// <inheritdoc/>
         public bool IsReadOnly => false;
-
-        private int _count;
 
         private readonly T[] _array;
         private int _head;
@@ -50,12 +44,17 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="array">An array to use as the circular array.</param>
         /// <param name="count">The number of actual elements in the array.</param>
-        public ExposedQueue(T[] array, int count = -1)
+        public ExposedQueue(T[] array, int? count = null)
         {
+            if (count > array.Length)
+                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot exceed the length of the array.");
+            if (count < 0)
+                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot be negative.");
+
             MaxCount = array.Length;
             _array = array;
             _head = MaxCount - 1;
-            Count = count == -1 ? MaxCount : count;
+            Count = count ?? MaxCount;
         }
 
         /// <summary>
@@ -70,11 +69,6 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Decrements the head of the array.
-        /// </summary>
-        private void DecrementHead() => _head = (_head - 1 + MaxCount) % MaxCount;
-
-        /// <summary>
         /// Puts an element at the start of the array.
         /// </summary>
         /// <param name="value">The element to add to the array</param>
@@ -82,7 +76,8 @@ namespace Aplib.Core
         {
             _array[_head] = value;
             DecrementHead();
-            Count++;
+            if (Count < MaxCount)
+                Count++;
         }
 
         /// <inheritdoc/>
@@ -135,7 +130,6 @@ namespace Aplib.Core
         /// <returns>An array containing the elements within the specified range.</returns>
         public T[] ToArray(int start, int end)
         {
-            Console.WriteLine($"Start: {start}, End: {end}");
             if (start < 0 || start >= Count)
                 throw new ArgumentOutOfRangeException(nameof(start), "Start index must be within the bounds of the array.");
             if (end < 0 || end >= Count)
@@ -189,5 +183,10 @@ namespace Aplib.Core
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        /// <summary>
+        /// Decrements the head of the array.
+        /// </summary>
+        private void DecrementHead() => _head = (_head - 1 + MaxCount) % MaxCount;
     }
 }

@@ -36,6 +36,18 @@ public class ExposedQueueTests
     }
 
     [Fact]
+    public void ExposedQueue_WhenInitializedWithArrayAndCount_ShouldThrowExceptions()
+    {
+        // Arrange
+        void CountExceedsLength() => new ExposedQueue<int>([1, 2, 3], 4);
+        void NegativeCount() => new ExposedQueue<int>([1, 2, 3], -1);
+
+        // Assert
+        Assert.Throws<ArgumentOutOfRangeException>(CountExceedsLength);
+        Assert.Throws<ArgumentOutOfRangeException>(NegativeCount);
+    }
+
+    [Fact]
     public void Put_ArrayIsFull_WrapsAround()
     {
         // Arrange
