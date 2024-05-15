@@ -25,18 +25,24 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.
         /// </summary>=
-        /// <param name="effect">The effect of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public Action(System.Action<TBeliefSet> effect, Metadata? metadata = null)
+        /// <param name="effect">The effect of the action.</param>
+        public Action(Metadata metadata, System.Action<TBeliefSet> effect)
         {
+            Metadata = metadata;
             _effect = effect;
-            Metadata = metadata ?? new Metadata();
         }
 
-        /// <inheritdoc cref="Action{TBeliefSet}(System.Action{TBeliefSet},Aplib.Core.Metadata?)" />
-        protected Action(Metadata? metadata = null) : this(_ => { }, metadata) { }
+        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
+        public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
+
+        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
+        protected Action(Metadata metadata) : this(metadata, _ => { }) { }
+
+        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
+        protected Action() : this(new Metadata()) { }
 
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);
