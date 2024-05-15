@@ -7,8 +7,7 @@ namespace Aplib.Core.Desire.Goals
     /// <summary>
     /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
     /// applying the tactic. Goals are combined in a <see cref="GoalStructure.GoalStructure{TBeliefSet}" />, and are used to
-    /// prepare tests
-    /// or do the testing.
+    /// prepare tests or do the testing.
     /// </summary>
     /// <seealso cref="GoalStructure.GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
