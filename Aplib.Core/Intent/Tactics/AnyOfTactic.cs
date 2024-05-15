@@ -20,15 +20,15 @@ namespace Aplib.Core.Intent.Tactics
         /// Initializes a new instance of the <see cref="AnyOfTactic{TBeliefSet}"/> class with the specified sub-tactics
         /// and an optional guard condition.
         /// </summary>
-        /// <param name="guard">The guard condition.</param>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
+        /// <param name="guard">The guard condition.</param>
         /// <param name="subTactics">The list of sub-tactics.</param>
         public AnyOfTactic
         (
+            Metadata metadata,
             Func<TBeliefSet, bool> guard,
-            Metadata? metadata = null,
             params ITactic<TBeliefSet>[] subTactics
         )
             : base(metadata)
@@ -37,9 +37,22 @@ namespace Aplib.Core.Intent.Tactics
             _subTactics = new LinkedList<ITactic<TBeliefSet>>(subTactics);
         }
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(System.Func{TBeliefSet,bool},Metadata?,ITactic{TBeliefSet}[])" />
-        public AnyOfTactic(Metadata? metadata = null, params ITactic<TBeliefSet>[] subTactics)
-            : this(_ => true, metadata, subTactics)
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
+        public AnyOfTactic
+            (Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            : this(new Metadata(), guard, subTactics)
+        {
+        }
+
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        public AnyOfTactic(Metadata metadata, params ITactic<TBeliefSet>[] subTactics)
+            : this(metadata, _ => true, subTactics)
+        {
+        }
+
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        public AnyOfTactic(params ITactic<TBeliefSet>[] subTactics)
+            : this(new Metadata(), subTactics)
         {
         }
 

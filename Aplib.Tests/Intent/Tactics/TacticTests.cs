@@ -40,7 +40,7 @@ public class TacticTests
         Action<IBeliefSet> action2 = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
         PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => false);
-        AnyOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
+        AnyOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
@@ -62,7 +62,7 @@ public class TacticTests
         Action<IBeliefSet> action2 = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
         PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
-        FirstOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
+        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
@@ -84,7 +84,7 @@ public class TacticTests
         Action<IBeliefSet> action2 = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => false);
         PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
-        FirstOfTactic<IBeliefSet> parentTactic = new(null, tactic1, tactic2);
+        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
