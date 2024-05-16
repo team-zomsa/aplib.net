@@ -20,66 +20,96 @@ public class ExposedQueueTests
         Assert.Equal(0, count);
     }
 
-    [Fact]
-    public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount()
+    [Theory]
+    [InlineData(new int[] {1, 2, 3}, null, 3, 3)]
+    [InlineData(new int[] {1, 2, 0, 0}, 2, 4, 2)]
+    public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount(int[] array, int? countParam, int expectedMaxCount, int expectedCount)
     {
         // Arrange
-        ExposedQueue<int> queue = new([1, 2, 3]);
+        ExposedQueue<int> queue = new(array, countParam);
 
         // Act
         int maxCount = queue.MaxCount;
         int count = queue.Count;
 
         // Assert
-        Assert.Equal(3, maxCount);
-        Assert.Equal(3, count);
+        Assert.Equal(expectedMaxCount, maxCount);
+        Assert.Equal(expectedCount, count);
     }
 
     [Fact]
-    public void ExposedQueue_WhenInitializedWithArrayAndCount_ShouldThrowExceptions()
+    public void ExposedQueue_WhenInitializedWithArrayAndCount_ShouldSetHeadCorrectly()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new([1,0,0], 1);
+        ExposedQueue<int> expected = new([3,2,1]);
+
+        // Act
+        queue.Put(2);
+        queue.Put(3);
+
+        // Assert
+        Assert.Equal(expected, queue);
+    }
+
+    [Fact]
+    public void ExposedQueue_WhenInitializedWithCountExceedingLength_ShouldThrowException() 
     {
         // Arrange
         void CountExceedsLength() => _ = new ExposedQueue<int>([1, 2, 3], 4);
-        void NegativeCount() => _ = new ExposedQueue<int>([1, 2, 3], -1);
 
-        // Assert
+        // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(CountExceedsLength);
-        Assert.Throws<ArgumentOutOfRangeException>(NegativeCount);
     }
 
     [Fact]
-    public void AccessIndex_WhenIndexIsOutOfBounds_ThrowsException()
+    public void ExposedQueue_WhenInitializedWithNegativeCount_ShouldThrowException()
     {
         // Arrange
-        ExposedQueue<int> queue = new(3);
-        int elem;
+        void NegativeCount() => _ = new ExposedQueue<int>([1, 2, 3], -1);
 
-        // Act
-        void AccessNegativeIndex() => elem = queue[-1];
-        void AccessIndexGreaterThanCount() => elem = queue[queue.Count];
+        // Act & Assert
+        Assert.Throws<ArgumentOutOfRangeException>(NegativeCount);
+    }
+    
+    [Fact]
+    public void AccessIndex_WhenIndexIsNegative_ThrowsException()
+    {
+        // Arrange
+        void AccessNegativeIndex() => _ = new ExposedQueue<int>(3)[-1];
 
-        // Assert
+        // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(AccessNegativeIndex);
+    }
+
+    [Fact]
+    public void AccessIndex_WhenIndexIsGreaterThanCount_ThrowsException()
+    {
+        // Arrange
+        void AccessIndexGreaterThanCount() => _ = new ExposedQueue<int>(3)[4];
+
+        // Act & Assert
         Assert.Throws<ArgumentOutOfRangeException>(AccessIndexGreaterThanCount);
     }
+
 
     [Fact]
     public void Put_ArrayIsFull_WrapsAround()
     {
         // Arrange
         ExposedQueue<int> queue = new([4, 3, 2, 1]);
+        ExposedQueue<int> expected = new([5, 4, 3, 2]);
 
         // Act
         queue.Put(5);
 
         // Assert
-        Assert.Equal(5, queue[0]);
-        Assert.Equal(4, queue[1]);
-        Assert.Equal(2, queue[3]);
+        Assert.Equal(expected.Count, queue.Count);
+        Assert.Equal(expected, queue);
     }
 
     [Fact]
-    public void GetHead_HeadIsUpdated_ReturnsCorrectElement()
+    public void GetLast_HeadIsUpdated_ReturnsCorrectElement()
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);
@@ -105,20 +135,33 @@ public class ExposedQueueTests
     }
 
     [Fact]
-    public void CopyTo_WrongArguments_ThrowsException()
+    public void CopyTo_WhenStartIndexIsNegative_ThrowsException()
     {
         // Arrange
-        ExposedQueue<int> queue = new([3, 2, 1]);
-
-        // Act
-        void StartOutOfBounds() => queue.CopyTo(new int[3], -1, 2);
-        void EndOutOfOunds() => queue.CopyTo(new int[3], 0, 3);
-        void StartAfterEnd() => queue.CopyTo(new int[3], 2, 1);
+        ExposedQueue<int> queue = new([3,2,1]);
 
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(StartOutOfBounds);
-        Assert.Throws<ArgumentOutOfRangeException>(EndOutOfOunds);
-        Assert.Throws<ArgumentException>(StartAfterEnd);
+        Assert.Throws<ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], -1, 2));
+    }
+
+    [Fact]
+    public void CopyTo_WhenEndIndexIsOutOfBounds_ThrowsException()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new([3,2,1]);
+
+        // Assert
+        Assert.Throws<ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], 0, 3));
+    }
+
+    [Fact]
+    public void CopyTo_WhenStartIndexIsAfterEndIndex_ThrowsException()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new([3,2,1]);
+
+        // Assert
+        Assert.Throws<ArgumentException>(() => queue.CopyTo(new int[3], 2, 1));
     }
 
     [Fact]
@@ -175,34 +218,23 @@ public class ExposedQueueTests
         Assert.Empty(queue);
     }
 
-    [Fact]
-    public void Contains_ElementExists_ReturnsTrue()
+    [Theory]
+    [InlineData(2, true)]
+    [InlineData(4, false)]
+    public void Contains_OnElement_ReturnsCorrectAnswer(int element, bool expected)
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);
 
         // Act
-        bool contains = queue.Contains(2);
+        bool contains = queue.Contains(element);
 
         // Assert
-        Assert.True(contains);
+        Assert.Equal(expected, contains);
     }
 
     [Fact]
-    public void Contains_ElementDoesNotExist_ReturnsFalse()
-    {
-        // Arrange
-        ExposedQueue<int> queue = new([3, 2, 1]);
-
-        // Act
-        bool contains = queue.Contains(4);
-
-        // Assert
-        Assert.False(contains);
-    }
-
-    [Fact]
-    public void Remove_WhenCalled_ReturnsFalse()
+    public void Remove_WhenCalledOnMissingElement_ReturnsFalse()
     {
         // Arrange
         ExposedQueue<int> queue = new([3, 2, 1]);
@@ -212,6 +244,38 @@ public class ExposedQueueTests
 
         // Assert
         Assert.False(removed);
+    }
+
+    [Fact]
+    public void Remove_WhenCalledOnExistingElement_RemovesElement()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new([4, 3, 2, 1]);
+        ExposedQueue<int> expected = new([4, 2, 1]);
+
+        // Act
+        bool removed = queue.Remove(3);
+
+        // Assert
+        Assert.True(removed);
+        Assert.Equal(expected.Count, queue.Count);
+        Assert.Equal(expected, queue);
+    }
+
+    [Fact]
+    public void Put_AfterRemoval_StillHasCorrectHead()
+    {
+        // Arrange
+        ExposedQueue<int> queue = new([4, 3, 1, 2]);
+        ExposedQueue<int> expected = new([5, 4, 3, 2]);
+
+        // Act
+        queue.Remove(1);
+        queue.Put(5);
+
+        // Assert
+        Assert.Equal(expected.Count, queue.Count);
+        Assert.Equal(expected, queue);
     }
 
     [Fact]

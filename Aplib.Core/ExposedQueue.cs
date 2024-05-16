@@ -7,7 +7,13 @@ namespace Aplib.Core
     /// <summary>
     /// A queue with all elements exposed.
     /// Functionally works like a queue with indexing.
+    /// It has a MaxCount and Count. MaxCount being the maximal length of the queue, 
+    /// and Count being the actual number of elements in the queue.
     /// </summary>
+    /// <remarks>
+    /// When adding an element to a full queue, all other elements are shifted one place like so:
+    /// [4, 3, 2, 1], Put(5) => [5, 4, 3, 2]
+    /// </remarks>
     public class ExposedQueue<T> : ICollection<T>
     {
         /// <summary>
@@ -27,9 +33,9 @@ namespace Aplib.Core
         private int _head;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class.
+        /// Initializes a new empty instance of the <see cref="ExposedQueue{T}"/> class.
         /// </summary>
-        /// <param name="size">The size of the array.</param>
+        /// <param name="size">The maximum size of the queue.</param>
         public ExposedQueue(int size)
         {
             MaxCount = size;
@@ -39,11 +45,16 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class.
-        /// By default, assumes the array is filled.
+        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class
+        /// with an array to use as basis for the queue.
+        /// By default, assumes the array is filled. 
         /// </summary>
         /// <param name="array">An array to use as the circular array.</param>
         /// <param name="count">The number of actual elements in the array.</param>
+        /// <remarks>
+        /// The MaxCount of the queue will be set to the length of the array.
+        /// If the array is not fully filled, the Count should be specified.
+        /// </remarks>
         public ExposedQueue(T[] array, int? count = null)
         {
             if (count > array.Length)
@@ -62,6 +73,9 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="index">The index of the element to get.</param>
         /// <returns>The element at the specified index.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">  
+        /// Thrown when the index is out of range.  
+        /// </exception> 
         public T this[int index]
         {
             get 
@@ -69,6 +83,12 @@ namespace Aplib.Core
                 if (index < 0 || index >= Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
                 return _array[(index + _head + 1) % MaxCount];
+            }
+            private set 
+            {
+                if (index < 0 || index >= Count)
+                    throw new ArgumentOutOfRangeException(nameof(index));
+                _array[(index + _head + 1) % MaxCount] = value;
             }
         }
 
@@ -166,15 +186,28 @@ namespace Aplib.Core
         }
 
         /// <summary>
-        /// DOES NOT DO ANYTHING.
+        /// Removes the specified item from the queue and shifts remaining elements to the left.
+        /// For example, given the queue [4, 3, 2, 1], if you call Remove(3), the resulting queue will be [4, 2, 1].
         /// </summary>
-        /// <returns>False.</returns>
+        /// <param name="item">The item to remove.</param>
+        /// <returns>True if the item was successfully removed; otherwise, false.</returns>
         /// <remarks>
-        /// Method is there to comply with the ICollection interface. 
-        /// Does not actually do anything since this is a queue, and queues do not allow removal of specific elements.
+        /// The MaxCount will not change, but the Count will decrease by one.
         /// </remarks>
-        public bool Remove(T item) => false;
+        public bool Remove(T item)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (this[i]!.Equals(item))
+                {
+                    RemoveAt(i);
+                    return true;
+                }
+            }
 
+            return false;
+        }
+        
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
@@ -188,5 +221,17 @@ namespace Aplib.Core
         /// Decrements the head of the array.
         /// </summary>
         private void DecrementHead() => _head = (_head - 1 + MaxCount) % MaxCount;
+
+        /// <summary>
+        /// Removes the element at the specified index.
+        /// Shifts all other elements to the left.
+        /// </summary>
+        /// <param name="index">The index of the element to remove.</param>
+        private void RemoveAt(int index)
+        {
+            for (int i = index; i < Count - 1; i++)
+                this[i] = this[i + 1];
+            Count--;
+        }
     }
 }
