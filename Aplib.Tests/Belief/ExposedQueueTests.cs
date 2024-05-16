@@ -20,9 +20,15 @@ public class ExposedQueueTests
         Assert.Equal(0, count);
     }
 
+    public static readonly object?[][] ArrayAndCountParams =
+    [
+        // array, count, expectedMaxCount, expectedCount
+        [new int[] {1, 2, 3}, null, 3, 3],
+        [new int[] {1, 2, 0, 0}, 2, 4, 2]
+    ];
+
     [Theory]
-    [InlineData(new int[] {1, 2, 3}, null, 3, 3)]
-    [InlineData(new int[] {1, 2, 0, 0}, 2, 4, 2)]
+    [MemberData(nameof(ArrayAndCountParams))]
     public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount(int[] array, int? countParam, int expectedMaxCount, int expectedCount)
     {
         // Arrange
