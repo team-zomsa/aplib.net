@@ -43,7 +43,7 @@ namespace Aplib.Core.Intent.Actions
         }
 
         /// <inheritdoc
-        ///     cref="QueryAction{TBeliefSet,TQuery}(Metadata,System.Action{TBeliefSet,TQuery},System.Func{TBeliefSet,TQuery?})" />
+        ///     cref="QueryAction{TBeliefSet,TQuery}(Aplib.Core.Metadata,System.Action{TBeliefSet,TQuery},System.Func{TBeliefSet,TQuery})" />
         public QueryAction(System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
             : this(new Metadata(), effect, query)
         {
