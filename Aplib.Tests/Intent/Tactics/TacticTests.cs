@@ -50,6 +50,26 @@ public class TacticTests
     }
 
     /// <summary>
+    /// Given some metadata,
+    /// When the tactic is constructed,
+    /// Then it contains the correct metadata.
+    /// </summary>
+    [Fact]
+    public void FirstOfTactic_ConstructedWithMetadata_HasCorrectMetadata()
+    {
+        // Arrange
+        // ReSharper disable twice StringLiteralTypo
+        Metadata metadata = new("Tictacs", "Mintjes");
+
+        // Act
+        FirstOfTactic<IBeliefSet> tactic = new(metadata);
+
+        // Assert
+        tactic.Metadata.Name.Should().Be("Tictacs");
+        tactic.Metadata.Description.Should().Be("Mintjes");
+    }
+
+    /// <summary>
     /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
     /// When both subtactic guards are true,
     /// Then the result should be the first subtactic.
