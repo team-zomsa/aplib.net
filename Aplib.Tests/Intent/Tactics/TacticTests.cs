@@ -28,6 +28,23 @@ public class TacticTests
     }
 
     /// <summary>
+    /// Given no metadata,
+    /// When an AnyOfTactic is constructed,
+    /// Then it has no name, and a random id.
+    /// </summary>
+    [Fact]
+    public void AnyOfTactic_WithoutMetadata_ContainsDefaultMetadata()
+    {
+        // Act
+        AnyOfTactic<IBeliefSet> tactic = new(_ => true);
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+    }
+
+    /// <summary>
     /// Given a parent of type <see cref="AnyOfTactic{TBeliefSet}" /> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the action of an enabled tactic.
