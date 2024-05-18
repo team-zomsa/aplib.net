@@ -10,6 +10,21 @@ namespace Aplib.Core.Tests.Desire;
 public class GoalStructureTests
 {
     [Fact]
+    public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
+    {
+        // Arrange
+        Metadata metadata = new("My GoalStructure", "The best GoalStructure");
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+
+        // Act
+        FirstOfGoalStructure<IBeliefSet> goalStructure = new(metadata, goalStructure1.Object);
+
+        // Assert
+        goalStructure.Metadata.Name.Should().Be("My GoalStructure");
+        goalStructure.Metadata.Description.Should().Be("The best GoalStructure");
+    }
+
+    [Fact]
     public void FirstOfGoalStructure_WhenAllGoalsFail_ShouldReturnFailure()
     {
         Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
