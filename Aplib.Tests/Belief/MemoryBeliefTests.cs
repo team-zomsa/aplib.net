@@ -1,4 +1,5 @@
 using Aplib.Core.Belief;
+using FluentAssertions;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;
@@ -8,6 +9,26 @@ namespace Aplib.Core.Tests.Belief;
 /// </summary>
 public class MemoryBeliefTests
 {
+    /// <summary>
+    /// Given no metadata,
+    /// When a MemoryBelief is constructed,
+    /// Then it gets a random id and no name or description.
+    /// </summary>
+    [Fact]
+    public void MemoryBelief_ConstructedWithoutMetadat_ContainsDefaultMetadata()
+    {
+        // Arrange
+        List<int> list = [1, 2, 3];
+
+        // Act
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3, () => true);
+
+        // Assert
+        belief.Metadata.Id.Should().NotBeEmpty();
+        belief.Metadata.Name.Should().BeNull();
+        belief.Metadata.Description.Should().BeNull();
+    }
+
     /// <summary>
     /// Given a MemoryBelief instance with an observation,
     /// When the observation is updated and GetMostRecentMemory is called,
