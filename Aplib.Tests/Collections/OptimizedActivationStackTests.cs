@@ -22,9 +22,9 @@ public class OptimizedActivationStackTests
         // Act
         IEnumerable<OptimizedActivationStack<int>.StackItem> activatableStackItems
             = activationStack.ActivatableStackItems;
-        IEnumerable<int> items = activatableStackItems.Select(stackItem => stackItem.Data);
 
         // Assert
+        IEnumerable<int> items = activatableStackItems.Select(stackItem => stackItem.Data);
         items.Should().BeEquivalentTo(activatables);
     }
 
