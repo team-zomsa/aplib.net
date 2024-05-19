@@ -50,7 +50,7 @@ namespace Aplib.Core
             _beliefSet.UpdateBeliefs();
 
             // Desire
-            _desireSet.UpdateStatus(_beliefSet);
+            _desireSet.Update(_beliefSet);
             if (Status != CompletionStatus.Unfinished) return;
             IGoal<TBeliefSet> goal = _desireSet.GetCurrentGoal(_beliefSet);
 

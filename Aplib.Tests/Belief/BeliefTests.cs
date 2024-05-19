@@ -136,13 +136,13 @@ public class BeliefTests
     {
         private readonly int _number;
 
-        private const int MAX = 3;
+        private const int _max = 3;
 
         public MyEnumerable(int number) => _number = number;
 
         public IEnumerator<int> GetEnumerator()
         {
-            for (int i = 0; i < MAX; i++) yield return _number;
+            for (int i = 0; i < _max; i++) yield return _number;
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
