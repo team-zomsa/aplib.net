@@ -100,10 +100,14 @@ namespace Aplib.Core.Belief
         /// A higher index means a memory further back in time.
         /// </summary>
         /// <returns>The memory of the observation at the specified index.</returns>
-        public TObservation GetMemoryAt(int index)
+        /// <param name="index">The index of the memory to get.</param>
+        /// <param name="clamp">If true, the index will be clamped between 0 and the last memory index.</param>
+        public TObservation GetMemoryAt(int index, bool clamp = false)
         {
             int lastMemoryIndex = _memorizedObservations.Count;
-            if (index < 0 || index > lastMemoryIndex)
+            if (clamp)
+                index = Math.Clamp(index, 0, lastMemoryIndex);
+            else if (index < 0 || index > lastMemoryIndex)
                 throw new ArgumentOutOfRangeException(nameof(index), $"Index must be between 0 and {lastMemoryIndex}.");
             return _memorizedObservations[index];
         }

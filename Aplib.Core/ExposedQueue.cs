@@ -78,13 +78,13 @@ namespace Aplib.Core
         /// </exception> 
         public T this[int index]
         {
-            get 
+            get
             {
                 if (index < 0 || index >= Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
                 return _array[(index + _head + 1) % MaxCount];
             }
-            private set 
+            private set
             {
                 if (index < 0 || index >= Count)
                     throw new ArgumentOutOfRangeException(nameof(index));
@@ -207,7 +207,7 @@ namespace Aplib.Core
 
             return false;
         }
-        
+
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
