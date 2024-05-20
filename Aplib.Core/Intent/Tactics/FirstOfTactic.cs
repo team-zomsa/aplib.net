@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
@@ -47,8 +47,7 @@ namespace Aplib.Core.Intent.Tactics
             {
                 IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
 
-                if (action is not null)
-                    return action;
+                if (action is not null) return action;
             }
 
             return null;

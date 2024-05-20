@@ -1,4 +1,5 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
 using System;
 
@@ -6,9 +7,8 @@ namespace Aplib.Core.Desire.Goals
 {
     /// <summary>
     /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
-    /// applying the tactic. Goals are combined in a <see cref="GoalStructure{TBeliefSet}" />, and are used to prepare tests
-    /// or do
-    /// the testing.
+    /// applying the tactic. Goals are combined in a <see cref="GoalStructure{TBeliefSet}" />, and are used to
+    /// prepare tests or do the testing.
     /// </summary>
     /// <seealso cref="GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
@@ -50,7 +50,8 @@ namespace Aplib.Core.Desire.Goals
         public Metadata Metadata { get; }
 
         /// <summary>
-        /// The <see cref="Intent.Tactics.Tactic{TBeliefSet}" /> used to achieve this <see cref="Goal{TBeliefSet}" />, which is executed during every
+        /// The <see cref="Intent.Tactics.Tactic{TBeliefSet}" /> used to achieve this <see cref="Goal{TBeliefSet}" />, which is
+        /// executed during every
         /// iteration of the BDI cycle.
         /// </summary>
         public ITactic<TBeliefSet> Tactic { get; }
@@ -126,7 +127,8 @@ namespace Aplib.Core.Desire.Goals
         /// Gets the <see cref="Heuristics" /> of the current state of the game.
         /// </summary>
         /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        public virtual Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet) => _heuristicFunction.Invoke(beliefSet);
+        public virtual Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet)
+            => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
         /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction" /> and the
