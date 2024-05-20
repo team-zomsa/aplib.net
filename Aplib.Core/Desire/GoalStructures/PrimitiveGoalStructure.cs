@@ -2,7 +2,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System;
 
-namespace Aplib.Core.Desire.GoalStructure
+namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.

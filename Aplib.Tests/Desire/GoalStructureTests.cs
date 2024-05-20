@@ -1,11 +1,9 @@
 using Aplib.Core.Belief;
-using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;
-using Aplib.Core.Desire.GoalStructure;
+using Aplib.Core.Desire.GoalStructures;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
-using System;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -336,10 +334,10 @@ public class GoalStructureTests
         IGoalStructure<IBeliefSet>[] goalStructures = [];
 
         // Act
-        Func<SequentialGoalStructure<IBeliefSet>> act =
+        System.Func<SequentialGoalStructure<IBeliefSet>> act =
             () => new SequentialGoalStructure<IBeliefSet>(goalStructures);
 
         // Assert
-        act.Should().Throw<ArgumentException>();
+        act.Should().Throw<System.ArgumentException>();
     }
 }

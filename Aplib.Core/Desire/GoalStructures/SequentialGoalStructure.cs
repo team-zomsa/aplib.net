@@ -3,7 +3,7 @@ using Aplib.Core.Desire.Goals;
 using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Desire.GoalStructure
+namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a sequential goal structure.

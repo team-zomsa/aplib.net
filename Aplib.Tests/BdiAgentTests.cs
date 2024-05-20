@@ -1,4 +1,4 @@
-using Aplib.Core.Agent;
+using Aplib.Core.Agents;
 using Aplib.Core.Belief;
 using Aplib.Core.Desire;
 using Aplib.Core.Desire.Goals;

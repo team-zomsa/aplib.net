@@ -3,7 +3,7 @@ using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
 using static Aplib.Core.CompletionStatus;
 
-namespace Aplib.Core.Desire.GoalStructure
+namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.

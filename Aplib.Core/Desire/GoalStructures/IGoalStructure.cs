@@ -1,7 +1,7 @@
 ﻿using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a goal structure.

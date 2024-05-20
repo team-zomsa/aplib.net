@@ -4,7 +4,7 @@ using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 
-namespace Aplib.Core.Agent
+namespace Aplib.Core.Agents
 {
     /// <summary>
     /// Represents an agent that performs actions based on goals and beliefs.

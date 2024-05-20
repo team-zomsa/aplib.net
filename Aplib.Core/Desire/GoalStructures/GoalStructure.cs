@@ -2,7 +2,7 @@ using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Desire.GoalStructure
+namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.

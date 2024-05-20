@@ -1,5 +1,6 @@
 ﻿using Aplib.Core.Belief;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Desire.GoalStructures;
 
 namespace Aplib.Core.Desire
 {
