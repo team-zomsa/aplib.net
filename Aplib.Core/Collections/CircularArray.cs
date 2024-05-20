@@ -1,4 +1,4 @@
-namespace Aplib.Core
+namespace Aplib.Core.Collections
 {
     /// <summary>
     /// An array that wraps around when it reaches its end.
@@ -95,8 +95,7 @@ namespace Aplib.Core
         {
             end = end == -1 ? Length - 1 : end;
             T[] result = new T[end - start + 1];
-            for (int i = 0; i < result.Length; i++)
-                result[i] = this[start + i];
+            for (int i = 0; i < result.Length; i++) result[i] = this[start + i];
 
             return result;
         }

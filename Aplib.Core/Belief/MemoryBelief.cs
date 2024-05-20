@@ -1,3 +1,4 @@
+using Aplib.Core.Collections;
 using System;
 
 namespace Aplib.Core.Belief
@@ -38,8 +39,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public MemoryBelief
-        (
+        public MemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember
@@ -65,8 +65,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public MemoryBelief
-        (
+        public MemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
@@ -124,4 +123,3 @@ namespace Aplib.Core.Belief
         }
     }
 }
-
