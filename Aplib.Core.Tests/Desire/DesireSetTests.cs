@@ -4,71 +4,185 @@ using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
 using FluentAssertions;
 using Moq;
+using System;
 
 namespace Aplib.Core.Tests.Desire;
 
 public class DesireSetTests
 {
     /// <summary>
-    /// Given a desire set,
-    /// When the GetCurrentGoal method is called,
-    /// Then the desire set should return the current goal of the current goal structure.
+    /// Given a desire set with finished goals,
+    /// When the desire set is updated and GetCurrentGoal method is called,
+    /// Then an invalid operation exception is thrown.
     /// </summary>
-    [Fact]
-    public void DesireSet_WhenGetCurrentGoalIsCalled_ReturnsCurrentGoal()
+    [Theory]
+    [InlineData(CompletionStatus.Success)]
+    [InlineData(CompletionStatus.Failure)]
+    public void GetCurrentGoal_WhenDesireSetIsFinished_ShouldThrowInvalidOperationException(
+        CompletionStatus finishedMainGoalStatus)
     {
         // Arrange
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        IGoal<IBeliefSet> goal = Mock.Of<IGoal<IBeliefSet>>();
-        Mock<IDesireSet<IBeliefSet>> desireSet = new();
-        desireSet
-            .Setup(d => d.GetCurrentGoal(It.IsAny<IBeliefSet>()))
-            .Returns(goal);
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.Status).Returns(finishedMainGoalStatus);
+
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object);
 
         // Act
-        IGoal<IBeliefSet> currentGoal = desireSet.Object.GetCurrentGoal(beliefSet);
+        desireSet.Update(It.IsAny<IBeliefSet>());
+        Action getCurrentGoal = () => desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
+
+        // Assert
+        getCurrentGoal.Should().Throw<InvalidOperationException>();
+    }
+
+    /// <summary>
+    /// Given a desire set with only a main goal structure and no activatables,
+    /// When the GetCurrentGoal method is called,
+    /// Then the current goal of the main goal structure should be returned.
+    /// </summary>
+    [Fact]
+    public void GetCurrentGoal_WhenOnlyMainGoal_ReturnsMainGoal()
+    {
+        // Arrange
+        IGoal<IBeliefSet> goal = Mock.Of<IGoal<IBeliefSet>>();
+
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.GetCurrentGoal(It.IsAny<IBeliefSet>())).Returns(goal);
+
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object);
+
+        // Act
+        IGoal<IBeliefSet> currentGoal = desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
 
         // Assert
         currentGoal.Should().Be(goal);
     }
 
     /// <summary>
-    /// Given a desire set,
-    /// When the status is updated,
-    /// Then the status of the goal structures are updated.
+    /// Given a desire set with some activated side goal structure that is unfinished,
+    /// When the desire set is updated and GetCurrentGoal method is called,
+    /// Then the current goal of the side goal structure should be returned.
     /// </summary>
     [Fact]
-    public void DesireSet_WhenStatusUpdated_ShouldUpdateGoalStructuresStatus()
+    public void GetCurrentGoal_WhenUnfinishedSideGoalIsActivated_ReturnsSideGoal()
     {
         // Arrange
-        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
-        Mock<DesireSet<IBeliefSet>> desireSet = new(goalStructure.Object);
+        IGoal<IBeliefSet> goal = Mock.Of<IGoal<IBeliefSet>>();
+
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        Mock<IGoalStructure<IBeliefSet>> sideGoalStructure = new();
+        sideGoalStructure.Setup(g => g.GetCurrentGoal(It.IsAny<IBeliefSet>())).Returns(goal);
+        sideGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object, (sideGoalStructure.Object, _ => true));
 
         // Act
-        desireSet.Object.UpdateStatus(It.IsAny<IBeliefSet>());
+        desireSet.Update(It.IsAny<IBeliefSet>());
+        IGoal<IBeliefSet> currentGoal = desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
 
         // Assert
-        goalStructure.Verify(g => g.UpdateStatus(It.IsAny<IBeliefSet>()), Times.Once());
+        currentGoal.Should().Be(goal);
     }
 
     /// <summary>
-    /// Given a desire set,
-    /// When the status is checked,
-    /// Then the status should be the same as the main goal structure status.
+    /// Given a desire set with an unfinished main goal
+    /// and some activated side goal structures that are unfinished,
+    /// When the desire set is updated and GetCurrentGoal method is called,
+    /// Then the current goal of the main goal structure should be returned.
     /// </summary>
     [Fact]
-    public void DesireSet_WhenStatusIsChecked_ShouldBeSameAsMainGoal()
+    public void GetCurrentGoal_WhenUnfinishedSideGoalIsNotActivated_ReturnsMainGoal()
     {
         // Arrange
-        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
-        goalStructure.Setup(g => g.Status).Returns(CompletionStatus.Success);
-        Mock<DesireSet<IBeliefSet>> desireSet = new(goalStructure.Object);
+        IGoal<IBeliefSet> goal = Mock.Of<IGoal<IBeliefSet>>();
+
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.GetCurrentGoal(It.IsAny<IBeliefSet>())).Returns(goal);
+        mainGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        Mock<IGoalStructure<IBeliefSet>> sideGoalStructure = new();
+        sideGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object, (sideGoalStructure.Object, _ => false));
 
         // Act
-        CompletionStatus status = desireSet.Object.Status;
-        CompletionStatus expectedStatus = goalStructure.Object.Status;
+        desireSet.Update(It.IsAny<IBeliefSet>());
+        IGoal<IBeliefSet> currentGoal = desireSet.GetCurrentGoal(It.IsAny<IBeliefSet>());
 
         // Assert
-        status.Should().Be(expectedStatus);
+        currentGoal.Should().Be(goal);
+    }
+
+    /// <summary>
+    /// Given a desire set with some activated side goal structures that are unfinished,
+    /// When the desire set is updated,
+    /// Then the status should be unfinished.
+    /// </summary>
+    [Theory]
+    [InlineData(CompletionStatus.Success)]
+    [InlineData(CompletionStatus.Failure)]
+    [InlineData(CompletionStatus.Unfinished)]
+    public void Update_WhenActivatedSideGoalUnfinished_StatusShouldBeUnfinished(CompletionStatus mainGoalStatus)
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.Status).Returns(mainGoalStatus);
+
+        Mock<IGoalStructure<IBeliefSet>> sideGoalStructure = new();
+        sideGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object, (sideGoalStructure.Object, _ => true));
+
+        // Act
+        desireSet.Update(It.IsAny<IBeliefSet>());
+        CompletionStatus status = desireSet.Status;
+
+        // Assert
+        status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    /// <summary>
+    /// Given a desire set with only a main goal structure and no activatables,
+    /// When the desire set is updated,
+    /// Then the status of the main goal structure should be updated.
+    /// </summary>
+    [Fact]
+    public void Update_WhenOnlyMainGoal_ShouldUpdateMainGoalStructureStatus()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object);
+
+        // Act
+        desireSet.Update(It.IsAny<IBeliefSet>());
+
+        // Assert
+        mainGoalStructure.Verify(g => g.UpdateStatus(It.IsAny<IBeliefSet>()), Times.Once());
+    }
+
+    /// <summary>
+    /// Given a desire set with only a main goal,
+    /// When the desire set is updated,
+    /// Then the status should be the same as the main goal structure status.
+    /// </summary>
+    [Theory]
+    [InlineData(CompletionStatus.Success)]
+    [InlineData(CompletionStatus.Failure)]
+    [InlineData(CompletionStatus.Unfinished)]
+    public void Update_WhenOnlyMainGoal_StatusShouldBeSameAsMainGoal(CompletionStatus mainGoalStatus)
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> mainGoalStructure = new();
+        mainGoalStructure.Setup(g => g.Status).Returns(mainGoalStatus);
+        DesireSet<IBeliefSet> desireSet = new(mainGoalStructure.Object);
+
+        // Act
+        desireSet.Update(It.IsAny<IBeliefSet>());
+        CompletionStatus status = desireSet.Status;
+
+        // Assert
+        status.Should().Be(mainGoalStatus);
     }
 }
