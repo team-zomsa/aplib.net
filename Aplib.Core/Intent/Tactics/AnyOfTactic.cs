@@ -31,11 +31,7 @@ namespace Aplib.Core.Intent.Tactics
             Func<TBeliefSet, bool> guard,
             params ITactic<TBeliefSet>[] subTactics
         )
-            : base(metadata)
-        {
-            _guard = guard;
-            _subTactics = new LinkedList<ITactic<TBeliefSet>>(subTactics);
-        }
+            : base(metadata, guard) => _subTactics = new LinkedList<ITactic<TBeliefSet>>(subTactics);
 
         /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
         public AnyOfTactic
