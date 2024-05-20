@@ -1,4 +1,5 @@
 ﻿using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Tactics;
 
 namespace Aplib.Core.Desire.Goals

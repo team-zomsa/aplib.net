@@ -1,4 +1,4 @@
-﻿namespace Aplib.Core.Belief
+﻿namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// Specifies the update mode of a sampled memory belief.

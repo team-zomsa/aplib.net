@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Aplib.Core.Belief
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.

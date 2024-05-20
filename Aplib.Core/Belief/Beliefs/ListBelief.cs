@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Aplib.Core.Belief
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// A convenience variant of <see cref="Belief{TReference,TObservation}" /> to track multiple references in one
@@ -35,8 +35,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.
         /// </exception>
-        public ListBelief
-        (
+        public ListBelief(
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference
         )
@@ -59,8 +58,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.
         /// </exception>
-        public ListBelief
-        (
+        public ListBelief(
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference,
             Func<bool> shouldUpdate

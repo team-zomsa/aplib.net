@@ -1,4 +1,5 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Belief.Beliefs;
 
 namespace Aplib.Core.Tests.Belief;
 
@@ -98,7 +99,6 @@ public class BeliefSetTests
         /// Belief that sets Updated to true when UpdateBelief is called.
         /// </summary>
         public SimpleBelief Belief2 { get; } = new();
-
     }
 
 
@@ -122,7 +122,6 @@ public class BeliefSetTests
 
         /// <inheritdoc cref="_belief2"/>
         public SimpleBelief Belief2 => _belief2;
-
     }
 
     /// <summary>

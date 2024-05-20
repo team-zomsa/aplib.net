@@ -1,4 +1,4 @@
-﻿namespace Aplib.Core.Belief
+﻿namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// A belief represents/encapsulates an observation (i.e., piece of information of the game state as perceived by an agent).

@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.Beliefs;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;
@@ -18,6 +18,7 @@ public class ListBeliefTests
     {
         // Arrange
         int[] numbers = [1, 1, 2, 3, 5, 8];
+
         // Observation: Is the number even?
         ListBelief<int, bool> belief = new(numbers, i => i % 2 == 0);
 
@@ -40,6 +41,7 @@ public class ListBeliefTests
     {
         // Arrange
         List<string> strings = ["foo", "bar"];
+
         // Observation: What is the last character?
         ListBelief<string, char> belief = new(strings, str => str[^1], () => false);
 

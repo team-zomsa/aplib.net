@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 using FluentAssertions;

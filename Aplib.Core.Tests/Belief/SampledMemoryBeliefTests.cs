@@ -1,6 +1,6 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.Beliefs;
 using System.Collections.Generic;
-using static Aplib.Core.Belief.UpdateMode;
+using static Aplib.Core.Belief.Beliefs.UpdateMode;
 
 namespace Aplib.Core.Tests.Belief;
 
@@ -19,22 +19,23 @@ public class SampledMemoryBeliefTests
     {
         // Arrange
         List<int> list = [];
-        int sampleInterval = 2, framesToRemember = 3;
+        int sampleInterval = 2,
+            framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
             = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember);
 
         // Act
         // Expected values:
         // ----------------------------------------------------
-        //             | list.Count | Observation |  Memory     
+        //             | list.Count | Observation |  Memory
         // ----------------------------------------------------
-        // Initial     | 0          | 0 *         | [0, 0, 0]   
+        // Initial     | 0          | 0 *         | [0, 0, 0]
         // Iteration 0 | 1          | 1           | [0, 0, 0]   (memory * is sampled)
-        // Iteration 1 | 2          | 2 *         | [0, 0, 0]   
+        // Iteration 1 | 2          | 2 *         | [0, 0, 0]
         // Iteration 2 | 3          | 3           | [2, 0, 0]   (memory * is sampled)
-        // Iteration 3 | 4          | 4 *         | [2, 0, 0]   
+        // Iteration 3 | 4          | 4 *         | [2, 0, 0]
         // Iteration 4 | 5          | 5           | [4, 2, 0]   (memory * is sampled)
-        // Iteration 5 | 6          | 6           | [4, 2, 0]   
+        // Iteration 5 | 6          | 6           | [4, 2, 0]
         // ----------------------------------------------------
         for (int i = 0; i < 6; i++)
         {
@@ -56,22 +57,23 @@ public class SampledMemoryBeliefTests
     {
         // Arrange
         List<int> list = [];
-        int sampleInterval = 2, framesToRemember = 3;
+        int sampleInterval = 2,
+            framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
             = new(list, reference => reference.Count, sampleInterval, UpdateWhenSampled, framesToRemember);
 
         // Act
         // Expected values:
         // ----------------------------------------------------
-        //             | list.Count | Observation |  Memory     
+        //             | list.Count | Observation |  Memory
         // ----------------------------------------------------
-        // Initial     | 0          | 0 *         | [0, 0, 0]   
+        // Initial     | 0          | 0 *         | [0, 0, 0]
         // Iteration 0 | 1          | 1           | [0, 0, 0]   (memory * is sampled & observation is updated)
-        // Iteration 1 | 2          | 1 *         | [0, 0, 0]   
+        // Iteration 1 | 2          | 1 *         | [0, 0, 0]
         // Iteration 2 | 3          | 3           | [1, 0, 0]   (memory * is sampled & observation is updated)
-        // Iteration 3 | 4          | 3 *         | [1, 0, 0]   
+        // Iteration 3 | 4          | 3 *         | [1, 0, 0]
         // Iteration 4 | 5          | 5           | [3, 1, 0]   (memory * is sampled & observation is updated)
-        // Iteration 5 | 6          | 5           | [3, 1, 0]   
+        // Iteration 5 | 6          | 5           | [3, 1, 0]
         // ----------------------------------------------------
         for (int i = 0; i < 6; i++)
         {
@@ -93,14 +95,15 @@ public class SampledMemoryBeliefTests
     {
         // Arrange
         List<int> list = [];
-        int sampleInterval = 2, framesToRemember = 3;
+        int sampleInterval = 2,
+            framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
             = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember);
 
         // Act
         // Expected values:
         // -----------------------------------------
-        //             | list.Count | Observation 
+        //             | list.Count | Observation
         // -----------------------------------------
         // Initial     | 0          | 0              (observation is updated)
         // Iteration 0 | 1          | 1              (observation is updated)
@@ -126,16 +129,17 @@ public class SampledMemoryBeliefTests
     {
         // Arrange
         List<int> list = [];
-        int sampleInterval = 2, framesToRemember = 3;
+        int sampleInterval = 2,
+            framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
             = new(list, reference => reference.Count, sampleInterval, UpdateWhenSampled, framesToRemember);
 
         // Act
         // Expected values:
         // -----------------------------------------
-        //             | list.Count | Observation 
+        //             | list.Count | Observation
         // -----------------------------------------
-        // Initial     | 0          | 0   
+        // Initial     | 0          | 0
         // Iteration 0 | 1          | 1              (observation is updated)
         // Iteration 1 | 2          | 1
         // Iteration 2 | 3          | 3              (observation is updated)
@@ -172,9 +176,9 @@ public class SampledMemoryBeliefTests
         // Act
         // Expected values:
         // ------------------------------------------------------------------
-        //                          | list.Count         | Observation 
+        //                          | list.Count         | Observation
         // ------------------------------------------------------------------
-        // Initial                  | 0                  | 0   
+        // Initial                  | 0                  | 0
         // Iteration 0              | 1                  | 1                  (observation is updated)
         // Iteration 1              | 2                  | 1
         // ...
@@ -205,18 +209,19 @@ public class SampledMemoryBeliefTests
     {
         // Arrange
         List<int> list = [];
-        int sampleInterval = 2, framesToRemember = 3;
+        int sampleInterval = 2,
+            framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
             = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, () => false);
 
         // Act
         // Expected values:
         // -----------------------------------------
-        //             | list.Count | Observation 
+        //             | list.Count | Observation
         // -----------------------------------------
         // Initial     | 0          | 0              (set initial observation)
-        // Iteration 0 | 1          | 0              
-        // Iteration 1 | 2          | 0              
+        // Iteration 0 | 1          | 0
+        // Iteration 1 | 2          | 0
         // -----------------------------------------
         for (int i = 0; i < 2; i++)
         {

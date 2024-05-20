@@ -1,12 +1,12 @@
 using Aplib.Core.Collections;
 using System;
 
-namespace Aplib.Core.Belief
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// The <see cref="MemoryBelief{TReference, TObservation}"/> class represents the agent's belief of a single object,
     /// but with additional "memory" of previous observations.
-    /// Some <i>object reference</i> is used to generate/update an <i>observation</i> 
+    /// Some <i>object reference</i> is used to generate/update an <i>observation</i>
     /// (i.e., some piece of information on the game state as perceived by an agent).
     /// This belief also stores a limited amount of previous observations in memory.
     /// </summary>

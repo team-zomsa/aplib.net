@@ -1,13 +1,13 @@
 using System;
-using static Aplib.Core.Belief.UpdateMode;
+using static Aplib.Core.Belief.Beliefs.UpdateMode;
 
-namespace Aplib.Core.Belief
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// The <see cref="SampledMemoryBelief{TReference, TObservation}"/> class represents the agent's belief of a single object,
     /// but with additional "memory" of previous observations.
     /// These observations are sampled at a fixed rate.
-    /// Some <i>object reference</i> is used to generate/update an <i>observation</i> 
+    /// Some <i>object reference</i> is used to generate/update an <i>observation</i>
     /// (i.e., some piece of information on the game state as perceived by an agent).
     /// This belief also stores a limited amount of previous observation samples in memory.
     /// Optionally, the belief can always store the most recent observation, regardless of the sample rate.
@@ -64,8 +64,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public SampledMemoryBelief
-        (
+        public SampledMemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
@@ -99,8 +98,7 @@ namespace Aplib.Core.Belief
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public SampledMemoryBelief
-        (
+        public SampledMemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
@@ -129,9 +127,7 @@ namespace Aplib.Core.Belief
         {
             if (ShouldSampleMemory())
                 base.UpdateBelief();
-            else if (_updateMode is AlwaysUpdate && _shouldUpdate())
-                UpdateObservation();
+            else if (_updateMode is AlwaysUpdate && _shouldUpdate()) UpdateObservation();
         }
     }
 }
-

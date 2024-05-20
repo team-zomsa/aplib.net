@@ -1,7 +1,8 @@
 ﻿using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 
-namespace Aplib.Core.Desire
+namespace Aplib.Core.Desire.DesireSets
 {
     /// <summary>
     /// Represents a set of goals that the agent has.

@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
@@ -17,7 +17,9 @@ namespace Aplib.Core.Intent.Tactics
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
         public FirstOfTactic(Metadata? metadata = null, params Tactic<TBeliefSet>[] subTactics)
-            : base(metadata, subTactics) { }
+            : base(metadata, subTactics)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified sub-tactics and guard condition.
@@ -27,8 +29,12 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(System.Func<TBeliefSet, bool> guard, Metadata? metadata = null, params Tactic<TBeliefSet>[] subTactics)
-            : base(guard, metadata, subTactics) { }
+        public FirstOfTactic(System.Func<TBeliefSet, bool> guard,
+            Metadata? metadata = null,
+            params Tactic<TBeliefSet>[] subTactics)
+            : base(guard, metadata, subTactics)
+        {
+        }
 
         /// <inheritdoc />
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
@@ -37,8 +43,7 @@ namespace Aplib.Core.Intent.Tactics
             {
                 IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
 
-                if (action is not null)
-                    return action;
+                if (action is not null) return action;
             }
 
             return null;

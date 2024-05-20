@@ -1,4 +1,4 @@
-﻿namespace Aplib.Core.Belief
+﻿namespace Aplib.Core.Belief.BeliefSets
 {
     /// <summary>
     /// A belief set defines beliefs for an agent.

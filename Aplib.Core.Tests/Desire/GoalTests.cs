@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
@@ -47,6 +47,7 @@ public class GoalTests
         int iterations = 0;
         Mock<ITactic<IBeliefSet>> tactic = new();
         tactic.Setup(x => x.GetAction(It.IsAny<IBeliefSet>())).Returns(new Action<IBeliefSet>(_ => { iterations++; }));
+
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();
 
@@ -150,7 +151,8 @@ public class GoalTests
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
 
         bool heuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
-        Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
+        Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean =
+            CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
 
         Goal<IBeliefSet> goalBoolean = new(tactic, heuristicFunctionBoolean);
         Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);

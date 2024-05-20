@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System;
 using System.Collections.Generic;

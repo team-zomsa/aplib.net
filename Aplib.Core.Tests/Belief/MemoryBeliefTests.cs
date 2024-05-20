@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.Beliefs;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;

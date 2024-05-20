@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using Aplib.Core.Belief.Beliefs;
 
-namespace Aplib.Core.Belief
+namespace Aplib.Core.Belief.BeliefSets
 {
     /// <summary>
     /// The <see cref="BeliefSet"/> class can be inherited to define a set of beliefs for an agent.
@@ -15,7 +16,7 @@ namespace Aplib.Core.Belief
         private readonly IBelief[] _beliefs;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BeliefSet"/> class, 
+        /// Initializes a new instance of the <see cref="BeliefSet"/> class,
         /// and stores all <i>public fields</i> of type <see cref="IBelief"/> (that have been defined in the inheriting class) in an array.
         /// All public <see cref="IBelief"/> fields are then automatically updated when calling <see cref="UpdateBeliefs"/>.
         /// </summary>

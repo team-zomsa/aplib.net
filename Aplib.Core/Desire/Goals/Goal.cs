@@ -1,4 +1,6 @@
 using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
 using System;
 
@@ -6,10 +8,10 @@ namespace Aplib.Core.Desire.Goals
 {
     /// <summary>
     /// A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
-    /// applying the tactic. Goals are combined in a <see cref="GoalStructure.GoalStructure{TBeliefSet}" />, and are used to
+    /// applying the tactic. Goals are combined in a <see cref="GoalStructure{TBeliefSet}" />, and are used to
     /// prepare tests or do the testing.
     /// </summary>
-    /// <seealso cref="GoalStructure.GoalStructure{TBeliefSet}" />
+    /// <seealso cref="GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
     public class Goal<TBeliefSet> : IGoal<TBeliefSet>
         where TBeliefSet : IBeliefSet

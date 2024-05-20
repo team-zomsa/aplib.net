@@ -1,5 +1,5 @@
-using Aplib.Core.Belief;
-using Aplib.Core.Desire;
+using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Desire.DesireSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
