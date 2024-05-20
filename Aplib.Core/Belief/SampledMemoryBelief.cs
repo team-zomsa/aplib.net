@@ -62,7 +62,7 @@ namespace Aplib.Core.Belief
         /// A function that takes a reference and generates/updates a observation.
         /// </param>
         /// <param name="sampleInterval">
-        /// The sample rate of the memory.
+        /// The sample interval of the memory.
         /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
         /// </param>
         /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
