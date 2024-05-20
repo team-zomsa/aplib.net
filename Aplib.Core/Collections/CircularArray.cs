@@ -95,8 +95,7 @@ namespace Aplib.Core.Collections
         {
             end = end == -1 ? Length - 1 : end;
             T[] result = new T[end - start + 1];
-            for (int i = 0; i < result.Length; i++)
-                result[i] = this[start + i];
+            for (int i = 0; i < result.Length; i++) result[i] = this[start + i];
 
             return result;
         }

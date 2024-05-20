@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using System.Collections.Generic;
 
@@ -41,7 +41,9 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="subTactics">The list of sub-tactics.</param>
-        public AnyOfTactic(System.Func<TBeliefSet, bool> guard, Metadata? metadata = null, params ITactic<TBeliefSet>[] subTactics)
+        public AnyOfTactic(System.Func<TBeliefSet, bool> guard,
+            Metadata? metadata = null,
+            params ITactic<TBeliefSet>[] subTactics)
             : this(metadata, subTactics) => _guard = guard;
 
         /// <inheritdoc/>
@@ -53,12 +55,10 @@ namespace Aplib.Core.Intent.Tactics
             {
                 IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
 
-                if (action is not null)
-                    actions.Add(action);
+                if (action is not null) actions.Add(action);
             }
 
-            if (actions.Count == 0)
-                return null;
+            if (actions.Count == 0) return null;
 
             return actions[ThreadSafeRandom.Next(actions.Count)];
         }

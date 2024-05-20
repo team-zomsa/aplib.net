@@ -43,8 +43,7 @@ namespace Aplib.Core.Collections
             get => _count;
             private set
             {
-                if (value < 0)
-                    throw new System.InvalidOperationException("The stack count cannot be negative.");
+                if (value < 0) throw new System.InvalidOperationException("The stack count cannot be negative.");
 
                 _count = value;
             }
@@ -74,7 +73,9 @@ namespace Aplib.Core.Collections
         public void Activate(StackItem item)
         {
             if (item.ActivationStack != this)
-                throw new System.ArgumentException("Cannot push an item that is not an activatable of this activation stack.");
+                throw new System.ArgumentException(
+                    "Cannot push an item that is not an activatable of this activation stack."
+                );
 
             // Handle the case when the stack is empty.
             if (Count == 0)
@@ -87,8 +88,10 @@ namespace Aplib.Core.Collections
 
             // If the item is already on the stack, remove it before adding it on top again.
             // We also don't increment the count in this case, as no new item is added to the stack.
-            if (item.IsActive) item.RemoveFromStack();
-            else Count++;
+            if (item.IsActive)
+                item.RemoveFromStack();
+            else
+                Count++;
 
             // Push the new item on top of the stack.
             item.PushOnStackAfter(_top!);
@@ -102,8 +105,7 @@ namespace Aplib.Core.Collections
         /// <exception cref="System.InvalidOperationException">Thrown when the stack is empty.</exception>
         public T Peek()
         {
-            if (_top is null)
-                throw new System.InvalidOperationException("The stack is empty.");
+            if (_top is null) throw new System.InvalidOperationException("The stack is empty.");
 
             return _top.Data;
         }
@@ -115,8 +117,7 @@ namespace Aplib.Core.Collections
         /// <exception cref="System.InvalidOperationException">Thrown when the stack is empty.</exception>
         public T Pop()
         {
-            if (_top is null)
-                throw new System.InvalidOperationException("The stack is empty.");
+            if (_top is null) throw new System.InvalidOperationException("The stack is empty.");
 
             // Pop the top item from the stack.
             StackItem _oldTop = _top;
@@ -207,9 +208,10 @@ namespace Aplib.Core.Collections
             public void PushOnStackAfter(StackItem item)
             {
                 if (ActivationStack != item.ActivationStack)
-                    throw new System.ArgumentException("Cannot push an item after an item that is not an activatable of the same stack.");
-                if (IsActive)
-                    throw new System.ArgumentException("Cannot push an item that is already on the stack.");
+                    throw new System.ArgumentException(
+                        "Cannot push an item after an item that is not an activatable of the same stack."
+                    );
+                if (IsActive) throw new System.ArgumentException("Cannot push an item that is already on the stack.");
                 if (!item.IsActive)
                     throw new System.ArgumentException("Cannot push an item after an item that is not on the stack.");
 

@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
@@ -50,7 +50,7 @@ namespace Aplib.Core.Intent.Tactics
             System.Func<TBeliefSet, bool> guard,
             Metadata? metadata = null)
             : base(beliefSet => guard(beliefSet) && queryAction.Query(beliefSet), metadata)
-        => _action = queryAction;
+            => _action = queryAction;
 
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
