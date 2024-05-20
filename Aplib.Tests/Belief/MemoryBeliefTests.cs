@@ -15,7 +15,7 @@ public class MemoryBeliefTests
     /// Then it gets a random id and no name or description.
     /// </summary>
     [Fact]
-    public void MemoryBelief_ConstructedWithoutMetadat_ContainsDefaultMetadata()
+    public void MemoryBelief_ConstructedWithoutMetadata_ContainsDefaultMetadata()
     {
         // Arrange
         List<int> list = [1, 2, 3];
