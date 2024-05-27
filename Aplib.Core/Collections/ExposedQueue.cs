@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Aplib.Core
+namespace Aplib.Core.Collections
 {
     /// <summary>
     /// A queue with all elements exposed.
