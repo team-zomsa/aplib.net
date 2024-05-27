@@ -21,7 +21,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
-        /// <param name="goalStructure">The GoalStructure to repeat</param>
+        /// <param name="goalStructure">The GoalStructure to repeat.</param>
         public RepeatGoalStructure(Metadata metadata, IGoalStructure<TBeliefSet> goalStructure)
             : base(metadata, new List<IGoalStructure<TBeliefSet>> { goalStructure })
             => _currentGoalStructure = goalStructure;

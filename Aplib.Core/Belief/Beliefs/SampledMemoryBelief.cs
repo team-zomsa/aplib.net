@@ -59,7 +59,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// The reference used to generate/update the observation. This <i>must</i> be a reference type.
         /// </param>
         /// <param name="getObservationFromReference">
-        /// A function that takes a reference and generates/updates a observation.
+        /// A function that takes a reference and generates/updates an observation.
         /// </param>
         /// <param name="sampleInterval">
         /// The sample interval of the memory.
@@ -147,7 +147,16 @@ namespace Aplib.Core.Belief.Beliefs
             UpdateMode updateMode,
             int framesToRemember
         )
-            : this(new Metadata(), reference, getObservationFromReference, sampleInterval, updateMode, framesToRemember)
+            : this
+            (
+                new Metadata(),
+                reference,
+                getObservationFromReference,
+                sampleInterval,
+                updateMode,
+                framesToRemember,
+                () => true
+                )
         {
         }
 

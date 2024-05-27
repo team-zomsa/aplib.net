@@ -66,7 +66,7 @@ namespace Aplib.Core.Desire.Goals
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached</param>
+        /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached.</param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />
         /// is below this value.
@@ -100,7 +100,7 @@ namespace Aplib.Core.Desire.Goals
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="predicate">
-        /// The heuristic function (or specifically predicate) which defines whether a goal is reached
+        /// The heuristic function (or specifically predicate) which defines whether a goal is reached.
         /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />

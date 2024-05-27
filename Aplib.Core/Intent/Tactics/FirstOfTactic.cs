@@ -1,5 +1,6 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using System;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -17,9 +18,9 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="guard">The guard condition.</param>
-        /// <param name="subTactics">The list of sub-tactics.</param>
+        /// <param name="subTactics">The list of subtactics.</param>
         public FirstOfTactic
-            (Metadata metadata, System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (Metadata metadata, Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
             : base(metadata, guard, subTactics)
         {
         }
@@ -32,13 +33,13 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
         public FirstOfTactic
-            (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
             : this(new Metadata(), guard, subTactics)
         {
         }
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
-        public FirstOfTactic(params ITactic<TBeliefSet>[] subTactics) : this(_ => true, subTactics) { }
+        public FirstOfTactic(params ITactic<TBeliefSet>[] subTactics) : this(new Metadata(), _ => true, subTactics) { }
 
         /// <inheritdoc />
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)

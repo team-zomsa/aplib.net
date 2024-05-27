@@ -23,7 +23,7 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="guard">The guard condition.</param>
-        /// <param name="subTactics">The list of sub-tactics.</param>
+        /// <param name="subTactics">The list of subtactics.</param>
         public AnyOfTactic
         (
             Metadata metadata,
