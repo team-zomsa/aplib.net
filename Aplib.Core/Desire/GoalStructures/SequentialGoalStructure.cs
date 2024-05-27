@@ -33,6 +33,7 @@ namespace Aplib.Core.Desire.GoalStructures
         {
             if (children.Length <= 0)
                 throw new ArgumentException("Collection of children is empty", nameof(children));
+
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
@@ -55,6 +56,7 @@ namespace Aplib.Core.Desire.GoalStructures
             while (true)
             {
                 if (Status == CompletionStatus.Success) return;
+
                 _currentGoalStructure!.UpdateStatus(beliefSet);
 
                 switch (_currentGoalStructure.Status)
