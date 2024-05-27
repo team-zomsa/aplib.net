@@ -37,7 +37,7 @@ namespace Aplib.Core.Intent.Tactics
         public PrimitiveTactic(Metadata metadata, IAction<TBeliefSet> action) : this(metadata, action, _ => true) { }
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(Metadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
-        public PrimitiveTactic(IAction<TBeliefSet> action) : this(new Metadata(), action) { }
+        public PrimitiveTactic(IAction<TBeliefSet> action) : this(new Metadata(), action, _ => true) { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveTactic{TBeliefSet}"/> class with the specified action
@@ -53,7 +53,7 @@ namespace Aplib.Core.Intent.Tactics
             : this
             (
                 metadata,
-                (IAction<TBeliefSet>)queryAction,
+                action: queryAction,
                 beliefSet => guard(beliefSet) && queryAction.Query(beliefSet)
             )
         {
@@ -63,6 +63,18 @@ namespace Aplib.Core.Intent.Tactics
         ///     cref="PrimitiveTactic{TBeliefSet}(Metadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction, System.Func<TBeliefSet, bool> guard)
             : this(new Metadata(), queryAction, guard)
+        {
+        }
+
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})" />
+        public PrimitiveTactic(Metadata metadata, IQueryable<TBeliefSet> queryAction)
+            : this(metadata, queryAction, _ => true)
+        {
+        }
+
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})" />
+        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction)
+            : this(new Metadata(), queryAction, _ => true)
         {
         }
 

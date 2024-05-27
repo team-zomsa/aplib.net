@@ -87,7 +87,7 @@ namespace Aplib.Core.Belief.Beliefs
         ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
         public MemoryBelief
             (TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember)
-            : this(new Metadata(), reference, getObservationFromReference, framesToRemember)
+            : this(new Metadata(), reference, getObservationFromReference, framesToRemember, () => true)
         {
         }
 

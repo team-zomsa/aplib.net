@@ -47,7 +47,7 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
         public AnyOfTactic(params ITactic<TBeliefSet>[] subTactics)
-            : this(new Metadata(), subTactics)
+            : this(new Metadata(), _ => true, subTactics)
         {
         }
 

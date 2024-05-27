@@ -47,7 +47,7 @@ namespace Aplib.Core.Intent.Tactics
         protected Tactic(Metadata metadata) : this(metadata, _ => true) { }
 
         /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
-        protected Tactic() : this(new Metadata()) { }
+        protected Tactic() : this(new Metadata(), _ => true) { }
 
         /// <inheritdoc />
         public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);

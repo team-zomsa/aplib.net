@@ -78,7 +78,7 @@ namespace Aplib.Core.Belief.Beliefs
         ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
         public ListBelief
             (IEnumerable<TReference> references, Func<TReference, TObservation> getObservationFromReference)
-            : this(new Metadata(), references, getObservationFromReference)
+            : this(new Metadata(), references, getObservationFromReference, () => true)
         {
         }
     }

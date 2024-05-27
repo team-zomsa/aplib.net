@@ -110,7 +110,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// <inheritdoc
         ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})" />
         public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
-            : this(new Metadata(), reference, getObservationFromReference)
+            : this(new Metadata(), reference, getObservationFromReference, () => true)
         {
         }
 

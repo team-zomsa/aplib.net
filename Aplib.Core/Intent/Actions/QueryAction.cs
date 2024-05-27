@@ -36,7 +36,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="query">The query of the action.</param>
         public QueryAction
             (Metadata metadata, System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
-            : base(metadata)
+            : base(metadata, _ => { })
         {
             _effect = effect;
             _query = query;
