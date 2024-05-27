@@ -1,5 +1,5 @@
-﻿using Aplib.Core.Belief.BeliefSets;
-using Aplib.Core.Belief.Beliefs;
+﻿using Aplib.Core.Belief.Beliefs;
+using Aplib.Core.Belief.BeliefSets;
 
 namespace Aplib.Core.Tests.Belief;
 

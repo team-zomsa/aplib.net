@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Aplib.Core.Belief.Beliefs;
+﻿using Aplib.Core.Belief.Beliefs;
+using System.Linq;
 
 namespace Aplib.Core.Belief.BeliefSets
 {
