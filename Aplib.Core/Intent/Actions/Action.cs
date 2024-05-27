@@ -38,12 +38,6 @@ namespace Aplib.Core.Intent.Actions
         /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
         public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
 
-        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
-        protected Action(Metadata metadata) : this(metadata, _ => { }) { }
-
-        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
-        protected Action() : this(new Metadata()) { }
-
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);
     }
