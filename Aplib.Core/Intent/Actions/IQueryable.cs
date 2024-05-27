@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 
 namespace Aplib.Core.Intent.Actions
 {
