@@ -1,5 +1,7 @@
 using Aplib.Core.Belief.Beliefs;
+using Aplib.Core.Collections;
 using FluentAssertions;
+using Moq;
 using System;
 using System.Collections.Generic;
 
@@ -10,24 +12,139 @@ namespace Aplib.Core.Tests.Belief;
 /// </summary>
 public class MemoryBeliefTests
 {
-    /// <summary>
-    /// Given no metadata,
-    /// When a MemoryBelief is constructed,
-    /// Then it gets a random id and no name or description.
-    /// </summary>
+    public class TestMemoryBelief : MemoryBelief<object, object>
+    {
+        public object Reference => _reference;
+
+        public Func<object, object> GetObservationFromReference => _getObservationFromReference;
+
+        public Func<bool> ShouldUpdate => _shouldUpdate;
+
+        public ExposedQueue<object> MemorizedObservations => _memorizedObservations;
+
+        public TestMemoryBelief
+        (
+            Metadata metadata,
+            object reference,
+            Func<object, object> getObservationFromReference,
+            int framesToRemember,
+            Func<bool> shouldUpdate
+        )
+            : base(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate)
+        {
+        }
+
+        public TestMemoryBelief
+        (
+            object reference,
+            Func<object, object> getObservationFromReference,
+            int framesToRemember,
+            Func<bool> shouldUpdate
+        )
+            : base(reference, getObservationFromReference, framesToRemember, shouldUpdate)
+        {
+        }
+
+        public TestMemoryBelief
+        (
+            Metadata metadata,
+            object reference,
+            Func<object, object> getObservationFromReference,
+            int framesToRemember
+        )
+            : base(metadata, reference, getObservationFromReference, framesToRemember)
+        {
+        }
+
+        public TestMemoryBelief
+            (object reference, Func<object, object> getObservationFromReference, int framesToRemember)
+            : base(reference, getObservationFromReference, framesToRemember)
+        {
+        }
+    }
+
     [Fact]
-    public void MemoryBelief_ConstructedWithoutMetadata_ContainsDefaultMetadata()
+    public void MemoryBelief_WhenConstructed_HasExpectedData()
     {
         // Arrange
-        List<int> list = [1, 2, 3];
+        Metadata metadata = It.IsAny<Metadata>();
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        const int framesToRemember = 0;
+        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
 
         // Act
-        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3, () => true);
+        TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate);
+
+        // Assert
+        belief.Metadata.Should().Be(metadata);
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
+        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+    }
+
+    [Fact]
+    public void MemoryBelief_WithoutMetadata_HasExpectedData()
+    {
+        // Arrange
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        const int framesToRemember = 1;
+        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+
+        // Act
+        TestMemoryBelief belief = new(reference, getObservationFromReference, framesToRemember, shouldUpdate);
 
         // Assert
         belief.Metadata.Id.Should().NotBeEmpty();
         belief.Metadata.Name.Should().BeNull();
         belief.Metadata.Description.Should().BeNull();
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
+        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+    }
+
+    [Fact]
+    public void MemoryBelief_WithoutShouldUpdate_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        const int framesToRemember = 2;
+
+        // Act
+        TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember);
+
+        // Assert
+        belief.Metadata.Should().Be(metadata);
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
+        belief.ShouldUpdate().Should().BeTrue();
+    }
+
+    [Fact]
+    public void MemoryBelief_WithoutMetadataWithoutShouldUpdate_HasExpectedData()
+    {
+        // Arrange
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        const int framesToRemember = 3;
+
+        // Act
+        TestMemoryBelief belief = new(reference, getObservationFromReference, framesToRemember);
+
+        // Assert
+        belief.Metadata.Id.Should().NotBeEmpty();
+        belief.Metadata.Name.Should().BeNull();
+        belief.Metadata.Description.Should().BeNull();
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
+        belief.ShouldUpdate().Should().BeTrue();
     }
 
     /// <summary>
