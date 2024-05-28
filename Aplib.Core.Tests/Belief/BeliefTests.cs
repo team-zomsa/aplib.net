@@ -1,4 +1,6 @@
 ﻿using Aplib.Core.Belief.Beliefs;
+using FluentAssertions;
+using Moq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace Aplib.Core.Tests.Belief;
 /// </summary>
 public class BeliefTests
 {
+    // For testing a C# bug, see `Belief_ConstructedWithAValueTypeViaAnInterface_IsRejected`
     private struct MyEnumerable : IEnumerable<int>
     {
         private readonly int _number;
@@ -28,6 +31,117 @@ public class BeliefTests
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
+
+    public class TestBelief : Belief<object, object>
+    {
+        public object Reference => _reference;
+
+        public Func<object, object> GetObservationFromReference => _getObservationFromReference;
+
+        public Func<bool> ShouldUpdate => _shouldUpdate;
+
+        public TestBelief
+        (
+            Metadata metadata,
+            object reference,
+            Func<object, object> getObservationFromReference,
+            Func<bool> shouldUpdate
+        )
+            : base(metadata, reference, getObservationFromReference, shouldUpdate)
+        {
+        }
+
+        public TestBelief(object reference, Func<object, object> getObservationFromReference, Func<bool> shouldUpdate)
+            : base(reference, getObservationFromReference, shouldUpdate)
+        {
+        }
+
+        public TestBelief(Metadata metadata, object reference, Func<object, object> getObservationFromReference)
+            : base(metadata, reference, getObservationFromReference)
+        {
+        }
+
+        public TestBelief(object reference, Func<object, object> getObservationFromReference)
+            : base(reference, getObservationFromReference)
+        {
+        }
+    }
+
+    [Fact]
+    public void Belief_WhenConstructed_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+
+        // Act
+        TestBelief belief = new(metadata, reference, getObservationFromReference, shouldUpdate);
+
+        // Assert
+        belief.Metadata.Should().Be(metadata);
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+    }
+
+    [Fact]
+    public void Belief_WithoutMetadata_HasExpectedData()
+    {
+        // Arrange
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+
+        // Act
+        TestBelief belief = new(reference, getObservationFromReference, shouldUpdate);
+
+        // Assert
+        belief.Metadata.Id.Should().NotBeEmpty();
+        belief.Metadata.Name.Should().BeNull();
+        belief.Metadata.Description.Should().BeNull();
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+    }
+
+    [Fact]
+    public void Belief_WithoutShouldUpdate_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+
+        // Act
+        TestBelief belief = new(metadata, reference, getObservationFromReference);
+
+        // Assert
+        belief.Metadata.Should().Be(metadata);
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.ShouldUpdate().Should().BeTrue();
+    }
+
+    [Fact]
+    public void Belief_WithoutMetadataWithoutShouldUpdate_HasExpectedData()
+    {
+        // Arrange
+        object reference = new Mock<object>().Object;
+        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+
+        // Act
+        TestBelief belief = new(reference, getObservationFromReference);
+
+        // Assert
+        belief.Metadata.Id.Should().NotBeEmpty();
+        belief.Metadata.Name.Should().BeNull();
+        belief.Metadata.Description.Should().BeNull();
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.ShouldUpdate().Should().BeTrue();
     }
 
     /// <summary>
