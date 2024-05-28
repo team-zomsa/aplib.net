@@ -3,11 +3,114 @@ using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Intent.Tactics;
 
 public class TacticTests
 {
+    // A subclass of Tactic for testing
+    public class TestTactic : Tactic<IBeliefSet>
+    {
+        public System.Func<IBeliefSet, bool> Guard => _guard;
+
+        public TestTactic(Metadata metadata, System.Func<IBeliefSet, bool> guard) : base(metadata, guard) { }
+
+        public TestTactic(System.Func<IBeliefSet, bool> guard) : base(guard) { }
+
+        public TestTactic(Metadata metadata) : base(metadata) { }
+
+        public TestTactic() { }
+
+        public override IAction<IBeliefSet> GetAction(IBeliefSet beliefSet)
+            => throw new System.NotImplementedException();
+    }
+
+    // A subclass of FirstOfTactic for testing
+    public class TestFirstOfTactic : FirstOfTactic<IBeliefSet>
+    {
+        public System.Func<IBeliefSet, bool> Guard => _guard;
+
+        public LinkedList<ITactic<IBeliefSet>> SubTactics => _subTactics;
+
+        public TestFirstOfTactic
+            (Metadata metadata, System.Func<IBeliefSet, bool> guard, params ITactic<IBeliefSet>[] subTactics)
+            : base(metadata, guard, subTactics)
+        {
+        }
+
+        public TestFirstOfTactic(Metadata metadata, params ITactic<IBeliefSet>[] subTactics)
+            : base(metadata, subTactics)
+        {
+        }
+
+        public TestFirstOfTactic(System.Func<IBeliefSet, bool> guard, params ITactic<IBeliefSet>[] subTactics)
+            : base(guard, subTactics)
+        {
+        }
+
+        public TestFirstOfTactic(params ITactic<IBeliefSet>[] subTactics) : base(subTactics) { }
+    }
+
+
+    [Fact]
+    public void Tactic_WhenConstructed_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+
+        // Act
+        TestTactic tactic = new(metadata, guard);
+
+        // Assert
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard.Should().Be(guard);
+    }
+
+    [Fact]
+    public void Tactic_WithoutMetadata_HasExpectedData()
+    {
+        // Arrange
+        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+
+        // Act
+        TestTactic tactic = new(guard);
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard.Should().Be(guard);
+    }
+
+    [Fact]
+    public void Tactic_WithoutGuard_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+
+        // Act
+        TestTactic tactic = new(metadata);
+
+        // Assert
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+    }
+
+    [Fact]
+    public void Tactic_Default_HasExpectedData()
+    {
+        // Act
+        TestTactic tactic = new();
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+    }
+
     /// <summary>
     /// Given a tactic and an action,
     /// When the guard of the tactic returns true,
@@ -66,24 +169,72 @@ public class TacticTests
         selectedAction.Should().Be(action1);
     }
 
-    /// <summary>
-    /// Given some metadata,
-    /// When the tactic is constructed,
-    /// Then it contains the correct metadata.
-    /// </summary>
     [Fact]
-    public void FirstOfTactic_ConstructedWithMetadata_HasCorrectMetadata()
+    public void FirstOfTacticTactic_WhenConstructed_HasExpectedData()
     {
         // Arrange
-        // ReSharper disable twice StringLiteralTypo
-        Metadata metadata = new("Tictacs", "Mintjes");
+        Metadata metadata = It.IsAny<Metadata>();
+        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
-        FirstOfTactic<IBeliefSet> tactic = new(metadata);
+        TestFirstOfTactic tactic = new(metadata, guard, subTactics);
 
         // Assert
-        tactic.Metadata.Name.Should().Be("Tictacs");
-        tactic.Metadata.Description.Should().Be("Mintjes");
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard.Should().Be(guard);
+        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+    }
+
+    [Fact]
+    public void FirstOfTacticTactic_WithoutGuard_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+
+        // Act
+        TestFirstOfTactic tactic = new(metadata, subTactics);
+
+        // Assert
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+    }
+
+    [Fact]
+    public void FirstOfTacticTactic_WithoutMetadata_HasExpectedData()
+    {
+        // Arrange
+        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+
+        // Act
+        TestFirstOfTactic tactic = new(guard, subTactics);
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard.Should().Be(guard);
+        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+    }
+
+    [Fact]
+    public void FirstOfTacticTactic_WithoutMetadataWithoutGuard_HasExpectedData()
+    {
+        // Arrange
+        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+
+        // Act
+        TestFirstOfTactic tactic = new(subTactics);
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
     }
 
     /// <summary>
