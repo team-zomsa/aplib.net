@@ -55,7 +55,7 @@ namespace Aplib.Core.Collections
         /// The MaxCount of the queue will be set to the length of the array.
         /// If the array is not fully filled, the Count should be specified.
         /// </remarks>
-        public ExposedQueue(T[] array, int? count = null)
+        public ExposedQueue(T[] array, int count)
         {
             if (count > array.Length)
                 throw new ArgumentOutOfRangeException(nameof(count), "Count cannot exceed the length of the array.");
@@ -65,7 +65,16 @@ namespace Aplib.Core.Collections
             MaxCount = array.Length;
             _array = array;
             _head = MaxCount - 1;
-            Count = count ?? MaxCount;
+            Count = count;
+        }
+
+        /// <inheritdoc cref="ExposedQueue{T}(T[],int)"/>
+        public ExposedQueue(T[] array)
+        {
+            MaxCount = array.Length;
+            _array = array;
+            _head = MaxCount - 1;
+            Count = MaxCount;
         }
 
         /// <summary>

@@ -33,7 +33,9 @@ public class ExposedQueueTests
     public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount(int[] array, int? countParam, int expectedMaxCount, int expectedCount)
     {
         // Arrange
-        ExposedQueue<int> queue = new(array, countParam);
+        ExposedQueue<int> queue = countParam.HasValue
+            ? new ExposedQueue<int>(array, (int)countParam)
+            : new ExposedQueue<int>(array);
 
         // Act
         int maxCount = queue.MaxCount;
