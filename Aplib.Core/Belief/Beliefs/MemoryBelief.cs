@@ -23,7 +23,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// <summary>
         /// A "memorized" resource, from the last time the belief was updated.
         /// </summary>
-        protected readonly CircularArray<TObservation> _memorizedObservations;
+        protected readonly ExposedQueue<TObservation> _memorizedObservations;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MemoryBelief{TReference, TObservation}"/> class with an object
@@ -56,7 +56,7 @@ namespace Aplib.Core.Belief.Beliefs
             Func<bool> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, shouldUpdate)
-            => _memorizedObservations = new CircularArray<TObservation>(framesToRemember);
+            => _memorizedObservations = new ExposedQueue<TObservation>(framesToRemember);
 
         /// <inheritdoc cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})"/>
         public MemoryBelief
@@ -112,12 +112,13 @@ namespace Aplib.Core.Belief.Beliefs
         /// <summary>
         /// Gets the memorized observation at a specific index.
         /// A higher index means a memory further back in time.
-        /// If the index is out of bounds, returns the element closest to the index that is in bounds.
         /// </summary>
         /// <returns>The memory of the observation at the specified index.</returns>
+        /// <param name="index">The index of the memory to get.</param>
+        /// <param name="clamp">If true, the index will be clamped between 0 and the last memory index.</param>
         public TObservation GetMemoryAt(int index, bool clamp = false)
         {
-            int lastMemoryIndex = _memorizedObservations.Length - 1;
+            int lastMemoryIndex = _memorizedObservations.Count;
             if (clamp)
                 index = Math.Clamp(index, 0, lastMemoryIndex);
             else if (index < 0 || index > lastMemoryIndex)
@@ -130,11 +131,6 @@ namespace Aplib.Core.Belief.Beliefs
         /// The first element is the newest memory.
         /// </summary>
         /// <returns> An array of all the memorized observations.</returns>
-        public TObservation[] GetAllMemories()
-        {
-            // For now, we return the entire array, but with empty elements for the unused slots.
-            // TODO: make it return only the used slots.
-            return _memorizedObservations.ToArray();
-        }
+        public TObservation[] GetAllMemories() => _memorizedObservations.ToArray();
     }
 }
