@@ -2,7 +2,7 @@ using Aplib.Core.Collections;
 using System;
 using System.Collections.Generic;
 
-namespace Aplib.Core.Tests.Belief;
+namespace Aplib.Core.Tests.Collections;
 
 public class ExposedQueueTests
 {
@@ -21,21 +21,33 @@ public class ExposedQueueTests
         Assert.Equal(0, count);
     }
 
-    public static readonly object?[][] ArrayAndCountParams =
-    [
-        // array, count, expectedMaxCount, expectedCount
-        [new int[] { 1, 2, 3 }, null, 3, 3],
-        [new int[] { 1, 2, 0, 0 }, 2, 4, 2]
-    ];
-
-    [Theory]
-    [MemberData(nameof(ArrayAndCountParams))]
-    public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount(int[] array, int? countParam, int expectedMaxCount, int expectedCount)
+    [Fact]
+    public void ExposedQueue_WhenInitializedWithArray_ShouldHaveCorrectMaxCountAndCount()
     {
         // Arrange
-        ExposedQueue<int> queue = countParam.HasValue
-            ? new ExposedQueue<int>(array, (int)countParam)
-            : new ExposedQueue<int>(array);
+        int[] array = [1, 2, 3];
+        const int expectedMaxCount = 3;
+        const int expectedCount = 3;
+        ExposedQueue<int> queue = new(array);
+
+        // Act
+        int maxCount = queue.MaxCount;
+        int count = queue.Count;
+
+        // Assert
+        Assert.Equal(expectedMaxCount, maxCount);
+        Assert.Equal(expectedCount, count);
+    }
+
+    [Fact]
+    public void ExposedQueue_WhenInitializedWithArrayAndCount_ShouldHaveCorrectMaxCountAndCount()
+    {
+        // Arrange
+        int[] array = [1, 2, 0, 0];
+        const int countParam = 2;
+        const int expectedMaxCount = 4;
+        const int expectedCount = 2;
+        ExposedQueue<int> queue = new(array, countParam);
 
         // Act
         int maxCount = queue.MaxCount;
