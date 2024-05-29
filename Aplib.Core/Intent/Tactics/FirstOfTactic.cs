@@ -1,6 +1,5 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
-using System;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -20,7 +19,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="guard">The guard condition.</param>
         /// <param name="subTactics">The list of subtactics.</param>
         public FirstOfTactic
-            (Metadata metadata, Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (Metadata metadata, System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
             : base(metadata, guard, subTactics)
         {
         }
@@ -33,7 +32,7 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
         public FirstOfTactic
-            (Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
             : this(new Metadata(), guard, subTactics)
         {
         }
