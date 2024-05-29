@@ -11,6 +11,8 @@ namespace Aplib.Core
     /// </summary>
     public static class Combinators
     {
+        #region GoalSructure combinators
+
         /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])" />
         public static FirstOfGoalStructure<TBeliefSet> FirstOf<TBeliefSet>
             (Metadata metadata, params IGoalStructure<TBeliefSet>[] children)
@@ -54,6 +56,10 @@ namespace Aplib.Core
         public static SequentialGoalStructure<TBeliefSet> Seq<TBeliefSet>(params IGoalStructure<TBeliefSet>[] children)
             where TBeliefSet : IBeliefSet =>
             new(children);
+
+        #endregion
+
+        #region Tactic combinators
 
         /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
         public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
@@ -145,5 +151,7 @@ namespace Aplib.Core
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>(IQueryable<TBeliefSet> query)
             where TBeliefSet : IBeliefSet =>
             new(query);
+
+        #endregion
     }
 }
