@@ -19,7 +19,7 @@ namespace Aplib.Core.Desire.Goals
         /// The default value for the epsilon parameter in the Goal constructors.
         /// The epsilon parameter defines the threshold distance for a goal to be considered completed.
         /// </summary>
-        protected const double _defaultEpsilon = 0.005d;
+        protected const double DefaultEpsilon = 0.005d;
 
         /// <summary>
         /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" /> is below
@@ -76,7 +76,7 @@ namespace Aplib.Core.Desire.Goals
             Metadata metadata,
             ITactic<TBeliefSet> tactic,
             HeuristicFunction heuristicFunction,
-            double epsilon = _defaultEpsilon
+            double epsilon = DefaultEpsilon
         )
         {
             Metadata = metadata;
@@ -87,7 +87,7 @@ namespace Aplib.Core.Desire.Goals
 
         /// <inheritdoc
         ///     cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
-        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = _defaultEpsilon)
+        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = DefaultEpsilon)
             : this(new Metadata(), tactic, heuristicFunction, epsilon)
         {
         }
@@ -111,14 +111,14 @@ namespace Aplib.Core.Desire.Goals
             Metadata metadata,
             ITactic<TBeliefSet> tactic,
             Func<TBeliefSet, bool> predicate,
-            double epsilon = _defaultEpsilon
+            double epsilon = DefaultEpsilon
         )
             : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon)
         {
         }
 
         /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},Func{TBeliefSet,bool},double)" />
-        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = _defaultEpsilon)
+        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = DefaultEpsilon)
             : this(new Metadata(), tactic, predicate, epsilon)
         {
         }
