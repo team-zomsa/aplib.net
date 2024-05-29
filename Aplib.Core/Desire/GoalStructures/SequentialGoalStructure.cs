@@ -39,7 +39,7 @@ namespace Aplib.Core.Desire.GoalStructures
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <inheritdoc cref="SequentialGoalStructure{TBeliefSet}(Metadata?,IGoalStructure{TBeliefSet}[])" />
+        /// <inheritdoc cref="SequentialGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])" />
         public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children)
         {
         }
