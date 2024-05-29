@@ -47,8 +47,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public MemoryBelief
-        (
+        public MemoryBelief(
             Metadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
@@ -59,8 +58,7 @@ namespace Aplib.Core.Belief.Beliefs
             => _memorizedObservations = new ExposedQueue<TObservation>(framesToRemember);
 
         /// <inheritdoc cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})"/>
-        public MemoryBelief
-        (
+        public MemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
@@ -72,8 +70,7 @@ namespace Aplib.Core.Belief.Beliefs
 
         /// <inheritdoc
         ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
-        public MemoryBelief
-        (
+        public MemoryBelief(
             Metadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
@@ -85,8 +82,9 @@ namespace Aplib.Core.Belief.Beliefs
 
         /// <inheritdoc
         ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
-        public MemoryBelief
-            (TReference reference, Func<TReference, TObservation> getObservationFromReference, int framesToRemember)
+        public MemoryBelief(TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int framesToRemember)
             : this(new Metadata(), reference, getObservationFromReference, framesToRemember, () => true)
         {
         }
@@ -118,7 +116,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// <param name="clamp">If true, the index will be clamped between 0 and the last memory index.</param>
         public TObservation GetMemoryAt(int index, bool clamp = false)
         {
-            int lastMemoryIndex = _memorizedObservations.Count;
+            int lastMemoryIndex = _memorizedObservations.Count - 1;
             if (clamp)
                 index = Math.Clamp(index, 0, lastMemoryIndex);
             else if (index < 0 || index > lastMemoryIndex)
