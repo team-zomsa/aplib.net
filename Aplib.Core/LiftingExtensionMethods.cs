@@ -1,5 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
-using Aplib.Core.Desire;
+using Aplib.Core.Desire.DesireSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Actions;
@@ -13,7 +13,7 @@ namespace Aplib.Core
     public static class LiftingExtensionMethods
     {
         /// <summary>
-        /// Wraps an action into a tactic.
+        /// Wraps a normal action into a tactic.
         /// </summary>
         /// <returns>
         /// A primitive tactic, whose guard always returns true.
@@ -33,7 +33,31 @@ namespace Aplib.Core
                     : $"Lifted {nameof(IAction<TBeliefSet>)}",
                     actionWithMetadata.Metadata.Description);
 
-            return new PrimitiveTactic<TBeliefSet>(action, metadata);
+            return new PrimitiveTactic<TBeliefSet>(metadata, action: action);
+        }
+
+        /// <summary>
+        /// Wraps a queryable action into a tactic.
+        /// </summary>
+        /// <returns>
+        /// A primitive tactic, whose guard always returns true.
+        /// If the action implements <see cref="IDocumented"/>, it's name will be prefixed with an indicator that it
+        /// has been lifted.
+        /// </returns>
+        /// <param name="action">
+        /// The action which on its own can function as a tactic. Meaning, the tactic consists of just a single action.
+        /// </param>
+        public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(this IQueryable<TBeliefSet> action)
+            where TBeliefSet : IBeliefSet
+        {
+            IMetadata metadata = action is not IDocumented actionWithMetadata
+                ? new Metadata($"Lifted {nameof(IAction<TBeliefSet>)}")
+                : new Metadata(!string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
+                    ? $"[Lifted {nameof(IAction<TBeliefSet>)}] {actionWithMetadata.Metadata.Name}"
+                    : $"Lifted {nameof(IAction<TBeliefSet>)}",
+                    actionWithMetadata.Metadata.Description);
+
+            return new PrimitiveTactic<TBeliefSet>(metadata, queryAction: action);
         }
 
         /// <summary>
@@ -58,7 +82,7 @@ namespace Aplib.Core
                     : $"Lifted {nameof(IGoal<TBeliefSet>)}",
                     goalWithMetadata.Metadata.Description);
 
-            return new PrimitiveGoalStructure<TBeliefSet>(goal, metadata);
+            return new PrimitiveGoalStructure<TBeliefSet>(metadata, goal);
         }
 
         /// <summary>
@@ -83,7 +107,7 @@ namespace Aplib.Core
                     : $"Lifted {nameof(IGoalStructure<TBeliefSet>)}",
                     goalStructureWithMetadata.Metadata.Description);
 
-            return new DesireSet<TBeliefSet>(goalStructure, metadata);
+            return new DesireSet<TBeliefSet>(metadata, goalStructure);
         }
     }
 }

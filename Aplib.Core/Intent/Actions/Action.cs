@@ -1,4 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Intent.Tactics;
+using System;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -24,14 +26,17 @@ namespace Aplib.Core.Intent.Actions
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
         /// <param name="effect">The effect of the action.</param>
-        public Action(Metadata metadata, System.Action<TBeliefSet> effect)
+        public Action(IMetadata metadata, System.Action<TBeliefSet> effect)
         {
             Metadata = metadata;
             _effect = effect;
         }
 
-        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
+        /// <inheritdoc /> TODO inherit complicated
         public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
+
+        // TODO tests maken
+        // TODO ActionTests en BeliefTests verschenen uit het niets?
 
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);

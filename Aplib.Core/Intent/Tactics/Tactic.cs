@@ -1,4 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 
 namespace Aplib.Core.Intent.Tactics
@@ -29,19 +30,19 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="guard">The guard of the tactic.</param>
-        protected Tactic(Metadata metadata, System.Func<TBeliefSet, bool> guard)
+        protected Tactic(IMetadata metadata, System.Func<TBeliefSet, bool> guard)
         {
             _guard = guard;
             Metadata = metadata;
         }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
+        /// <inheritdoc /> TODO werkt dit in docfx?
         protected Tactic(System.Func<TBeliefSet, bool> guard) : this(new Metadata(), guard) { }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
-        protected Tactic(Metadata metadata) : this(metadata, _ => true) { }
+        /// <inheritdoc />
+        protected Tactic(IMetadata metadata) : this(metadata, _ => true) { }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(Aplib.Core.Metadata,System.Func{TBeliefSet,bool})" />
+        /// <inheritdoc />
         protected Tactic() : this(new Metadata(), _ => true) { }
 
         /// <inheritdoc />
@@ -50,12 +51,13 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc />
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
 
-
         /// <summary>
         /// Implicitly lifts an action into a tactic.
         /// </summary>
         /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet})" path="/param[@name='action']"/>
         /// <returns>The most logically matching tactic, wrapping around <paramref name="action"/>.</returns>
         public static implicit operator Tactic<TBeliefSet>(Action<TBeliefSet> action) => action.Lift();
+
+        // TODO geen losse upwards lifting meer?
     }
 }

@@ -1,4 +1,3 @@
-using Aplib.Core;
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
@@ -34,13 +33,13 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="children">The children of the goal structure.</param>
-        protected GoalStructure(Metadata metadata, IEnumerable<IGoalStructure<TBeliefSet>> children)
+        protected GoalStructure(IMetadata metadata, IEnumerable<IGoalStructure<TBeliefSet>> children)
         {
             _children = children;
             Metadata = metadata;
         }
 
-        /// <inheritdoc cref="GoalStructure{TBeliefSet}(Aplib.Core.Metadata,IEnumerable{IGoalStructure{TBeliefSet}})" />
+        /// <inheritdoc cref="GoalStructure{TBeliefSet}(Aplib.Core.IMetadata,IEnumerable{IGoalStructure{TBeliefSet}})" />
         protected GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>> children) : this(new Metadata(), children) { }
 
         /// <summary>

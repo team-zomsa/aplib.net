@@ -68,7 +68,7 @@ namespace Aplib.Core.Desire.Goals
         /// </param>
         public Goal
         (
-            Metadata metadata,
+            IMetadata metadata,
             ITactic<TBeliefSet> tactic,
             HeuristicFunction heuristicFunction,
             double epsilon = DefaultEpsilon
@@ -81,7 +81,7 @@ namespace Aplib.Core.Desire.Goals
         }
 
         /// <inheritdoc
-        ///     cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
+        ///     cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
         public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = DefaultEpsilon)
             : this(new Metadata(), tactic, heuristicFunction, epsilon)
         {
@@ -103,7 +103,7 @@ namespace Aplib.Core.Desire.Goals
         /// </param>
         public Goal
         (
-            Metadata metadata,
+            IMetadata metadata,
             ITactic<TBeliefSet> tactic,
             Func<TBeliefSet, bool> predicate,
             double epsilon = DefaultEpsilon
@@ -112,7 +112,7 @@ namespace Aplib.Core.Desire.Goals
         {
         }
 
-        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.Metadata,ITactic{TBeliefSet},Func{TBeliefSet,bool},double)" />
+        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Func{TBeliefSet,bool},double)" />
         public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = DefaultEpsilon)
             : this(new Metadata(), tactic, predicate, epsilon)
         {

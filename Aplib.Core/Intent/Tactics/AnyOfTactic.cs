@@ -26,26 +26,26 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="subTactics">The list of subtactics.</param>
         public AnyOfTactic
         (
-            Metadata metadata,
+            IMetadata metadata,
             System.Func<TBeliefSet, bool> guard,
             params ITactic<TBeliefSet>[] subTactics
         )
             : base(metadata, guard) => _subTactics = new LinkedList<ITactic<TBeliefSet>>(subTactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
         public AnyOfTactic
             (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
             : this(new Metadata(), guard, subTactics)
         {
         }
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
-        public AnyOfTactic(Metadata metadata, params ITactic<TBeliefSet>[] subTactics)
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        public AnyOfTactic(IMetadata metadata, params ITactic<TBeliefSet>[] subTactics)
             : this(metadata, _ => true, subTactics)
         {
         }
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
         public AnyOfTactic(params ITactic<TBeliefSet>[] subTactics)
             : this(new Metadata(), _ => true, subTactics)
         {

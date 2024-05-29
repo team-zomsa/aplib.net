@@ -6,10 +6,13 @@ using System.Linq;
 
 namespace Aplib.Core.Desire.DesireSets
 {
-    /// <inheritdoc />
-    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>
+    /// <inheritdoc cref="DesireSet{TBeliefSet}"/>
+    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, IDocumented
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
+
         /// <summary>
         /// Stores the main goal structure of the agent.
         /// </summary>
@@ -33,19 +36,31 @@ namespace Aplib.Core.Desire.DesireSets
         /// <summary>
         /// Initializes a new instance of the <see cref="DesireSet{TBeliefSet}" /> class.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
+        /// </param>
         /// <param name="mainGoal">The main goal structure that the agent needs to complete.</param>
         /// <param name="sideGoals">The side goal structures that could be activated during the agent playthrough.</param>
         public DesireSet(
+            IMetadata metadata,
             IGoalStructure<TBeliefSet> mainGoal,
             params (IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)[] sideGoals
         )
         {
+            Metadata = metadata;
             _mainGoal = mainGoal;
             _goalStructureStack = new(sideGoals);
 
             // Push the main goal structure on the stack.
             _goalStructureStack.Activate(new((_mainGoal, _ => false), _goalStructureStack));
         }
+
+        /// TODO inheritdoc
+        public DesireSet(
+            IGoalStructure<TBeliefSet> mainGoal,
+            params (IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)[] sideGoals
+        ) : this(new Metadata(), mainGoal, sideGoals)
+        { }
 
         /// <summary>
         /// Pushes side goal structures on the stack if their guard is fulfilled.
@@ -93,5 +108,20 @@ namespace Aplib.Core.Desire.DesireSets
                 _goalStructureStack.Pop();
             }
         }
+
+        /// <summary>
+        /// Implicitly lifts a goal into a desire set.
+        /// </summary>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet})" path="/param[@name='goal']"/>
+        /// <returns>The most logically matching desire set, wrapping around <paramref name="goal"/>.</returns>
+        public static implicit operator DesireSet<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
+
+        /// <summary>
+        /// Implicitly lifts a goal structure a desire set.
+        /// </summary>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoalStructure{TBeliefSet})" path="/param[@name='goalStructure']"/>
+        /// <returns>The most logically matching desire set, wrapping around <paramref name="goalStructure"/>.</returns>
+        public static implicit operator DesireSet<TBeliefSet>(GoalStructure<TBeliefSet> goalStructure) =>
+            goalStructure.Lift();
     }
 }
