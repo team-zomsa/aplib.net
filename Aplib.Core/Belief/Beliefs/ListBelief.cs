@@ -23,30 +23,12 @@ namespace Aplib.Core.Belief.Beliefs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListBelief{TReference,TObservation}" /> class from an object
-        /// reference collection, and a function to generate an observation from an object reference.
+        /// reference collection, a function to generate an observation from an object reference, and optionally an
+        /// update guard.
         /// </summary>
-        /// <param name="references">
-        /// The collection of reference objects. The underlying type implementing <see cref="IEnumerable{TReference}" />
-        /// <i>must</i> be a reference type, note that this is not enforced by C#.
+        /// <param name="metadata">
+        /// Metadata about this Belief, used to quickly display the goal in several contexts.
         /// </param>
-        /// <param name="getObservationFromReference">
-        /// A function that takes an object reference and generates an observation.
-        /// </param>
-        /// <exception cref="ArgumentException">
-        /// Thrown when <paramref name="references"/> is not a reference type.
-        /// </exception>
-        public ListBelief(
-            IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference
-        )
-            : base(references, refer => refer.Select(getObservationFromReference).ToList())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ListBelief{TReference,TObservation}" /> class from an object
-        /// reference collection, a function to generate an observation from an object reference, and an update guard.
-        /// </summary>
         /// <param name="references">
         /// The collection of reference objects. The underlying type implementing <see cref="IEnumerable{TReference}" />
         /// <i>must</i> be a reference type, note that this is not enforced by C#.
@@ -58,12 +40,45 @@ namespace Aplib.Core.Belief.Beliefs
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.
         /// </exception>
-        public ListBelief(
+        public ListBelief
+        (
+            Metadata metadata,
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference,
             Func<bool> shouldUpdate
         )
-            : base(references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate)
+            : base(metadata, references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate)
+        {
+        }
+
+        /// <inheritdoc cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})"/>
+        public ListBelief
+        (
+            IEnumerable<TReference> references,
+            Func<TReference, TObservation> getObservationFromReference,
+            Func<bool> shouldUpdate
+        )
+            : this(new Metadata(), references, getObservationFromReference, shouldUpdate)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        public ListBelief
+        (
+            Metadata metadata,
+            IEnumerable<TReference> references,
+            Func<TReference, TObservation> getObservationFromReference
+        )
+            : this(metadata, references, getObservationFromReference, () => true)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        public ListBelief
+            (IEnumerable<TReference> references, Func<TReference, TObservation> getObservationFromReference)
+            : this(new Metadata(), references, getObservationFromReference, () => true)
         {
         }
     }

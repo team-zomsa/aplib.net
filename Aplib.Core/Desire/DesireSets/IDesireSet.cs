@@ -1,5 +1,4 @@
-﻿using Aplib.Core.Belief;
-using Aplib.Core.Belief.BeliefSets;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 
 namespace Aplib.Core.Desire.DesireSets

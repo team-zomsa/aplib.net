@@ -21,9 +21,15 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <summary>
         /// Initializes a new instance of the <see cref="PrimitiveGoalStructure{TBeliefSet}" /> class.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
+        /// </param>
         /// <param name="goal">The goal to fulfill.</param>
-        public PrimitiveGoalStructure(IGoal<TBeliefSet> goal)
-            : base(Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
+        public PrimitiveGoalStructure(Metadata metadata, IGoal<TBeliefSet> goal)
+            : base(metadata, Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
+
+        /// <inheritdoc cref="PrimitiveGoalStructure{TBeliefSet}(Metadata,IGoal{TBeliefSet})"/>
+        public PrimitiveGoalStructure(IGoal<TBeliefSet> goal) : this(new Metadata(), goal) { }
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _goal;

@@ -29,18 +29,24 @@ namespace Aplib.Core.Intent.Actions
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryAction{TBeliefSet,TQuery}" /> class.
         /// </summary>
-        /// <param name="effect">The effect of the action.</param>
-        /// <param name="query">The query of the action.</param>
         /// <param name="metadata">
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
-        public QueryAction(System.Action<TBeliefSet, TQuery> effect,
-            System.Func<TBeliefSet, TQuery?> query,
-            Metadata? metadata = null)
-            : base(metadata)
+        /// <param name="effect">The effect of the action.</param>
+        /// <param name="query">The query of the action.</param>
+        public QueryAction
+            (Metadata metadata, System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
+            : base(metadata, _ => { })
         {
             _effect = effect;
             _query = query;
+        }
+
+        /// <inheritdoc
+        ///     cref="QueryAction{TBeliefSet,TQuery}(Aplib.Core.Metadata,System.Action{TBeliefSet,TQuery},System.Func{TBeliefSet,TQuery})" />
+        public QueryAction(System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
+            : this(new Metadata(), effect, query)
+        {
         }
 
         /// <inheritdoc />

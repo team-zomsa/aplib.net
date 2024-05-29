@@ -35,8 +35,4 @@
         <ProjectReference Include="..\Aplib.Core\Aplib.Core.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Agents\"/>
-    </ItemGroup>
-
 </Project>

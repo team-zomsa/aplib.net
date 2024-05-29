@@ -10,31 +10,35 @@ namespace Aplib.Core.Intent.Tactics
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified sub-tactics.
+        /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified
+        /// sub-tactics and guard condition.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
-        /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(Metadata? metadata = null, params Tactic<TBeliefSet>[] subTactics)
-            : base(metadata, subTactics)
+        /// <param name="guard">The guard condition.</param>
+        /// <param name="subTactics">The list of subtactics.</param>
+        public FirstOfTactic
+            (Metadata metadata, System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            : base(metadata, guard, subTactics)
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified sub-tactics and guard condition.
-        /// </summary>
-        /// <param name="guard">The guard condition.</param>
-        /// <param name="metadata">
-        /// Metadata about this tactic, used to quickly display the tactic in several contexts.
-        /// </param>
-        /// <param name="subTactics">The list of sub-tactics.</param>
-        public FirstOfTactic(System.Func<TBeliefSet, bool> guard,
-            Metadata? metadata = null,
-            params Tactic<TBeliefSet>[] subTactics)
-            : base(guard, metadata, subTactics)
+        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
+        public FirstOfTactic(Metadata metadata, params ITactic<TBeliefSet>[] subTactics)
+            : this(metadata, _ => true, subTactics)
         {
         }
+
+        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
+        public FirstOfTactic
+            (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            : this(new Metadata(), guard, subTactics)
+        {
+        }
+
+        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(Metadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])"/>
+        public FirstOfTactic(params ITactic<TBeliefSet>[] subTactics) : this(new Metadata(), _ => true, subTactics) { }
 
         /// <inheritdoc />
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)

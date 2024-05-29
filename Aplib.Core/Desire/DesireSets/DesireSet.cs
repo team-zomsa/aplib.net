@@ -1,9 +1,7 @@
-﻿using Aplib.Core.Belief;
-using Aplib.Core.Belief.BeliefSets;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
-using System.Collections;
 using System.Linq;
 
 namespace Aplib.Core.Desire.DesireSets

@@ -19,7 +19,7 @@ public class ActionTests
         Metadata metadata = new(name, description);
 
         // Act
-        Action<IBeliefSet> action = new(_ => { }, metadata);
+        Action<IBeliefSet> action = new(metadata, _ => { });
 
         // Assert
         action.Should().NotBeNull();
@@ -35,7 +35,7 @@ public class ActionTests
         Metadata metadata = new(name);
 
         // Act
-        Action<IBeliefSet> action = new(_ => { }, metadata);
+        Action<IBeliefSet> action = new(metadata, _ => { });
 
         // Assert
         action.Should().NotBeNull();

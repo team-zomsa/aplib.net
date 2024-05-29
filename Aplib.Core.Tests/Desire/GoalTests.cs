@@ -28,7 +28,7 @@ public class GoalTests
 
         // Act
         // Does not use helper methods on purpose
-        Goal<IBeliefSet> goal = new(tactic, heuristicFunction: heuristicFunction, metadata: metadata);
+        Goal<IBeliefSet> goal = new(metadata, tactic, heuristicFunction: heuristicFunction);
 
         // Assert
         goal.Should().NotBeNull();

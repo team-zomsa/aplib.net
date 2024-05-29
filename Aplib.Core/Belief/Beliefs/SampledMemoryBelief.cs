@@ -46,59 +46,36 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an object reference,
-        /// and a function to generate/update the observation using the object reference.
-        /// This belief also stores a limited amount of previous observation samples in memory.
+        /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an
+        /// object reference, a function to generate/update the observation using the object reference, and a condition
+        /// on when the observation should be updated. This belief also stores a limited amount of previous observation
+        /// samples in memory.
         /// Optionally, the belief can always store the most recent observation, regardless of the sample rate.
         /// </summary>
+        /// <param name="metadata">
+        /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// </param>
         /// <param name="reference">
         /// The reference used to generate/update the observation. This <i>must</i> be a reference type.
         /// </param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
+        /// <param name="getObservationFromReference">
+        /// A function that takes a reference and generates/updates an observation.
+        /// </param>
         /// <param name="sampleInterval">
         /// The sample interval of the memory.
         /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
         /// </param>
         /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
+        /// <param name="shouldUpdate">
+        /// A function that sets a condition on when the observation should be updated.
+        /// </param>
         /// <exception cref="ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
-        public SampledMemoryBelief(
-            TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
-            int sampleInterval,
-            UpdateMode updateMode,
-            int framesToRemember
-        )
-            : base(reference, getObservationFromReference, framesToRemember)
-        {
-            _sampleInterval = sampleInterval;
-            _updateMode = updateMode;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SampledMemoryBelief{TReference, TObservation}"/> class with an object reference,
-        /// a function to generate/update the observation using the object reference,
-        /// and a condition on when the observation should be updated.
-        /// This belief also stores a limited amount of previous observation samples in memory.
-        /// Optionally, the belief can always store the most recent observation, regardless of the sample rate.
-        /// </summary>
-        /// <param name="reference">
-        /// The reference used to generate/update the observation. This <i>must</i> be a reference type.
-        /// </param>
-        /// <param name="getObservationFromReference">A function that takes a reference and generates/updates a observation.</param>
-        /// <param name="sampleInterval">
-        /// The sample rate of the memory.
-        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
-        /// </param>
-        /// <param name="updateMode">Specifies how this sampled memory belief should be updated.</param>
-        /// <param name="framesToRemember">The number of frames to remember back.</param>
-        /// <param name="shouldUpdate">A function that sets a condition on when the observation should be updated.</param>
-        /// <exception cref="ArgumentException">
-        /// Thrown when <paramref name="reference"/> is not a reference type.
-        /// </exception>
-        public SampledMemoryBelief(
+        public SampledMemoryBelief
+        (
+            Metadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
@@ -106,10 +83,81 @@ namespace Aplib.Core.Belief.Beliefs
             int framesToRemember,
             Func<bool> shouldUpdate
         )
-            : base(reference, getObservationFromReference, framesToRemember, shouldUpdate)
+            : base(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
             _sampleInterval = sampleInterval;
             _updateMode = updateMode;
+        }
+
+        /// <inheritdoc
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        public SampledMemoryBelief
+        (
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int sampleInterval,
+            UpdateMode updateMode,
+            int framesToRemember,
+            Func<bool> shouldUpdate
+        )
+            : this
+            (
+                new Metadata(),
+                reference,
+                getObservationFromReference,
+                sampleInterval,
+                updateMode,
+                framesToRemember,
+                shouldUpdate
+            )
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        public SampledMemoryBelief
+        (
+            Metadata metadata,
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int sampleInterval,
+            UpdateMode updateMode,
+            int framesToRemember
+        )
+            : this
+            (
+                metadata,
+                reference,
+                getObservationFromReference,
+                sampleInterval,
+                updateMode,
+                framesToRemember,
+                () => true
+            )
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        public SampledMemoryBelief
+        (
+            TReference reference,
+            Func<TReference, TObservation> getObservationFromReference,
+            int sampleInterval,
+            UpdateMode updateMode,
+            int framesToRemember
+        )
+            : this
+            (
+                new Metadata(),
+                reference,
+                getObservationFromReference,
+                sampleInterval,
+                updateMode,
+                framesToRemember,
+                () => true
+                )
+        {
         }
 
         /// <summary>
