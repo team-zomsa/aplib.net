@@ -70,11 +70,8 @@ namespace Aplib.Core.Collections
 
         /// <inheritdoc cref="ExposedQueue{T}(T[],int)"/>
         public ExposedQueue(T[] array)
+            : this(array, array.Length)
         {
-            MaxCount = array.Length;
-            _array = array;
-            _head = MaxCount - 1;
-            Count = MaxCount;
         }
 
         /// <summary>
