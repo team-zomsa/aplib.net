@@ -26,11 +26,13 @@ namespace Aplib.Core
         public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(this IAction<TBeliefSet> action)
             where TBeliefSet : IBeliefSet
         {
+            string mostDerivedActionType = action.GetType().Name;
+
             IMetadata metadata = action is not IDocumented actionWithMetadata
-                ? new Metadata($"Lifted {nameof(IAction<TBeliefSet>)}")
+                ? new Metadata($"Lifted {mostDerivedActionType}")
                 : new Metadata(!string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
-                    ? $"[Lifted {nameof(IAction<TBeliefSet>)}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {nameof(IAction<TBeliefSet>)}",
+                    ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
+                    : $"Lifted {mostDerivedActionType}",
                     actionWithMetadata.Metadata.Description);
 
             return new PrimitiveTactic<TBeliefSet>(metadata, action: action);
@@ -50,11 +52,13 @@ namespace Aplib.Core
         public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(this IQueryable<TBeliefSet> action)
             where TBeliefSet : IBeliefSet
         {
+            string mostDerivedActionType = action.GetType().Name;
+
             IMetadata metadata = action is not IDocumented actionWithMetadata
-                ? new Metadata($"Lifted {nameof(IAction<TBeliefSet>)}")
+                ? new Metadata($"Lifted {mostDerivedActionType}")
                 : new Metadata(!string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
-                    ? $"[Lifted {nameof(IAction<TBeliefSet>)}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {nameof(IAction<TBeliefSet>)}",
+                    ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
+                    : $"Lifted {mostDerivedActionType}",
                     actionWithMetadata.Metadata.Description);
 
             return new PrimitiveTactic<TBeliefSet>(metadata, queryAction: action);
@@ -75,11 +79,13 @@ namespace Aplib.Core
         public static PrimitiveGoalStructure<TBeliefSet> Lift<TBeliefSet>(this IGoal<TBeliefSet> goal)
             where TBeliefSet : IBeliefSet
         {
+            string mostDerivedGoalType = goal.GetType().Name;
+
             IMetadata metadata = goal is not IDocumented goalWithMetadata
-                ? new Metadata($"Lifted {nameof(IGoal<TBeliefSet>)}")
+                ? new Metadata($"Lifted {mostDerivedGoalType}")
                 : new Metadata(!string.IsNullOrWhiteSpace(goalWithMetadata.Metadata.Name)
-                    ? $"[Lifted {nameof(IGoal<TBeliefSet>)}] {goalWithMetadata.Metadata.Name}"
-                    : $"Lifted {nameof(IGoal<TBeliefSet>)}",
+                    ? $"[Lifted {mostDerivedGoalType}] {goalWithMetadata.Metadata.Name}"
+                    : $"Lifted {mostDerivedGoalType}",
                     goalWithMetadata.Metadata.Description);
 
             return new PrimitiveGoalStructure<TBeliefSet>(metadata, goal);
@@ -100,11 +106,13 @@ namespace Aplib.Core
         public static DesireSet<TBeliefSet> Lift<TBeliefSet>(this IGoalStructure<TBeliefSet> goalStructure)
             where TBeliefSet : IBeliefSet
         {
+            string mostDerivedGoalStructureType = goalStructure.GetType().Name;
+
             IMetadata metadata = goalStructure is not IDocumented goalStructureWithMetadata
-                ? new Metadata($"Lifted {nameof(IGoalStructure<TBeliefSet>)}")
+                ? new Metadata($"Lifted {mostDerivedGoalStructureType}")
                 : new Metadata(!string.IsNullOrWhiteSpace(goalStructureWithMetadata.Metadata.Name)
-                    ? $"[Lifted {nameof(IGoalStructure<TBeliefSet>)}] {goalStructureWithMetadata.Metadata.Name}"
-                    : $"Lifted {nameof(IGoalStructure<TBeliefSet>)}",
+                    ? $"[Lifted {mostDerivedGoalStructureType}] {goalStructureWithMetadata.Metadata.Name}"
+                    : $"Lifted {mostDerivedGoalStructureType}",
                     goalStructureWithMetadata.Metadata.Description);
 
             return new DesireSet<TBeliefSet>(metadata, goalStructure);

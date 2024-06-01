@@ -1,6 +1,4 @@
 using Aplib.Core.Belief.BeliefSets;
-using Aplib.Core.Intent.Tactics;
-using System;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -34,9 +32,6 @@ namespace Aplib.Core.Intent.Actions
 
         /// <inheritdoc /> TODO inherit complicated
         public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
-
-        // TODO tests maken
-        // TODO ActionTests en BeliefTests verschenen uit het niets?
 
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);

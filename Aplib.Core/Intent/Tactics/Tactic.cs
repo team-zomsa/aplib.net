@@ -57,7 +57,5 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet})" path="/param[@name='action']"/>
         /// <returns>The most logically matching tactic, wrapping around <paramref name="action"/>.</returns>
         public static implicit operator Tactic<TBeliefSet>(Action<TBeliefSet> action) => action.Lift();
-
-        // TODO geen losse upwards lifting meer?
     }
 }
