@@ -54,6 +54,8 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
         {
+            if (!IsActionable(beliefSet)) return null;
+
             List<IAction<TBeliefSet>> actions = new();
 
             foreach (ITactic<TBeliefSet> subTactic in _subTactics)
