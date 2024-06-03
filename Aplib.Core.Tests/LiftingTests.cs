@@ -154,6 +154,32 @@ public class LiftingTests
     }
 
     /// <summary>
+    /// Given a goal lifted to a desire set,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Theory]
+    [MemberData(nameof(MetadataMemberData))]
+    public void ImplicitLifting_GoalLiftedToDesireSet_DoesNotDifferFromManualTactic(Metadata? metadata)
+    {
+        // Arrange
+        Goal<IBeliefSet> goal = metadata is null
+            ? new(It.IsAny<Tactic<IBeliefSet>>(), _ => true)
+            : new(metadata, It.IsAny<Tactic<IBeliefSet>>(), _ => true);
+
+        // Act
+        DesireSet<IBeliefSet> liftedDesireSet = goal;
+        DesireSet<IBeliefSet> manualDesireSet = new(goal.Metadata, new PrimitiveGoalStructure<IBeliefSet>(goal));
+
+        // Assert
+        liftedDesireSet.Should().BeEquivalentTo(manualDesireSet, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedDesireSet.Metadata.Id.Should().NotBe(manualDesireSet.Metadata.Id);
+        liftedDesireSet.Metadata.Name.Should().NotBe(manualDesireSet.Metadata.Name);
+    }
+
+    /// <summary>
     /// Given an undocumented action which is lifted to a tactic,
     /// When compared to the latter, manually created to be trivially correct,
     /// Then the two should be equal, but the metadata name should differ.
@@ -218,6 +244,29 @@ public class LiftingTests
             .Excluding(o => o.Metadata.Name));
         liftedGoalStructure.Metadata.Id.Should().NotBe(manualGoalStructure.Metadata.Id);
         liftedGoalStructure.Metadata.Name.Should().NotBe(manualGoalStructure.Metadata.Name);
+    }
+
+    /// <summary>
+    /// Given an undocumented goal lifted to a desire set,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Fact]
+    public void Lifting_UndocumentedGoalLiftedToDesireSet_DoesNotDifferFromManualTactic()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> undocumentedGoal = new();
+
+        // Act
+        DesireSet<IBeliefSet> liftedDesireSet = undocumentedGoal.Object.Lift();
+        DesireSet<IBeliefSet> manualDesireSet = new(new PrimitiveGoalStructure<IBeliefSet>(undocumentedGoal.Object));
+
+        // Assert
+        liftedDesireSet.Should().BeEquivalentTo(manualDesireSet, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedDesireSet.Metadata.Id.Should().NotBe(manualDesireSet.Metadata.Id);
+        liftedDesireSet.Metadata.Name.Should().NotBe(manualDesireSet.Metadata.Name);
     }
 
     /// <summary>
