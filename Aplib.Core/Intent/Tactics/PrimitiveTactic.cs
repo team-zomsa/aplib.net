@@ -83,8 +83,5 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
             => IsActionable(beliefSet) ? _action : null;
-
-        /// <inheritdoc/>
-        public override bool IsActionable(TBeliefSet beliefSet) => base.IsActionable(beliefSet);
     }
 }
