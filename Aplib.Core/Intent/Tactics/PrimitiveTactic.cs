@@ -66,13 +66,15 @@ namespace Aplib.Core.Intent.Tactics
         {
         }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})" />
+        /// <inheritdoc
+        ///     cref="PrimitiveTactic{TBeliefSet}(Metadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
         public PrimitiveTactic(Metadata metadata, IQueryable<TBeliefSet> queryAction)
             : this(metadata, queryAction, _ => true)
         {
         }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})" />
+        /// <inheritdoc
+        ///     cref="PrimitiveTactic{TBeliefSet}(Metadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction)
             : this(new Metadata(), queryAction, _ => true)
         {
