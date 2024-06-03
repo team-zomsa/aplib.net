@@ -23,26 +23,6 @@ public class LiftingTests
         [new Metadata(description: "aap noot mies") ]
     };
 
-    [Fact]
-    public void Test()
-    {
-        Action<BeliefSet> a = new(_ => { });
-        Tactic<BeliefSet> t1 = a.Lift();
-        Tactic<BeliefSet> t2 = a;
-
-        Goal<BeliefSet> g = new(t1, CommonHeuristicFunctions<BeliefSet>.Completed());
-        GoalStructure<BeliefSet> gs = new Goal<BeliefSet>(t1, CommonHeuristicFunctions<BeliefSet>.Completed());
-
-        DesireSet<BeliefSet> d1 = g.Lift();
-        DesireSet<BeliefSet> d2 = g;
-        DesireSet<BeliefSet> d3 = gs.Lift();
-        DesireSet<BeliefSet> d4 = gs;
-
-        IGoal<BeliefSet> ginterface = new Goal<BeliefSet>(t1, CommonHeuristicFunctions<BeliefSet>.Completed());
-        // DesireSet<BeliefSet> d5 = ginterface;  this would not work, for an interface cannot be implicitly converted
-        DesireSet<BeliefSet> d6 = ginterface.Lift();
-    }
-
     /// <summary>
     /// Given a query action lifted to a tactic,
     /// When compared to the latter, manually created to be trivially correct,
@@ -59,6 +39,33 @@ public class LiftingTests
 
         // Act
         Tactic<IBeliefSet> liftedTactic = action;
+        Tactic<IBeliefSet> manualTactic = new PrimitiveTactic<IBeliefSet>(action.Metadata, action, _ => true);
+
+        // Assert
+        liftedTactic.Should().BeEquivalentTo(manualTactic, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedTactic.Metadata.Id.Should().NotBe(manualTactic.Metadata.Id);
+        liftedTactic.Metadata.Name.Should().NotBe(manualTactic.Metadata.Name);
+    }
+
+    /// <summary>
+    /// Given a query action lifted to a tactic,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Theory]
+    [MemberData(nameof(MetadataMemberData))]
+    public void Lifting_IQueryableLiftedToTactic_DoesNotDifferFromManualTactic(Metadata? metadata)
+    {
+        // Arrange
+        System.Action<IBeliefSet, object> effect = (_, _) => { };
+        System.Func<IBeliefSet, object> query = _ => 69;
+        QueryAction<IBeliefSet, object> action = metadata is null ? new(effect, query) : new(metadata, effect, query);
+        IQueryable<IBeliefSet> queryable = action;
+
+        // Act
+        Tactic<IBeliefSet> liftedTactic = queryable.Lift();
         Tactic<IBeliefSet> manualTactic = new PrimitiveTactic<IBeliefSet>(action.Metadata, action, _ => true);
 
         // Assert
@@ -147,24 +154,18 @@ public class LiftingTests
     }
 
     /// <summary>
-    /// Given a query action stored as an IAction
-    /// When the query action is lifted to a tactic
-    /// Then the resulting tactic should have been created with the derived query action
+    /// Given an undocumented action which is lifted to a tactic,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
     /// </summary>
-    [Theory]
-    [MemberData(nameof(MetadataMemberData))]
-    public void ImplicitLifting_WhenQueryActionIsLiftedAsIAction_ItIsLiftedAsQueryAction(Metadata? metadata)
+    [Fact]
+    public void Lifting_UndocumentedActionToTactic_DoesNotDifferFromManualTactic()
     {
-        // Arrange
-        System.Action<IBeliefSet, object> effect = (_, _) => { };
-        System.Func<IBeliefSet, object> query = _ => 69;
-        QueryAction<IBeliefSet, object> action = metadata is null
-            ? new QueryAction<IBeliefSet, object>(effect, query)
-            : new QueryAction<IBeliefSet, object>(metadata, effect, query);
+        Mock<IAction<IBeliefSet>> undocumentedAction = new();
 
         // Act
-        Tactic<IBeliefSet> liftedTactic = ((IAction<IBeliefSet>)action).Lift();
-        Tactic<IBeliefSet> manualTactic = new PrimitiveTactic<IBeliefSet>(action.Metadata, queryAction: action);
+        Tactic<IBeliefSet> liftedTactic = undocumentedAction.Object.Lift();
+        Tactic<IBeliefSet> manualTactic = new PrimitiveTactic<IBeliefSet>(undocumentedAction.Object, _ => true);
 
         // Assert
         liftedTactic.Should().BeEquivalentTo(manualTactic, config => config
@@ -172,5 +173,73 @@ public class LiftingTests
             .Excluding(o => o.Metadata.Name));
         liftedTactic.Metadata.Id.Should().NotBe(manualTactic.Metadata.Id);
         liftedTactic.Metadata.Name.Should().NotBe(manualTactic.Metadata.Name);
+    }
+
+    /// <summary>
+    /// Given an undocumented action which is lifted to a tactic,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Fact]
+    public void Lifting_UndocumentedQueryActionToTactic_DoesNotDifferFromManualTactic()
+    {
+        Mock<IQueryable<IBeliefSet>> undocumentedQueryAction = new();
+
+        // Act
+        Tactic<IBeliefSet> liftedTactic = undocumentedQueryAction.Object.Lift();
+        Tactic<IBeliefSet> manualTactic = new PrimitiveTactic<IBeliefSet>(undocumentedQueryAction.Object, _ => true);
+
+        // Assert
+        liftedTactic.Should().BeEquivalentTo(manualTactic, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedTactic.Metadata.Id.Should().NotBe(manualTactic.Metadata.Id);
+        liftedTactic.Metadata.Name.Should().NotBe(manualTactic.Metadata.Name);
+    }
+
+    /// <summary>
+    /// Given an undocumented goal which is lifted to a goal structure,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Fact]
+    public void Lifting_UndocumentedGoalToGoalStructure_DoesNotDifferFromManualTactic()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> undocumentedGoal = new();
+
+        // Act
+        GoalStructure<IBeliefSet> liftedGoalStructure = undocumentedGoal.Object.Lift();
+        GoalStructure<IBeliefSet> manualGoalStructure = new PrimitiveGoalStructure<IBeliefSet>(undocumentedGoal.Object);
+
+        // Assert
+        liftedGoalStructure.Should().BeEquivalentTo(manualGoalStructure, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedGoalStructure.Metadata.Id.Should().NotBe(manualGoalStructure.Metadata.Id);
+        liftedGoalStructure.Metadata.Name.Should().NotBe(manualGoalStructure.Metadata.Name);
+    }
+
+    /// <summary>
+    /// Given an undocumented goal structure which is lifted to a desire set,
+    /// When compared to the latter, manually created to be trivially correct,
+    /// Then the two should be equal, but the metadata name should differ.
+    /// </summary>
+    [Fact]
+    public void Lifting_UndocumentedGoalStructureToDesireSet_DoesNotDifferFromManualTactic()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> undocumentedGoalStructure = new();
+
+        // Act
+        DesireSet<IBeliefSet> liftedDesireSet = undocumentedGoalStructure.Object.Lift();
+        DesireSet<IBeliefSet> manualDesireSet = new(undocumentedGoalStructure.Object);
+
+        // Assert
+        liftedDesireSet.Should().BeEquivalentTo(manualDesireSet, config => config
+            .Excluding(o => o.Metadata.Id)
+            .Excluding(o => o.Metadata.Name));
+        liftedDesireSet.Metadata.Id.Should().NotBe(manualDesireSet.Metadata.Id);
+        liftedDesireSet.Metadata.Name.Should().NotBe(manualDesireSet.Metadata.Name);
     }
 }

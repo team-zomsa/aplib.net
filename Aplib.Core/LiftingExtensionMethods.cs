@@ -28,12 +28,18 @@ namespace Aplib.Core
         {
             string mostDerivedActionType = action.GetType().Name;
 
-            IMetadata metadata = action is not IDocumented actionWithMetadata
-                ? new Metadata($"Lifted {mostDerivedActionType}")
-                : new Metadata(!string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
+            IMetadata metadata;
+            if (action is IDocumented actionWithMetadata)
+            {
+                string metaDataName = !string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
                     ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedActionType}",
-                    actionWithMetadata.Metadata.Description);
+                    : $"Lifted {mostDerivedActionType}";
+                metadata = new Metadata(metaDataName, actionWithMetadata.Metadata.Description);
+            }
+            else
+            {
+                metadata = new Metadata($"Lifted {mostDerivedActionType}");
+            }
 
             return new PrimitiveTactic<TBeliefSet>(metadata, action: action);
         }
@@ -54,12 +60,18 @@ namespace Aplib.Core
         {
             string mostDerivedActionType = action.GetType().Name;
 
-            IMetadata metadata = action is not IDocumented actionWithMetadata
-                ? new Metadata($"Lifted {mostDerivedActionType}")
-                : new Metadata(!string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
+            IMetadata metadata;
+            if (action is IDocumented actionWithMetadata)
+            {
+                string metaDataName = !string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
                     ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedActionType}",
-                    actionWithMetadata.Metadata.Description);
+                    : $"Lifted {mostDerivedActionType}";
+                metadata = new Metadata(metaDataName, actionWithMetadata.Metadata.Description);
+            }
+            else
+            {
+                metadata = new Metadata($"Lifted {mostDerivedActionType}");
+            }
 
             return new PrimitiveTactic<TBeliefSet>(metadata, queryAction: action);
         }
@@ -81,12 +93,18 @@ namespace Aplib.Core
         {
             string mostDerivedGoalType = goal.GetType().Name;
 
-            IMetadata metadata = goal is not IDocumented goalWithMetadata
-                ? new Metadata($"Lifted {mostDerivedGoalType}")
-                : new Metadata(!string.IsNullOrWhiteSpace(goalWithMetadata.Metadata.Name)
+            IMetadata metadata;
+            if (goal is IDocumented goalWithMetadata)
+            {
+                string metaDataName = !string.IsNullOrWhiteSpace(goalWithMetadata.Metadata.Name)
                     ? $"[Lifted {mostDerivedGoalType}] {goalWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedGoalType}",
-                    goalWithMetadata.Metadata.Description);
+                    : $"Lifted {mostDerivedGoalType}";
+                metadata = new Metadata(metaDataName, goalWithMetadata.Metadata.Description);
+            }
+            else
+            {
+                metadata = new Metadata($"Lifted {mostDerivedGoalType}");
+            }
 
             return new PrimitiveGoalStructure<TBeliefSet>(metadata, goal);
         }
@@ -108,12 +126,18 @@ namespace Aplib.Core
         {
             string mostDerivedGoalStructureType = goalStructure.GetType().Name;
 
-            IMetadata metadata = goalStructure is not IDocumented goalStructureWithMetadata
-                ? new Metadata($"Lifted {mostDerivedGoalStructureType}")
-                : new Metadata(!string.IsNullOrWhiteSpace(goalStructureWithMetadata.Metadata.Name)
+            IMetadata metadata;
+            if (goalStructure is IDocumented goalStructureWithMetadata)
+            {
+                string metaDataName = !string.IsNullOrWhiteSpace(goalStructureWithMetadata.Metadata.Name)
                     ? $"[Lifted {mostDerivedGoalStructureType}] {goalStructureWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedGoalStructureType}",
-                    goalStructureWithMetadata.Metadata.Description);
+                    : $"Lifted {mostDerivedGoalStructureType}";
+                metadata = new Metadata(metaDataName, goalStructureWithMetadata.Metadata.Description);
+            }
+            else
+            {
+                metadata = new Metadata($"Lifted {mostDerivedGoalStructureType}");
+            }
 
             return new DesireSet<TBeliefSet>(metadata, goalStructure);
         }

@@ -31,7 +31,7 @@ namespace Aplib.Core.Desire.GoalStructures
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])"/>
+        /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet}[])"/>
         public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children) { }
 
         /// <inheritdoc />
