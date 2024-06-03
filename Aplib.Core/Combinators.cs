@@ -11,7 +11,7 @@ namespace Aplib.Core
     /// </summary>
     public static class Combinators
     {
-        #region GoalSructure combinators
+        #region GoalStructure combinators
 
         /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])" />
         public static FirstOfGoalStructure<TBeliefSet> FirstOf<TBeliefSet>
