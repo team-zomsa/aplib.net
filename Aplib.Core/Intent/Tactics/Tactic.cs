@@ -36,7 +36,7 @@ namespace Aplib.Core.Intent.Tactics
             Metadata = metadata;
         }
 
-        /// <inheritdoc /> TODO werkt dit in docfx?
+        /// <inheritdoc cref="Tactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool})" />
         protected Tactic(System.Func<TBeliefSet, bool> guard) : this(new Metadata(), guard) { }
 
         /// <inheritdoc />

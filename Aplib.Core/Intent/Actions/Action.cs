@@ -30,7 +30,7 @@ namespace Aplib.Core.Intent.Actions
             _effect = effect;
         }
 
-        /// <inheritdoc /> TODO inherit complicated
+        /// <inheritdoc cref="Action{TBeliefSet}(IMetadata,System.Action{TBeliefSet})"/>
         public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
 
         /// <inheritdoc/>

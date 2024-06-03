@@ -55,7 +55,12 @@ namespace Aplib.Core.Desire.DesireSets
             _goalStructureStack.Activate(new((_mainGoal, _ => false), _goalStructureStack));
         }
 
-        /// <inheritdoc /> // TODO
+        /// <inheritdoc>
+        ///     <cref>
+        ///         DesireSet{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet},(IGoalStructure{TBeliefSet},
+        ///         System.Func{TBeliefSet,bool})[])
+        ///     </cref>
+        /// </inheritdoc>
         public DesireSet(
             IGoalStructure<TBeliefSet> mainGoal,
             params (IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)[] sideGoals
