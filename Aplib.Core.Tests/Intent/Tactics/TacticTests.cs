@@ -170,6 +170,21 @@ public class TacticTests
     }
 
     [Fact]
+    public void AnyOfTactic_WithFailingGuard_ReturnsNoAction()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
+        AnyOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic1);
+
+        // Act
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        selectedAction.Should().BeNull();
+    }
+
+    [Fact]
     public void FirstOfTacticTactic_WhenConstructed_HasExpectedData()
     {
         // Arrange
@@ -279,6 +294,21 @@ public class TacticTests
 
         // Assert
         selectedAction.Should().Be(action2);
+    }
+
+    [Fact]
+    public void FirstOfTactic_WithFailingGuard_ReturnsNoAction()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
+        FirstOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic1);
+
+        // Act
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        selectedAction.Should().BeNull();
     }
 
     /// <summary>
