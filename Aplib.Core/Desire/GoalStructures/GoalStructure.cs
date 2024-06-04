@@ -58,7 +58,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <summary>
         /// Implicitly lifts a goal into a goal structure.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet})" path="/param[@name='goal']"/>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
         /// <returns>The most logically matching goal structure, wrapping around <paramref name="goal"/>.</returns>
         public static implicit operator GoalStructure<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
     }

@@ -117,14 +117,14 @@ namespace Aplib.Core.Desire.DesireSets
         /// <summary>
         /// Implicitly lifts a goal into a desire set.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet})" path="/param[@name='goal']"/>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
         /// <returns>The most logically matching desire set, wrapping around <paramref name="goal"/>.</returns>
-        public static implicit operator DesireSet<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
+        public static implicit operator DesireSet<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift().Lift();
 
         /// <summary>
         /// Implicitly lifts a goal structure a desire set.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoalStructure{TBeliefSet})" path="/param[@name='goalStructure']"/>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoalStructure{TBeliefSet},IMetadata)" path="/param[@name='goalStructure']"/>
         /// <returns>The most logically matching desire set, wrapping around <paramref name="goalStructure"/>.</returns>
         public static implicit operator DesireSet<TBeliefSet>(GoalStructure<TBeliefSet> goalStructure) =>
             goalStructure.Lift();

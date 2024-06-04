@@ -54,7 +54,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Implicitly lifts an action into a tactic.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet})" path="/param[@name='action']"/>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet},IMetadata)" path="/param[@name='action']"/>
         /// <returns>The most logically matching tactic, wrapping around <paramref name="action"/>.</returns>
         public static implicit operator Tactic<TBeliefSet>(Action<TBeliefSet> action) => action.Lift();
     }
