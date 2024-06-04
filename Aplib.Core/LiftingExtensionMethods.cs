@@ -23,26 +23,13 @@ namespace Aplib.Core
         /// <param name="action">
         /// The action which on its own can function as a tactic. Meaning, the tactic consists of just a single action.
         /// </param>
-        public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(this IAction<TBeliefSet> action)
-            where TBeliefSet : IBeliefSet
-        {
-            string mostDerivedActionType = action.GetType().Name;
-
-            IMetadata metadata;
-            if (action is IDocumented actionWithMetadata)
-            {
-                string metaDataName = !string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
-                    ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedActionType}";
-                metadata = new Metadata(metaDataName, actionWithMetadata.Metadata.Description);
-            }
-            else
-            {
-                metadata = new Metadata($"Lifted {mostDerivedActionType}");
-            }
-
-            return new PrimitiveTactic<TBeliefSet>(metadata, action: action);
-        }
+        /// <param name="metadata">Optional metadata to be assigned to the tactic.</param>
+        public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(
+            this IAction<TBeliefSet> action,
+            IMetadata? metadata = null)
+            where TBeliefSet : IBeliefSet => metadata is null
+                ? new PrimitiveTactic<TBeliefSet>(action: action)
+                : new PrimitiveTactic<TBeliefSet>(metadata, action: action);
 
         /// <summary>
         /// Wraps a queryable action into a tactic.
@@ -55,26 +42,13 @@ namespace Aplib.Core
         /// <param name="action">
         /// The action which on its own can function as a tactic. Meaning, the tactic consists of just a single action.
         /// </param>
-        public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(this IQueryable<TBeliefSet> action)
-            where TBeliefSet : IBeliefSet
-        {
-            string mostDerivedActionType = action.GetType().Name;
-
-            IMetadata metadata;
-            if (action is IDocumented actionWithMetadata)
-            {
-                string metaDataName = !string.IsNullOrWhiteSpace(actionWithMetadata.Metadata.Name)
-                    ? $"[Lifted {mostDerivedActionType}] {actionWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedActionType}";
-                metadata = new Metadata(metaDataName, actionWithMetadata.Metadata.Description);
-            }
-            else
-            {
-                metadata = new Metadata($"Lifted {mostDerivedActionType}");
-            }
-
-            return new PrimitiveTactic<TBeliefSet>(metadata, queryAction: action);
-        }
+        /// <param name="metadata">Optional metadata to be assigned to the tactic.</param>
+        public static PrimitiveTactic<TBeliefSet> Lift<TBeliefSet>(
+            this IQueryable<TBeliefSet> action,
+            IMetadata? metadata = null)
+            where TBeliefSet : IBeliefSet => metadata is null
+                ? new PrimitiveTactic<TBeliefSet>(queryAction: action)
+                : new PrimitiveTactic<TBeliefSet>(metadata, queryAction: action);
 
         /// <summary>
         /// Wraps a goal into a goal structure.
@@ -88,26 +62,13 @@ namespace Aplib.Core
         /// The goal which on its own can function as a goal structure. Meaning, the goal structure consists of just a
         /// single goal.
         /// </param>
-        public static PrimitiveGoalStructure<TBeliefSet> Lift<TBeliefSet>(this IGoal<TBeliefSet> goal)
-            where TBeliefSet : IBeliefSet
-        {
-            string mostDerivedGoalType = goal.GetType().Name;
-
-            IMetadata metadata;
-            if (goal is IDocumented goalWithMetadata)
-            {
-                string metaDataName = !string.IsNullOrWhiteSpace(goalWithMetadata.Metadata.Name)
-                    ? $"[Lifted {mostDerivedGoalType}] {goalWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedGoalType}";
-                metadata = new Metadata(metaDataName, goalWithMetadata.Metadata.Description);
-            }
-            else
-            {
-                metadata = new Metadata($"Lifted {mostDerivedGoalType}");
-            }
-
-            return new PrimitiveGoalStructure<TBeliefSet>(metadata, goal);
-        }
+        /// <param name="metadata">Optional metadata to be assigned to the goal structure.</param>
+        public static PrimitiveGoalStructure<TBeliefSet> Lift<TBeliefSet>(
+            this IGoal<TBeliefSet> goal,
+            IMetadata? metadata = null)
+            where TBeliefSet : IBeliefSet => metadata is null
+            ? new PrimitiveGoalStructure<TBeliefSet>(goal)
+            : new PrimitiveGoalStructure<TBeliefSet>(metadata, goal);
 
         /// <summary>
         /// Wraps a goal structure into a desire set.
@@ -121,25 +82,12 @@ namespace Aplib.Core
         /// The goal structure which on its own can function as a desire set. Meaning, the desire set consists of just
         /// a single goal structure.
         /// </param>
-        public static DesireSet<TBeliefSet> Lift<TBeliefSet>(this IGoalStructure<TBeliefSet> goalStructure)
-            where TBeliefSet : IBeliefSet
-        {
-            string mostDerivedGoalStructureType = goalStructure.GetType().Name;
-
-            IMetadata metadata;
-            if (goalStructure is IDocumented goalStructureWithMetadata)
-            {
-                string metaDataName = !string.IsNullOrWhiteSpace(goalStructureWithMetadata.Metadata.Name)
-                    ? $"[Lifted {mostDerivedGoalStructureType}] {goalStructureWithMetadata.Metadata.Name}"
-                    : $"Lifted {mostDerivedGoalStructureType}";
-                metadata = new Metadata(metaDataName, goalStructureWithMetadata.Metadata.Description);
-            }
-            else
-            {
-                metadata = new Metadata($"Lifted {mostDerivedGoalStructureType}");
-            }
-
-            return new DesireSet<TBeliefSet>(metadata, goalStructure);
-        }
+        /// <param name="metadata">Optional metadata to be assigned to the desire set.</param>
+        public static DesireSet<TBeliefSet> Lift<TBeliefSet>(
+            this IGoalStructure<TBeliefSet> goalStructure,
+            IMetadata? metadata = null)
+            where TBeliefSet : IBeliefSet => metadata is null
+            ? new DesireSet<TBeliefSet>(goalStructure)
+            : new DesireSet<TBeliefSet>(metadata, goalStructure);
     }
 }
