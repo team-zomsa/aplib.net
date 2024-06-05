@@ -25,10 +25,10 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="goal">The goal to fulfill.</param>
-        public PrimitiveGoalStructure(Metadata metadata, IGoal<TBeliefSet> goal)
+        public PrimitiveGoalStructure(IMetadata metadata, IGoal<TBeliefSet> goal)
             : base(metadata, Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
 
-        /// <inheritdoc cref="PrimitiveGoalStructure{TBeliefSet}(Metadata,IGoal{TBeliefSet})"/>
+        /// <inheritdoc cref="PrimitiveGoalStructure{TBeliefSet}(IMetadata,IGoal{TBeliefSet})"/>
         public PrimitiveGoalStructure(IGoal<TBeliefSet> goal) : this(new Metadata(), goal) { }
 
         /// <inheritdoc />

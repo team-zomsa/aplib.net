@@ -19,14 +19,14 @@ public class CombinatorTests
         [new Metadata(System.Guid.Empty, "a name", "a description"), "a name", "a description"]
     ];
 
-    private static void CheckMetadata(string? expectedName, string? expectedDescription, Metadata actual)
+    private static void CheckMetadata(string? expectedName, string? expectedDescription, IMetadata actual)
     {
         actual.Id.Should().BeEmpty();
         actual.Name.Should().Be(expectedName);
         actual.Description.Should().Be(expectedDescription);
     }
 
-    private static void CheckDefaultMetadata(Metadata actual)
+    private static void CheckDefaultMetadata(IMetadata actual)
     {
         actual.Id.Should().NotBeEmpty();
         actual.Name.Should().BeNull();

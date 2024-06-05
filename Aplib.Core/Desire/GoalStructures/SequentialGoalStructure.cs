@@ -28,7 +28,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="children">The children of the goal structure.</param>
-        public SequentialGoalStructure(Metadata metadata, params IGoalStructure<TBeliefSet>[] children)
+        public SequentialGoalStructure(IMetadata metadata, params IGoalStructure<TBeliefSet>[] children)
             : base(metadata, children)
         {
             if (children.Length <= 0)
@@ -39,7 +39,7 @@ namespace Aplib.Core.Desire.GoalStructures
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <inheritdoc cref="SequentialGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])" />
+        /// <inheritdoc cref="SequentialGoalStructure{TBeliefSet}(IMetadata?,IGoalStructure{TBeliefSet}[])" />
         public SequentialGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children)
         {
         }

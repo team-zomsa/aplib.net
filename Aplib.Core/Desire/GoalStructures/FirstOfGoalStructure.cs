@@ -24,15 +24,14 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this GoalStructure, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="children">The children of the goal structure.</param>
-        public FirstOfGoalStructure(Metadata metadata, params IGoalStructure<TBeliefSet>[] children)
-            : base(metadata, children)
+        public FirstOfGoalStructure(IMetadata metadata, params IGoalStructure<TBeliefSet>[] children) : base(metadata, children)
         {
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
             _currentGoalStructure = _childrenEnumerator.Current;
         }
 
-        /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet}[])"/>
+        /// <inheritdoc cref="FirstOfGoalStructure{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet}[])"/>
         public FirstOfGoalStructure(params IGoalStructure<TBeliefSet>[] children) : this(new Metadata(), children) { }
 
         /// <inheritdoc />
@@ -46,10 +45,7 @@ namespace Aplib.Core.Desire.GoalStructures
             // This loop is here to prevent tail recursion.
             while (true)
             {
-                if (Status == CompletionStatus.Success)
-                {
-                    return;
-                }
+                if (Status == CompletionStatus.Success) return;
 
                 _currentGoalStructure!.UpdateStatus(beliefSet);
 

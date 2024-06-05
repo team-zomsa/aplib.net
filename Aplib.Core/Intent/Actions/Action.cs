@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Belief.BeliefSets;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -6,7 +6,7 @@ namespace Aplib.Core.Intent.Actions
     /// Describes an action that can be executed and guarded.
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Action<TBeliefSet> : IAction<TBeliefSet>
+    public class Action<TBeliefSet> : IAction<TBeliefSet>, IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -14,13 +14,8 @@ namespace Aplib.Core.Intent.Actions
         /// </summary>
         protected readonly System.Action<TBeliefSet> _effect;
 
-        /// <summary>
-        /// Gets the metadata of the action.
-        /// </summary>
-        /// <remark>
-        /// This metadata may be useful for debugging or logging.
-        /// </remark>
-        public Metadata Metadata { get; }
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.
@@ -29,13 +24,13 @@ namespace Aplib.Core.Intent.Actions
         /// Metadata about this action, used to quickly display the action in several contexts.
         /// </param>
         /// <param name="effect">The effect of the action.</param>
-        public Action(Metadata metadata, System.Action<TBeliefSet> effect)
+        public Action(IMetadata metadata, System.Action<TBeliefSet> effect)
         {
             Metadata = metadata;
             _effect = effect;
         }
 
-        /// <inheritdoc cref="Action{TBeliefSet}(Aplib.Core.Metadata,System.Action{TBeliefSet})" />
+        /// <inheritdoc cref="Action{TBeliefSet}(IMetadata,System.Action{TBeliefSet})"/>
         public Action(System.Action<TBeliefSet> effect) : this(new Metadata(), effect) { }
 
         /// <inheritdoc/>

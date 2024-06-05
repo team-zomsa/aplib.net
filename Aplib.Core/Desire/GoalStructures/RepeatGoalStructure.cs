@@ -22,18 +22,18 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="goalStructure">The GoalStructure to repeat.</param>
-        public RepeatGoalStructure(Metadata metadata, IGoalStructure<TBeliefSet> goalStructure)
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
             : base(metadata, new List<IGoalStructure<TBeliefSet>> { goalStructure })
             => _currentGoalStructure = goalStructure;
 
-        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(Metadata,IGoalStructure{TBeliefSet})"/>
+        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet})"/>
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
         {
             Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            _ => FinishRepeat(beliefSet),
+            _ => FinishRepeat(beliefSet)
         };
 
         /// <inheritdoc />
@@ -44,7 +44,7 @@ namespace Aplib.Core.Desire.GoalStructures
             Status = _currentGoalStructure.Status switch
             {
                 Failure or Unfinished => Unfinished,
-                _ => Success,
+                _ => Success
             };
         }
 

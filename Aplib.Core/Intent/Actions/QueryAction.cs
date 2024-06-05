@@ -1,4 +1,5 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Intent.Tactics;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -35,7 +36,7 @@ namespace Aplib.Core.Intent.Actions
         /// <param name="effect">The effect of the action.</param>
         /// <param name="query">The query of the action.</param>
         public QueryAction
-            (Metadata metadata, System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
+            (IMetadata metadata, System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
             : base(metadata, _ => { })
         {
             _effect = effect;
@@ -43,7 +44,7 @@ namespace Aplib.Core.Intent.Actions
         }
 
         /// <inheritdoc
-        ///     cref="QueryAction{TBeliefSet,TQuery}(Aplib.Core.Metadata,System.Action{TBeliefSet,TQuery},System.Func{TBeliefSet,TQuery})" />
+        ///     cref="QueryAction{TBeliefSet,TQuery}(Aplib.Core.IMetadata,System.Action{TBeliefSet,TQuery},System.Func{TBeliefSet,TQuery})" />
         public QueryAction(System.Action<TBeliefSet, TQuery> effect, System.Func<TBeliefSet, TQuery?> query)
             : this(new Metadata(), effect, query)
         {
