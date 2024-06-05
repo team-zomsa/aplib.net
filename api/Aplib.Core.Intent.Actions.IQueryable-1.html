@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IAction&lt;TBeliefSet&gt; | Aplib.Net </title>
+      <title>Interface IQueryable&lt;TBeliefSet&gt; | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IAction&lt;TBeliefSet&gt; | Aplib.Net ">
+      <meta name="title" content="Interface IQueryable&lt;TBeliefSet&gt; | Aplib.Net ">
       
-      <meta name="description" content="Represents an action that can be executed on a belief set.">
+      <meta name="description" content="Represents an interface for executing queries on a belief set.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Intent_Actions_IAction_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Intent.Actions.IAction%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Intent_Actions_IQueryable_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Intent.Actions.IQueryable%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Intent.Actions.IAction`1">
+        <article data-uid="Aplib.Core.Intent.Actions.IQueryable`1">
 
 
 
-  <h1 id="Aplib_Core_Intent_Actions_IAction_1" data-uid="Aplib.Core.Intent.Actions.IAction`1" class="text-break">
-Interface IAction&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/IAction.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Intent_Actions_IQueryable_1" data-uid="Aplib.Core.Intent.Actions.IQueryable`1" class="text-break">
+Interface IQueryable&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/IQueryable.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Interface IAction&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Represents an action that can be executed on a belief set.</p>
+  <div class="markdown summary"><p>Represents an interface for executing queries on a belief set.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IAction&lt;in TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IQueryable&lt;in TBeliefSet&gt; : IAction&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -110,13 +110,20 @@ Interface IAction&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>TBeliefSet</code></dt>
-    <dd><p>The type of the belief set that the action uses.</p>
+    <dd><p>The type of the query object.</p>
 </dd>
   </dl>
 
 
 
 
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html#Aplib_Core_Intent_Actions_IAction_1_Execute__0_">IAction&lt;TBeliefSet&gt;.Execute(TBeliefSet)</a>
+    </div>
+  </dd></dl>
 
   <dl class="typelist extensionMethods">
     <dt>Extension Methods</dt>
@@ -126,6 +133,12 @@ Interface IAction&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
   </div>
   <div>
       <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Intent_Actions_IAction___0__Aplib_Core_IMetadata_">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;, IMetadata)</a>
+  </div>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Intent_Actions_IQueryable___0__">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Intent_Actions_IQueryable___0__Aplib_Core_IMetadata_">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;, IMetadata)</a>
   </div>
   </dd></dl>
 
@@ -137,28 +150,34 @@ Interface IAction&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
 </h2>
 
 
-  <a id="Aplib_Core_Intent_Actions_IAction_1_Execute_" data-uid="Aplib.Core.Intent.Actions.IAction`1.Execute*"></a>
+  <a id="Aplib_Core_Intent_Actions_IQueryable_1_Query_" data-uid="Aplib.Core.Intent.Actions.IQueryable`1.Query*"></a>
 
-  <h3 id="Aplib_Core_Intent_Actions_IAction_1_Execute__0_" data-uid="Aplib.Core.Intent.Actions.IAction`1.Execute(`0)">
-  Execute(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/IAction.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Actions_IQueryable_1_Query__0_" data-uid="Aplib.Core.Intent.Actions.IQueryable`1.Query(`0)">
+  Query(TBeliefSet)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/IQueryable.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Executes the action on the specified belief set.</p>
+  <div class="markdown level1 summary"><p>Executes a query on the specified belief set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Execute(TBeliefSet beliefSet)</code></pre>
+    <pre><code class="lang-csharp hljs">bool Query(TBeliefSet beliefSet)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd><p>The belief set on which the action is executed.</p>
+    <dd><p>The belief set to query.</p>
 </dd>
   </dl>
 
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>A boolean value indicating whether the query executed successfully or not.</p>
+</dd>
+  </dl>
 
 
 

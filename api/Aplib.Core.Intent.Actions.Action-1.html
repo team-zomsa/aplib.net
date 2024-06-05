@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Intent_Actions_Action_1" data-uid="Aplib.Core.Intent.Actions.Action`1" class="text-break">
-Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Action&lt;TBeliefSet&gt; : IAction&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class Action&lt;TBeliefSet&gt; : IAction&lt;TBeliefSet&gt;, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -126,13 +126,14 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
 
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="Aplib.Core.Intent.Actions.GuardedAction-2.html">GuardedAction&lt;TBeliefSet, TQuery&gt;</a></div>
+      <div><a class="xref" href="Aplib.Core.Intent.Actions.QueryAction-2.html">QueryAction&lt;TBeliefSet, TQuery&gt;</a></div>
     </dd>
   </dl>
 
@@ -162,6 +163,16 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
     </div>
   </dd></dl>
 
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Intent_Actions_IAction___0__">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Intent_Actions_IAction___0__Aplib_Core_IMetadata_">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;, IMetadata)</a>
+  </div>
+  </dd></dl>
 
 
 
@@ -173,45 +184,9 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 
   <a id="Aplib_Core_Intent_Actions_Action_1__ctor_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Actions_Action_1__ctor_Aplib_Core_Metadata_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor(Aplib.Core.Metadata)">
-  Action(Metadata?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L61"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Initializes a new empty instance of the <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.html">Action&lt;TBeliefSet&gt;</a> class.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Action(Metadata? metadata)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this action, used to quickly display the action in several contexts.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <h4 class="section" id="Aplib_Core_Intent_Actions_Action_1__ctor_Aplib_Core_Metadata__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Only meant for internal use</p>
-</div>
-
-
-
-
-  <a id="Aplib_Core_Intent_Actions_Action_1__ctor_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor*"></a>
-
-  <h3 id="Aplib_Core_Intent_Actions_Action_1__ctor_System_Action__0__Aplib_Core_Metadata_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},Aplib.Core.Metadata)">
-  Action(Action&lt;TBeliefSet&gt;, Metadata?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Actions_Action_1__ctor_Aplib_Core_IMetadata_System_Action__0__" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor(Aplib.Core.IMetadata,System.Action{`0})">
+  Action(IMetadata, Action&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.html">Action&lt;TBeliefSet&gt;</a> class.</p>
@@ -219,16 +194,16 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Action(Action&lt;TBeliefSet&gt; effect, Metadata? metadata = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Action(IMetadata metadata, Action&lt;TBeliefSet&gt; effect)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this action, used to quickly display the action in several contexts.</p>
+</dd>
     <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The effect of the action.</p>
-</dd>
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this action, used to quickly display the action in several contexts.</p>
 </dd>
   </dl>
 
@@ -245,9 +220,9 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 
   <a id="Aplib_Core_Intent_Actions_Action_1__ctor_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Actions_Action_1__ctor_System_Action__0__System_Func__0_System_Boolean__Aplib_Core_Metadata_" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)">
-  Action(Action&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;, Metadata?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Actions_Action_1__ctor_System_Action__0__" data-uid="Aplib.Core.Intent.Actions.Action`1.#ctor(System.Action{`0})">
+  Action(Action&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.html">Action&lt;TBeliefSet&gt;</a> class.</p>
@@ -255,7 +230,7 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Action(Action&lt;TBeliefSet&gt; effect, Func&lt;TBeliefSet, bool&gt; guard, Metadata? metadata = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Action(Action&lt;TBeliefSet&gt; effect)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -263,16 +238,45 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
     <dt><code>effect</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The effect of the action.</p>
 </dd>
-    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>The guard of the action.</p>
-</dd>
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this action, used to quickly display the action in several contexts.</p>
-</dd>
   </dl>
 
 
 
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Aplib_Core_Intent_Actions_Action_1__effect" data-uid="Aplib.Core.Intent.Actions.Action`1._effect">
+  _effect
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the effect of the action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Action&lt;TBeliefSet&gt; _effect</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -290,15 +294,15 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 
   <h3 id="Aplib_Core_Intent_Actions_Action_1_Metadata" data-uid="Aplib.Core.Intent.Actions.Action`1.Metadata">
   Metadata
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the metadata of the action.</p>
+  <div class="markdown level1 summary"><p>Gets the metadata of the instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Metadata Metadata { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IMetadata Metadata { get; }</code></pre>
   </div>
 
 
@@ -307,71 +311,7 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="Aplib_Core_Intent_Actions_Action_1__effect_" data-uid="Aplib.Core.Intent.Actions.Action`1._effect*"></a>
-
-  <h3 id="Aplib_Core_Intent_Actions_Action_1__effect" data-uid="Aplib.Core.Intent.Actions.Action`1._effect">
-  _effect
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L24"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets the effect of the action.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Action&lt;TBeliefSet&gt; _effect { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="Aplib_Core_Intent_Actions_Action_1__guard_" data-uid="Aplib.Core.Intent.Actions.Action`1._guard*"></a>
-
-  <h3 id="Aplib_Core_Intent_Actions_Action_1__guard" data-uid="Aplib.Core.Intent.Actions.Action`1._guard">
-  _guard
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L29"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Gets or sets the guard of the action.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Func&lt;TBeliefSet, bool&gt; _guard { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd></dd>
   </dl>
 
@@ -390,7 +330,7 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 
   <h3 id="Aplib_Core_Intent_Actions_Action_1_Execute__0_" data-uid="Aplib.Core.Intent.Actions.Action`1.Execute(`0)">
   Execute(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the action on the specified belief set.</p>
@@ -408,45 +348,6 @@ Class Action&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="V
 </dd>
   </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-  <a id="Aplib_Core_Intent_Actions_Action_1_IsActionable_" data-uid="Aplib.Core.Intent.Actions.Action`1.IsActionable*"></a>
-
-  <h3 id="Aplib_Core_Intent_Actions_Action_1_IsActionable__0_" data-uid="Aplib.Core.Intent.Actions.Action`1.IsActionable(`0)">
-  IsActionable(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Actions/Action.cs/#L73"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Guard the action against unwanted execution. The result is stored and can be used in the effect.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool IsActionable(TBeliefSet beliefSet)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd><p>The belief set on which the action is executed.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>True if the action is actionable, false otherwise.</p>
-</dd>
-  </dl>
 
 
 

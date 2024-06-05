@@ -1,0 +1,1282 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Combinators | Aplib.Net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Combinators | Aplib.Net ">
+      
+      <meta name="description" content="Convenience class containing static methods for creating goal structures and tactics.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Combinators.md&amp;value=---%0Auid%3A%20Aplib.Core.Combinators%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Aplib.Net">
+            Aplib.Net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Aplib.Core.Combinators">
+
+
+
+  <h1 id="Aplib_Core_Combinators" data-uid="Aplib.Core.Combinators" class="text-break">
+Class Combinators  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Convenience class containing static methods for creating goal structures and tactics.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Combinators</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Combinators</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Aplib_Core_Combinators_AnyOf_" data-uid="Aplib.Core.Combinators.AnyOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_AnyOf__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.AnyOf``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  AnyOf&lt;TBeliefSet&gt;(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+and an optional guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AnyOfTactic&lt;TBeliefSet&gt; AnyOf&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_AnyOf_" data-uid="Aplib.Core.Combinators.AnyOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_AnyOf__1_Aplib_Core_IMetadata_System_Func___0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.AnyOf``1(Aplib.Core.IMetadata,System.Func{``0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  AnyOf&lt;TBeliefSet&gt;(IMetadata, Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+and an optional guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AnyOfTactic&lt;TBeliefSet&gt; AnyOf&lt;TBeliefSet&gt;(IMetadata metadata, Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard condition.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_AnyOf_" data-uid="Aplib.Core.Combinators.AnyOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_AnyOf__1_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.AnyOf``1(Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  AnyOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L83"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+and an optional guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AnyOfTactic&lt;TBeliefSet&gt; AnyOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_AnyOf_" data-uid="Aplib.Core.Combinators.AnyOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_AnyOf__1_System_Func___0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.AnyOf``1(System.Func{``0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  AnyOf&lt;TBeliefSet&gt;(Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+and an optional guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AnyOfTactic&lt;TBeliefSet&gt; AnyOf&lt;TBeliefSet&gt;(Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard condition.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_Desire_GoalStructures_IGoalStructure___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.Desire.GoalStructures.IGoalStructure{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(params IGoalStructure&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfGoalStructure&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(params IGoalStructure&lt;TBeliefSet&gt;[] children) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The children of the goal structure.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(IMetadata, params IGoalStructure&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfGoalStructure&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, params IGoalStructure&lt;TBeliefSet&gt;[] children) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this GoalStructure, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The children of the goal structure.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_IMetadata_System_Func___0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.IMetadata,System.Func{``0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(IMetadata, Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard condition.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_FirstOf_" data-uid="Aplib.Core.Combinators.FirstOf*"></a>
+
+  <h3 id="Aplib_Core_Combinators_FirstOf__1_System_Func___0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(System.Func{``0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
+  FirstOf&lt;TBeliefSet&gt;(Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard condition.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Desire_Goals_IGoal___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Desire.Goals.IGoal{``0})">
+  Primitive&lt;TBeliefSet&gt;(IGoal&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveGoalStructure&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IGoal&lt;TBeliefSet&gt; goal) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>goal</code> <a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The goal to fulfill.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Desire_Goals_IGoal___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Desire.Goals.IGoal{``0})">
+  Primitive&lt;TBeliefSet&gt;(IMetadata, IGoal&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveGoalStructure&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IGoal&lt;TBeliefSet&gt; goal) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this GoalStructure, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>goal</code> <a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The goal to fulfill.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{``0})">
+  Primitive&lt;TBeliefSet&gt;(IMetadata, IAction&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IAction&lt;TBeliefSet&gt; action) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction___0__System_Func___0_System_Boolean__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{``0},System.Func{``0,System.Boolean})">
+  Primitive&lt;TBeliefSet&gt;(IMetadata, IAction&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IAction&lt;TBeliefSet&gt; action, Func&lt;TBeliefSet, bool&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{``0})">
+  Primitive&lt;TBeliefSet&gt;(IMetadata, IQueryable&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; query) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable___0__System_Func___0_System_Boolean__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{``0},System.Func{``0,System.Boolean})">
+  Primitive&lt;TBeliefSet&gt;(IMetadata, IQueryable&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; query, Func&lt;TBeliefSet, bool&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IAction___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IAction{``0})">
+  Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt; action) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IAction___0__System_Func___0_System_Boolean__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IAction{``0},System.Func{``0,System.Boolean})">
+  Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt; action, Func&lt;TBeliefSet, bool&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IQueryable___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IQueryable{``0})">
+  Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; query) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Primitive_" data-uid="Aplib.Core.Combinators.Primitive*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IQueryable___0__System_Func___0_System_Boolean__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IQueryable{``0},System.Func{``0,System.Boolean})">
+  Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; query, Func&lt;TBeliefSet, bool&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Repeat_" data-uid="Aplib.Core.Combinators.Repeat*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Repeat__1_Aplib_Core_Desire_GoalStructures_IGoalStructure___0__" data-uid="Aplib.Core.Combinators.Repeat``1(Aplib.Core.Desire.GoalStructures.IGoalStructure{``0})">
+  Repeat&lt;TBeliefSet&gt;(IGoalStructure&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.RepeatGoalStructure-1.html">RepeatGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RepeatGoalStructure&lt;TBeliefSet&gt; Repeat&lt;TBeliefSet&gt;(IGoalStructure&lt;TBeliefSet&gt; goalStructure) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>goalStructure</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The GoalStructure to repeat.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.RepeatGoalStructure-1.html">RepeatGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Repeat_" data-uid="Aplib.Core.Combinators.Repeat*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Repeat__1_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure___0__" data-uid="Aplib.Core.Combinators.Repeat``1(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{``0})">
+  Repeat&lt;TBeliefSet&gt;(IMetadata, IGoalStructure&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.RepeatGoalStructure-1.html">RepeatGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RepeatGoalStructure&lt;TBeliefSet&gt; Repeat&lt;TBeliefSet&gt;(IMetadata metadata, IGoalStructure&lt;TBeliefSet&gt; goalStructure) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this goal, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>goalStructure</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The GoalStructure to repeat.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.RepeatGoalStructure-1.html">RepeatGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Seq_" data-uid="Aplib.Core.Combinators.Seq*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Seq__1_Aplib_Core_Desire_GoalStructures_IGoalStructure___0____" data-uid="Aplib.Core.Combinators.Seq``1(Aplib.Core.Desire.GoalStructures.IGoalStructure{``0}[])">
+  Seq&lt;TBeliefSet&gt;(params IGoalStructure&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SequentialGoalStructure&lt;TBeliefSet&gt; Seq&lt;TBeliefSet&gt;(params IGoalStructure&lt;TBeliefSet&gt;[] children) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The children of the goal structure.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Combinators_Seq_" data-uid="Aplib.Core.Combinators.Seq*"></a>
+
+  <h3 id="Aplib_Core_Combinators_Seq__1_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure___0____" data-uid="Aplib.Core.Combinators.Seq``1(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{``0}[])">
+  Seq&lt;TBeliefSet&gt;(IMetadata, params IGoalStructure&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SequentialGoalStructure&lt;TBeliefSet&gt; Seq&lt;TBeliefSet&gt;(IMetadata metadata, params IGoalStructure&lt;TBeliefSet&gt;[] children) where TBeliefSet : IBeliefSet</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this GoalStructure, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The children of the goal structure.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TBeliefSet</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

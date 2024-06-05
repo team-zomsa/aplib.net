@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IDesireSet&lt;TBeliefSet&gt; | Aplib.Net </title>
+      <title>Interface IBeliefSet | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IDesireSet&lt;TBeliefSet&gt; | Aplib.Net ">
+      <meta name="title" content="Interface IBeliefSet | Aplib.Net ">
       
-      <meta name="description" content="Represents a set of goals that the agent has. This is the main structure that the agent will use to determine what it should do next.">
+      <meta name="description" content="A belief set defines beliefs for an agent.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_IDesireSet_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.IDesireSet%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Belief_BeliefSets_IBeliefSet.md&amp;value=---%0Auid%3A%20Aplib.Core.Belief.BeliefSets.IBeliefSet%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,46 +84,33 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Desire.IDesireSet`1">
+        <article data-uid="Aplib.Core.Belief.BeliefSets.IBeliefSet">
 
 
 
-  <h1 id="Aplib_Core_Desire_IDesireSet_1" data-uid="Aplib.Core.Desire.IDesireSet`1" class="text-break">
-Interface IDesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IDesireSet.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Belief_BeliefSets_IBeliefSet" data-uid="Aplib.Core.Belief.BeliefSets.IBeliefSet" class="text-break">
+Interface IBeliefSet  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/BeliefSets/IBeliefSet.cs/#L6"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Belief.html">Belief</a>.<a class="xref" href="Aplib.Core.Belief.BeliefSets.html">BeliefSets</a></dd></dl>
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Represents a set of goals that the agent has.
-This is the main structure that the agent will use to determine what it should do next.</p>
+  <div class="markdown summary"><p>A belief set defines beliefs for an agent.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IDesireSet&lt;in TBeliefSet&gt; : ICompletable where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IBeliefSet</code></pre>
   </div>
 
 
 
-  <h4 class="section">Type Parameters</h4>
-  <dl class="parameters">
-    <dt><code>TBeliefSet</code></dt>
-    <dd></dd>
-  </dl>
 
 
 
 
-  <dl class="typelist inheritedMembers">
-    <dt>Inherited Members</dt>
-    <dd>
-    <div>
-      <a class="xref" href="Aplib.Core.ICompletable.html#Aplib_Core_ICompletable_Status">ICompletable.Status</a>
-    </div>
-  </dd></dl>
 
 
 
@@ -134,66 +121,21 @@ This is the main structure that the agent will use to determine what it should d
 </h2>
 
 
-  <a id="Aplib_Core_Desire_IDesireSet_1_GetCurrentGoal_" data-uid="Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal*"></a>
+  <a id="Aplib_Core_Belief_BeliefSets_IBeliefSet_UpdateBeliefs_" data-uid="Aplib.Core.Belief.BeliefSets.IBeliefSet.UpdateBeliefs*"></a>
 
-  <h3 id="Aplib_Core_Desire_IDesireSet_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.IDesireSet`1.GetCurrentGoal(`0)">
-  GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IDesireSet.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Belief_BeliefSets_IBeliefSet_UpdateBeliefs" data-uid="Aplib.Core.Belief.BeliefSets.IBeliefSet.UpdateBeliefs">
+  UpdateBeliefs()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/BeliefSets/IBeliefSet.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.IBeliefSet.html">IBeliefSet</a>.</p>
+  <div class="markdown level1 summary"><p>Updates all beliefs in the belief set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IGoal&lt;in TBeliefSet&gt; GetCurrentGoal(TBeliefSet beliefSet)</code></pre>
+    <pre><code class="lang-csharp hljs">void UpdateBeliefs()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd><p>The belief set of the agent.</p>
-</dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal</a>&lt;TBeliefSet&gt;</dt>
-    <dd><p>The current goal to be fulfilled.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="Aplib_Core_Desire_IDesireSet_1_UpdateStatus_" data-uid="Aplib.Core.Desire.IDesireSet`1.UpdateStatus*"></a>
-
-  <h3 id="Aplib_Core_Desire_IDesireSet_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.IDesireSet`1.UpdateStatus(`0)">
-  UpdateStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IDesireSet.cs/#L25"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Updates the status of this <a class="xref" href="Aplib.Core.Desire.IDesireSet-1.html">IDesireSet&lt;TBeliefSet&gt;</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void UpdateStatus(TBeliefSet beliefSet)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd><p>The belief set of the agent.</p>
-</dd>
-  </dl>
 
 
 

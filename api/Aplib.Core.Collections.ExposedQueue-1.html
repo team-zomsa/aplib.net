@@ -1,0 +1,912 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ExposedQueue&lt;T&gt; | Aplib.Net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ExposedQueue&lt;T&gt; | Aplib.Net ">
+      
+      <meta name="description" content="A queue with all elements exposed. Functionally works like a queue with indexing. It has a MaxCount and Count. MaxCount being the maximal length of the queue, and Count being the actual number of elements in the queue.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Collections_ExposedQueue_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Collections.ExposedQueue%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Aplib.Net">
+            Aplib.Net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Aplib.Core.Collections.ExposedQueue`1">
+
+
+
+  <h1 id="Aplib_Core_Collections_ExposedQueue_1" data-uid="Aplib.Core.Collections.ExposedQueue`1" class="text-break">
+Class ExposedQueue&lt;T&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Collections.html">Collections</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A queue with all elements exposed.
+Functionally works like a queue with indexing.
+It has a MaxCount and Count. MaxCount being the maximal length of the queue,
+and Count being the actual number of elements in the queue.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ExposedQueue&lt;T&gt; : ICollection&lt;T&gt;, IEnumerable&lt;T&gt;, IEnumerable</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ExposedQueue&lt;T&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="Aplib_Core_Collections_ExposedQueue_1_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>When adding an element to a full queue, all other elements are shifted one place like so:
+[4, 3, 2, 1], Put(5) =&gt; [5, 4, 3, 2]</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1__ctor_" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1__ctor_System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor(System.Int32)">
+  ExposedQueue(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new empty instance of the <a class="xref" href="Aplib.Core.Collections.ExposedQueue-1.html">ExposedQueue&lt;T&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExposedQueue(int size)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>size</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The maximum size of the queue.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1__ctor_" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1__ctor__0___" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor(`0[])">
+  ExposedQueue(T[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Collections.ExposedQueue-1.html">ExposedQueue&lt;T&gt;</a> class
+with an array to use as basis for the queue.
+By default, assumes the array is filled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExposedQueue(T[] array)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>array</code> T[]</dt>
+    <dd><p>An array to use as the circular array.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="Aplib_Core_Collections_ExposedQueue_1__ctor__0____remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The MaxCount of the queue will be set to the length of the array.
+If the array is not fully filled, the Count should be specified.</p>
+</div>
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1__ctor_" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1__ctor__0___System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.#ctor(`0[],System.Int32)">
+  ExposedQueue(T[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L58"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Collections.ExposedQueue-1.html">ExposedQueue&lt;T&gt;</a> class
+with an array to use as basis for the queue.
+By default, assumes the array is filled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ExposedQueue(T[] array, int count)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>array</code> T[]</dt>
+    <dd><p>An array to use as the circular array.</p>
+</dd>
+    <dt><code>count</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of actual elements in the array.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="Aplib_Core_Collections_ExposedQueue_1__ctor__0___System_Int32__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The MaxCount of the queue will be set to the length of the array.
+If the array is not fully filled, the Count should be specified.</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Count_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Count*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Count" data-uid="Aplib.Core.Collections.ExposedQueue`1.Count">
+  Count
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Actual number of elements in the array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_IsReadOnly_" data-uid="Aplib.Core.Collections.ExposedQueue`1.IsReadOnly*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_IsReadOnly" data-uid="Aplib.Core.Collections.ExposedQueue`1.IsReadOnly">
+  IsReadOnly
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> is read-only; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Item_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Item*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Item_System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Item(System.Int32)">
+  this[int]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the element at the specified index. Throws an exception if the index is out of bounds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T this[int index] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The index of the element to get.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The element at the specified index.</p>
+</dd>
+  </dl>
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p>Thrown when the index is out of range.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_MaxCount_" data-uid="Aplib.Core.Collections.ExposedQueue`1.MaxCount*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_MaxCount" data-uid="Aplib.Core.Collections.ExposedQueue`1.MaxCount">
+  MaxCount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The length of the array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxCount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Add_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Add*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Add__0_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Add(`0)">
+  Add(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an item to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The object to add to the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> is read-only.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Clear_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Clear*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Clear" data-uid="Aplib.Core.Collections.ExposedQueue`1.Clear">
+  Clear()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L177"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes all items from the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></dt>
+    <dd><p>The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> is read-only.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Contains_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Contains*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Contains__0_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Contains(`0)">
+  Contains(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L186"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines whether the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> contains a specific value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The object to locate in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">item</code> is found in the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_CopyTo_" data-uid="Aplib.Core.Collections.ExposedQueue`1.CopyTo*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_CopyTo__0___System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.CopyTo(`0[],System.Int32)">
+  CopyTo(T[], int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the elements of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> to an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a>, starting at a particular <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(T[] array, int arrayIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>array</code> T[]</dt>
+    <dd><p>The one-dimensional <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> that is the destination of the elements copied from <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a>. The <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.array">Array</a> must have zero-based indexing.</p>
+</dd>
+    <dt><code>arrayIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The zero-based index in <code class="paramref">array</code> at which copying begins.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p><code class="paramref">array</code> is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/keywords/null">null</a>.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></dt>
+    <dd><p><code class="paramref">arrayIndex</code> is less than 0.</p>
+</dd>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>The number of elements in the source <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection&lt;T&gt;</a> is greater than the available space from <code class="paramref">arrayIndex</code> to the end of the destination <code class="paramref">array</code>.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_CopyTo_" data-uid="Aplib.Core.Collections.ExposedQueue`1.CopyTo*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_CopyTo__0___System_Int32_System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.CopyTo(`0[],System.Int32,System.Int32)">
+  CopyTo(T[], int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L137"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Copies the ExposedQueue to an array.
+The head should be the last element of the array.
+Copies from start to end inclusive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(T[] array, int arrayIndex, int endIndex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>array</code> T[]</dt>
+    <dd><p>The array to copy to.&quot;</p>
+</dd>
+    <dt><code>arrayIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The start index of the range to copy.</p>
+</dd>
+    <dt><code>endIndex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The end index of the range to copy.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_GetEnumerator_" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetEnumerator*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_GetEnumerator" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L218"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;T&gt;</dt>
+    <dd><p>An enumerator that can be used to iterate through the collection.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_GetFirst_" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetFirst*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_GetFirst" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetFirst">
+  GetFirst()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L126"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the first element of the queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetFirst()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The first element of the queue.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_GetLast_" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetLast*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_GetLast" data-uid="Aplib.Core.Collections.ExposedQueue`1.GetLast">
+  GetLast()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L120"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the element at the end of the queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T GetLast()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">T</span></dt>
+    <dd><p>The element at the end of the queue.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Put_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Put*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Put__0_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Put(`0)">
+  Put(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Puts an element at the start of the queue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Put(T value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <span class="xref">T</span></dt>
+    <dd><p>The element to add to the queue.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_Remove_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Remove*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_Remove__0_" data-uid="Aplib.Core.Collections.ExposedQueue`1.Remove(`0)">
+  Remove(T)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L203"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Removes the specified item from the queue and shifts remaining elements to the left.
+For example, given the queue [4, 3, 2, 1], if you call Remove(3), the resulting queue will be [4, 2, 1].</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(T item)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>item</code> <span class="xref">T</span></dt>
+    <dd><p>The item to remove.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if the item was successfully removed; otherwise, false.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="Aplib_Core_Collections_ExposedQueue_1_Remove__0__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The MaxCount will not change, but the Count will decrease by one.</p>
+</div>
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_ToArray_" data-uid="Aplib.Core.Collections.ExposedQueue`1.ToArray*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_ToArray" data-uid="Aplib.Core.Collections.ExposedQueue`1.ToArray">
+  ToArray()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L174"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the ExposedQueue to an array. Only returns the used slots.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T[] ToArray()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T[]</dt>
+    <dd><p>An array containing the elements within the specified range.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Collections_ExposedQueue_1_ToArray_" data-uid="Aplib.Core.Collections.ExposedQueue`1.ToArray*"></a>
+
+  <h3 id="Aplib_Core_Collections_ExposedQueue_1_ToArray_System_Int32_System_Int32_" data-uid="Aplib.Core.Collections.ExposedQueue`1.ToArray(System.Int32,System.Int32)">
+  ToArray(int, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Collections/ExposedQueue.cs/#L159"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Converts the ExposedQueue to an array.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T[] ToArray(int start, int end)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>start</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The start index of the range to convert.</p>
+</dd>
+    <dt><code>end</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The end index of the range to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt>T[]</dt>
+    <dd><p>An array containing the elements within the specified range.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

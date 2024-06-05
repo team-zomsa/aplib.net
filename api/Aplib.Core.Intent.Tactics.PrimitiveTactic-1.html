@@ -102,7 +102,7 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PrimitiveTactic&lt;TBeliefSet&gt; : Tactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class PrimitiveTactic&lt;TBeliefSet&gt; : Tactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt;, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -127,6 +127,7 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
 
@@ -135,10 +136,13 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
     <dt>Inherited Members</dt>
     <dd>
     <div>
+      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard">Tactic&lt;TBeliefSet&gt;._guard</a>
+    </div>
+    <div>
       <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_Metadata">Tactic&lt;TBeliefSet&gt;.Metadata</a>
     </div>
     <div>
-      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard">Tactic&lt;TBeliefSet&gt;._guard</a>
+      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_IsActionable__0_">Tactic&lt;TBeliefSet&gt;.IsActionable(TBeliefSet)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -174,26 +178,27 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
 
   <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__Aplib_Core_Metadata_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},Aplib.Core.Metadata)">
-  PrimitiveTactic(IAction&lt;TBeliefSet&gt;, Metadata?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction__0__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{`0})">
+  PrimitiveTactic(IMetadata, IAction&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IAction&lt;TBeliefSet&gt; action, Metadata? metadata = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IMetadata metadata, IAction&lt;TBeliefSet&gt; action)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
     <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The action of the primitive tactic.</p>
-</dd>
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
   </dl>
 
@@ -210,17 +215,169 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
 
   <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__System_Func__0_System_Boolean__Aplib_Core_Metadata_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},System.Func{`0,System.Boolean},Aplib.Core.Metadata)">
-  PrimitiveTactic(IAction&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;, Metadata?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction__0__System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{`0},System.Func{`0,System.Boolean})">
+  PrimitiveTactic(IMetadata, IAction&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L27"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action and guard.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IAction&lt;TBeliefSet&gt; action, Func&lt;TBeliefSet, bool&gt; guard, Metadata? metadata = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IMetadata metadata, IAction&lt;TBeliefSet&gt; action, Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable__0__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{`0})">
+  PrimitiveTactic(IMetadata, IQueryable&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L70"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; queryAction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable__0__System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{`0},System.Func{`0,System.Boolean})">
+  PrimitiveTactic(IMetadata, IQueryable&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; queryAction, Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0})">
+  PrimitiveTactic(IAction&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IAction&lt;TBeliefSet&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The action of the primitive tactic.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IAction__0__System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IAction{`0},System.Func{`0,System.Boolean})">
+  PrimitiveTactic(IAction&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IAction&lt;TBeliefSet&gt; action, Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -231,8 +388,76 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
     <dd><p>The guard of the primitive tactic.</p>
 </dd>
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IQueryable__0__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IQueryable{`0})">
+  PrimitiveTactic(IQueryable&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IQueryable&lt;TBeliefSet&gt; queryAction)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1__ctor_Aplib_Core_Intent_Actions_IQueryable__0__System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.#ctor(Aplib.Core.Intent.Actions.IQueryable{`0},System.Func{`0,System.Boolean})">
+  PrimitiveTactic(IQueryable&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
+and guard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PrimitiveTactic(IQueryable&lt;TBeliefSet&gt; queryAction, Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard of the primitive tactic.</p>
 </dd>
   </dl>
 
@@ -290,7 +515,7 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
 
   <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1_GetAction__0_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.GetAction(`0)">
   GetAction(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L83"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the first enabled action of the tactic.</p>
@@ -311,44 +536,6 @@ Class PrimitiveTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary"
   <dl class="parameters">
     <dt><a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>A concrete <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction&lt;TBeliefSet&gt;</a> that the tactic can perform, or null if no actions are enabled.</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1_IsActionable_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable*"></a>
-
-  <h3 id="Aplib_Core_Intent_Tactics_PrimitiveTactic_1_IsActionable__0_" data-uid="Aplib.Core.Intent.Tactics.PrimitiveTactic`1.IsActionable(`0)">
-  IsActionable(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/PrimitiveTactic.cs/#L43"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Determines whether the tactic is actionable.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool IsActionable(TBeliefSet beliefSet)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd><p>True if the tactic is actionable, false otherwise.</p>
 </dd>
   </dl>
 

@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace Aplib.Core | Aplib.Net </title>
+      <title>Namespace Aplib.Core.Belief.BeliefSets | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Namespace Aplib.Core | Aplib.Net ">
+      <meta name="title" content="Namespace Aplib.Core.Belief.BeliefSets | Aplib.Net ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -84,9 +84,9 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core">
+        <article data-uid="Aplib.Core.Belief.BeliefSets">
 
-  <h1 id="Aplib_Core" data-uid="Aplib.Core" class="text-break">Namespace Aplib.Core</h1>
+  <h1 id="Aplib_Core_Belief_BeliefSets" data-uid="Aplib.Core.Belief.BeliefSets" class="text-break">Namespace Aplib.Core.Belief.BeliefSets</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
@@ -95,45 +95,18 @@
 Classes
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.Combinators.html">Combinators</a></dt>
-      <dd><p>Convenience class containing static methods for creating goal structures and tactics.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.LiftingExtensionMethods.html">LiftingExtensionMethods</a></dt>
-      <dd><p>Contains extension methods for lifting BDI cycle components into higher-order components.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-      <dd><p>Data structure to store information about a component which may be useful for debugging or logging.</p>
+      <dt><a class="xref" href="Aplib.Core.Belief.BeliefSets.BeliefSet.html">BeliefSet</a></dt>
+      <dd><p>The <a class="xref" href="Aplib.Core.Belief.BeliefSets.BeliefSet.html">BeliefSet</a> class can be inherited to define a set of beliefs for an agent.
+All <i>public fields</i> of type <a class="xref" href="Aplib.Core.Belief.Beliefs.IBelief.html">IBelief</a> that are defined in the inheriting class
+are automatically updated when calling <a class="xref" href="Aplib.Core.Belief.BeliefSets.BeliefSet.html#Aplib_Core_Belief_BeliefSets_BeliefSet_UpdateBeliefs">UpdateBeliefs()</a>.</p>
 </dd>
     </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></dt>
-      <dd><p>Defines an object that can be completed.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></dt>
-      <dd><p>Represents an object that contains general information on an instance, such as <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a>.</p>
-</dd>
-    </dl>
-    <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
-      <dd><p>A collection of generic metadata for unique instances which should help
-visualise the instance with human-readable information.</p>
-</dd>
-    </dl>
-    <h3 id="enums">
-Enums
-</h3>
-    <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.CompletionStatus.html">CompletionStatus</a></dt>
-      <dd><p>Represents the state of a completable object.</p>
+      <dt><a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a></dt>
+      <dd><p>A belief set defines beliefs for an agent.</p>
 </dd>
     </dl>
 

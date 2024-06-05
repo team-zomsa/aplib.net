@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Interface IGoalStructure&lt;TBeliefSet&gt; | Aplib.Net </title>
+      <title>Interface IDesireSet&lt;TBeliefSet&gt; | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface IGoalStructure&lt;TBeliefSet&gt; | Aplib.Net ">
+      <meta name="title" content="Interface IDesireSet&lt;TBeliefSet&gt; | Aplib.Net ">
       
-      <meta name="description" content="Represents a goal structure.">
+      <meta name="description" content="Represents a set of goals that the agent has. This is the main structure that the agent will use to determine what it should do next.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_IGoalStructure_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.IGoalStructure%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_DesireSets_IDesireSet_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.DesireSets.IDesireSet%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,25 +84,26 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Desire.IGoalStructure`1">
+        <article data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1">
 
 
 
-  <h1 id="Aplib_Core_Desire_IGoalStructure_1" data-uid="Aplib.Core.Desire.IGoalStructure`1" class="text-break">
-Interface IGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IGoalStructure.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Desire_DesireSets_IDesireSet_1" data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1" class="text-break">
+Interface IDesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/IDesireSet.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a>.<a class="xref" href="Aplib.Core.Desire.DesireSets.html">DesireSets</a></dd></dl>
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Represents a goal structure.</p>
+  <div class="markdown summary"><p>Represents a set of goals that the agent has.
+This is the main structure that the agent will use to determine what it should do next.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface IGoalStructure&lt;in TBeliefSet&gt; : ICompletable where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public interface IDesireSet&lt;in TBeliefSet&gt; : ICompletable where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -110,8 +111,7 @@ Interface IGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-seconda
   <h4 class="section">Type Parameters</h4>
   <dl class="parameters">
     <dt><code>TBeliefSet</code></dt>
-    <dd><p>The belief set of the agent.</p>
-</dd>
+    <dd></dd>
   </dl>
 
 
@@ -128,23 +128,20 @@ Interface IGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-seconda
 
 
 
-  <h2 id="Aplib_Core_Desire_IGoalStructure_1_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>A goal structure is a structure of predicates that must be fulfilled in order to complete a test.</p>
-</div>
 
 
   <h2 class="section" id="methods">Methods
 </h2>
 
 
-  <a id="Aplib_Core_Desire_IGoalStructure_1_GetCurrentGoal_" data-uid="Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal*"></a>
+  <a id="Aplib_Core_Desire_DesireSets_IDesireSet_1_GetCurrentGoal_" data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1.GetCurrentGoal*"></a>
 
-  <h3 id="Aplib_Core_Desire_IGoalStructure_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.IGoalStructure`1.GetCurrentGoal(`0)">
+  <h3 id="Aplib_Core_Desire_DesireSets_IDesireSet_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1.GetCurrentGoal(`0)">
   GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IGoalStructure.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/IDesireSet.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.IBeliefSet.html">IBeliefSet</a>.</p>
+  <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -176,19 +173,19 @@ Interface IGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-seconda
 
 
 
-  <a id="Aplib_Core_Desire_IGoalStructure_1_UpdateStatus_" data-uid="Aplib.Core.Desire.IGoalStructure`1.UpdateStatus*"></a>
+  <a id="Aplib_Core_Desire_DesireSets_IDesireSet_1_Update_" data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1.Update*"></a>
 
-  <h3 id="Aplib_Core_Desire_IGoalStructure_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.IGoalStructure`1.UpdateStatus(`0)">
-  UpdateStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/IGoalStructure.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_DesireSets_IDesireSet_1_Update__0_" data-uid="Aplib.Core.Desire.DesireSets.IDesireSet`1.Update(`0)">
+  Update(TBeliefSet)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/IDesireSet.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Updates the state of the goal structure.</p>
+  <div class="markdown level1 summary"><p>Updates the status of this <a class="xref" href="Aplib.Core.Desire.DesireSets.IDesireSet-1.html">IDesireSet&lt;TBeliefSet&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void UpdateStatus(TBeliefSet beliefSet)</code></pre>
+    <pre><code class="lang-csharp hljs">void Update(TBeliefSet beliefSet)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

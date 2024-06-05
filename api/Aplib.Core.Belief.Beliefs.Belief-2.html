@@ -1,0 +1,665 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Belief&lt;TReference, TObservation&gt; | Aplib.Net </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Belief&lt;TReference, TObservation&gt; | Aplib.Net ">
+      
+      <meta name="description" content="The  class represents the agent&#39;s belief of a single object. Some object reference is used to generate/update an observation (i.e., some piece of information of the game state as perceived by an agent).">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Belief_Beliefs_Belief_2.md&amp;value=---%0Auid%3A%20Aplib.Core.Belief.Beliefs.Belief%602%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Aplib.Net">
+            Aplib.Net
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Aplib.Core.Belief.Beliefs.Belief`2">
+
+
+
+  <h1 id="Aplib_Core_Belief_Beliefs_Belief_2" data-uid="Aplib.Core.Belief.Beliefs.Belief`2" class="text-break">
+Class Belief&lt;TReference, TObservation&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Belief.html">Belief</a>.<a class="xref" href="Aplib.Core.Belief.Beliefs.html">Beliefs</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class represents the agent's belief of a single object.
+Some <i>object reference</i> is used to generate/update an <i>observation</i>
+(i.e., some piece of information of the game state as perceived by an agent).</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Belief&lt;TReference, TObservation&gt; : IBelief where TReference : class</code></pre>
+  </div>
+
+
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TReference</code></dt>
+    <dd><p>The type of the object reference used to generate/update the observation. This <i>must</i> be a reference type,
+be aware that this is not enforced by C# if <code class="typeparamref">TReference</code> is an interface.</p>
+</dd>
+    <dt><code>TObservation</code></dt>
+    <dd><p>The type of the observation that the belief represents.</p>
+</dd>
+  </dl>
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Belief&lt;TReference, TObservation&gt;</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Aplib.Core.Belief.Beliefs.IBelief.html">IBelief</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="Aplib.Core.Belief.Beliefs.ListBelief-2.html">ListBelief&lt;TReference, TObservation&gt;</a></div>
+      <div><a class="xref" href="Aplib.Core.Belief.Beliefs.MemoryBelief-2.html">MemoryBelief&lt;TReference, TObservation&gt;</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="Aplib_Core_Belief_Beliefs_Belief_2_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>It supports implicit conversion to <code class="typeparamref">TObservation</code>.</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1})">
+  Belief(Metadata, TReference, Func&lt;TReference, TObservation&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
+reference, a function to generate/update the observation using the object reference,
+and a condition on when the observation should be updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Belief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
+    <dd><p>Metadata about this Belief, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>reference</code> <span class="xref">TReference</span></dt>
+    <dd><p>The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
+that this is not enforced by C# if <code class="typeparamref">TReference</code> is an interface.</p>
+</dd>
+    <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
+    <dd><p>A function that takes an object reference and generates/updates an observation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">reference</code> is not a reference type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Func{System.Boolean})">
+  Belief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, Func&lt;bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
+reference, a function to generate/update the observation using the object reference,
+and a condition on when the observation should be updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Belief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Func&lt;bool&gt; shouldUpdate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
+    <dd><p>Metadata about this Belief, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>reference</code> <span class="xref">TReference</span></dt>
+    <dd><p>The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
+that this is not enforced by C# if <code class="typeparamref">TReference</code> is an interface.</p>
+</dd>
+    <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
+    <dd><p>A function that takes an object reference and generates/updates an observation.</p>
+</dd>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>A condition on when the observation should be updated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">reference</code> is not a reference type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor__0_System_Func__0__1__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(`0,System.Func{`0,`1})">
+  Belief(TReference, Func&lt;TReference, TObservation&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
+reference, a function to generate/update the observation using the object reference,
+and a condition on when the observation should be updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Belief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reference</code> <span class="xref">TReference</span></dt>
+    <dd><p>The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
+that this is not enforced by C# if <code class="typeparamref">TReference</code> is an interface.</p>
+</dd>
+    <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
+    <dd><p>A function that takes an object reference and generates/updates an observation.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">reference</code> is not a reference type.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor__0_System_Func__0__1__System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(`0,System.Func{`0,`1},System.Func{System.Boolean})">
+  Belief(TReference, Func&lt;TReference, TObservation&gt;, Func&lt;bool&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
+reference, a function to generate/update the observation using the object reference,
+and a condition on when the observation should be updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Belief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Func&lt;bool&gt; shouldUpdate)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reference</code> <span class="xref">TReference</span></dt>
+    <dd><p>The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
+that this is not enforced by C# if <code class="typeparamref">TReference</code> is an interface.</p>
+</dd>
+    <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
+    <dd><p>A function that takes an object reference and generates/updates an observation.</p>
+</dd>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>A condition on when the observation should be updated.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></dt>
+    <dd><p>Thrown when <code class="paramref">reference</code> is not a reference type.</p>
+</dd>
+  </dl>
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__getObservationFromReference" data-uid="Aplib.Core.Belief.Beliefs.Belief`2._getObservationFromReference">
+  _getObservationFromReference
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A function that takes an object reference and generates/updates an observation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;TReference, TObservation&gt; _getObservationFromReference</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__reference" data-uid="Aplib.Core.Belief.Beliefs.Belief`2._reference">
+  _reference
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The object reference used to generate/update the observation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly TReference _reference</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TReference</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__shouldUpdate" data-uid="Aplib.Core.Belief.Beliefs.Belief`2._shouldUpdate">
+  _shouldUpdate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A condition on when the observation should be updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected readonly Func&lt;bool&gt; _shouldUpdate</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2_Metadata_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Metadata*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_Metadata" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Metadata">
+  Metadata
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the metadata of the Belief.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Metadata Metadata { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2_Observation_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Observation*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_Observation" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Observation">
+  Observation
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TObservation Observation { get; protected set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TObservation</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateBelief_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateBelief*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateBelief" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateBelief">
+  UpdateBelief()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates/updates the observation if the shouldUpdate condition is satisfied.
+The observation is then updated by calling the getObservationFromReference function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void UpdateBelief()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateObservation_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateObservation*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateObservation" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateObservation">
+  UpdateObservation()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates/updates the observation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateObservation()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="Aplib_Core_Belief_Beliefs_Belief_2_op_Implicit_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.op_Implicit*"></a>
+
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_op_Implicit_Aplib_Core_Belief_Beliefs_Belief__0__1____1" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.op_Implicit(Aplib.Core.Belief.Beliefs.Belief{`0,`1})~`1">
+  implicit operator TObservation(Belief&lt;TReference, TObservation&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Implicit conversion operator to allow a <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> object
+to be used where a <code class="typeparamref">TObservation</code> is expected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator TObservation(Belief&lt;TReference, TObservation&gt; belief)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>belief</code> <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief</a>&lt;TReference, TObservation&gt;</dt>
+    <dd><p>The <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> object to convert.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TObservation</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

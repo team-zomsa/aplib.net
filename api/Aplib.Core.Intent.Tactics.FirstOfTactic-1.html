@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1" class="text-break">
-Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FirstOfTactic&lt;TBeliefSet&gt; : AnyOfTactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class FirstOfTactic&lt;TBeliefSet&gt; : AnyOfTactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt;, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -127,6 +127,7 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
 
@@ -138,10 +139,10 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
       <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html#Aplib_Core_Intent_Tactics_AnyOfTactic_1__subTactics">AnyOfTactic&lt;TBeliefSet&gt;._subTactics</a>
     </div>
     <div>
-      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_Metadata">Tactic&lt;TBeliefSet&gt;.Metadata</a>
+      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard">Tactic&lt;TBeliefSet&gt;._guard</a>
     </div>
     <div>
-      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1__guard">Tactic&lt;TBeliefSet&gt;._guard</a>
+      <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_Metadata">Tactic&lt;TBeliefSet&gt;.Metadata</a>
     </div>
     <div>
       <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html#Aplib_Core_Intent_Tactics_Tactic_1_IsActionable__0_">Tactic&lt;TBeliefSet&gt;.IsActionable(TBeliefSet)</a>
@@ -180,26 +181,27 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
 
   <a id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_Tactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])">
-  FirstOfTactic(Metadata?, params Tactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  FirstOfTactic(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FirstOfTactic(Metadata? metadata = null, params Tactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public FirstOfTactic(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd><p>The list of sub-tactics.</p>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
 
@@ -216,17 +218,92 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
 
   <a id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Metadata_Aplib_Core_Intent_Tactics_Tactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Metadata,Aplib.Core.Intent.Tactics.Tactic{`0}[])">
-  FirstOfTactic(Func&lt;TBeliefSet, bool&gt;, Metadata?, params Tactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_Aplib_Core_IMetadata_System_Func__0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.IMetadata,System.Func{`0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  FirstOfTactic(IMetadata, Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics and guard condition.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public FirstOfTactic(Func&lt;TBeliefSet, bool&gt; guard, Metadata? metadata = null, params Tactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public FirstOfTactic(IMetadata metadata, Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
+</dd>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd><p>The guard condition.</p>
+</dd>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  FirstOfTactic(params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FirstOfTactic(params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  FirstOfTactic(Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
+sub-tactics and guard condition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FirstOfTactic(Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -234,11 +311,8 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.Metadata.html">Metadata</a></dt>
-    <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
-</dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd><p>The list of sub-tactics.</p>
+    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
 
@@ -261,7 +335,7 @@ Class FirstOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" t
 
   <h3 id="Aplib_Core_Intent_Tactics_FirstOfTactic_1_GetAction__0_" data-uid="Aplib.Core.Intent.Tactics.FirstOfTactic`1.GetAction(`0)">
   GetAction(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/FirstOfTactic.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the first enabled action of the tactic.</p>

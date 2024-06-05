@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_SequentialGoalStructure_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.SequentialGoalStructure%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.GoalStructures.SequentialGoalStructure%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,16 +84,16 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Desire.SequentialGoalStructure`1">
+        <article data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1">
 
 
 
-  <h1 id="Aplib_Core_Desire_SequentialGoalStructure_1" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1" class="text-break">
-Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1" class="text-break">
+Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a>.<a class="xref" href="Aplib.Core.Desire.GoalStructures.html">GoalStructures</a></dd></dl>
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
@@ -102,7 +102,7 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SequentialGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, IDisposable where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class SequentialGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, IDocumented, IDisposable where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -118,7 +118,7 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="Aplib.Core.Desire.GoalStructure-1.html">GoalStructure</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html">GoalStructure</a>&lt;TBeliefSet&gt;</div>
       <div><span class="xref">SequentialGoalStructure&lt;TBeliefSet&gt;</span></div>
     </dd>
   </dl>
@@ -126,8 +126,9 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="Aplib.Core.Desire.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></div>
+      <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
@@ -137,13 +138,16 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1_Status">GoalStructure&lt;TBeliefSet&gt;.Status</a>
+      <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1_Metadata">GoalStructure&lt;TBeliefSet&gt;.Metadata</a>
     </div>
     <div>
-      <a class="xref" href="Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__children">GoalStructure&lt;TBeliefSet&gt;._children</a>
+      <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1__children">GoalStructure&lt;TBeliefSet&gt;._children</a>
     </div>
     <div>
-      <a class="xref" href="Aplib.Core.Desire.GoalStructure-1.html#Aplib_Core_Desire_GoalStructure_1__currentGoalStructure">GoalStructure&lt;TBeliefSet&gt;._currentGoalStructure</a>
+      <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1_Status">GoalStructure&lt;TBeliefSet&gt;.Status</a>
+    </div>
+    <div>
+      <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1__currentGoalStructure">GoalStructure&lt;TBeliefSet&gt;._currentGoalStructure</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -168,10 +172,20 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
     </div>
   </dd></dl>
 
+  <dl class="typelist extensionMethods">
+    <dt>Extension Methods</dt>
+    <dd>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Desire_GoalStructures_IGoalStructure___0__">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IGoalStructure&lt;TBeliefSet&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Aplib.Core.LiftingExtensionMethods.html#Aplib_Core_LiftingExtensionMethods_Lift__1_Aplib_Core_Desire_GoalStructures_IGoalStructure___0__Aplib_Core_IMetadata_">LiftingExtensionMethods.Lift&lt;TBeliefSet&gt;(IGoalStructure&lt;TBeliefSet&gt;, IMetadata)</a>
+  </div>
+  </dd></dl>
 
 
 
-  <h2 id="Aplib_Core_Desire_SequentialGoalStructure_1_remarks">Remarks</h2>
+  <h2 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_remarks">Remarks</h2>
   <div class="markdown level0 remarks"><p>This class is a specific type of goal structure where goals are processed sequentially.
 All goals must be completed in order for the goal structure to be completed.</p>
 </div>
@@ -181,14 +195,14 @@ All goals must be completed in order for the goal structure to be completed.</p>
 </h2>
 
 
-  <a id="Aplib_Core_Desire_SequentialGoalStructure_1__ctor_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.#ctor*"></a>
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_SequentialGoalStructure_1__ctor_Aplib_Core_Desire_IGoalStructure__0____" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.#ctor(Aplib.Core.Desire.IGoalStructure{`0}[])">
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_Aplib_Core_Desire_GoalStructures_IGoalStructure__0____" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor(Aplib.Core.Desire.GoalStructures.IGoalStructure{`0}[])">
   SequentialGoalStructure(params IGoalStructure&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L43"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -198,7 +212,43 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The children of the goal structure.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure__0____" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{`0}[])">
+  SequentialGoalStructure(IMetadata, params IGoalStructure&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SequentialGoalStructure(IMetadata metadata, params IGoalStructure&lt;TBeliefSet&gt;[] children)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
+    <dd><p>Metadata about this GoalStructure, used to quickly display the goal in several contexts.</p>
+</dd>
+    <dt><code>children</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;[]</dt>
     <dd><p>The children of the goal structure.</p>
 </dd>
   </dl>
@@ -218,11 +268,11 @@ All goals must be completed in order for the goal structure to be completed.</p>
 </h2>
 
 
-  <a id="Aplib_Core_Desire_SequentialGoalStructure_1_Dispose_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.Dispose*"></a>
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose*"></a>
 
-  <h3 id="Aplib_Core_Desire_SequentialGoalStructure_1_Dispose" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.Dispose">
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -245,11 +295,11 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
 
 
-  <a id="Aplib_Core_Desire_SequentialGoalStructure_1_Dispose_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.Dispose*"></a>
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose*"></a>
 
-  <h3 id="Aplib_Core_Desire_SequentialGoalStructure_1_Dispose_System_Boolean_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.Dispose(System.Boolean)">
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose_System_Boolean_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L87"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L99"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Disposes the enumerator.</p>
@@ -278,14 +328,14 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
 
 
-  <a id="Aplib_Core_Desire_SequentialGoalStructure_1_GetCurrentGoal_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal*"></a>
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_GetCurrentGoal_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.GetCurrentGoal*"></a>
 
-  <h3 id="Aplib_Core_Desire_SequentialGoalStructure_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.GetCurrentGoal(`0)">
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.GetCurrentGoal(`0)">
   GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.IBeliefSet.html">IBeliefSet</a>.</p>
+  <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -317,11 +367,11 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
 
 
-  <a id="Aplib_Core_Desire_SequentialGoalStructure_1_UpdateStatus_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus*"></a>
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_UpdateStatus_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.UpdateStatus*"></a>
 
-  <h3 id="Aplib_Core_Desire_SequentialGoalStructure_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.SequentialGoalStructure`1.UpdateStatus(`0)">
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.UpdateStatus(`0)">
   UpdateStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/SequentialGoalStructure.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L52"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Updates the state of the goal structure.</p>
