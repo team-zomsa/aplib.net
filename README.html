@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Aplib.Net | Aplib.Net </title>
+      <title> | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Aplib.Net | Aplib.Net ">
+      <meta name="title" content=" | Aplib.Net ">
       
       
       <link rel="icon" href="favicon.ico">
@@ -71,8 +71,9 @@
         </div>
 
         <article data-uid="">
-<h1 id="aplibnet">Aplib.Net</h1>
 
+<p><img src="https://github.com/team-zomsa/aplib.net/assets/74355598/de17ee39-d659-444f-8952-e3f564cac52e" alt="aplib_logo_2"></p>
+<hr>
 <p><a href="https://www.nuget.org/packages/Aplib.Core/"><img src="https://img.shields.io/nuget/v/Aplib.Core" alt="NuGet Version"></a>
 <a href="https://github.com/team-zomsa/aplib.net/releases"><img src="https://img.shields.io/github/v/release/team-zomsa/aplib.net?label=GitHub%20Release" alt="GitHub Release"></a>
 <a href="https://github.com/team-zomsa/aplib.net/issues"><img src="https://img.shields.io/github/issues/team-zomsa/aplib.net" alt="GitHub Issues or Pull Requests"></a>
@@ -86,32 +87,51 @@
 <a href="https://sonarcloud.io/project/overview?id=team-zomsa_aplib.net"><img src="https://sonarcloud.io/api/project_badges/measure?project=team-zomsa_aplib.net&amp;metric=security_rating" alt="Security Rating"></a>
 <a href="https://sonarcloud.io/project/overview?id=team-zomsa_aplib.net"><img src="https://sonarcloud.io/api/project_badges/measure?project=team-zomsa_aplib.net&amp;metric=sqale_index" alt="Technical Debt"></a>
 <a href="https://sonarcloud.io/project/overview?id=team-zomsa_aplib.net"><img src="https://sonarcloud.io/api/project_badges/measure?project=team-zomsa_aplib.net&amp;metric=vulnerabilities" alt="Vulnerabilities"></a></p>
-<h2 id="overview">Overview</h2>
-<p>Aplib.Net is a C# re-implementation of the Agent Programming LIBrary (Aplib) for Java.
-The Java implementation of Aplib can be found <a href="https://github.com/iv4xr-project/aplib">here</a> and is licensed to Utrecht University, created under the <a href="https://iv4xr-project.eu/">iv4XR project</a>.</p>
-<p>Aplib.Net provides a set of tools for creating automatic playtesting agents for games. It is designed in such a way that it can be used in any game that uses the C# language. Additionally, we provide support for the <a href="https://unity.com/">Unity game engine</a>, due to its large user base.</p>
-<p>A demo game, showcasing the functionality of the library, can be found in <a href="https://github.com/team-zomsa/aplib.net-demo">this repository</a>.</p>
-<h2 id="installation">Installation</h2>
-<p>Aplib.Net is available as a NuGet package or as a simple DLL file, that can then be added as a reference.</p>
-<p>Both are available in the <a href="https://github.com/team-zomsa/aplib.net/releases">GitHub Release</a>.</p>
+<p>Aplib is a C# library that allows you to create automated playtests for your games with ease. Automated playtests will streamline your game development process and allow you to focus on the aspects of your game that matter. Whether you're new to automated testing, or a software testing veteran, we've got you covered.</p>
+<p>Aplib offers a robust framework for programming automated playtesting agents, based on the <em><strong>Belief-Desire-Intention (BDI)</strong></em> model. Don't worry about the jargon; it's easier than it sounds!</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>We offer additional support for Unity! Check out <a href="https://github.com/team-zomsa/Aplib-Unity-Package">our Unity Package</a>!</p>
+</div>
+<h2 id="why-should-you-automate-your-playtests">Why should <em>you</em> automate your playtests?</h2>
+<p>Game developers — indie and non-indie — rely on manual playtesting to identify bugs, find design flaws, and improve player experience. Manual playtesting proves to be incredibly useful in game development, but it poses a few problems. Game developers report that manual playtesting is time-consuming, find it difficult to recruit playtesters, and are inhibited by the effort required to create a testable build of their game. Additionally, discovered bugs are hard to track down and debug due to the inconsistent nature of manual playtesting. ''So why don't developers automate their playtests? That would solve all of these issues, right?'' Right! By automating your playtests, you get more consistent playtests with less effort, and reduce your dependency on human playtesters. You can even integrate your automated playtests into your CI/CD pipeline!</p>
+<h2 id="lets-get-started">Let's get started!</h2>
+<h3 id="installation">Installation</h3>
+<p>Aplib is available as a NuGet package, and as a simple DLL file that can then be added as a reference.
+Both can be found on our <a href="https://github.com/team-zomsa/aplib.net/releases">GitHub Releases</a> page. If you're using Unity, you can install aplib as a Unity Package. The Unity Package and detailed installation instructions can be found <a href="https://github.com/team-zomsa/Aplib-Unity-Package">here</a>.</p>
+<div class="TIP">
+<h5>Tip</h5>
 <p>An easier way of installing is also provided using the NuGet Gallery at NuGet.org, which can be found <a href="https://www.nuget.org/packages/Aplib.Core/">here</a>.</p>
-<h3 id="unity-installation">Unity Installation</h3>
-<p>Unity installation is a bit tricky, but can be done in two ways. The first, and easier way is to install the <a href="https://github.com/GlitchEnzo/NuGetForUnity">NuGet plugin</a> and import it via NuGet.</p>
-<p>For a manual installation, a few steps must be taken. As Unity does not support external libraries in .NET Standard API, the API Compatibility level must be set to <code>.NET Framework</code> in Project Settings &gt; Player &gt; Configuration &gt; Api Compatibility Level.</p>
-<p>Download the latest DLL from the <a href="https://github.com/team-zomsa/aplib.net/releases">GitHub Release</a> and place it in Assets/Plugins. In the root of your project, add a new file called <code>csc.rsp</code> and add the following line:</p>
-<pre><code>-r:Assets/Plugins/Aplib.Core.dll
-</code></pre>
-<h2 id="analysis">Analysis</h2>
-<p>We provide analysis metrics using SonarCloud, which can be found <a href="https://sonarcloud.io/dashboard?id=team-zomsa_aplib.net">here</a>.</p>
-<p>It provides information on metrics such as the code coverage, code smells and technical debt.</p>
-<h2 id="documentation">Documentation</h2>
-<p>Documentation is automatically generated using Docfx and can be found <a href="https://team-zomsa.github.io/aplib.net/">here</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<p>A quick start guide can be found in the <a href="https://github.com/team-zomsa/aplib.net/wiki/Quick-Start-Guide">GitHub Wiki</a>.</p>
-<h2 id="contributing">Contributing</h2>
-<p>The contribution guidelines can be found <a href="https://github.com/team-zomsa/aplib.net/blob/main/CONTRIBUTING.md">here</a>.</p>
-<h2 id="license">License</h2>
-<p>The project is provided under the BSD 3 License, which can be found <a href="https://github.com/team-zomsa/aplib.net/blob/main/LICENSE">here</a>.</p>
+</div>
+<h3 id="quickstart-guide">Quickstart Guide</h3>
+<p>Check out our <a href="https://github.com/team-zomsa/aplib.net/wiki/Quick-Start-Guide">Quickstart Guide</a> for using aplib in your Unity project!</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Our Quickstart Guide for using aplib in Unity is also useful for learning aplib in general!</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>You can see aplib in action in our demo project. You can find the demo project in <a href="https://github.com/team-zomsa/aplib.net-demo">this repository</a>.</p>
+</div>
+<h2 id="these-might-be-useful">These might be useful...</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong><em>Documentation</em></strong> is automatically generated using DocFX and can be found <a href="https://team-zomsa.github.io/aplib.net/">here</a>.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This project is open source! The <strong><em>contribution guidelines</em></strong> can be found <a href="https://github.com/team-zomsa/aplib.net/blob/main/CONTRIBUTING.md">here</a>.</p>
+</div>
+<div class="TIP">
+<h5>Tip</h5>
+<p>We provide <strong><em>code analysis metrics</em></strong> using SonarCloud, which can be found <a href="https://sonarcloud.io/dashboard?id=team-zomsa_aplib.net">here</a>.
+It provides information on metrics such as code coverage, code smells, and technical debt.</p>
+</div>
+<h2 id="licensing">Licensing</h2>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The project is provided under the <strong><em>BSD 3 License</em></strong>, which can be found <a href="https://github.com/team-zomsa/aplib.net/blob/main/LICENSE">here</a>.</p>
+</div>
 
 </article>
 
