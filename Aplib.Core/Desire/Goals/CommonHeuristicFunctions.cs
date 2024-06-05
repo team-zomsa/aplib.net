@@ -1,4 +1,4 @@
-using Aplib.Core.Belief;
+using Aplib.Core.Belief.BeliefSets;
 using System;
 
 namespace Aplib.Core.Desire.Goals
@@ -23,7 +23,8 @@ namespace Aplib.Core.Desire.Goals
         /// A <see cref="Goal{TBeliefSet}.HeuristicFunction"/> which always returns <see cref="Heuristics"/> with the same distance.
         /// </summary>
         /// <param name="distance">The distance which the heuristic function must always return.</param>
-        public static Goal<TBeliefSet>.HeuristicFunction Constant(float distance) => _ => new Heuristics { Distance = distance };
+        public static Goal<TBeliefSet>.HeuristicFunction Constant(float distance)
+            => _ => new Heuristics { Distance = distance };
 
         /// <summary>
         /// Returns a heuristic function which always, at all times, and forever, returns a value indicating the state

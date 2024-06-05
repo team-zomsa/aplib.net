@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -14,12 +14,5 @@ namespace Aplib.Core.Intent.Actions
         /// </summary>
         /// <param name="beliefSet">The belief set on which the action is executed.</param>
         void Execute(TBeliefSet beliefSet);
-
-        /// <summary>
-        /// Guard the action against unwanted execution. The result is stored and can be used in the effect.
-        /// </summary>
-        /// <param name="beliefSet">The belief set on which the action is executed.</param>
-        /// <returns>True if the action is actionable, false otherwise.</returns>
-        bool IsActionable(TBeliefSet beliefSet);
     }
 }

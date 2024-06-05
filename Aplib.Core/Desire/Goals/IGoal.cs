@@ -1,4 +1,4 @@
-﻿using Aplib.Core.Belief;
+﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Tactics;
 
 namespace Aplib.Core.Desire.Goals
@@ -14,7 +14,7 @@ namespace Aplib.Core.Desire.Goals
         /// The <see cref="Tactic{TBeliefSet}" /> used to achieve this <see cref="Goal{TBeliefSet}" />, which is executed during every
         /// iteration of the BDI cycle.
         /// </summary>
-        public ITactic<TBeliefSet> Tactic { get; }
+        ITactic<TBeliefSet> Tactic { get; }
 
         /// <summary>
         /// Gets the <see cref="Heuristics" /> of the current state of the game.

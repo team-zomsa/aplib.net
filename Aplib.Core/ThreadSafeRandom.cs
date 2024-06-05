@@ -8,7 +8,7 @@ namespace Aplib.Core
         private static Random? _local;
         private static readonly Random _global = new();
 
-        private static Random _instance
+        private static Random Instance
         {
             get
             {
@@ -27,8 +27,8 @@ namespace Aplib.Core
             }
         }
 
-        public static int Next() => _instance.Next();
+        public static int Next() => Instance.Next();
 
-        public static int Next(int maxValue) => _instance.Next(maxValue);
+        public static int Next(int maxValue) => Instance.Next(maxValue);
     }
 }
