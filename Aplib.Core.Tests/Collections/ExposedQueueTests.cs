@@ -199,6 +199,28 @@ public class ExposedQueueTests
     }
 
     [Fact]
+    public void ExposedQueue_WhenInitializedWithLongArrayAndMoreMaxCount_ShouldHaveCorrectMaxCountAndCount()
+    {
+        // Arrange
+        int[] array = [1, 2, 3, 4, 5, 6, 7];
+        const int proposedMaxCount = 3;
+        const int expectedCount = 3;
+
+        // Act
+        ExposedQueue<int> queue = new(array, proposedMaxCount);
+
+        // Assert
+        Assert.Equal(proposedMaxCount, queue.MaxCount);
+        Assert.Equal(expectedCount, queue.Count);
+
+        Assert.Collection(queue,
+            x => Assert.Equal(1, x),
+            x => Assert.Equal(2, x),
+            x => Assert.Equal(3, x)
+        );
+    }
+
+    [Fact]
     public void ExposedQueue_WhenInitializedWithNegativeCount_ShouldThrowException()
     {
         // Arrange

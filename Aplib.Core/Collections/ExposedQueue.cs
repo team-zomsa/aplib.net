@@ -56,13 +56,17 @@ namespace Aplib.Core.Collections
         /// The MaxCount of the queue will be set to the length of the array.
         /// If the array is not fully filled, the Count should be specified.
         /// </remarks>
-        public ExposedQueue(IEnumerable<T> array, int maxCount)
+        public ExposedQueue(T[] array, int maxCount)
         {
             if (maxCount < 0) throw new ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
 
             MaxCount = maxCount;
-            _array = array.Take(maxCount).ToArray();
-            Count = Math.Min(_array.Length, maxCount);
+            _array = new T[maxCount];
+
+            if (array.Length > maxCount) array = array[..maxCount];
+
+            array.CopyTo(_array, 0);
+            Count = array.Length;
             _head = Count - 1;
         }
 
