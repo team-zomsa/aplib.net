@@ -134,7 +134,8 @@ public class BeliefSetTests
         /// </summary>
         public bool Updated { get; private set; } = false;
 
-        public IMetadata Metadata { get; } = new Metadata();
+        /// <inheritdoc />
+        public IMetadata Metadata { get; } = new Metadata("SimpleBelief");
 
         /// <summary>
         /// Sets <see cref="Updated"/> to true.
