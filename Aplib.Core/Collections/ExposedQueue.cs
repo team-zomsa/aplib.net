@@ -70,7 +70,7 @@ namespace Aplib.Core.Collections
             _head = Count - 1;
         }
 
-        /// <inheritdoc cref="ExposedQueue{T}(IEnumerable{T},int)" />
+        /// <inheritdoc cref="ExposedQueue{T}(T[],int)" />
         public ExposedQueue(T[] array)
             : this(array, array.Length)
         {
