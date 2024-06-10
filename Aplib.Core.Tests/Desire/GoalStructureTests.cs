@@ -10,21 +10,6 @@ namespace Aplib.Core.Tests.Desire;
 public class GoalStructureTests
 {
     [Fact]
-    public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
-    {
-        // Arrange
-        Metadata metadata = new("My GoalStructure", "The best GoalStructure");
-        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
-
-        // Act
-        FirstOfGoalStructure<IBeliefSet> goalStructure = new(metadata, goalStructure1.Object);
-
-        // Assert
-        goalStructure.Metadata.Name.Should().Be("My GoalStructure");
-        goalStructure.Metadata.Description.Should().Be("The best GoalStructure");
-    }
-
-    [Fact]
     public void FirstOfGoalStructure_WhenAllGoalsFail_ShouldReturnFailure()
     {
         Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
@@ -173,6 +158,21 @@ public class GoalStructureTests
         currentGoal.Should().Be(goal);
     }
 
+    [Fact]
+    public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
+    {
+        // Arrange
+        Metadata metadata = new("My GoalStructure", "The best GoalStructure");
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+
+        // Act
+        FirstOfGoalStructure<IBeliefSet> goalStructure = new(metadata, goalStructure1.Object);
+
+        // Assert
+        goalStructure.Metadata.Name.Should().Be("My GoalStructure");
+        goalStructure.Metadata.Description.Should().Be("The best GoalStructure");
+    }
+
     [Theory]
     [InlineData(CompletionStatus.Success, CompletionStatus.Success)]
     [InlineData(CompletionStatus.Failure, CompletionStatus.Failure)]
@@ -265,6 +265,36 @@ public class GoalStructureTests
         // Assert
         repeatGoalStructure.Status.Should().Be(CompletionStatus.Success);
         currentGoal.Should().Be(goal.Object);
+    }
+
+    [Fact]
+    public void RepeatingGoalStructures_WhenSequenced_ShouldNotBeFinished()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
+
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+
+        Mock<IGoalStructure<IBeliefSet>> intermediaryGoalStructureMock = new();
+        intermediaryGoalStructureMock.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
+
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(primitiveGoalStructure, intermediaryGoalStructureMock.Object, primitiveGoalStructure);
+
+        // Act
+        sequentialGoalStructure.UpdateStatus(Mock.Of<IBeliefSet>());
+        intermediaryGoalStructureMock.Setup(g => g.Status).Returns(CompletionStatus.Success);
+        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
+        sequentialGoalStructure.UpdateStatus(Mock.Of<IBeliefSet>());
+
+        IGoal<IBeliefSet> currentGoal = sequentialGoalStructure.GetCurrentGoal(Mock.Of<IBeliefSet>());
+
+        // Assert
+        currentGoal.Should().Be(goal.Object);
+        intermediaryGoalStructureMock.Object.Status.Should().Be(CompletionStatus.Success);
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+        sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 
     [Fact]
