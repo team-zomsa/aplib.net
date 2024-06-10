@@ -61,12 +61,11 @@ namespace Aplib.Core.Collections
             if (maxCount < 0) throw new ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
 
             MaxCount = maxCount;
+            Count = Math.Min(array.Length, maxCount);
+
             _array = new T[maxCount];
+            Array.Copy(array, _array, Count);
 
-            if (array.Length > maxCount) array = array[..maxCount];
-
-            array.CopyTo(_array, 0);
-            Count = array.Length;
             _head = Count - 1;
         }
 
