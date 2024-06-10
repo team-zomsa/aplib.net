@@ -306,7 +306,7 @@ public class GoalStructureTests
     {
         Tactic<IBeliefSet> tactic = Mock.Of<Tactic<IBeliefSet>>();
         int[] values = { 1, 2, 3 };
-        Func<IBeliefSet, bool> condition = _ => values[0] == 1;
+        System.Func<IBeliefSet, bool> condition = _ => values[0] == 1;
         Goal<IBeliefSet> goal = new(tactic, condition);
 
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal);
