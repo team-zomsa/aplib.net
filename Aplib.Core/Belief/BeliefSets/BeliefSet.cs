@@ -8,7 +8,7 @@ namespace Aplib.Core.Belief.BeliefSets
     /// All <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class
     /// are automatically updated when calling <see cref="UpdateBeliefs"/>.
     /// </summary>
-    public abstract class BeliefSet : IBeliefSet
+    public abstract class BeliefSet
     {
         /// <summary>
         /// An array storing all <i>public fields</i> of type <see cref="IBelief"/> that are defined in the inheriting class.

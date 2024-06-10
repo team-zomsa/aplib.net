@@ -12,7 +12,7 @@ namespace Aplib.Core.Intent.Tactics
     /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
     /// <seealso cref="Action{TBeliefSet}"/>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, IDocumented
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <summary>

@@ -7,7 +7,7 @@ using System.Linq;
 namespace Aplib.Core.Desire.DesireSets
 {
     /// <inheritdoc cref="DesireSet{TBeliefSet}"/>
-    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, IDocumented
+    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />

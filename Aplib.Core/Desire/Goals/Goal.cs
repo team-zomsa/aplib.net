@@ -12,7 +12,7 @@ namespace Aplib.Core.Desire.Goals
     /// </summary>
     /// <seealso cref="GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Goal<TBeliefSet> : IGoal<TBeliefSet>, IDocumented
+    public class Goal<TBeliefSet> : IGoal<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <summary>

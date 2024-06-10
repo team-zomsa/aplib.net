@@ -38,7 +38,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// <remark>
         /// This metadata may be useful for debugging or logging.
         /// </remark>
-        public Metadata Metadata { get; }
+        public IMetadata Metadata { get; }
 
         /// <summary>
         /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
