@@ -8,7 +8,7 @@ namespace Aplib.Core.Desire.DesireSets
     /// This is the main structure that the agent will use to determine what it should do next.
     /// </summary>
     /// <typeparam name="TBeliefSet"></typeparam>
-    public interface IDesireSet<in TBeliefSet> : ICompletable
+    public interface IDesireSet<in TBeliefSet> : ICompletable, IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>

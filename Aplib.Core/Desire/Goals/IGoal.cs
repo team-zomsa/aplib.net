@@ -7,7 +7,7 @@ namespace Aplib.Core.Desire.Goals
     /// Defines a goal that can be achieved by a <see cref="Tactic{TBeliefSet}" />.
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public interface IGoal<in TBeliefSet> : ICompletable
+    public interface IGoal<in TBeliefSet> : ICompletable, IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>

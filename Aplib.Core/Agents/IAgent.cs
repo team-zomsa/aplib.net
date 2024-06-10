@@ -3,7 +3,7 @@ namespace Aplib.Core.Agents
     /// <summary>
     /// Defines an agent that can play a game.
     /// </summary>
-    public interface IAgent : ICompletable
+    public interface IAgent : ICompletable, IDocumented
     {
         /// <summary>
         /// Updates the agent's state and goals.

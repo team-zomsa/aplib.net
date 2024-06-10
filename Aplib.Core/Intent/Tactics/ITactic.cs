@@ -8,7 +8,7 @@ namespace Aplib.Core.Intent.Tactics
     /// A tactic is a strategy for achieving a particular goal.
     /// </summary>
     /// <typeparam name="TBeliefSet">The type of the belief set that the tactic uses.</typeparam>
-    public interface ITactic<in TBeliefSet>
+    public interface ITactic<in TBeliefSet> : IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>

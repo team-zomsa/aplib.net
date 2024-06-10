@@ -10,7 +10,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// A goal structure is a structure of predicates that must be fulfilled in order to complete a test.
     /// </remarks>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public interface IGoalStructure<in TBeliefSet> : ICompletable
+    public interface IGoalStructure<in TBeliefSet> : ICompletable, IDocumented
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
