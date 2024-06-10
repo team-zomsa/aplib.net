@@ -135,7 +135,15 @@ public class BeliefSetTests
         public bool Updated { get; private set; } = false;
 
         /// <inheritdoc />
-        public IMetadata Metadata { get; } = new Metadata("SimpleBelief");
+        public IMetadata Metadata { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleBelief"/> class.
+        /// </summary>
+        public SimpleBelief()
+        {
+            Metadata = new Metadata();
+        }
 
         /// <summary>
         /// Sets <see cref="Updated"/> to true.

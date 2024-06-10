@@ -48,7 +48,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
         public MemoryBelief(
-            Metadata metadata,
+            IMetadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
@@ -57,7 +57,7 @@ namespace Aplib.Core.Belief.Beliefs
             : base(metadata, reference, getObservationFromReference, shouldUpdate)
             => _memorizedObservations = new ExposedQueue<TObservation>(framesToRemember);
 
-        /// <inheritdoc cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})"/>
+        /// <inheritdoc cref="MemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,Func{bool})"/>
         public MemoryBelief(
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
@@ -69,9 +69,9 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
+        ///     cref="MemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
         public MemoryBelief(
-            Metadata metadata,
+            IMetadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember
@@ -81,7 +81,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
+        ///     cref="MemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,Func{bool})" />
         public MemoryBelief(TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember)

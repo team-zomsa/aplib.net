@@ -75,7 +75,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// </exception>
         public SampledMemoryBelief
         (
-            Metadata metadata,
+            IMetadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
@@ -90,7 +90,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
         public SampledMemoryBelief
         (
             TReference reference,
@@ -114,10 +114,10 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
         public SampledMemoryBelief
         (
-            Metadata metadata,
+            IMetadata metadata,
             TReference reference,
             Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
@@ -138,7 +138,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(IMetadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
         public SampledMemoryBelief
         (
             TReference reference,

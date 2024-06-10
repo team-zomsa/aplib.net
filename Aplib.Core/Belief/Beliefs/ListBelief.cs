@@ -42,7 +42,7 @@ namespace Aplib.Core.Belief.Beliefs
         /// </exception>
         public ListBelief
         (
-            Metadata metadata,
+            IMetadata metadata,
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference,
             Func<bool> shouldUpdate
@@ -51,7 +51,7 @@ namespace Aplib.Core.Belief.Beliefs
         {
         }
 
-        /// <inheritdoc cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})"/>
+        /// <inheritdoc cref="ListBelief{TReference,TObservation}(IMetadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})"/>
         public ListBelief
         (
             IEnumerable<TReference> references,
@@ -63,10 +63,10 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        ///     cref="ListBelief{TReference,TObservation}(IMetadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
         public ListBelief
         (
-            Metadata metadata,
+            IMetadata metadata,
             IEnumerable<TReference> references,
             Func<TReference, TObservation> getObservationFromReference
         )
@@ -75,7 +75,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        ///     cref="ListBelief{TReference,TObservation}(IMetadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
         public ListBelief
             (IEnumerable<TReference> references, Func<TReference, TObservation> getObservationFromReference)
             : this(new Metadata(), references, getObservationFromReference, () => true)
