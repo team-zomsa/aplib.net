@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Collections
 {
@@ -45,30 +46,27 @@ namespace Aplib.Core.Collections
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class
+        /// Initializes a new instance of the <see cref="ExposedQueue{T}" /> class
         /// with an array to use as basis for the queue.
-        /// By default, assumes the array is filled. 
+        /// By default, assumes the array is filled.
         /// </summary>
         /// <param name="array">An array to use as the circular array.</param>
-        /// <param name="count">The number of actual elements in the array.</param>
+        /// <param name="maxCount">The number of actual elements in the array.</param>
         /// <remarks>
         /// The MaxCount of the queue will be set to the length of the array.
         /// If the array is not fully filled, the Count should be specified.
         /// </remarks>
-        public ExposedQueue(T[] array, int count)
+        public ExposedQueue(IEnumerable<T> array, int maxCount)
         {
-            if (count > array.Length)
-                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot exceed the length of the array.");
-            if (count < 0)
-                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot be negative.");
+            if (maxCount < 0) throw new ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
 
-            MaxCount = array.Length;
-            _array = array;
-            _head = MaxCount - 1;
-            Count = count;
+            MaxCount = maxCount;
+            _array = array.Take(maxCount).ToArray();
+            Count = Math.Min(_array.Length, maxCount);
+            _head = Count - 1;
         }
 
-        /// <inheritdoc cref="ExposedQueue{T}(T[],int)"/>
+        /// <inheritdoc cref="ExposedQueue{T}(T[],int)" />
         public ExposedQueue(T[] array)
             : this(array, array.Length)
         {
