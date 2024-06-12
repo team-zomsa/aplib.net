@@ -190,19 +190,27 @@ namespace Aplib.Core.Desire.Goals
             => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
-        /// Tests whether the goal has been achieved, based on the heuristic function of the goal.
+        /// <para>Tests whether the goal has been achieved.</para>
+        /// <para>
+        /// This first checks the fail-guard of the goal, if it is true, the goal is considered to have failed.
+        /// </para>
+        /// <para>
+        /// If the fail guard is false, this checks the heuristic function of the goal.
         /// When the distance of the heuristics is smaller than <see cref="_epsilon" />,
         /// the goal is considered to be completed.
+        /// </para>
+        /// <para>Otherwise, the goal is considered unfinished.</para>
+        /// <para>Use <see cref="Status"/> to get the updated value.</para>
         /// </summary>
-        /// <returns>
-        /// A <see cref="CompletionStatus"/> value representing whether the goal is complete and if so,
-        /// with what result.
-        /// </returns>
+        /// <seealso cref="Status"/>
         public virtual void UpdateStatus(TBeliefSet beliefSet)
         {
-            Status = DetermineCurrentHeuristics(beliefSet).Distance < _epsilon
-                ? CompletionStatus.Success
-                : CompletionStatus.Unfinished;
+            if (_failGuard(beliefSet))
+                Status = CompletionStatus.Failure;
+            else if (DetermineCurrentHeuristics(beliefSet).Distance < _epsilon)
+                Status = CompletionStatus.Success;
+            else
+                Status = CompletionStatus.Unfinished;
         }
     }
 }
