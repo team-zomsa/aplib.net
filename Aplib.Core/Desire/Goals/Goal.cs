@@ -1,7 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
-using System;
 
 namespace Aplib.Core.Desire.Goals
 {
@@ -105,15 +104,15 @@ namespace Aplib.Core.Desire.Goals
         (
             IMetadata metadata,
             ITactic<TBeliefSet> tactic,
-            Func<TBeliefSet, bool> predicate,
+            System.Predicate<TBeliefSet> predicate,
             double epsilon = DefaultEpsilon
         )
             : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon)
         {
         }
 
-        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Func{TBeliefSet,bool},double)" />
-        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = DefaultEpsilon)
+        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},System.Predicate{TBeliefSet},double)" />
+        public Goal(ITactic<TBeliefSet> tactic, System.Predicate<TBeliefSet> predicate, double epsilon = DefaultEpsilon)
             : this(new Metadata(), tactic, predicate, epsilon)
         {
         }

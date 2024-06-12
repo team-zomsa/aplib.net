@@ -231,7 +231,7 @@ public class CombinatorTests
         Action<IBeliefSet> action1 = new(_ => { });
         Action<IBeliefSet> action2 = new(_ => { });
         // ReSharper disable once ConvertToLocalFunction
-        System.Func<IBeliefSet, bool> guard = _ => false;
+        System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
         AnyOfTactic<IBeliefSet> anyOfTactic =
@@ -251,7 +251,7 @@ public class CombinatorTests
         Action<IBeliefSet> action1 = new(_ => { });
         Action<IBeliefSet> action2 = new(_ => { });
         // ReSharper disable once ConvertToLocalFunction
-        System.Func<IBeliefSet, bool> guard = _ => false;
+        System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
         AnyOfTactic<IBeliefSet> anyOfTactic =
@@ -310,7 +310,7 @@ public class CombinatorTests
         Action<IBeliefSet> action1 = new(_ => { });
         Action<IBeliefSet> action2 = new(_ => { });
         // ReSharper disable once ConvertToLocalFunction
-        System.Func<IBeliefSet, bool> guard = _ => false;
+        System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
         FirstOfTactic<IBeliefSet> firstOfTactic =
@@ -330,7 +330,7 @@ public class CombinatorTests
         Action<IBeliefSet> action1 = new(_ => { });
         Action<IBeliefSet> action2 = new(_ => { });
         // ReSharper disable once ConvertToLocalFunction
-        System.Func<IBeliefSet, bool> guard = _ => false;
+        System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
         FirstOfTactic<IBeliefSet> firstOfTactic =
@@ -388,7 +388,7 @@ public class CombinatorTests
     {
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
-        Mock<System.Func<IBeliefSet, bool>> guard = new();
+        Mock<System.Predicate<IBeliefSet>> guard = new();
         guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
 
         // Act
@@ -408,7 +408,7 @@ public class CombinatorTests
     {
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
-        Mock<System.Func<IBeliefSet, bool>> guard = new();
+        Mock<System.Predicate<IBeliefSet>> guard = new();
         guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
 
         // Act
@@ -470,7 +470,7 @@ public class CombinatorTests
         Mock<System.Func<IBeliefSet, int>> query = new();
         query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
         QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-        Mock<System.Func<IBeliefSet, bool>> guard = new();
+        Mock<System.Predicate<IBeliefSet>> guard = new();
         guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
 
         // Act
@@ -492,7 +492,7 @@ public class CombinatorTests
         Mock<System.Func<IBeliefSet, int>> query = new();
         query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
         QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-        Mock<System.Func<IBeliefSet, bool>> guard = new();
+        Mock<System.Predicate<IBeliefSet>> guard = new();
         guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
 
         // Act

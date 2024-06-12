@@ -1,5 +1,4 @@
 using Aplib.Core.Belief.BeliefSets;
-using System;
 
 namespace Aplib.Core.Desire.Goals
 {
@@ -16,7 +15,7 @@ namespace Aplib.Core.Desire.Goals
         /// A heuristic function which returns true only when the state is considered completed.
         /// </param>
         /// <returns>A heuristic function which wraps around the boolean-based heuristic function.</returns>
-        public static Goal<TBeliefSet>.HeuristicFunction Boolean(Func<TBeliefSet, bool> heuristicFunction)
+        public static Goal<TBeliefSet>.HeuristicFunction Boolean(System.Predicate<TBeliefSet> heuristicFunction)
             => beliefSet => Heuristics.Boolean(heuristicFunction.Invoke(beliefSet));
 
         /// <summary>
