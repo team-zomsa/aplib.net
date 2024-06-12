@@ -26,6 +26,8 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         protected readonly double _epsilon;
 
+        protected readonly System.Predicate<TBeliefSet> _failGuard;
+
         /// <summary>
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
         /// completed.
@@ -70,19 +72,48 @@ namespace Aplib.Core.Desire.Goals
             IMetadata metadata,
             ITactic<TBeliefSet> tactic,
             HeuristicFunction heuristicFunction,
+            System.Predicate<TBeliefSet> failGuard,
             double epsilon = DefaultEpsilon
         )
         {
             Metadata = metadata;
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
+            _failGuard = failGuard;
             _epsilon = epsilon;
         }
 
-        /// <inheritdoc
-        ///     cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
-        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = DefaultEpsilon)
-            : this(new Metadata(), tactic, heuristicFunction, epsilon)
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            System.Predicate<TBeliefSet> failGuard,
+            double epsilon = DefaultEpsilon
+        )
+            : this(new Metadata(), tactic, heuristicFunction, failGuard, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            IMetadata metadata,
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            double epsilon = DefaultEpsilon
+        ) : this(metadata, tactic, heuristicFunction, _ => false, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            double epsilon = DefaultEpsilon
+        )
+            : this(tactic, heuristicFunction, _ => false, epsilon)
         {
         }
 
@@ -105,15 +136,45 @@ namespace Aplib.Core.Desire.Goals
             IMetadata metadata,
             ITactic<TBeliefSet> tactic,
             System.Predicate<TBeliefSet> predicate,
+            System.Predicate<TBeliefSet> failGuard,
             double epsilon = DefaultEpsilon
         )
-            : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon)
+            : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), failGuard, epsilon)
         {
         }
 
-        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},System.Predicate{TBeliefSet},double)" />
-        public Goal(ITactic<TBeliefSet> tactic, System.Predicate<TBeliefSet> predicate, double epsilon = DefaultEpsilon)
-            : this(new Metadata(), tactic, predicate, epsilon)
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            System.Predicate<TBeliefSet> failGuard,
+            double epsilon = DefaultEpsilon
+        )
+            : this(new Metadata(), tactic, predicate, failGuard, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            IMetadata metadata,
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            double epsilon = DefaultEpsilon
+        )
+            : this(metadata, tactic, predicate, _ => false, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            double epsilon = DefaultEpsilon
+        )
+            : this(tactic, predicate, _ => false, epsilon)
         {
         }
 
