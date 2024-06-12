@@ -186,12 +186,14 @@ namespace Aplib.Core.Desire.Goals
             => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
-        /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction" /> and the
-        /// <see cref="DetermineCurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="_epsilon" />,
+        /// Tests whether the goal has been achieved, based on the heuristic function of the goal.
+        /// When the distance of the heuristics is smaller than <see cref="_epsilon" />,
         /// the goal is considered to be completed.
         /// </summary>
-        /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
-        /// <seealso cref="_epsilon" />
+        /// <returns>
+        /// A <see cref="CompletionStatus"/> value representing whether the goal is complete and if so,
+        /// with what result.
+        /// </returns>
         public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)
         {
             Status = DetermineCurrentHeuristics(beliefSet).Distance < _epsilon

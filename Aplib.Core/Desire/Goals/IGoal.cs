@@ -23,12 +23,12 @@ namespace Aplib.Core.Desire.Goals
         Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet);
 
         /// <summary>
-        /// Tests whether the goal has been achieved, based on the <see cref="Goal{TBeliefSet}._heuristicFunction" /> and the
-        /// <see cref="Goal{TBeliefSet}.DetermineCurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="Goal{TBeliefSet}._epsilon" />
-        /// , the goal is considered to be completed.
+        /// Tests whether the goal has been achieved, based on the heuristic function of the goal.
         /// </summary>
-        /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
-        /// <seealso cref="Goal{TBeliefSet}._epsilon" />
+        /// <returns>
+        /// A <see cref="CompletionStatus"/> value representing whether the goal is complete and if so,
+        /// with what result.
+        /// </returns>
         CompletionStatus GetStatus(TBeliefSet beliefSet);
     }
 }
