@@ -1,6 +1,7 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
+using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
 using Moq.Protected;
@@ -9,21 +10,6 @@ namespace Aplib.Core.Tests.Desire;
 
 public class GoalStructureTests
 {
-    [Fact]
-    public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
-    {
-        // Arrange
-        Metadata metadata = new("My GoalStructure", "The best GoalStructure");
-        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
-
-        // Act
-        FirstOfGoalStructure<IBeliefSet> goalStructure = new(metadata, goalStructure1.Object);
-
-        // Assert
-        goalStructure.Metadata.Name.Should().Be("My GoalStructure");
-        goalStructure.Metadata.Description.Should().Be("The best GoalStructure");
-    }
-
     [Fact]
     public void FirstOfGoalStructure_WhenAllGoalsFail_ShouldReturnFailure()
     {
@@ -173,6 +159,21 @@ public class GoalStructureTests
         currentGoal.Should().Be(goal);
     }
 
+    [Fact]
+    public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
+    {
+        // Arrange
+        Metadata metadata = new("My GoalStructure", "The best GoalStructure");
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+
+        // Act
+        FirstOfGoalStructure<IBeliefSet> goalStructure = new(metadata, goalStructure1.Object);
+
+        // Assert
+        goalStructure.Metadata.Name.Should().Be("My GoalStructure");
+        goalStructure.Metadata.Description.Should().Be("The best GoalStructure");
+    }
+
     [Theory]
     [InlineData(CompletionStatus.Success, CompletionStatus.Success)]
     [InlineData(CompletionStatus.Failure, CompletionStatus.Failure)]
@@ -265,6 +266,72 @@ public class GoalStructureTests
         // Assert
         repeatGoalStructure.Status.Should().Be(CompletionStatus.Success);
         currentGoal.Should().Be(goal.Object);
+    }
+
+    [Fact]
+    public void RepeatingGoalStructures_WhenSequenced_ShouldNotBeFinished()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.SetupSequence(g => g.GetStatus(It.IsAny<IBeliefSet>()))
+            .Returns(CompletionStatus.Success)
+            .Returns(CompletionStatus.Unfinished);
+
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+
+        Mock<IGoalStructure<IBeliefSet>> intermediaryGoalStructureMock = new();
+        intermediaryGoalStructureMock.SetupSequence(g => g.Status)
+            .Returns(CompletionStatus.Unfinished)
+            .Returns(CompletionStatus.Success);
+
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(primitiveGoalStructure, intermediaryGoalStructureMock.Object, primitiveGoalStructure);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+
+        IGoal<IBeliefSet> currentGoal = sequentialGoalStructure.GetCurrentGoal(beliefSet);
+
+        // Assert
+        currentGoal.Should().Be(goal.Object);
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+        sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
+    public void RepeatingGoalStructures_WhenSequencedWithActualGoals_ShouldNotBeFinished()
+    {
+        Tactic<IBeliefSet> tactic = Mock.Of<Tactic<IBeliefSet>>();
+        int[] values = { 1, 2, 3 };
+        System.Func<IBeliefSet, bool> condition = _ => values[0] == 1;
+        Goal<IBeliefSet> goal = new(tactic, condition);
+
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal);
+
+        Mock<IGoalStructure<IBeliefSet>> intermediaryGoalStructureMock = new();
+        intermediaryGoalStructureMock.SetupSequence(g => g.Status)
+            .Returns(CompletionStatus.Unfinished)
+            .Returns(CompletionStatus.Success);
+
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
+            new(primitiveGoalStructure, intermediaryGoalStructureMock.Object, primitiveGoalStructure);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+        values[0] = 0;
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+
+        IGoal<IBeliefSet> currentGoal = sequentialGoalStructure.GetCurrentGoal(beliefSet);
+
+        // Assert
+        currentGoal.Should().Be(goal);
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+        sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 
     [Fact]
