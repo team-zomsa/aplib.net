@@ -37,6 +37,6 @@ namespace Aplib.Core.Desire.Goals
         /// can be seen as NOT completed.
         /// </summary>
         /// <returns>Said heuristic function.</returns>
-        public static Goal<TBeliefSet>.HeuristicFunction Uncompleted() => Constant(69_420f);
+        public static Goal<TBeliefSet>.HeuristicFunction Uncompleted() => Constant(float.PositiveInfinity);
     }
 }
