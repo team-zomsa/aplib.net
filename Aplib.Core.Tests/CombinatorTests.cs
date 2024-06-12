@@ -96,7 +96,7 @@ public class CombinatorTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Success);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
 
         // Act
@@ -114,7 +114,7 @@ public class CombinatorTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Success);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
 
         // Act
@@ -134,7 +134,7 @@ public class CombinatorTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Failure);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
 
         // Act
@@ -154,7 +154,7 @@ public class CombinatorTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Failure);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
 
         // Act

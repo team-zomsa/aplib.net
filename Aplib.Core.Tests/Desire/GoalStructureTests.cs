@@ -182,7 +182,7 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(status);
+        goal.Setup(g => g.Status).Returns(status);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
 
@@ -198,7 +198,7 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
 
@@ -215,7 +215,7 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Unfinished);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Unfinished);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
@@ -234,7 +234,7 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Failure);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
@@ -253,7 +253,7 @@ public class GoalStructureTests
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.GetStatus(It.IsAny<IBeliefSet>())).Returns(CompletionStatus.Success);
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Success);
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
         RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure);

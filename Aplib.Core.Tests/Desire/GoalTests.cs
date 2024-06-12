@@ -69,7 +69,8 @@ public class GoalTests
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus isCompleted = goal.Status;
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Unfinished);
@@ -88,7 +89,8 @@ public class GoalTests
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus isCompleted = goal.Status;
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Success);
@@ -107,10 +109,10 @@ public class GoalTests
         Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
 
         // Act
-        _ = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
 
         // Assert
-        beliefSetMock.Verify(beliefSetMock => beliefSetMock.UpdateBeliefs(), Times.Never);
+        beliefSetMock.Verify(beliefSet => beliefSet.UpdateBeliefs(), Times.Never);
     }
 
     /// <summary>
@@ -124,12 +126,15 @@ public class GoalTests
         // Arrange
         IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
         bool shouldSucceed = false;
+        // ReSharper disable once AccessToModifiedClosure
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
 
         // Act
-        CompletionStatus stateBefore = goal.GetStatus(beliefSetMock);
-        shouldSucceed = true; // Make heuristic function return a different value on next invoke
-        CompletionStatus stateAfter = goal.GetStatus(beliefSetMock);
+        goal.UpdateStatus(beliefSetMock);
+        CompletionStatus stateBefore = goal.Status;
+        shouldSucceed = true; // Make heuristic function return a different value on next invocation.
+        goal.UpdateStatus(beliefSetMock);
+        CompletionStatus stateAfter = goal.Status;
 
         // Assert
         stateBefore.Should().Be(CompletionStatus.Unfinished);
@@ -150,16 +155,19 @@ public class GoalTests
         // Arrange
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
 
-        bool heuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
+        // ReSharper disable once MoveLocalFunctionAfterJumpStatement
+        bool HeuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
         Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean =
             CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
 
-        Goal<IBeliefSet> goalBoolean = new(tactic, heuristicFunctionBoolean);
+        Goal<IBeliefSet> goalBoolean = new(tactic, HeuristicFunctionBoolean);
         Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
 
         // Act
-        CompletionStatus goalBooleanEvaluation = goalBoolean.GetStatus(It.IsAny<IBeliefSet>());
-        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.GetStatus(It.IsAny<IBeliefSet>());
+        goalBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus goalBooleanEvaluation = goalBoolean.Status;
+        goalNonBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.Status;
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);

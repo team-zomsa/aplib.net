@@ -24,11 +24,9 @@ namespace Aplib.Core.Desire.Goals
 
         /// <summary>
         /// Tests whether the goal has been achieved, based on the heuristic function of the goal.
+        /// The new completion status can be accessed via the <see cref="ICompletable.Status"/> property.
         /// </summary>
-        /// <returns>
-        /// A <see cref="CompletionStatus"/> value representing whether the goal is complete and if so,
-        /// with what result.
-        /// </returns>
-        CompletionStatus GetStatus(TBeliefSet beliefSet);
+        /// <seealso cref="ICompletable.Status"/>
+        void UpdateStatus(TBeliefSet beliefSet);
     }
 }

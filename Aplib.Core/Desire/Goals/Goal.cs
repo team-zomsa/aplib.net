@@ -32,14 +32,14 @@ namespace Aplib.Core.Desire.Goals
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
         /// completed.
         /// </summary>
-        /// <seealso cref="GetStatus" />
+        /// <seealso cref="UpdateStatus" />
         protected readonly HeuristicFunction _heuristicFunction;
 
         /// <summary>
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="Goal{TBeliefSet}.GetStatus" />
+        /// <seealso cref="Goal{TBeliefSet}.UpdateStatus" />
         public delegate Heuristics HeuristicFunction(TBeliefSet beliefSet);
 
         /// <inheritdoc />
@@ -52,7 +52,11 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         public ITactic<TBeliefSet> Tactic { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the completion status of the goal.
+        /// This value may need to be updated first using the <see cref="UpdateStatus"/> method.
+        /// </summary>
+        /// <seealso cref="UpdateStatus"/>
         public CompletionStatus Status { get; protected set; }
 
         /// <summary>
@@ -194,12 +198,11 @@ namespace Aplib.Core.Desire.Goals
         /// A <see cref="CompletionStatus"/> value representing whether the goal is complete and if so,
         /// with what result.
         /// </returns>
-        public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)
+        public virtual void UpdateStatus(TBeliefSet beliefSet)
         {
             Status = DetermineCurrentHeuristics(beliefSet).Distance < _epsilon
                 ? CompletionStatus.Success
                 : CompletionStatus.Unfinished;
-            return Status;
         }
     }
 }
