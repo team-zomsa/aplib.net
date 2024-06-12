@@ -26,6 +26,10 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         protected readonly double _epsilon;
 
+        /// <summary>
+        /// A fail-guard for the goal's completion status.
+        /// The fail-guard predicate is a condition that, when true, indicates that the goal has failed.
+        /// </summary>
         protected readonly System.Predicate<TBeliefSet> _failGuard;
 
         /// <summary>
@@ -60,16 +64,19 @@ namespace Aplib.Core.Desire.Goals
         public CompletionStatus Status { get; protected set; }
 
         /// <summary>
-        /// Creates a new goal which works with <see cref="Heuristics" />.
+        /// Initializes a new goal from a given tactic and heuristic function, and an optional fail-guard.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// If omitted, default metadata will be generated.
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached.</param>
+        /// <param name="failGuard">
+        /// A predicate that determines when the goal has failed. If omitted, the goal will never fail.
+        /// </param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />
-        /// is below this value.
+        /// The goal is considered to be completed when the result of the heuristic function is below this value.
         /// </param>
         public Goal
         (
@@ -122,18 +129,19 @@ namespace Aplib.Core.Desire.Goals
         }
 
         /// <summary>
-        /// Creates a new goal which works with boolean-based <see cref="Heuristics" />.
+        /// Initializes a new goal from a given tactic and a success predicate, and an optional fail-guard.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// If omitted, default metadata will be generated.
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="predicate">
-        /// The heuristic function (or specifically predicate) which defines whether a goal is reached.
+        /// <param name="predicate">A predicate that determines when the goal has succeeded.</param>
+        /// <param name="failGuard">
+        /// A predicate that determines when the goal has failed. If omitted, the goal will never fail.
         /// </param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />
-        /// is below this value.
+        /// The goal is considered to be completed when the result of the heuristic function is below this value.
         /// </param>
         public Goal
         (
