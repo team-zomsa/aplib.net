@@ -2,6 +2,8 @@ using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Desire.Goals
 {
@@ -12,7 +14,7 @@ namespace Aplib.Core.Desire.Goals
     /// </summary>
     /// <seealso cref="GoalStructure{TBeliefSet}" />
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Goal<TBeliefSet> : IGoal<TBeliefSet>, IDocumented
+    public class Goal<TBeliefSet> : IGoal<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -139,5 +141,9 @@ namespace Aplib.Core.Desire.Goals
                 : CompletionStatus.Unfinished;
             return Status;
         }
+
+        /// <inheritdoc />
+        public IEnumerable<ILoggable> GetChildren() => 
+            Tactic is ILoggable tactic ? new[] { tactic } : Enumerable.Empty<ILoggable>();
     }
 }

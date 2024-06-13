@@ -7,7 +7,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, IDocumented
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
@@ -54,6 +54,9 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         public abstract void UpdateStatus(TBeliefSet beliefSet);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetChildren();
 
         /// <summary>
         /// Implicitly lifts a goal into a goal structure.

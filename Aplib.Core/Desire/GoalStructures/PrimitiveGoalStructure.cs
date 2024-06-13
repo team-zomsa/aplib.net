@@ -1,6 +1,8 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
@@ -37,5 +39,9 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet) =>
             Status = _goal.GetStatus(beliefSet);
+        
+        /// <inheritdoc />
+        public override IEnumerable<ILoggable> GetChildren() => 
+            _goal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
     }
 }

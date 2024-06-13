@@ -1,4 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Intent.Actions
 {
@@ -6,7 +8,7 @@ namespace Aplib.Core.Intent.Actions
     /// Describes an action that can be executed and guarded.
     /// </summary>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public class Action<TBeliefSet> : IAction<TBeliefSet>, IDocumented
+    public class Action<TBeliefSet> : IAction<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -35,5 +37,11 @@ namespace Aplib.Core.Intent.Actions
 
         /// <inheritdoc/>
         public virtual void Execute(TBeliefSet beliefSet) => _effect(beliefSet);
+
+        /// <summary>
+        /// Actions do not have children, as they are the lowest level of the hierarchy.
+        /// </summary>
+        /// <returns>An empty enumerable.</returns>
+        public IEnumerable<ILoggable> GetChildren() => Enumerable.Empty<ILoggable>();
     }
 }

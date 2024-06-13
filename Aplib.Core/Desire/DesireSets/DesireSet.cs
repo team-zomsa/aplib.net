@@ -2,12 +2,13 @@
 using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aplib.Core.Desire.DesireSets
 {
     /// <inheritdoc cref="DesireSet{TBeliefSet}"/>
-    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, IDocumented
+    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
@@ -114,6 +115,10 @@ namespace Aplib.Core.Desire.DesireSets
             }
         }
 
+        /// <inheritdoc />
+        public IEnumerable<ILoggable> GetChildren() => 
+            _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
+            
         /// <summary>
         /// Implicitly lifts a goal into a desire set.
         /// </summary>

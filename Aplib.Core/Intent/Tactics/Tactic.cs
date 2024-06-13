@@ -1,6 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
-using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -12,7 +12,7 @@ namespace Aplib.Core.Intent.Tactics
     /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
     /// <seealso cref="Action{TBeliefSet}"/>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, IDocumented
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -50,6 +50,9 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc />
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetChildren();
 
         /// <summary>
         /// Implicitly lifts an action into a tactic.

@@ -1,6 +1,7 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
+using System.Linq;
 using static Aplib.Core.CompletionStatus;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -53,5 +54,9 @@ namespace Aplib.Core.Desire.GoalStructures
             Status = Success;
             return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
+
+        /// <inheritdoc />
+        public override IEnumerable<ILoggable> GetChildren() =>
+            _currentGoalStructure is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
     }
 }

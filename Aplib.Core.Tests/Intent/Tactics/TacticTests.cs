@@ -24,6 +24,8 @@ public class TacticTests
 
         public override IAction<IBeliefSet> GetAction(IBeliefSet beliefSet)
             => throw new System.NotImplementedException();
+        public override IEnumerable<ILoggable> GetChildren() 
+            => throw new System.NotImplementedException();
     }
 
     // A subclass of FirstOfTactic for testing

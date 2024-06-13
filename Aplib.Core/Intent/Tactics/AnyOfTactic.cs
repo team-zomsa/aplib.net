@@ -1,6 +1,7 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -69,5 +70,8 @@ namespace Aplib.Core.Intent.Tactics
 
             return actions[ThreadSafeRandom.Next(actions.Count)];
         }
+
+        /// <inheritdoc/>
+        public override IEnumerable<ILoggable> GetChildren() => _subTactics.OfType<ILoggable>();
     }
 }

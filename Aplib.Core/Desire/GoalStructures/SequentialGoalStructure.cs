@@ -2,6 +2,7 @@ using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
@@ -97,5 +98,8 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="disposing">Whether the object is being disposed.</param>
         protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
+
+        /// <inheritdoc />
+        public override IEnumerable<ILoggable> GetChildren() => _children.OfType<ILoggable>();
     }
 }
