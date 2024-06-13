@@ -42,8 +42,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(tactic, 0, [new LogNode(_action1, 1)]);
             
             // Act
-            ILoggable loggable = tactic;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)tactic).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -60,8 +59,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(tactic, 0, [tactic1Node, tactic2Node]);
 
             // Act
-            ILoggable loggable = tactic;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)tactic).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -78,8 +76,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(tactic, 0, [tactic1Node, tactic2Node]);
 
             // Act
-            ILoggable loggable = tactic;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)tactic).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -97,8 +94,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(goal, 0, [tacticNode]);
 
             // Act
-            ILoggable loggable = goal;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)goal).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -115,8 +111,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(goalStructure, 0, [goalNode]);
 
             // Act
-            ILoggable loggable = goalStructure;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)goalStructure).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -137,8 +132,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(seqStructure, 0, [goalStructureNode1, goalStructureNode2]);
 
             // Act
-            ILoggable loggable = seqStructure;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)seqStructure).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -157,8 +151,7 @@ namespace Aplib.Core.Tests
             LogNode expectedRoot = new(desireSet, 0, [goalStructureNode]);
 
             // Act
-            ILoggable loggable = desireSet;
-            LogNode root = loggable.GetLogTree();
+            LogNode root = ((ILoggable)desireSet).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
