@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core
 {
@@ -61,6 +62,19 @@ namespace Aplib.Core
             Loggable = loggable;
             Depth = depth;
             Children = new List<LogNode>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogNode"/> class.
+        /// </summary>
+        /// <param name="loggable"> The loggable object of the node.</param>
+        /// <param name="depth"> The depth at which this node resides.</param>
+        /// <param name="children"> The children of the node.</param>
+        public LogNode(ILoggable loggable, int depth, List<LogNode> children)
+        {
+            Loggable = loggable;
+            Depth = depth;
+            Children = children;
         }
     }
 }
