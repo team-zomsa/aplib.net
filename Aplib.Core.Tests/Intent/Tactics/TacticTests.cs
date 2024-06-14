@@ -1,6 +1,7 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
+using Aplib.Core.Logging;
 using FluentAssertions;
 using Moq;
 using System.Collections.Generic;
