@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Collections
 {
     /// <summary>
     /// A queue with all elements exposed.
     /// Functionally works like a queue with indexing.
-    /// It has a MaxCount and Count. MaxCount being the maximal length of the queue, 
+    /// It has a MaxCount and Count. MaxCount being the maximal length of the queue,
     /// and Count being the actual number of elements in the queue.
     /// </summary>
     /// <remarks>
@@ -44,31 +45,31 @@ namespace Aplib.Core.Collections
             _head = MaxCount - 1;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class
-        /// with an array to use as basis for the queue.
-        /// By default, assumes the array is filled. 
-        /// </summary>
-        /// <param name="array">An array to use as the circular array.</param>
-        /// <param name="count">The number of actual elements in the array.</param>
-        /// <remarks>
-        /// The MaxCount of the queue will be set to the length of the array.
-        /// If the array is not fully filled, the Count should be specified.
-        /// </remarks>
-        public ExposedQueue(T[] array, int count)
-        {
-            if (count > array.Length)
-                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot exceed the length of the array.");
-            if (count < 0)
-                throw new ArgumentOutOfRangeException(nameof(count), "Count cannot be negative.");
 
-            MaxCount = array.Length;
-            _array = array;
-            _head = MaxCount - 1;
-            Count = count;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExposedQueue{T}"/> class with an array.
+        /// </summary>
+        /// <param name="array">The array to initialize the queue with.</param>
+        /// <param name="maxCount">The maximum count of the queue.</param>
+        /// <remarks>
+        /// The array will be copied to the queue, and the head will be set to the last element of the array.
+        /// This method expects the array to be filled.
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the max count is negative.</exception>
+        public ExposedQueue(T[] array, int maxCount)
+        {
+            if (maxCount < 0) throw new ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
+
+            MaxCount = maxCount;
+            Count = Math.Min(array.Length, maxCount);
+
+            _array = new T[maxCount];
+            Array.Copy(array, _array, Count);
+
+            _head = Count - 1;
         }
 
-        /// <inheritdoc cref="ExposedQueue{T}(T[],int)"/>
+        /// <inheritdoc cref="ExposedQueue{T}(T[],int)" />
         public ExposedQueue(T[] array)
             : this(array, array.Length)
         {
@@ -79,21 +80,19 @@ namespace Aplib.Core.Collections
         /// </summary>
         /// <param name="index">The index of the element to get.</param>
         /// <returns>The element at the specified index.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">  
-        /// Thrown when the index is out of range.  
-        /// </exception> 
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown when the index is out of range.
+        /// </exception>
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
                 return _array[(index + _head + 1) % MaxCount];
             }
             private set
             {
-                if (index < 0 || index >= Count)
-                    throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
                 _array[(index + _head + 1) % MaxCount] = value;
             }
         }
@@ -106,8 +105,7 @@ namespace Aplib.Core.Collections
         {
             _array[_head] = value;
             DecrementHead();
-            if (Count < MaxCount)
-                Count++;
+            if (Count < MaxCount) Count++;
         }
 
         /// <inheritdoc/>
@@ -136,15 +134,12 @@ namespace Aplib.Core.Collections
         /// <returns>The ExposedQueue as a regular array.</returns>
         public void CopyTo(T[] array, int arrayIndex, int endIndex)
         {
-            if (arrayIndex < 0 || arrayIndex >= Count)
-                throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-            if (endIndex < 0 || endIndex >= Count)
-                throw new ArgumentOutOfRangeException(nameof(endIndex));
+            if (arrayIndex < 0 || arrayIndex >= Count) throw new ArgumentOutOfRangeException(nameof(arrayIndex));
+            if (endIndex < 0 || endIndex >= Count) throw new ArgumentOutOfRangeException(nameof(endIndex));
             if (arrayIndex > endIndex)
                 throw new ArgumentException("Start index must be less than or equal to end index.");
 
-            for (int i = 0; i < endIndex - arrayIndex + 1; i++)
-                array[i] = this[arrayIndex + i];
+            for (int i = 0; i < endIndex - arrayIndex + 1; i++) array[i] = this[arrayIndex + i];
         }
 
         /// <inheritdoc/>
@@ -159,7 +154,9 @@ namespace Aplib.Core.Collections
         public T[] ToArray(int start, int end)
         {
             if (start < 0 || start >= Count)
-                throw new ArgumentOutOfRangeException(nameof(start), "Start index must be within the bounds of the array.");
+                throw new ArgumentOutOfRangeException(nameof(start),
+                    "Start index must be within the bounds of the array."
+                );
             if (end < 0 || end >= Count)
                 throw new ArgumentOutOfRangeException(nameof(end), "End index must be within the bounds of the array.");
             T[] result = new T[end - start + 1];
@@ -176,8 +173,7 @@ namespace Aplib.Core.Collections
         /// <inheritdoc/>
         public void Clear()
         {
-            for (int i = 0; i < MaxCount; i++)
-                _array[i] = default!;
+            for (int i = 0; i < MaxCount; i++) _array[i] = default!;
             _head = MaxCount - 1;
             Count = 0;
         }
@@ -217,8 +213,7 @@ namespace Aplib.Core.Collections
         /// <inheritdoc/>
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < Count; i++)
-                yield return this[i];
+            for (int i = 0; i < Count; i++) yield return this[i];
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
@@ -235,8 +230,7 @@ namespace Aplib.Core.Collections
         /// <param name="index">The index of the element to remove.</param>
         private void RemoveAt(int index)
         {
-            for (int i = index; i < Count - 1; i++)
-                this[i] = this[i + 1];
+            for (int i = index; i < Count - 1; i++) this[i] = this[i + 1];
             Count--;
         }
     }
