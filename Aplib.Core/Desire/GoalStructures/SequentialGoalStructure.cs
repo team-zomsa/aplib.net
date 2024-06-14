@@ -66,8 +66,11 @@ namespace Aplib.Core.Desire.GoalStructures
                         Status = CompletionStatus.Failure;
                         return;
                     case CompletionStatus.Success:
-                    default:
+                        // Move to the next goal structure.
                         break;
+                    default:
+                        throw new System.InvalidOperationException
+                            ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.");
                 }
 
                 if (_childrenEnumerator.MoveNext())
