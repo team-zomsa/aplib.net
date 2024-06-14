@@ -189,4 +189,21 @@ public class GoalTests
         // Assert
         goal.Status.Should().Be(CompletionStatus.Failure);
     }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Goal_WithoutFailGuard_DoesNotFail(bool goalCompleted)
+    {
+        // Arrange
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
+
+        // Act
+        Goal<IBeliefSet> goal = new(tactic, heuristic);
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+
+        // Assert
+        goal.Status.Should().NotBe(CompletionStatus.Failure);
+    }
 }
