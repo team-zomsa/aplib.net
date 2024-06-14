@@ -73,7 +73,10 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached.</param>
         /// <param name="failGuard">
-        /// A predicate that determines when the goal has failed. If omitted, the goal will never fail.
+        /// A predicate that determines when the goal has failed.
+        /// If the fail-guard is true,
+        /// but the success heuristic is also satisfied, the success heuristic takes precedence.
+        /// If omitted, the goal will never fail.
         /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed when the result of the heuristic function is below this value.
@@ -138,7 +141,10 @@ namespace Aplib.Core.Desire.Goals
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="predicate">A predicate that determines when the goal has succeeded.</param>
         /// <param name="failGuard">
-        /// A predicate that determines when the goal has failed. If omitted, the goal will never fail.
+        /// A predicate that determines when the goal has failed.
+        /// If the fail-guard is true,
+        /// but the success predicate is also satisfied, the success predicate takes precedence.
+        /// If omitted, the goal will never fail.
         /// </param>
         /// <param name="epsilon">
         /// The goal is considered to be completed when the result of the heuristic function is below this value.
@@ -200,12 +206,13 @@ namespace Aplib.Core.Desire.Goals
         /// <summary>
         /// <para>Tests whether the goal has been achieved.</para>
         /// <para>
-        /// This first checks the fail-guard of the goal, if it is true, the goal is considered to have failed.
+        /// This first checks the heuristic function of the goal.
+        /// When the distance of the heuristics is smaller than the epsilon of the goal,
+        /// the goal is considered to be completed.
         /// </para>
         /// <para>
-        /// If the fail guard is false, this checks the heuristic function of the goal.
-        /// When the distance of the heuristics is smaller than <see cref="_epsilon" />,
-        /// the goal is considered to be completed.
+        /// If the heuristic function is not smaller than the epsilon, this checks the fail-guard of the goal.
+        /// If the fail guard returns <c>true</c>, the goal is considered to have failed.
         /// </para>
         /// <para>Otherwise, the goal is considered unfinished.</para>
         /// <para>Use <see cref="Status"/> to get the updated value.</para>
@@ -213,10 +220,10 @@ namespace Aplib.Core.Desire.Goals
         /// <seealso cref="Status"/>
         public virtual void UpdateStatus(TBeliefSet beliefSet)
         {
-            if (_failGuard(beliefSet))
-                Status = CompletionStatus.Failure;
-            else if (DetermineCurrentHeuristics(beliefSet).Distance < _epsilon)
+            if (DetermineCurrentHeuristics(beliefSet).Distance < _epsilon)
                 Status = CompletionStatus.Success;
+            else if (_failGuard(beliefSet))
+                Status = CompletionStatus.Failure;
             else
                 Status = CompletionStatus.Unfinished;
         }

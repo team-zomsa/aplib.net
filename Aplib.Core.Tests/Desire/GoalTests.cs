@@ -173,14 +173,12 @@ public class GoalTests
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal(bool goalCompleted)
+    [Fact]
+    public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal()
     {
         // Arrange
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => false);
         Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
 
         // Act
@@ -188,6 +186,21 @@ public class GoalTests
 
         // Assert
         goal.Status.Should().Be(CompletionStatus.Failure);
+    }
+
+    [Fact]
+    public void UpdateStatus_WhenBothFailGuardIsTrueAndHeuristicIsReached_CompletesTheGoal()
+    {
+        // Arrange
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => true);
+        Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
+
+        // Act
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+
+        // Assert
+        goal.Status.Should().Be(CompletionStatus.Success);
     }
 
     [Theory]
