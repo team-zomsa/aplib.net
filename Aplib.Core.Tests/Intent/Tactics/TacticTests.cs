@@ -24,7 +24,7 @@ public class TacticTests
 
         public override IAction<IBeliefSet> GetAction(IBeliefSet beliefSet)
             => throw new System.NotImplementedException();
-        public override IEnumerable<ILoggable> GetChildren() 
+        public override IEnumerable<ILoggable> GetLogChildren() 
             => throw new System.NotImplementedException();
     }
 

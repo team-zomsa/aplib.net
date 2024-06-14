@@ -1,4 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -42,6 +43,6 @@ namespace Aplib.Core.Intent.Actions
         /// Actions do not have children, as they are the lowest level of the hierarchy.
         /// </summary>
         /// <returns>An empty enumerable.</returns>
-        public IEnumerable<ILoggable> GetChildren() => Enumerable.Empty<ILoggable>();
+        public IEnumerable<ILoggable> GetLogChildren() => Enumerable.Empty<ILoggable>();
     }
 }

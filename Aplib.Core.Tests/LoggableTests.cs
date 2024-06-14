@@ -4,14 +4,12 @@ using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
+using Aplib.Core.Logging;
 using FluentAssertions;
-using Moq;
-using System.Collections.Generic;
-
 
 namespace Aplib.Core.Tests
 {
-    public class ILoggableTests
+    public class LoggableTests
     {
         private readonly Action<IBeliefSet> _action1;
         private readonly Action<IBeliefSet> _action2;
@@ -21,9 +19,9 @@ namespace Aplib.Core.Tests
         private readonly Goal<IBeliefSet> _goal2;
 
         /// <summary>
-        /// Set up a DesireSet to use in the tests.
+        /// Set up (part of a) DesireSet to use in the tests.
         /// </summary>
-        public ILoggableTests()
+        public LoggableTests()
         {
             _action1 = new(_ => { });
             _action2 = new(_ => { });

@@ -1,5 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,6 @@ namespace Aplib.Core.Desire.GoalStructures
         protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
 
         /// <inheritdoc />
-        public override IEnumerable<ILoggable> GetChildren() => _children.OfType<ILoggable>();
+        public override IEnumerable<ILoggable> GetLogChildren() => _children.OfType<ILoggable>();
     }
 }

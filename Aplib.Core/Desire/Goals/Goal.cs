@@ -1,6 +1,7 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
+using Aplib.Core.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,7 +144,7 @@ namespace Aplib.Core.Desire.Goals
         }
 
         /// <inheritdoc />
-        public IEnumerable<ILoggable> GetChildren() => 
+        public IEnumerable<ILoggable> GetLogChildren() => 
             Tactic is ILoggable tactic ? new[] { tactic } : Enumerable.Empty<ILoggable>();
     }
 }

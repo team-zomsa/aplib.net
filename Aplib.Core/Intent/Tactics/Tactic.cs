@@ -1,5 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Intent.Tactics
@@ -52,7 +53,7 @@ namespace Aplib.Core.Intent.Tactics
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
 
         /// <inheritdoc />
-        public abstract IEnumerable<ILoggable> GetChildren();
+        public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
         /// Implicitly lifts an action into a tactic.

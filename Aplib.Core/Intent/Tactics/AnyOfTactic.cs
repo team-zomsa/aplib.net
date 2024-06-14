@@ -1,5 +1,6 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -72,6 +73,6 @@ namespace Aplib.Core.Intent.Tactics
         }
 
         /// <inheritdoc/>
-        public override IEnumerable<ILoggable> GetChildren() => _subTactics.OfType<ILoggable>();
+        public override IEnumerable<ILoggable> GetLogChildren() => _subTactics.OfType<ILoggable>();
     }
 }

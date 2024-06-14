@@ -1,5 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -56,7 +57,7 @@ namespace Aplib.Core.Desire.GoalStructures
         public abstract void UpdateStatus(TBeliefSet beliefSet);
 
         /// <inheritdoc />
-        public abstract IEnumerable<ILoggable> GetChildren();
+        public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
         /// Implicitly lifts a goal into a goal structure.

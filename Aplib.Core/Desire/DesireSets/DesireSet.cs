@@ -2,6 +2,7 @@
 using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -116,7 +117,7 @@ namespace Aplib.Core.Desire.DesireSets
         }
 
         /// <inheritdoc />
-        public IEnumerable<ILoggable> GetChildren() => 
+        public IEnumerable<ILoggable> GetLogChildren() => 
             _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
             
         /// <summary>
