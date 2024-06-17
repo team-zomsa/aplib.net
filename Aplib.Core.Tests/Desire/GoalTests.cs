@@ -5,6 +5,7 @@ using Aplib.Core.Intent.Tactics;
 using Aplib.Core.Tests.Tools;
 using FluentAssertions;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -121,12 +122,12 @@ public class GoalTests
     /// the most recent heuristics are used
     /// </summary>
     [Fact]
+    [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
     public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
     {
         // Arrange
         IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
         bool shouldSucceed = false;
-        // ReSharper disable once AccessToModifiedClosure
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
 
         // Act
@@ -155,8 +156,6 @@ public class GoalTests
         // Arrange
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
 
-        // ReSharper disable once MoveLocalFunctionAfterJumpStatement
-        bool HeuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
         Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean =
             CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
 
@@ -171,6 +170,9 @@ public class GoalTests
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
+        return;
+
+        bool HeuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
     }
 
     [Fact]
