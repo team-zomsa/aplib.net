@@ -29,13 +29,8 @@ namespace Aplib.Core.Desire.GoalStructures
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
 
         /// <inheritdoc />
-        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
-        {
-            CompletionStatus.Unfinished or CompletionStatus.Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            CompletionStatus.Success => FinishRepeat(beliefSet),
-            _ => throw new System.InvalidOperationException
-                ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.")
-        };
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) =>
+            _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <inheritdoc />
         public override void UpdateStatus(TBeliefSet beliefSet)
@@ -49,12 +44,6 @@ namespace Aplib.Core.Desire.GoalStructures
                 _ => throw new System.InvalidOperationException
                     ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.")
             };
-        }
-
-        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
-        {
-            Status = CompletionStatus.Success;
-            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
 }
