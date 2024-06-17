@@ -1,6 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
-using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -13,7 +12,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// All goals must be completed in order for the goal structure to be completed.
     /// </remarks>
     /// <typeparam name="TBeliefSet">The type of belief set that this goal structure operates on.</typeparam>
-    public class SequentialGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
+    public class SequentialGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, System.IDisposable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -32,7 +31,7 @@ namespace Aplib.Core.Desire.GoalStructures
             : base(metadata, children)
         {
             if (children.Length <= 0)
-                throw new ArgumentException("Collection of children is empty", nameof(children));
+                throw new System.ArgumentException("Collection of children is empty", nameof(children));
 
             _childrenEnumerator = _children.GetEnumerator();
             _childrenEnumerator.MoveNext();
@@ -89,7 +88,7 @@ namespace Aplib.Core.Desire.GoalStructures
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
+            System.GC.SuppressFinalize(this);
         }
 
         /// <summary>

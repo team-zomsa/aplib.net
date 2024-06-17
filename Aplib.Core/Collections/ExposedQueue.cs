@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Aplib.Core.Collections
 {
@@ -55,16 +53,17 @@ namespace Aplib.Core.Collections
         /// The array will be copied to the queue, and the head will be set to the last element of the array.
         /// This method expects the array to be filled.
         /// </remarks>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the max count is negative.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">Thrown when the max count is negative.</exception>
         public ExposedQueue(T[] array, int maxCount)
         {
-            if (maxCount < 0) throw new ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
+            if (maxCount < 0)
+                throw new System.ArgumentOutOfRangeException(nameof(maxCount), "Count cannot be negative.");
 
             MaxCount = maxCount;
-            Count = Math.Min(array.Length, maxCount);
+            Count = System.Math.Min(array.Length, maxCount);
 
             _array = new T[maxCount];
-            Array.Copy(array, _array, Count);
+            System.Array.Copy(array, _array, Count);
 
             _head = Count - 1;
         }
@@ -80,19 +79,19 @@ namespace Aplib.Core.Collections
         /// </summary>
         /// <param name="index">The index of the element to get.</param>
         /// <returns>The element at the specified index.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">
+        /// <exception cref="System.ArgumentOutOfRangeException">
         /// Thrown when the index is out of range.
         /// </exception>
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
                 return _array[(index + _head + 1) % MaxCount];
             }
             private set
             {
-                if (index < 0 || index >= Count) throw new ArgumentOutOfRangeException(nameof(index));
+                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
                 _array[(index + _head + 1) % MaxCount] = value;
             }
         }
@@ -134,10 +133,10 @@ namespace Aplib.Core.Collections
         /// <returns>The ExposedQueue as a regular array.</returns>
         public void CopyTo(T[] array, int arrayIndex, int endIndex)
         {
-            if (arrayIndex < 0 || arrayIndex >= Count) throw new ArgumentOutOfRangeException(nameof(arrayIndex));
-            if (endIndex < 0 || endIndex >= Count) throw new ArgumentOutOfRangeException(nameof(endIndex));
+            if (arrayIndex < 0 || arrayIndex >= Count) throw new System.ArgumentOutOfRangeException(nameof(arrayIndex));
+            if (endIndex < 0 || endIndex >= Count) throw new System.ArgumentOutOfRangeException(nameof(endIndex));
             if (arrayIndex > endIndex)
-                throw new ArgumentException("Start index must be less than or equal to end index.");
+                throw new System.ArgumentException("Start index must be less than or equal to end index.");
 
             for (int i = 0; i < endIndex - arrayIndex + 1; i++) array[i] = this[arrayIndex + i];
         }
@@ -154,11 +153,12 @@ namespace Aplib.Core.Collections
         public T[] ToArray(int start, int end)
         {
             if (start < 0 || start >= Count)
-                throw new ArgumentOutOfRangeException(nameof(start),
+                throw new System.ArgumentOutOfRangeException(nameof(start),
                     "Start index must be within the bounds of the array."
                 );
             if (end < 0 || end >= Count)
-                throw new ArgumentOutOfRangeException(nameof(end), "End index must be within the bounds of the array.");
+                throw new System.ArgumentOutOfRangeException
+                    (nameof(end), "End index must be within the bounds of the array.");
             T[] result = new T[end - start + 1];
             CopyTo(result, start, end);
             return result;

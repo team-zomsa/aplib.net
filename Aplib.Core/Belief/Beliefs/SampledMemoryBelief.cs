@@ -1,4 +1,3 @@
-using System;
 using static Aplib.Core.Belief.Beliefs.UpdateMode;
 
 namespace Aplib.Core.Belief.Beliefs
@@ -70,18 +69,18 @@ namespace Aplib.Core.Belief.Beliefs
         /// <param name="shouldUpdate">
         /// A function that sets a condition on when the observation should be updated.
         /// </param>
-        /// <exception cref="ArgumentException">
+        /// <exception cref="System.ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
         public SampledMemoryBelief
         (
             Metadata metadata,
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
+            System.Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
             UpdateMode updateMode,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            System.Func<bool> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
@@ -90,15 +89,15 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,UpdateMode,int,System.Func{bool})" />
         public SampledMemoryBelief
         (
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
+            System.Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
             UpdateMode updateMode,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            System.Func<bool> shouldUpdate
         )
             : this
             (
@@ -114,12 +113,12 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,UpdateMode,int,System.Func{bool})" />
         public SampledMemoryBelief
         (
             Metadata metadata,
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
+            System.Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
             UpdateMode updateMode,
             int framesToRemember
@@ -138,11 +137,11 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,Func{TReference,TObservation},int,UpdateMode,int,Func{bool})" />
+        ///     cref="SampledMemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,UpdateMode,int,System.Func{bool})" />
         public SampledMemoryBelief
         (
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
+            System.Func<TReference, TObservation> getObservationFromReference,
             int sampleInterval,
             UpdateMode updateMode,
             int framesToRemember

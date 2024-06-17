@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace Aplib.Core
+﻿namespace Aplib.Core
 {
     internal static class ThreadSafeRandom
     {
-        [ThreadStatic]
-        private static Random? _local;
-        private static readonly Random _global = new();
+        [System.ThreadStatic]
+        private static System.Random? _local;
+        private static readonly System.Random _global = new();
 
-        private static Random Instance
+        private static System.Random Instance
         {
             get
             {
@@ -20,7 +18,7 @@ namespace Aplib.Core
                         seed = _global.Next();
                     }
 
-                    _local = new Random(seed);
+                    _local = new System.Random(seed);
                 }
 
                 return _local;

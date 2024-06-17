@@ -1,6 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
-using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -12,7 +11,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// The children of this goal structure will be executed in the order they are given.
     /// </remarks>
     /// <typeparam name="TBeliefSet">The beliefset of the agent.</typeparam>
-    public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, IDisposable
+    public class FirstOfGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, System.IDisposable
         where TBeliefSet : IBeliefSet
     {
         private readonly IEnumerator<IGoalStructure<TBeliefSet>> _childrenEnumerator;
@@ -76,7 +75,7 @@ namespace Aplib.Core.Desire.GoalStructures
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
+            System.GC.SuppressFinalize(this);
         }
 
         /// <summary>

@@ -61,15 +61,15 @@ namespace Aplib.Core
 
         #region Tactic combinators
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
-            (IMetadata metadata, System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(metadata, guard, subTactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
-            (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(guard, subTactics);
 
@@ -84,15 +84,15 @@ namespace Aplib.Core
             where TBeliefSet : IBeliefSet =>
             new(subTactics);
 
-        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
-            (IMetadata metadata, System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(metadata, guard, subTactics);
 
-        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(System.Func{TBeliefSet,bool},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
-            (System.Func<TBeliefSet, bool> guard, params ITactic<TBeliefSet>[] subTactics)
+            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(guard, subTactics);
 
@@ -107,15 +107,15 @@ namespace Aplib.Core
             where TBeliefSet : IBeliefSet =>
             new(subTactics);
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IMetadata metadata, IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+            (IMetadata metadata, IAction<TBeliefSet> action, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
             new(metadata, action, guard);
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+            (IAction<TBeliefSet> action, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
             new(action, guard);
 
@@ -130,15 +130,15 @@ namespace Aplib.Core
             new(action);
 
         /// <inheritdoc
-        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IMetadata metadata, IQueryable<TBeliefSet> query, System.Func<TBeliefSet, bool> guard)
+            (IMetadata metadata, IQueryable<TBeliefSet> query, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
             new(metadata, query, guard);
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IQueryable<TBeliefSet> query, System.Func<TBeliefSet, bool> guard)
+            (IQueryable<TBeliefSet> query, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
             new(query, guard);
 
