@@ -1,6 +1,5 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
-using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
@@ -14,6 +13,10 @@ namespace Aplib.Core.Desire.GoalStructures
     public class RepeatGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
+        private readonly int? _maxRetries;
+
+        private int _retryCount;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
         /// </summary>
@@ -21,11 +24,36 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="goalStructure">The GoalStructure to repeat.</param>
-        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
-            : base(metadata, new List<IGoalStructure<TBeliefSet>> { goalStructure })
-            => _currentGoalStructure = goalStructure;
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : base(metadata, new[] { goalStructure })
+        {
+            if (maxRetries < 0)
+                throw new System.ArgumentException
+                    ($"{nameof(maxRetries)} must be greater than or equal to zero.", nameof(maxRetries));
 
-        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet})"/>
+            _currentGoalStructure = goalStructure;
+            _maxRetries = maxRetries;
+            _retryCount = 0;
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : this(new Metadata(), goalStructure, maxRetries)
+        {
+        }
+
+        /// <inheritdoc
+        ///     cref="GoalStructure{TBeliefSet}(IMetadata,System.Collections.Generic.IEnumerable{IGoalStructure{TBeliefSet}})"/>
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
+            : base(metadata, new[] { goalStructure })
+        {
+            _currentGoalStructure = goalStructure;
+            _maxRetries = null;
+            _retryCount = 0;
+        }
+
+        /// <inheritdoc
+        ///     cref="GoalStructure{TBeliefSet}(Aplib.Core.IMetadata,System.Collections.Generic.IEnumerable{Aplib.Core.Desire.GoalStructures.IGoalStructure{TBeliefSet}})"/>
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
 
         /// <inheritdoc />
