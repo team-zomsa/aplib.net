@@ -43,7 +43,7 @@ namespace Aplib.Core.Desire.GoalStructures
         }
 
         /// <inheritdoc
-        ///     cref="GoalStructure{TBeliefSet}(IMetadata,System.Collections.Generic.IEnumerable{IGoalStructure{TBeliefSet}})"/>
+        ///     cref="GoalStructure{TBeliefSet}(IMetadata,System.Collections.Generic.IEnumerable{IGoalStructure{TBeliefSet}})" />
         public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
             : base(metadata, new[] { goalStructure })
         {
@@ -52,8 +52,7 @@ namespace Aplib.Core.Desire.GoalStructures
             _retryCount = 0;
         }
 
-        /// <inheritdoc
-        ///     cref="GoalStructure{TBeliefSet}(Aplib.Core.IMetadata,System.Collections.Generic.IEnumerable{Aplib.Core.Desire.GoalStructures.IGoalStructure{TBeliefSet}})"/>
+        /// <inheritdoc />
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
 
         /// <inheritdoc />
@@ -65,13 +64,31 @@ namespace Aplib.Core.Desire.GoalStructures
         {
             _currentGoalStructure!.UpdateStatus(beliefSet);
 
-            Status = _currentGoalStructure.Status switch
+            switch (_currentGoalStructure.Status)
             {
-                CompletionStatus.Failure or CompletionStatus.Unfinished => CompletionStatus.Unfinished,
-                CompletionStatus.Success => CompletionStatus.Success,
-                _ => throw new System.InvalidOperationException
-                    ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.")
-            };
+                case CompletionStatus.Unfinished:
+                    Status = CompletionStatus.Unfinished;
+                    break;
+                case CompletionStatus.Success:
+                    Status = CompletionStatus.Success;
+                    break;
+                case CompletionStatus.Failure:
+                    if (_maxRetries is null || _retryCount < _maxRetries)
+                    {
+                        // Keep trying
+                        _retryCount++;
+                        Status = CompletionStatus.Unfinished;
+                    }
+                    else
+                    {
+                        Status = CompletionStatus.Failure;
+                    }
+
+                    break;
+                default:
+                    throw new System.InvalidOperationException
+                        ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.");
+            }
         }
     }
 }
