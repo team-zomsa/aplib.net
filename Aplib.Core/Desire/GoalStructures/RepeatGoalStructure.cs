@@ -1,7 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
-using static Aplib.Core.CompletionStatus;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
@@ -32,8 +31,10 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
         {
-            Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            _ => FinishRepeat(beliefSet)
+            CompletionStatus.Unfinished or CompletionStatus.Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
+            CompletionStatus.Success => FinishRepeat(beliefSet),
+            _ => throw new System.InvalidOperationException
+                ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.")
         };
 
         /// <inheritdoc />
@@ -43,14 +44,16 @@ namespace Aplib.Core.Desire.GoalStructures
 
             Status = _currentGoalStructure.Status switch
             {
-                Failure or Unfinished => Unfinished,
-                _ => Success
+                CompletionStatus.Failure or CompletionStatus.Unfinished => CompletionStatus.Unfinished,
+                CompletionStatus.Success => CompletionStatus.Success,
+                _ => throw new System.InvalidOperationException
+                    ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.")
             };
         }
 
         private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
         {
-            Status = Success;
+            Status = CompletionStatus.Success;
             return _currentGoalStructure!.GetCurrentGoal(beliefSet);
         }
     }
