@@ -5,11 +5,10 @@ namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.
+    /// This structure will repeatedly execute the goal it was created with until the goal is finished,
+    /// or the maximum number of retries is reached.
     /// </summary>
-    /// <remarks>
-    /// This structure will repeatedly execute the goal it was created with until the goal is finished.
-    /// </remarks>
-    /// <typeparam name="TBeliefSet">The beliefset of the agent.</typeparam>
+    /// <typeparam name="TBeliefSet">The belief-set of the agent.</typeparam>
     public class RepeatGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
@@ -24,6 +23,10 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="goalStructure">The GoalStructure to repeat.</param>
+        /// <param name="maxRetries">
+        /// The maximum number of times to retry the goal after it has failed.
+        /// If omitted, the goal will be retried indefinetly.
+        /// </param>
         public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
             : base(metadata, new[] { goalStructure })
         {
