@@ -30,28 +30,41 @@ namespace Aplib.Core.Desire.GoalStructures
         public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
 
         /// <inheritdoc />
-        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _currentGoalStructure!.Status switch
-        {
-            Unfinished or Failure => _currentGoalStructure.GetCurrentGoal(beliefSet),
-            _ => FinishRepeat(beliefSet)
-        };
+        public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
+            => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
-        /// <inheritdoc />
+
+        /// <summary>
+        /// This method updates the status of the <see cref="RepeatGoalStructure{TBeliefSet}" />.
+        /// The goal structure status is set to:
+        /// <list type="table">
+        /// <item>
+        /// <term><see cref="Success"/></term>
+        /// <term>When the underlying <see cref="IGoalStructure{TBeliefSet}"/> is successful.</term>
+        /// </item>
+        /// <item>
+        /// <term><see cref="Failure"/></term>
+        /// <term>Never.</term>
+        /// </item>
+        /// <item>
+        /// <term><see cref="Unfinished"/></term>
+        /// <term>
+        /// When the underlying <see cref="IGoalStructure{TBeliefSet}"/> is unfinished.
+        /// The goal structure will continue to execute the underlying goal structure until it is successful.
+        /// </term>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
         public override void UpdateStatus(TBeliefSet beliefSet)
         {
+            if (Status != Unfinished) return;
+
             _currentGoalStructure!.UpdateStatus(beliefSet);
 
-            Status = _currentGoalStructure.Status switch
-            {
-                Failure or Unfinished => Unfinished,
-                _ => Success
-            };
-        }
+            if (_currentGoalStructure.Status == Failure) _currentGoalStructure.Reset();
 
-        private IGoal<TBeliefSet> FinishRepeat(TBeliefSet beliefSet)
-        {
-            Status = Success;
-            return _currentGoalStructure!.GetCurrentGoal(beliefSet);
+            Status = _currentGoalStructure.Status;
         }
     }
 }

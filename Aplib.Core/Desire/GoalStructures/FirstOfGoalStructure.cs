@@ -1,11 +1,12 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
+using static Aplib.Core.CompletionStatus;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
-    /// Represents a goal structure that will complete if any of its children complete.
+    /// Represents a goal structure that will complete if any one of its children completes.
     /// </summary>
     /// <remarks>
     /// The children of this goal structure will be executed in the order they are given.
@@ -37,38 +38,48 @@ namespace Aplib.Core.Desire.GoalStructures
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// This method updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
+        /// The goal structure status is set to:
+        /// <list type="table">
+        /// <item>
+        /// <term><see cref="Success"/></term>
+        /// <term>When any one of its children is successful.</term>
+        /// </item>
+        /// <item>
+        /// <term><see cref="Failure"/></term>
+        /// <term>When all children fail.</term>
+        /// </item>
+        /// <item>
+        /// <term><see cref="Unfinished"/></term>
+        /// <term>Otherwise.</term>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
         public override void UpdateStatus(TBeliefSet beliefSet)
         {
-            // Loop through all the children until one of them is unfinished or successful.
-            // This loop is here to prevent tail recursion.
-            while (true)
+            if (Status != Unfinished) return;
+
+            // Loop through all the children until one of them is unfinished or successful,
+            // or the end of the enumerator is reached.
+            do
             {
-                if (Status == CompletionStatus.Success) return;
-
+                _currentGoalStructure = _childrenEnumerator.Current;
                 _currentGoalStructure!.UpdateStatus(beliefSet);
-
-                switch (_currentGoalStructure.Status)
-                {
-                    case CompletionStatus.Unfinished:
-                        return;
-                    case CompletionStatus.Success:
-                        Status = CompletionStatus.Success;
-                        return;
-                }
-
-                if (_childrenEnumerator.MoveNext())
-                {
-                    _currentGoalStructure = _childrenEnumerator.Current;
-                    Status = CompletionStatus.Unfinished;
-
-                    // Update the Status of the new goal structure
-                    continue;
-                }
-
-                Status = CompletionStatus.Failure;
-                return;
             }
+            while (_currentGoalStructure.Status == Failure && _childrenEnumerator.MoveNext());
+
+            Status = _currentGoalStructure.Status;
+        }
+
+        /// <inheritdoc />
+        public override void Reset()
+        {
+            base.Reset();
+
+            _childrenEnumerator.Reset();
+            _childrenEnumerator.MoveNext();
         }
 
         /// <inheritdoc />

@@ -269,7 +269,40 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void RepeatingGoalStructures_WhenSequenced_ShouldNotBeFinished()
+    public void RepeatGoalStructure_WhenInnerGoalStructureHasFailed_InnerGoalStructureShouldBeReset()
+    {
+        // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        Mock<IGoalStructure<IBeliefSet>> innerGoalStructure = new();
+        innerGoalStructure.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(innerGoalStructure.Object);
+
+        // Act
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Assert
+        innerGoalStructure.Verify(x => x.Reset(), Times.Once);
+    }
+
+    [Fact]
+    public void RepeatGoalStructure_WhenInnerGoalStructureHasFailed_InnerGoalStructureShouldBeUnfinished()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure);
+
+        // Act
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Assert
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
+    public void ReusedGoalStructures_WhenSequenced_ShouldNotBeFinished()
     {
         // Arrange
         Mock<IGoal<IBeliefSet>> goal = new();
@@ -280,9 +313,8 @@ public class GoalStructureTests
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
 
         Mock<IGoalStructure<IBeliefSet>> intermediaryGoalStructureMock = new();
-        intermediaryGoalStructureMock.SetupSequence(g => g.Status)
-            .Returns(CompletionStatus.Unfinished)
-            .Returns(CompletionStatus.Success);
+        intermediaryGoalStructureMock.Setup(g => g.Status)
+            .Returns(CompletionStatus.Unfinished);
 
         SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
             new(primitiveGoalStructure, intermediaryGoalStructureMock.Object, primitiveGoalStructure);
@@ -291,6 +323,10 @@ public class GoalStructureTests
 
         // Act
         sequentialGoalStructure.UpdateStatus(beliefSet);
+
+        intermediaryGoalStructureMock.Setup(g => g.Status)
+            .Returns(CompletionStatus.Success);
+
         sequentialGoalStructure.UpdateStatus(beliefSet);
 
         IGoal<IBeliefSet> currentGoal = sequentialGoalStructure.GetCurrentGoal(beliefSet);
@@ -302,7 +338,7 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void RepeatingGoalStructures_WhenSequencedWithActualGoals_ShouldNotBeFinished()
+    public void ReusedGoalStructures_WhenSequencedWithActualGoals_ShouldNotBeFinished()
     {
         Tactic<IBeliefSet> tactic = Mock.Of<Tactic<IBeliefSet>>();
         int[] values = { 1, 2, 3 };
@@ -312,9 +348,8 @@ public class GoalStructureTests
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal);
 
         Mock<IGoalStructure<IBeliefSet>> intermediaryGoalStructureMock = new();
-        intermediaryGoalStructureMock.SetupSequence(g => g.Status)
-            .Returns(CompletionStatus.Unfinished)
-            .Returns(CompletionStatus.Success);
+        intermediaryGoalStructureMock.Setup(g => g.Status)
+            .Returns(CompletionStatus.Unfinished);
 
         SequentialGoalStructure<IBeliefSet> sequentialGoalStructure =
             new(primitiveGoalStructure, intermediaryGoalStructureMock.Object, primitiveGoalStructure);
@@ -323,7 +358,11 @@ public class GoalStructureTests
 
         // Act
         sequentialGoalStructure.UpdateStatus(beliefSet);
+
         values[0] = 0;
+        intermediaryGoalStructureMock.Setup(g => g.Status)
+            .Returns(CompletionStatus.Success);
+
         sequentialGoalStructure.UpdateStatus(beliefSet);
 
         IGoal<IBeliefSet> currentGoal = sequentialGoalStructure.GetCurrentGoal(beliefSet);
