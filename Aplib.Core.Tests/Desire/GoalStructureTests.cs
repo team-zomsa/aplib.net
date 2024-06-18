@@ -160,6 +160,44 @@ public class GoalStructureTests
     }
 
     [Fact]
+    public void FirstOfGoalStructure_WhenReset_ShouldResetChildren()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
+
+        Mock<FirstOfGoalStructure<IBeliefSet>> firstOfGoalStructure
+            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
+
+        // Act
+        firstOfGoalStructure.Object.Reset();
+
+        // Assert
+        goalStructure1.Verify(x => x.Reset(), Times.Once);
+        goalStructure2.Verify(x => x.Reset(), Times.Once);
+    }
+
+    [Fact]
+    public void FirstOfGoalStructure_WhenReset_ShouldBeUnfinished()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+        goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
+        goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        FirstOfGoalStructure<IBeliefSet> firstOfGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
+
+        // Act
+        firstOfGoalStructure.UpdateStatus(beliefSet);
+        firstOfGoalStructure.Reset();
+
+        // Assert
+        firstOfGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
     public void PrimitiveGoalStructure_ConstructedWithMetadata_HasCorrectMetadata()
     {
         // Arrange
@@ -209,6 +247,25 @@ public class GoalStructureTests
 
         // Assert
         currentGoal.Should().Be(goal.Object);
+    }
+
+
+    [Fact]
+    public void PrimitiveGoalStructure_WhenReset_ShouldBeUnfinished()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Success);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+
+        // Act
+        primitiveGoalStructure.UpdateStatus(beliefSet);
+        primitiveGoalStructure.Reset();
+
+        // Assert
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 
     [Fact]
@@ -299,6 +356,39 @@ public class GoalStructureTests
 
         // Assert
         primitiveGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
+    public void RepeatGoalStructure_WhenReset_ShouldResetInnerGoalStructure()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> innerGoalStructure = new();
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(innerGoalStructure.Object);
+
+        // Act
+        repeatGoalStructure.Reset();
+
+        // Assert
+        innerGoalStructure.Verify(x => x.Reset(), Times.Once);
+    }
+
+
+    [Fact]
+    public void RepeatGoalStructure_WhenReset_ShouldBeUnfinished()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
+        goalStructure.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(goalStructure.Object);
+
+        // Act
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        repeatGoalStructure.Reset();
+
+        // Assert
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 
     [Fact]
@@ -460,5 +550,44 @@ public class GoalStructureTests
 
         // Assert
         act.Should().Throw<System.ArgumentException>();
+    }
+
+    [Fact]
+    public void SequentialGoalStructure_WhenReset_ShouldResetChildren()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
+
+        Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure
+            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
+
+        // Act
+        sequentialGoalStructure.Object.Reset();
+
+        // Assert
+        goalStructure1.Verify(x => x.Reset(), Times.Once);
+        goalStructure2.Verify(x => x.Reset(), Times.Once);
+    }
+
+
+    [Fact]
+    public void SequentialGoalStructure_WhenReset_ShouldBeUnfinished()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+        goalStructure1.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
+        goalStructure2.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        SequentialGoalStructure<IBeliefSet> sequentialGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
+
+        // Act
+        sequentialGoalStructure.UpdateStatus(beliefSet);
+        sequentialGoalStructure.Reset();
+
+        // Assert
+        sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 }
