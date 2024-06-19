@@ -35,24 +35,24 @@ namespace Aplib.Core.Desire.GoalStructures
 
 
         /// <summary>
-        /// This method updates the status of the <see cref="RepeatGoalStructure{TBeliefSet}" />.
+        /// Updates the status of the <see cref="RepeatGoalStructure{TBeliefSet}" />.
         /// The goal structure status is set to:
         /// <list type="table">
-        /// <item>
-        /// <term><see cref="Success"/></term>
-        /// <term>When the underlying <see cref="IGoalStructure{TBeliefSet}"/> is successful.</term>
-        /// </item>
-        /// <item>
-        /// <term><see cref="Failure"/></term>
-        /// <term>Never.</term>
-        /// </item>
-        /// <item>
-        /// <term><see cref="Unfinished"/></term>
-        /// <term>
-        /// When the underlying <see cref="IGoalStructure{TBeliefSet}"/> is unfinished.
-        /// The goal structure will continue to execute the underlying goal structure until it is successful.
-        /// </term>
-        /// </item>
+        ///     <item>
+        ///         <term><see cref="Success"/></term>
+        ///         <description>When the underlying goal structure is successful.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Failure"/></term>
+        ///         <description>Never.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Unfinished"/></term>
+        ///         <description>
+        ///             When the underlying goal structure is unfinished.
+        ///             The underlying goal structure will be retried when it fails.
+        ///         </description>
+        ///     </item>
         /// </list>
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>

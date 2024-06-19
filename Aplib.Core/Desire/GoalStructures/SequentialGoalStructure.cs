@@ -48,21 +48,21 @@ namespace Aplib.Core.Desire.GoalStructures
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
         /// <summary>
-        /// This method updates the status of the <see cref="SequentialGoalStructure{TBeliefSet}" />.
+        /// Updates the status of the <see cref="SequentialGoalStructure{TBeliefSet}" />.
         /// The goal structure status is set to:
         /// <list type="table">
-        /// <item>
-        /// <term><see cref="Success"/></term>
-        /// <term>When all children are successful.</term>
-        /// </item>
-        /// <item>
-        /// <term><see cref="Failure"/></term>
-        /// <term>When any one of its children fails.</term>
-        /// </item>
-        /// <item>
-        /// <term><see cref="Unfinished"/></term>
-        /// <term>Otherwise.</term>
-        /// </item>
+        ///     <item>
+        ///         <term><see cref="Success"/></term>
+        ///         <description>When all children are successful.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Failure"/></term>
+        ///         <description>When any one of its children fails.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Unfinished"/></term>
+        ///         <description>Otherwise.</description>
+        ///     </item>
         /// </list>
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
