@@ -191,6 +191,9 @@ public class GoalStructureTests
 
         firstOfGoalStructure.UpdateStatus(beliefSet);
 
+        // Pre-conditions
+        firstOfGoalStructure.Status.Should().Be(CompletionStatus.Success);
+
         // Act
         firstOfGoalStructure.Reset();
 
@@ -261,8 +264,12 @@ public class GoalStructureTests
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
 
-        // Act
         primitiveGoalStructure.UpdateStatus(beliefSet);
+
+        // Pre-conditions
+        primitiveGoalStructure.Status.Should().Be(CompletionStatus.Success);
+
+        // Act
         primitiveGoalStructure.Reset();
 
         // Assert
@@ -386,6 +393,11 @@ public class GoalStructureTests
 
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(goalStructure.Object);
+
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Pre-conditions
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Success);
 
         // Act
         repeatGoalStructure.Reset();
@@ -587,6 +599,9 @@ public class GoalStructureTests
         SequentialGoalStructure<IBeliefSet> sequentialGoalStructure = new(goalStructure1.Object, goalStructure2.Object);
 
         sequentialGoalStructure.UpdateStatus(beliefSet);
+
+        // Pre-conditions
+        sequentialGoalStructure.Status.Should().Be(CompletionStatus.Success);
 
         // Act
         sequentialGoalStructure.Reset();
