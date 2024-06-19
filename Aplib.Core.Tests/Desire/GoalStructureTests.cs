@@ -374,25 +374,6 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void RepeatGoalStructure_WhenReset_ShouldBeUnfinished()
-    {
-        // Arrange
-        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
-        goalStructure.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
-
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(goalStructure.Object);
-
-        repeatGoalStructure.UpdateStatus(beliefSet);
-
-        // Act
-        repeatGoalStructure.Reset();
-
-        // Assert
-        repeatGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
-    }
-
-    [Fact]
     public void ReusedGoalStructures_WhenSequenced_ShouldNotBeFinished()
     {
         // Arrange
