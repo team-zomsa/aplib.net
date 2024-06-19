@@ -25,5 +25,10 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         void UpdateStatus(TBeliefSet beliefSet);
+
+        /// <summary>
+        /// Resets the goal structure to its initial state.
+        /// </summary>
+        void Reset();
     }
 }
