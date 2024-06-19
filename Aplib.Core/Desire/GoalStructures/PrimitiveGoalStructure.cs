@@ -34,8 +34,8 @@ namespace Aplib.Core.Desire.GoalStructures
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _goal;
 
         /// <summary>
-        /// This method updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
-        /// The goal structure status is set to the status of the underlying <see cref="IGoal{TBeliefSet}"/>.
+        /// Updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
+        /// The goal structure status is set to the status of the underlying <see cref="IGoal{TBeliefSet}" />.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         public override void UpdateStatus(TBeliefSet beliefSet)
