@@ -41,7 +41,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <summary>
         /// Updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
         /// The goal structure status is set to:
-        /// <list type="table">
+        /// <list type="bullet">
         ///     <item>
         ///         <term><see cref="Success"/></term>
         ///         <description>When any one of its children is successful.</description>
