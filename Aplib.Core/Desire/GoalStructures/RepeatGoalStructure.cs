@@ -53,8 +53,7 @@ namespace Aplib.Core.Desire.GoalStructures
         {
         }
 
-        /// <inheritdoc
-        ///     cref="GoalStructure{TBeliefSet}(IMetadata,System.Collections.Generic.IEnumerable{IGoalStructure{TBeliefSet}})" />
+        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(IGoalStructure{TBeliefSet},int)" />
         public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
             : base(metadata, new[] { goalStructure })
         {
