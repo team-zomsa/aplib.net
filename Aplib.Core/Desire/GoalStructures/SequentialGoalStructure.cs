@@ -1,15 +1,15 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using System.Collections.Generic;
+using static Aplib.Core.CompletionStatus;
 
 namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
-    /// Represents a sequential goal structure.
+    /// Represents a goal structure that will complete if all of its children complete.
     /// </summary>
     /// <remarks>
-    /// This class is a specific type of goal structure where goals are processed sequentially.
-    /// All goals must be completed in order for the goal structure to be completed.
+    /// The children of this goal structure will be executed in the order they are given.
     /// </remarks>
     /// <typeparam name="TBeliefSet">The type of belief set that this goal structure operates on.</typeparam>
     public class SequentialGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>, System.IDisposable
@@ -47,44 +47,48 @@ namespace Aplib.Core.Desire.GoalStructures
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Updates the status of the <see cref="SequentialGoalStructure{TBeliefSet}" />.
+        /// The goal structure status is set to:
+        /// <list type="bullet">
+        ///     <item>
+        ///         <term><see cref="Success"/></term>
+        ///         <description>When all children are successful.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Failure"/></term>
+        ///         <description>When any one of its children fails.</description>
+        ///     </item>
+        ///     <item>
+        ///         <term><see cref="Unfinished"/></term>
+        ///         <description>Otherwise.</description>
+        ///     </item>
+        /// </list>
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
         public override void UpdateStatus(TBeliefSet beliefSet)
         {
-            // Loop through all the children until one of them is unfinished or successful.
-            // This loop is here to prevent tail recursion.
-            while (true)
+            if (Status != Unfinished) return;
+
+            // Loop through all the children until one of them is unfinished or failed,
+            // or the end of the enumerator is reached.
+            do
             {
-                if (Status == CompletionStatus.Success) return;
-
+                _currentGoalStructure = _childrenEnumerator.Current;
                 _currentGoalStructure!.UpdateStatus(beliefSet);
-
-                switch (_currentGoalStructure.Status)
-                {
-                    case CompletionStatus.Unfinished:
-                        return;
-                    case CompletionStatus.Failure:
-                        Status = CompletionStatus.Failure;
-                        return;
-                    case CompletionStatus.Success:
-                        // Move to the next goal structure.
-                        break;
-                    default:
-                        throw new System.InvalidOperationException
-                            ($"An unknown variant of the {nameof(CompletionStatus)} enum was encountered.");
-                }
-
-                if (_childrenEnumerator.MoveNext())
-                {
-                    _currentGoalStructure = _childrenEnumerator.Current;
-                    Status = CompletionStatus.Unfinished;
-
-                    // Update the state of the new goal structure
-                    continue;
-                }
-
-                Status = CompletionStatus.Success;
-                return;
             }
+            while (_currentGoalStructure.Status == Success && _childrenEnumerator.MoveNext());
+
+            Status = _currentGoalStructure.Status;
+        }
+
+        /// <inheritdoc />
+        public override void Reset()
+        {
+            base.Reset();
+
+            _childrenEnumerator.Reset();
+            _childrenEnumerator.MoveNext();
         }
 
         /// <inheritdoc />
