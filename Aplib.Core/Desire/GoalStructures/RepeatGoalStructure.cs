@@ -81,7 +81,8 @@ namespace Aplib.Core.Desire.GoalStructures
         ///     <item>
         ///         <term><see cref="Failure"/></term>
         ///         <description>
-        ///             When the underlying goal structure fails and the maximum number of retries has been reached.
+        ///             If the underlying goal structure fails when the maximum number of retries has been reached.
+        ///             But never if no maximum number of retries has been specified.
         ///         </description>
         ///     </item>
         ///     <item>
