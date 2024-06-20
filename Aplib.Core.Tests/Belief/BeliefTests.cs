@@ -1,7 +1,6 @@
 ﻿using Aplib.Core.Belief.Beliefs;
 using FluentAssertions;
 using Moq;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,32 +36,33 @@ public class BeliefTests
     {
         public object Reference => _reference;
 
-        public Func<object, object> GetObservationFromReference => _getObservationFromReference;
+        public System.Func<object, object> GetObservationFromReference => _getObservationFromReference;
 
-        public Func<bool> ShouldUpdate => _shouldUpdate;
+        public System.Func<bool> ShouldUpdate => _shouldUpdate;
 
         public TestBelief
         (
             Metadata metadata,
             object reference,
-            Func<object, object> getObservationFromReference,
-            Func<bool> shouldUpdate
+            System.Func<object, object> getObservationFromReference,
+            System.Func<bool> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, shouldUpdate)
         {
         }
 
-        public TestBelief(object reference, Func<object, object> getObservationFromReference, Func<bool> shouldUpdate)
+        public TestBelief
+            (object reference, System.Func<object, object> getObservationFromReference, System.Func<bool> shouldUpdate)
             : base(reference, getObservationFromReference, shouldUpdate)
         {
         }
 
-        public TestBelief(Metadata metadata, object reference, Func<object, object> getObservationFromReference)
+        public TestBelief(Metadata metadata, object reference, System.Func<object, object> getObservationFromReference)
             : base(metadata, reference, getObservationFromReference)
         {
         }
 
-        public TestBelief(object reference, Func<object, object> getObservationFromReference)
+        public TestBelief(object reference, System.Func<object, object> getObservationFromReference)
             : base(reference, getObservationFromReference)
         {
         }
@@ -74,8 +74,8 @@ public class BeliefTests
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
-        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
+        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
 
         // Act
         TestBelief belief = new(metadata, reference, getObservationFromReference, shouldUpdate);
@@ -92,8 +92,8 @@ public class BeliefTests
     {
         // Arrange
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
-        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
+        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
 
         // Act
         TestBelief belief = new(reference, getObservationFromReference, shouldUpdate);
@@ -113,7 +113,7 @@ public class BeliefTests
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
 
         // Act
         TestBelief belief = new(metadata, reference, getObservationFromReference);
@@ -130,7 +130,7 @@ public class BeliefTests
     {
         // Arrange
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
 
         // Act
         TestBelief belief = new(reference, getObservationFromReference);
@@ -176,14 +176,14 @@ public class BeliefTests
         const string paramName = "reference";
 
         // ReSharper disable once ConvertToLocalFunction
-        Action construction = () =>
+        System.Action construction = () =>
         {
             // The bug is the fact that we can get around the constraint that `TReference` should be a reference type.
             _ = new Belief<IEnumerable<int>, List<int>>(value, values => values.ToList());
         };
 
         // Act, Assert
-        Assert.Throws<ArgumentException>(paramName, construction);
+        Assert.Throws<System.ArgumentException>(paramName, construction);
     }
 
     /// <summary>

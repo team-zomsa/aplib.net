@@ -2,7 +2,6 @@ using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
 using Aplib.Core.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,17 +30,23 @@ namespace Aplib.Core.Desire.Goals
         protected readonly double _epsilon;
 
         /// <summary>
+        /// A fail-guard for the goal's completion status.
+        /// The fail-guard predicate is a condition that, when true, indicates that the goal has failed.
+        /// </summary>
+        protected readonly System.Predicate<TBeliefSet> _failGuard;
+
+        /// <summary>
         /// The concrete implementation of this Goal's <see cref="HeuristicFunction" />. Used to test whether this goal is
         /// completed.
         /// </summary>
-        /// <seealso cref="GetStatus" />
+        /// <seealso cref="UpdateStatus" />
         protected readonly HeuristicFunction _heuristicFunction;
 
         /// <summary>
         /// The abstract definition of what is means to test the Goal's heuristic function. Returns <see cref="Heuristics" />, as
         /// they represent how close we are to matching the heuristic function, and if the goal is completed.
         /// </summary>
-        /// <seealso cref="Goal{TBeliefSet}.GetStatus" />
+        /// <seealso cref="Goal{TBeliefSet}.UpdateStatus" />
         public delegate Heuristics HeuristicFunction(TBeliefSet beliefSet);
 
         /// <inheritdoc />
@@ -54,70 +59,143 @@ namespace Aplib.Core.Desire.Goals
         /// </summary>
         public ITactic<TBeliefSet> Tactic { get; }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Gets the completion status of the goal.
+        /// This value may need to be updated first using the <see cref="UpdateStatus"/> method.
+        /// </summary>
+        /// <seealso cref="UpdateStatus"/>
         public CompletionStatus Status { get; protected set; }
 
         /// <summary>
-        /// Creates a new goal which works with <see cref="Heuristics" />.
+        /// Initializes a new goal from a given tactic and heuristic function, and an optional fail-guard.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// If omitted, default metadata will be generated.
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
         /// <param name="heuristicFunction">The heuristic function which defines whether a goal is reached.</param>
+        /// <param name="failGuard">
+        /// A predicate that determines when the goal has failed.
+        /// If the fail-guard is true,
+        /// but the success heuristic is also satisfied, the success heuristic takes precedence.
+        /// If omitted, the goal will never fail.
+        /// </param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />
-        /// is below this value.
+        /// The goal is considered to be completed when the result of the heuristic function is below this value.
         /// </param>
         public Goal
         (
             IMetadata metadata,
             ITactic<TBeliefSet> tactic,
             HeuristicFunction heuristicFunction,
+            System.Predicate<TBeliefSet> failGuard,
             double epsilon = DefaultEpsilon
         )
         {
             Metadata = metadata;
             Tactic = tactic;
             _heuristicFunction = heuristicFunction;
+            _failGuard = failGuard;
             _epsilon = epsilon;
         }
 
-        /// <inheritdoc
-        ///     cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Aplib.Core.Desire.Goals.Goal{TBeliefSet}.HeuristicFunction,double)" />
-        public Goal(ITactic<TBeliefSet> tactic, HeuristicFunction heuristicFunction, double epsilon = DefaultEpsilon)
-            : this(new Metadata(), tactic, heuristicFunction, epsilon)
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            System.Predicate<TBeliefSet> failGuard,
+            double epsilon = DefaultEpsilon
+        )
+            : this(new Metadata(), tactic, heuristicFunction, failGuard, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            IMetadata metadata,
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            double epsilon = DefaultEpsilon
+        ) : this(metadata, tactic, heuristicFunction, _ => false, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            HeuristicFunction heuristicFunction,
+            double epsilon = DefaultEpsilon
+        )
+            : this(tactic, heuristicFunction, _ => false, epsilon)
         {
         }
 
         /// <summary>
-        /// Creates a new goal which works with boolean-based <see cref="Heuristics" />.
+        /// Initializes a new goal from a given tactic and a success predicate, and an optional fail-guard.
         /// </summary>
         /// <param name="metadata">
         /// Metadata about this goal, used to quickly display the goal in several contexts.
+        /// If omitted, default metadata will be generated.
         /// </param>
         /// <param name="tactic">The tactic used to approach this goal.</param>
-        /// <param name="predicate">
-        /// The heuristic function (or specifically predicate) which defines whether a goal is reached.
+        /// <param name="predicate">A predicate that determines when the goal has succeeded.</param>
+        /// <param name="failGuard">
+        /// A predicate that determines when the goal has failed.
+        /// If the fail-guard is true,
+        /// but the success predicate is also satisfied, the success predicate takes precedence.
+        /// If omitted, the goal will never fail.
         /// </param>
         /// <param name="epsilon">
-        /// The goal is considered to be completed, when the distance of the <see cref="DetermineCurrentHeuristics" />
-        /// is below this value.
+        /// The goal is considered to be completed when the result of the heuristic function is below this value.
         /// </param>
         public Goal
         (
             IMetadata metadata,
             ITactic<TBeliefSet> tactic,
-            Func<TBeliefSet, bool> predicate,
+            System.Predicate<TBeliefSet> predicate,
+            System.Predicate<TBeliefSet> failGuard,
             double epsilon = DefaultEpsilon
         )
-            : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), epsilon)
+            : this(metadata, tactic, CommonHeuristicFunctions<TBeliefSet>.Boolean(predicate), failGuard, epsilon)
         {
         }
 
-        /// <inheritdoc cref="Goal{TBeliefSet}(Aplib.Core.IMetadata,ITactic{TBeliefSet},Func{TBeliefSet,bool},double)" />
-        public Goal(ITactic<TBeliefSet> tactic, Func<TBeliefSet, bool> predicate, double epsilon = DefaultEpsilon)
-            : this(new Metadata(), tactic, predicate, epsilon)
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            System.Predicate<TBeliefSet> failGuard,
+            double epsilon = DefaultEpsilon
+        )
+            : this(new Metadata(), tactic, predicate, failGuard, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            IMetadata metadata,
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            double epsilon = DefaultEpsilon
+        )
+            : this(metadata, tactic, predicate, _ => false, epsilon)
+        {
+        }
+
+        /// <inheritdoc />
+        public Goal
+        (
+            ITactic<TBeliefSet> tactic,
+            System.Predicate<TBeliefSet> predicate,
+            double epsilon = DefaultEpsilon
+        )
+            : this(tactic, predicate, _ => false, epsilon)
         {
         }
 
@@ -129,18 +207,28 @@ namespace Aplib.Core.Desire.Goals
             => _heuristicFunction.Invoke(beliefSet);
 
         /// <summary>
-        /// Tests whether the goal has been achieved, bases on the <see cref="_heuristicFunction" /> and the
-        /// <see cref="DetermineCurrentHeuristics" />. When the distance of the heuristics is smaller than <see cref="_epsilon" />,
+        /// <para>Tests whether the goal has been achieved.</para>
+        /// <para>
+        /// This first checks the heuristic function of the goal.
+        /// When the distance of the heuristics is smaller than the epsilon of the goal,
         /// the goal is considered to be completed.
+        /// </para>
+        /// <para>
+        /// If the heuristic function is not smaller than the epsilon, this checks the fail-guard of the goal.
+        /// If the fail guard returns <c>true</c>, the goal is considered to have failed.
+        /// </para>
+        /// <para>Otherwise, the goal is considered unfinished.</para>
+        /// <para>Use <see cref="Status"/> to get the updated value.</para>
         /// </summary>
-        /// <returns>An enum representing whether the goal is complete and if so, with what result.</returns>
-        /// <seealso cref="_epsilon" />
-        public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)
+        /// <seealso cref="Status"/>
+        public virtual void UpdateStatus(TBeliefSet beliefSet)
         {
-            Status = DetermineCurrentHeuristics(beliefSet).Distance < _epsilon
-                ? CompletionStatus.Success
-                : CompletionStatus.Unfinished;
-            return Status;
+            if (DetermineCurrentHeuristics(beliefSet).Distance < _epsilon)
+                Status = CompletionStatus.Success;
+            else if (_failGuard(beliefSet))
+                Status = CompletionStatus.Failure;
+            else
+                Status = CompletionStatus.Unfinished;
         }
 
         /// <inheritdoc />

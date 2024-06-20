@@ -13,11 +13,11 @@ public class TacticTests
     // A subclass of Tactic for testing
     public class TestTactic : Tactic<IBeliefSet>
     {
-        public System.Func<IBeliefSet, bool> Guard => _guard;
+        public System.Predicate<IBeliefSet> Guard => _guard;
 
-        public TestTactic(Metadata metadata, System.Func<IBeliefSet, bool> guard) : base(metadata, guard) { }
+        public TestTactic(Metadata metadata, System.Predicate<IBeliefSet> guard) : base(metadata, guard) { }
 
-        public TestTactic(System.Func<IBeliefSet, bool> guard) : base(guard) { }
+        public TestTactic(System.Predicate<IBeliefSet> guard) : base(guard) { }
 
         public TestTactic(Metadata metadata) : base(metadata) { }
 
@@ -32,12 +32,12 @@ public class TacticTests
     // A subclass of FirstOfTactic for testing
     public class TestFirstOfTactic : FirstOfTactic<IBeliefSet>
     {
-        public System.Func<IBeliefSet, bool> Guard => _guard;
+        public System.Predicate<IBeliefSet> Guard => _guard;
 
         public LinkedList<ITactic<IBeliefSet>> SubTactics => _subTactics;
 
         public TestFirstOfTactic
-            (Metadata metadata, System.Func<IBeliefSet, bool> guard, params ITactic<IBeliefSet>[] subTactics)
+            (Metadata metadata, System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subTactics)
             : base(metadata, guard, subTactics)
         {
         }
@@ -47,7 +47,7 @@ public class TacticTests
         {
         }
 
-        public TestFirstOfTactic(System.Func<IBeliefSet, bool> guard, params ITactic<IBeliefSet>[] subTactics)
+        public TestFirstOfTactic(System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subTactics)
             : base(guard, subTactics)
         {
         }
@@ -61,7 +61,7 @@ public class TacticTests
     {
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
-        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
 
         // Act
         TestTactic tactic = new(metadata, guard);
@@ -75,7 +75,7 @@ public class TacticTests
     public void Tactic_WithoutMetadata_HasExpectedData()
     {
         // Arrange
-        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
 
         // Act
         TestTactic tactic = new(guard);
@@ -192,7 +192,7 @@ public class TacticTests
     {
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
-        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
         ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
@@ -224,7 +224,7 @@ public class TacticTests
     public void FirstOfTacticTactic_WithoutMetadata_HasExpectedData()
     {
         // Arrange
-        System.Func<IBeliefSet, bool> guard = It.IsAny<System.Func<IBeliefSet, bool>>();
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
         ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act

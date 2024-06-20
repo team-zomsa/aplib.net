@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Aplib.Extensions
+﻿namespace Aplib.Extensions
 {
     /// <summary>
     /// Defines a pathfinding algorithm used to find a path from a starting point to an end point.
@@ -15,7 +13,7 @@ namespace Aplib.Extensions
         /// <param name="begin">The starting point of the path.</param>
         /// <param name="end">The end point of the path.</param>
         /// <returns>A read-only span of elements representing the path from the starting point to the end point.</returns>
-        public ReadOnlySpan<T> FindPath(T begin, T end);
+        public System.ReadOnlySpan<T> FindPath(T begin, T end);
 
         /// <summary>
         /// Gets the next step towards the specified end point from the current point in the path.

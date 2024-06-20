@@ -1,5 +1,4 @@
 using Aplib.Core.Collections;
-using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Collections;
@@ -13,7 +12,7 @@ public class ExposedQueueTests
         void AccessIndexGreaterThanCount() => _ = new ExposedQueue<int>(3)[4];
 
         // Act & Assert
-        Assert.Throws<ArgumentOutOfRangeException>(AccessIndexGreaterThanCount);
+        Assert.Throws<System.ArgumentOutOfRangeException>(AccessIndexGreaterThanCount);
     }
 
     [Fact]
@@ -23,7 +22,7 @@ public class ExposedQueueTests
         void AccessNegativeIndex() => _ = new ExposedQueue<int>(3)[-1];
 
         // Act & Assert
-        Assert.Throws<ArgumentOutOfRangeException>(AccessNegativeIndex);
+        Assert.Throws<System.ArgumentOutOfRangeException>(AccessNegativeIndex);
     }
 
     [Fact]
@@ -89,7 +88,7 @@ public class ExposedQueueTests
         ExposedQueue<int> queue = new([3, 2, 1]);
 
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], 0, 3));
+        Assert.Throws<System.ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], 0, 3));
     }
 
     [Fact]
@@ -99,7 +98,7 @@ public class ExposedQueueTests
         ExposedQueue<int> queue = new([3, 2, 1]);
 
         // Assert
-        Assert.Throws<ArgumentException>(() => queue.CopyTo(new int[3], 2, 1));
+        Assert.Throws<System.ArgumentException>(() => queue.CopyTo(new int[3], 2, 1));
     }
 
     [Fact]
@@ -109,7 +108,7 @@ public class ExposedQueueTests
         ExposedQueue<int> queue = new([3, 2, 1]);
 
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], -1, 2));
+        Assert.Throws<System.ArgumentOutOfRangeException>(() => queue.CopyTo(new int[3], -1, 2));
     }
 
     [Fact]
@@ -227,7 +226,7 @@ public class ExposedQueueTests
         void NegativeCount() => _ = new ExposedQueue<int>([1, 2, 3], -1);
 
         // Act & Assert
-        Assert.Throws<ArgumentOutOfRangeException>(NegativeCount);
+        Assert.Throws<System.ArgumentOutOfRangeException>(NegativeCount);
     }
 
     [Fact]

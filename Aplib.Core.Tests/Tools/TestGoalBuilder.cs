@@ -18,7 +18,7 @@ internal sealed class TestGoalBuilder
         return this;
     }
 
-    public TestGoalBuilder WithHeuristicFunction(System.Func<IBeliefSet, bool> heuristicFunction)
+    public TestGoalBuilder WithHeuristicFunction(System.Predicate<IBeliefSet> heuristicFunction)
         => WithHeuristicFunction(CommonHeuristicFunctions<IBeliefSet>.Boolean(heuristicFunction));
 
     public TestGoalBuilder UseTactic(ITactic<IBeliefSet> tactic)

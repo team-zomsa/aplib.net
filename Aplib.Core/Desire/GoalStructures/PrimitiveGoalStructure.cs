@@ -1,7 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -29,7 +28,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </param>
         /// <param name="goal">The goal to fulfill.</param>
         public PrimitiveGoalStructure(IMetadata metadata, IGoal<TBeliefSet> goal)
-            : base(metadata, Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
+            : base(metadata, System.Array.Empty<IGoalStructure<TBeliefSet>>()) => _goal = goal;
 
         /// <inheritdoc cref="PrimitiveGoalStructure{TBeliefSet}(IMetadata,IGoal{TBeliefSet})"/>
         public PrimitiveGoalStructure(IGoal<TBeliefSet> goal) : this(new Metadata(), goal) { }
@@ -37,9 +36,16 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _goal;
 
-        /// <inheritdoc />
-        public override void UpdateStatus(TBeliefSet beliefSet) =>
-            Status = _goal.GetStatus(beliefSet);
+        /// <summary>
+        /// Updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
+        /// The goal structure status is set to the status of the underlying <see cref="IGoal{TBeliefSet}" />.
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
+        public override void UpdateStatus(TBeliefSet beliefSet)
+        {
+            _goal.UpdateStatus(beliefSet);
+            Status = _goal.Status;
+        }
         
         /// <inheritdoc />
         public override IEnumerable<ILoggable> GetLogChildren() => 

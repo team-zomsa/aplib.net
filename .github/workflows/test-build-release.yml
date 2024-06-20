@@ -18,7 +18,7 @@ jobs:
           distribution: 'zulu'
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0
       - name: Cache SonarCloud packages
         uses: actions/cache@v4
         with:

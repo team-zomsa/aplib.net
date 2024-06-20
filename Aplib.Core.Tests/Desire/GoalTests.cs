@@ -5,6 +5,7 @@ using Aplib.Core.Intent.Tactics;
 using Aplib.Core.Tests.Tools;
 using FluentAssertions;
 using Moq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -69,7 +70,8 @@ public class GoalTests
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus isCompleted = goal.Status;
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Unfinished);
@@ -88,7 +90,8 @@ public class GoalTests
 
         // Act
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        CompletionStatus isCompleted = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus isCompleted = goal.Status;
 
         // Assert
         isCompleted.Should().Be(CompletionStatus.Success);
@@ -107,10 +110,10 @@ public class GoalTests
         Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
 
         // Act
-        _ = goal.GetStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
 
         // Assert
-        beliefSetMock.Verify(beliefSetMock => beliefSetMock.UpdateBeliefs(), Times.Never);
+        beliefSetMock.Verify(beliefSet => beliefSet.UpdateBeliefs(), Times.Never);
     }
 
     /// <summary>
@@ -119,6 +122,7 @@ public class GoalTests
     /// the most recent heuristics are used
     /// </summary>
     [Fact]
+    [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
     public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
     {
         // Arrange
@@ -127,9 +131,11 @@ public class GoalTests
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
 
         // Act
-        CompletionStatus stateBefore = goal.GetStatus(beliefSetMock);
-        shouldSucceed = true; // Make heuristic function return a different value on next invoke
-        CompletionStatus stateAfter = goal.GetStatus(beliefSetMock);
+        goal.UpdateStatus(beliefSetMock);
+        CompletionStatus stateBefore = goal.Status;
+        shouldSucceed = true; // Make heuristic function return a different value on next invocation.
+        goal.UpdateStatus(beliefSetMock);
+        CompletionStatus stateAfter = goal.Status;
 
         // Assert
         stateBefore.Should().Be(CompletionStatus.Unfinished);
@@ -150,18 +156,69 @@ public class GoalTests
         // Arrange
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
 
-        bool heuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
         Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean =
             CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
 
-        Goal<IBeliefSet> goalBoolean = new(tactic, heuristicFunctionBoolean);
+        Goal<IBeliefSet> goalBoolean = new(tactic, HeuristicFunctionBoolean);
         Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
 
         // Act
-        CompletionStatus goalBooleanEvaluation = goalBoolean.GetStatus(It.IsAny<IBeliefSet>());
-        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.GetStatus(It.IsAny<IBeliefSet>());
+        goalBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus goalBooleanEvaluation = goalBoolean.Status;
+        goalNonBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
+        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.Status;
 
         // Assert
         goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
+        return;
+
+        bool HeuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
+    }
+
+    [Fact]
+    public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal()
+    {
+        // Arrange
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => false);
+        Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
+
+        // Act
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+
+        // Assert
+        goal.Status.Should().Be(CompletionStatus.Failure);
+    }
+
+    [Fact]
+    public void UpdateStatus_WhenBothFailGuardIsTrueAndHeuristicIsReached_CompletesTheGoal()
+    {
+        // Arrange
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => true);
+        Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
+
+        // Act
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+
+        // Assert
+        goal.Status.Should().Be(CompletionStatus.Success);
+    }
+
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Goal_WithoutFailGuard_DoesNotFail(bool goalCompleted)
+    {
+        // Arrange
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
+
+        // Act
+        Goal<IBeliefSet> goal = new(tactic, heuristic);
+        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+
+        // Assert
+        goal.Status.Should().NotBe(CompletionStatus.Failure);
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Aplib.Core.Belief.Beliefs
+﻿namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.
@@ -25,12 +23,12 @@ namespace Aplib.Core.Belief.Beliefs
         /// <summary>
         /// A function that takes an object reference and generates/updates an observation.
         /// </summary>
-        protected readonly Func<TReference, TObservation> _getObservationFromReference;
+        protected readonly System.Func<TReference, TObservation> _getObservationFromReference;
 
         /// <summary>
         /// A condition on when the observation should be updated.
         /// </summary>
-        protected readonly Func<bool> _shouldUpdate;
+        protected readonly System.Func<bool> _shouldUpdate;
 
         /// <summary>
         /// Gets the metadata of the Belief.
@@ -61,20 +59,21 @@ namespace Aplib.Core.Belief.Beliefs
         /// A function that takes an object reference and generates/updates an observation.
         /// </param>
         /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        /// <exception cref="ArgumentException">
+        /// <exception cref="System.ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
         public Belief
         (
             Metadata metadata,
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate
+            System.Func<TReference, TObservation> getObservationFromReference,
+            System.Func<bool> shouldUpdate
         )
         {
-            Type referenceType = reference.GetType();
+            System.Type referenceType = reference.GetType();
             if (referenceType.IsValueType)
-                throw new ArgumentException($"{referenceType.FullName} is not a reference type.", nameof(reference));
+                throw new System.ArgumentException
+                    ($"{referenceType.FullName} is not a reference type.", nameof(reference));
 
             Metadata = metadata;
             _reference = reference;
@@ -84,32 +83,32 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})"/>
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})"/>
         public Belief
         (
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate
+            System.Func<TReference, TObservation> getObservationFromReference,
+            System.Func<bool> shouldUpdate
         )
             : this(new Metadata(), reference, getObservationFromReference, shouldUpdate)
         {
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})" />
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})" />
         public Belief
         (
             Metadata metadata,
             TReference reference,
-            Func<TReference, TObservation> getObservationFromReference
+            System.Func<TReference, TObservation> getObservationFromReference
         )
             : this(metadata, reference, getObservationFromReference, () => true)
         {
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,Func{TReference,TObservation},Func{bool})" />
-        public Belief(TReference reference, Func<TReference, TObservation> getObservationFromReference)
+        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})" />
+        public Belief(TReference reference, System.Func<TReference, TObservation> getObservationFromReference)
             : this(new Metadata(), reference, getObservationFromReference, () => true)
         {
         }

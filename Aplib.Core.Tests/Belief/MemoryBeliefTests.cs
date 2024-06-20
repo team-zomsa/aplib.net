@@ -2,7 +2,6 @@ using Aplib.Core.Belief.Beliefs;
 using Aplib.Core.Collections;
 using FluentAssertions;
 using Moq;
-using System;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Tests.Belief;
@@ -16,9 +15,9 @@ public class MemoryBeliefTests
     {
         public object Reference => _reference;
 
-        public Func<object, object> GetObservationFromReference => _getObservationFromReference;
+        public System.Func<object, object> GetObservationFromReference => _getObservationFromReference;
 
-        public Func<bool> ShouldUpdate => _shouldUpdate;
+        public System.Func<bool> ShouldUpdate => _shouldUpdate;
 
         public ExposedQueue<object> MemorizedObservations => _memorizedObservations;
 
@@ -26,9 +25,9 @@ public class MemoryBeliefTests
         (
             Metadata metadata,
             object reference,
-            Func<object, object> getObservationFromReference,
+            System.Func<object, object> getObservationFromReference,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            System.Func<bool> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
@@ -37,9 +36,9 @@ public class MemoryBeliefTests
         public TestMemoryBelief
         (
             object reference,
-            Func<object, object> getObservationFromReference,
+            System.Func<object, object> getObservationFromReference,
             int framesToRemember,
-            Func<bool> shouldUpdate
+            System.Func<bool> shouldUpdate
         )
             : base(reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
@@ -49,7 +48,7 @@ public class MemoryBeliefTests
         (
             Metadata metadata,
             object reference,
-            Func<object, object> getObservationFromReference,
+            System.Func<object, object> getObservationFromReference,
             int framesToRemember
         )
             : base(metadata, reference, getObservationFromReference, framesToRemember)
@@ -57,7 +56,7 @@ public class MemoryBeliefTests
         }
 
         public TestMemoryBelief
-            (object reference, Func<object, object> getObservationFromReference, int framesToRemember)
+            (object reference, System.Func<object, object> getObservationFromReference, int framesToRemember)
             : base(reference, getObservationFromReference, framesToRemember)
         {
         }
@@ -69,9 +68,9 @@ public class MemoryBeliefTests
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 0;
-        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
 
         // Act
         TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate);
@@ -89,9 +88,9 @@ public class MemoryBeliefTests
     {
         // Arrange
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 1;
-        Func<bool> shouldUpdate = It.IsAny<Func<bool>>();
+        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
 
         // Act
         TestMemoryBelief belief = new(reference, getObservationFromReference, framesToRemember, shouldUpdate);
@@ -112,7 +111,7 @@ public class MemoryBeliefTests
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 2;
 
         // Act
@@ -131,7 +130,7 @@ public class MemoryBeliefTests
     {
         // Arrange
         object reference = new Mock<object>().Object;
-        Func<object, object> getObservationFromReference = new Mock<Func<object, object>>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 3;
 
         // Act
@@ -207,8 +206,8 @@ public class MemoryBeliefTests
         void GetMemoryAtIndexGreaterThanCount() => belief.GetMemoryAt(3);
 
         // Assert
-        Assert.Throws<ArgumentOutOfRangeException>(GetMemoryAtNegativeIndex);
-        Assert.Throws<ArgumentOutOfRangeException>(GetMemoryAtIndexGreaterThanCount);
+        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtNegativeIndex);
+        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtIndexGreaterThanCount);
     }
 
     /// <summary>

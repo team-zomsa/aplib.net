@@ -1,5 +1,3 @@
-using System;
-
 namespace Aplib.Core
 {
     /// <summary>
@@ -8,7 +6,7 @@ namespace Aplib.Core
     public class Metadata : IMetadata
     {
         /// <inheritdoc />
-        public Guid Id { get; }
+        public System.Guid Id { get; }
 
         /// <inheritdoc />
         public string? Name { get; }
@@ -21,7 +19,10 @@ namespace Aplib.Core
         /// </summary>
         /// <param name="name">The name used to display the component.</param>
         /// <param name="description">The description used to describe the component.</param>
-        public Metadata(string? name = null, string? description = null) : this(Guid.NewGuid(), name, description) { }
+        public Metadata(string? name = null, string? description = null)
+            : this(System.Guid.NewGuid(), name, description)
+        {
+        }
 
         /// <summary>
         /// Store information about a BDI cycle component which may be useful for debugging or logging or general overviews.
@@ -30,7 +31,7 @@ namespace Aplib.Core
         /// <param name="id">A unique identifier for the component.</param>
         /// <param name="name">The name used to display the component.</param>
         /// <param name="description">The description used to describe the component.</param>
-        internal Metadata(Guid id, string? name = null, string? description = null)
+        internal Metadata(System.Guid id, string? name = null, string? description = null)
         {
             Id = id;
             Name = name;
