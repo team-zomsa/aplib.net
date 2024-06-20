@@ -23,10 +23,10 @@ namespace Aplib.Core.Logging
         public LogNode GetLogTree(int depth = 0)
         {
             LogNode root = new(this, depth);
+
             foreach (ILoggable child in GetLogChildren())
-            {
                 root.Children.Add(child.GetLogTree(depth + 1));
-            }
+
             return root;
         }
     }

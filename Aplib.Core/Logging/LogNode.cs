@@ -29,6 +29,7 @@ namespace Aplib.Core.Logging
         /// <param name="loggable">The loggable object of the node.</param>
         /// <param name="depth">The depth at which this node resides.</param>
         /// <param name="children">The children of the node. If omitted, an empty list will be used.</param>
+        /// <remarks> It is assumed the children have a correct depth set. </remarks>
         public LogNode(ILoggable loggable, int depth, List<LogNode> children)
         {
             Loggable = loggable;
