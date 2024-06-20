@@ -13,8 +13,15 @@ namespace Aplib.Core.Desire.GoalStructures
     public class RepeatGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
+        /// <summary>
+        /// The maximum number of times to retry the goal after it has failed.
+        /// If this is <c>null</c>, the goal will be retried indefinitely.
+        /// </summary>
         private readonly int? _maxRetries;
 
+        /// <summary>
+        /// The number of times the goal has been retried so far.
+        /// </summary>
         private int _retryCount;
 
         /// <summary>
