@@ -60,13 +60,15 @@ namespace Aplib.Core.Desire.GoalStructures
         /// The maximum number of times to retry the goal after it has failed.
         /// If omitted, the goal will be retried indefinitely.
         /// </param>
-        /// <exception cref="System.ArgumentException">If <paramref name="maxRetries"/> is less than zero.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// If <paramref name="maxRetries"/> is less than zero.
+        /// </exception>
         protected RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int? maxRetries)
             : base(metadata, new[] { goalStructure })
         {
             if (maxRetries < 0)
-                throw new System.ArgumentException
-                    ($"{nameof(maxRetries)} must be greater than or equal to zero.", nameof(maxRetries));
+                throw new System.ArgumentOutOfRangeException
+                    (nameof(maxRetries), $"{nameof(maxRetries)} must be at least zero.");
 
             _currentGoalStructure = goalStructure;
             _maxRetries = maxRetries;
