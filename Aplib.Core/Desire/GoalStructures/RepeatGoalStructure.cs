@@ -22,7 +22,8 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <summary>
         /// The number of times the goal has been retried so far.
         /// </summary>
-        private int _retryCount;
+        // ReSharper disable once RedundantDefaultMemberInitializer
+        private int _retryCount = 0;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
@@ -44,7 +45,6 @@ namespace Aplib.Core.Desire.GoalStructures
 
             _currentGoalStructure = goalStructure;
             _maxRetries = maxRetries;
-            _retryCount = 0;
         }
 
         /// <inheritdoc />
@@ -60,7 +60,6 @@ namespace Aplib.Core.Desire.GoalStructures
         {
             _currentGoalStructure = goalStructure;
             _maxRetries = null;
-            _retryCount = 0;
         }
 
         /// <inheritdoc />
