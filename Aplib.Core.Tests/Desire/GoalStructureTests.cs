@@ -407,6 +407,69 @@ public class GoalStructureTests
     }
 
     [Fact]
+    public void RepeatGoalStructure_WhenMaxRetriesIsExceeded_CanFail()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure, 3);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Assert
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Failure);
+    }
+
+    [Fact]
+    public void RepeatGoalStructure_WhenMaxRetriesIsZero_CanFailImmediately()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure, 0);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Assert
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Failure);
+    }
+
+    [Fact]
+    public void RepeatGoalStructure_BeforeMaxRetriesIsExceeded_DoesNotFail()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure, 3);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        CompletionStatus status0 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status1 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status2 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status3 = repeatGoalStructure.Status;
+
+        // Assert
+        status0.Should().Be(CompletionStatus.Unfinished);
+        status1.Should().Be(CompletionStatus.Unfinished);
+        status2.Should().Be(CompletionStatus.Unfinished);
+        status3.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
     public void ReusedGoalStructures_WhenSequenced_ShouldNotBeFinished()
     {
         // Arrange
