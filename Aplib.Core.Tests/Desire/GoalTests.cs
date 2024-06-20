@@ -122,12 +122,12 @@ public class GoalTests
     /// the most recent heuristics are used
     /// </summary>
     [Fact]
-    [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
     public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
     {
         // Arrange
         IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
         bool shouldSucceed = false;
+        // ReSharper disable once AccessToModifiedClosure
         Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
 
         // Act
