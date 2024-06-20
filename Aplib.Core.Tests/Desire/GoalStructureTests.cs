@@ -469,6 +469,18 @@ public class GoalStructureTests
         status3.Should().Be(CompletionStatus.Unfinished);
     }
 
+
+    [Fact]
+    public void RepeatGoalStructure_WhenConstructedWithNegativeMaxRetries_ThrowsException()
+    {
+        // Arrange
+        IGoalStructure<IBeliefSet> goalStructure = It.IsAny<IGoalStructure<IBeliefSet>>();
+        System.Action act = () => _ = new RepeatGoalStructure<IBeliefSet>(goalStructure, -3);
+
+        // Act, Assert
+        act.Should().Throw<System.ArgumentOutOfRangeException>().WithParameterName("maxRetries");
+    }
+
     [Fact]
     public void ReusedGoalStructures_WhenSequenced_ShouldNotBeFinished()
     {
