@@ -68,7 +68,7 @@ namespace Aplib.Core.Desire.GoalStructures
         {
             if (maxRetries < 0)
                 throw new System.ArgumentOutOfRangeException
-                    (nameof(maxRetries), $"{nameof(maxRetries)} must be at least zero.");
+                    (nameof(maxRetries), $"{nameof(maxRetries)} cannot be negative.");
 
             _currentGoalStructure = goalStructure;
             _maxRetries = maxRetries;
