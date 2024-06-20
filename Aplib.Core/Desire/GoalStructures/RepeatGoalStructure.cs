@@ -17,13 +17,37 @@ namespace Aplib.Core.Desire.GoalStructures
         /// The maximum number of times to retry the goal after it has failed.
         /// If this is <c>null</c>, the goal will be retried indefinitely.
         /// </summary>
-        private readonly int? _maxRetries;
+        protected internal readonly int? _maxRetries;
 
         /// <summary>
         /// The number of times the goal has been retried so far.
         /// </summary>
         // ReSharper disable once RedundantDefaultMemberInitializer
-        private int _retryCount = 0;
+        protected internal int _retryCount = 0;
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : this(metadata, goalStructure, (int?)maxRetries)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : this(new Metadata(), goalStructure, (int?)maxRetries)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
+            : this(metadata, goalStructure, null)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure)
+            : this(new Metadata(), goalStructure, null)
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
@@ -36,7 +60,7 @@ namespace Aplib.Core.Desire.GoalStructures
         /// The maximum number of times to retry the goal after it has failed.
         /// If omitted, the goal will be retried indefinitely.
         /// </param>
-        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+        protected RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int? maxRetries)
             : base(metadata, new[] { goalStructure })
         {
             if (maxRetries < 0)
@@ -48,26 +72,8 @@ namespace Aplib.Core.Desire.GoalStructures
         }
 
         /// <inheritdoc />
-        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
-            : this(new Metadata(), goalStructure, maxRetries)
-        {
-        }
-
-        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(IGoalStructure{TBeliefSet},int)" />
-        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
-            : base(metadata, new[] { goalStructure })
-        {
-            _currentGoalStructure = goalStructure;
-            _maxRetries = null;
-        }
-
-        /// <inheritdoc />
-        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
-
-        /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
-
 
         /// <summary>
         /// Updates the status of the <see cref="RepeatGoalStructure{TBeliefSet}" />.
