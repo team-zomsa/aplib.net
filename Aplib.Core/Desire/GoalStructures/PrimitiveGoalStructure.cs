@@ -46,9 +46,9 @@ namespace Aplib.Core.Desire.GoalStructures
             _goal.UpdateStatus(beliefSet);
             Status = _goal.Status;
         }
-        
+
         /// <inheritdoc />
-        public override IEnumerable<ILoggable> GetLogChildren() => 
+        public override IEnumerable<ILoggable> GetLogChildren() =>
             _goal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
     }
 }

@@ -112,9 +112,9 @@ namespace Aplib.Core.Desire.DesireSets
         }
 
         /// <inheritdoc />
-        public IEnumerable<ILoggable> GetLogChildren() => 
+        public IEnumerable<ILoggable> GetLogChildren() =>
             _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
-            
+
         /// <summary>
         /// Implicitly lifts a goal into a desire set.
         /// </summary>

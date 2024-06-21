@@ -9,14 +9,49 @@ namespace Aplib.Core.Desire.GoalStructures
 {
     /// <summary>
     /// Represents a goal structure that will complete if any of its children complete.
+    /// This structure will repeatedly execute the goal it was created with until the goal is finished,
+    /// or the maximum number of retries is reached.
     /// </summary>
-    /// <remarks>
-    /// This structure will repeatedly execute the goal it was created with until the goal is finished.
-    /// </remarks>
-    /// <typeparam name="TBeliefSet">The beliefset of the agent.</typeparam>
+    /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
     public class RepeatGoalStructure<TBeliefSet> : GoalStructure<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
+        /// <summary>
+        /// The maximum number of times to retry the goal after it has failed.
+        /// If this is <c>null</c>, the goal will be retried indefinitely.
+        /// </summary>
+        protected internal readonly int? _maxRetries;
+
+        /// <summary>
+        /// The number of times the goal has been retried so far.
+        /// </summary>
+        // ReSharper disable once RedundantDefaultMemberInitializer
+        protected internal int _retryCount = 0;
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : this(metadata, goalStructure, (int?)maxRetries)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure, int maxRetries)
+            : this(new Metadata(), goalStructure, (int?)maxRetries)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
+            : this(metadata, goalStructure, null)
+        {
+        }
+
+        /// <inheritdoc />
+        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure)
+            : this(new Metadata(), goalStructure, null)
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RepeatGoalStructure{TBeliefSet}" /> class.
         /// </summary>
@@ -24,17 +59,27 @@ namespace Aplib.Core.Desire.GoalStructures
         /// Metadata about this goal, used to quickly display the goal in several contexts.
         /// </param>
         /// <param name="goalStructure">The GoalStructure to repeat.</param>
-        public RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure)
-            : base(metadata, new List<IGoalStructure<TBeliefSet>> { goalStructure })
-            => _currentGoalStructure = goalStructure;
+        /// <param name="maxRetries">
+        /// The maximum number of times to retry the goal after it has failed.
+        /// If omitted, the goal will be retried indefinitely.
+        /// </param>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// If <paramref name="maxRetries"/> is less than zero.
+        /// </exception>
+        protected RepeatGoalStructure(IMetadata metadata, IGoalStructure<TBeliefSet> goalStructure, int? maxRetries)
+            : base(metadata, new[] { goalStructure })
+        {
+            if (maxRetries < 0)
+                throw new System.ArgumentOutOfRangeException
+                    (nameof(maxRetries), $"{nameof(maxRetries)} cannot be negative.");
 
-        /// <inheritdoc cref="RepeatGoalStructure{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet})"/>
-        public RepeatGoalStructure(IGoalStructure<TBeliefSet> goalStructure) : this(new Metadata(), goalStructure) { }
+            _currentGoalStructure = goalStructure;
+            _maxRetries = maxRetries;
+        }
 
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
-
 
         /// <summary>
         /// Updates the status of the <see cref="RepeatGoalStructure{TBeliefSet}" />.
@@ -46,7 +91,10 @@ namespace Aplib.Core.Desire.GoalStructures
         ///     </item>
         ///     <item>
         ///         <term><see cref="Failure"/></term>
-        ///         <description>Never.</description>
+        ///         <description>
+        ///             If the underlying goal structure fails when the maximum number of retries has been reached.
+        ///             But never if no maximum number of retries has been specified.
+        ///         </description>
         ///     </item>
         ///     <item>
         ///         <term><see cref="Unfinished"/></term>
@@ -64,7 +112,11 @@ namespace Aplib.Core.Desire.GoalStructures
 
             _currentGoalStructure!.UpdateStatus(beliefSet);
 
-            if (_currentGoalStructure.Status == Failure) _currentGoalStructure.Reset();
+            if (_currentGoalStructure.Status == Failure && (_maxRetries is null || _retryCount < _maxRetries))
+            {
+                _currentGoalStructure.Reset();
+                _retryCount++;
+            }
 
             Status = _currentGoalStructure.Status;
         }

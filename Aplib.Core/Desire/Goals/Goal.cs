@@ -232,7 +232,7 @@ namespace Aplib.Core.Desire.Goals
         }
 
         /// <inheritdoc />
-        public IEnumerable<ILoggable> GetLogChildren() => 
+        public IEnumerable<ILoggable> GetLogChildren() =>
             Tactic is ILoggable tactic ? new[] { tactic } : Enumerable.Empty<ILoggable>();
     }
 }

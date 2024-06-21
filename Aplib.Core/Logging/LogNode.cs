@@ -39,7 +39,7 @@ namespace Aplib.Core.Logging
             Depth = depth;
             Children = children;
         }
-        
+
         /// <inheritdoc />
         public LogNode(ILoggable loggable, int depth) : this(loggable, depth, new List<LogNode>()) { }
     }

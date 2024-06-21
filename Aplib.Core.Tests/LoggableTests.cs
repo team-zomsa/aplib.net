@@ -38,7 +38,7 @@ namespace Aplib.Core.Tests
             PrimitiveTactic<IBeliefSet> tactic = new(_action1, _ => true);
 
             LogNode expectedRoot = new(tactic, 0, [new LogNode(_action1, 1)]);
-            
+
             // Act
             LogNode root = ((ILoggable)tactic).GetLogTree();
 
