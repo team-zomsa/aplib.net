@@ -1,5 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -7,7 +8,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, IDocumented
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
@@ -62,6 +63,9 @@ namespace Aplib.Core.Desire.GoalStructures
 
             Status = CompletionStatus.Unfinished;
         }
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
         /// Implicitly lifts a goal into a goal structure.

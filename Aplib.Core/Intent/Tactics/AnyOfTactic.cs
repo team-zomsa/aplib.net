@@ -1,6 +1,8 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -69,5 +71,8 @@ namespace Aplib.Core.Intent.Tactics
 
             return actions[ThreadSafeRandom.Next(actions.Count)];
         }
+
+        /// <inheritdoc/>
+        public override IEnumerable<ILoggable> GetLogChildren() => _subTactics.OfType<ILoggable>();
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -82,5 +84,9 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
             => IsActionable(beliefSet) ? _action : null;
+
+        /// <inheritdoc/>
+        public override IEnumerable<ILoggable> GetLogChildren() =>
+            _action is ILoggable loggable ? new[] { loggable } : System.Linq.Enumerable.Empty<ILoggable>();
     }
 }
