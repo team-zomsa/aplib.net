@@ -84,7 +84,8 @@ namespace Aplib.Core
             where TBeliefSet : IBeliefSet =>
             new(subTactics);
 
-        /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
+        /// <inheritdoc
+        ///     cref="FirstOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
             (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
@@ -143,7 +144,8 @@ namespace Aplib.Core
             new(query, guard);
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet})"/>
-        public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>(IMetadata metadata, IQueryable<TBeliefSet> query)
+        public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
+            (IMetadata metadata, IQueryable<TBeliefSet> query)
             where TBeliefSet : IBeliefSet =>
             new(metadata, query);
 
