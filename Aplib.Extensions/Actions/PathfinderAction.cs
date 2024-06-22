@@ -18,33 +18,33 @@ namespace Aplib.Extensions.Actions
         /// <param name="metadata">The metadata of the action.</param>
         /// <param name="pathfinder">The pathfinder that finds the path through the world.</param>
         /// <param name="getCurrentLocation">The function that gets the current location in the world.</param>
-        /// <param name="getEndLocation">The function that gets the destination in the world.</param>
+        /// <param name="getTargetLocation">The function that gets the destination in the world.</param>
         /// <param name="effect">The function that does something with the found location.</param>
         public PathfinderAction(IMetadata metadata,
             IPathfinder<TLocation> pathfinder,
             System.Func<TBeliefSet, TLocation> getCurrentLocation,
-            System.Func<TBeliefSet, TLocation> getEndLocation,
+            System.Func<TBeliefSet, TLocation> getTargetLocation,
             System.Action<TBeliefSet, TLocation> effect)
-            : base(metadata, ExecutePathFinder(pathfinder, getCurrentLocation, getEndLocation, effect))
+            : base(metadata, ExecutePathFinder(pathfinder, getCurrentLocation, getTargetLocation, effect))
         {
         }
 
         /// <inheritdoc />
         public PathfinderAction(IPathfinder<TLocation> pathfinder,
             System.Func<TBeliefSet, TLocation> getCurrentLocation,
-            System.Func<TBeliefSet, TLocation> getEndLocation,
+            System.Func<TBeliefSet, TLocation> getTargetLocation,
             System.Action<TBeliefSet, TLocation> effect)
-            : this(new Metadata(), pathfinder, getCurrentLocation, getEndLocation, effect)
+            : this(new Metadata(), pathfinder, getCurrentLocation, getTargetLocation, effect)
         {
         }
 
         private static System.Action<TBeliefSet> ExecutePathFinder(IPathfinder<TLocation> pathfinder,
             System.Func<TBeliefSet, TLocation> getCurrentLocation,
-            System.Func<TBeliefSet, TLocation> getEndLocation,
+            System.Func<TBeliefSet, TLocation> getTargetLocation,
             System.Action<TBeliefSet, TLocation> effect) => beliefSet =>
         {
             TLocation currentLocation = getCurrentLocation(beliefSet);
-            TLocation endLocation = getEndLocation(beliefSet);
+            TLocation endLocation = getTargetLocation(beliefSet);
 
             if (pathfinder.TryGetNextStep(currentLocation, endLocation, out TLocation nextLocation))
                 effect(beliefSet, nextLocation);

@@ -26,7 +26,7 @@ public class PathfindingActionTests
         var action = new PathfinderAction<IBeliefSet, int>(
             pathfinder: pathfinderMock.Object,
             getCurrentLocation: _ => currentLocation,
-            getEndLocation: _ => 3,
+            getTargetLocation: _ => 3,
             effect: (_, location) =>
             {
                 currentLocation = location;
@@ -60,7 +60,7 @@ public class PathfindingActionTests
         var action = new PathfinderAction<IBeliefSet, int>(
             pathfinder: pathfinderMock.Object,
             getCurrentLocation: _ => currentLocation,
-            getEndLocation: _ => 3,
+            getTargetLocation: _ => 3,
             effect: (_, location) =>
             {
                 currentLocation = location;
