@@ -27,7 +27,7 @@ public class PathfindingActionTests
             pathfinder: pathfinderMock.Object,
             getCurrentLocation: _ => currentLocation,
             getTargetLocation: _ => 3,
-            effect: (_, location) =>
+            effectWithNextStep: (_, location) =>
             {
                 currentLocation = location;
             }
@@ -61,7 +61,7 @@ public class PathfindingActionTests
             pathfinder: pathfinderMock.Object,
             getCurrentLocation: _ => currentLocation,
             getTargetLocation: _ => 3,
-            effect: (_, location) =>
+            effectWithNextStep: (_, location) =>
             {
                 currentLocation = location;
             }
