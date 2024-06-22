@@ -6,6 +6,11 @@ namespace Aplib.Extensions.Tests;
 
 public class PathfindingActionTests
 {
+    /// <summary>
+    /// Given a PathfinderAction with a mocked IPathfinder that always finds a path,
+    /// When the Execute method is called,
+    /// Then the current location should be updated to the next location provided by the pathfinder.
+    /// </summary>
     [Fact]
     public void Execute_WithStandardPathfinder_ShouldFindPath()
     {
@@ -35,6 +40,11 @@ public class PathfindingActionTests
         Assert.Equal(2, currentLocation);
     }
 
+    /// <summary>
+    /// Given a PathfinderAction with a mocked IPathfinder that never finds a path,
+    /// When the Execute method is called,
+    /// Then the current location should NOT be updated to the next location provided by the pathfinder.
+    /// </summary>
     [Fact]
     public void Execute_WithStandardPathfinderCannotFindPath_ShouldNotUpdate()
     {

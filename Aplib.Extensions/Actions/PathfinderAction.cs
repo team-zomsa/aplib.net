@@ -4,40 +4,40 @@ using System;
 
 namespace Aplib.Extensions.Actions
 {
-    public class PathfinderAction<TBeliefset, T> : Core.Intent.Actions.Action<TBeliefset>
+    public class PathfinderAction<TBeliefset, TLocation> : Core.Intent.Actions.Action<TBeliefset>
         where TBeliefset : IBeliefSet
     {
         public PathfinderAction(IMetadata metadata,
-            IPathfinder<T> pathfinder,
-            Func<TBeliefset, T> getCurrentLocation,
-            Func<TBeliefset, T> getEndLocation,
-            Action<TBeliefset, T> effect)
+            IPathfinder<TLocation> pathfinder,
+            Func<TBeliefset, TLocation> getCurrentLocation,
+            Func<TBeliefset, TLocation> getEndLocation,
+            Action<TBeliefset, TLocation> effect)
             : base(metadata, ExecutePathFinder(pathfinder, getCurrentLocation, getEndLocation, effect))
         {
         }
 
-        public PathfinderAction(IPathfinder<T> pathfinder,
-            Func<TBeliefset, T> getCurrentLocation,
-            Func<TBeliefset, T> getEndLocation,
-            Action<TBeliefset, T> effect)
-            : this(null, pathfinder, getCurrentLocation, getEndLocation, effect)
+        public PathfinderAction(IPathfinder<TLocation> pathfinder,
+            Func<TBeliefset, TLocation> getCurrentLocation,
+            Func<TBeliefset, TLocation> getEndLocation,
+            Action<TBeliefset, TLocation> effect)
+            : this(new Metadata(), pathfinder, getCurrentLocation, getEndLocation, effect)
         {
         }
 
-        private static Action<TBeliefset> ExecutePathFinder(IPathfinder<T> pathfinder,
-            Func<TBeliefset, T> getCurrentLocation,
-            Func<TBeliefset, T> getEndLocation,
-            Action<TBeliefset, T> effect) => set =>
+        private static Action<TBeliefset> ExecutePathFinder(IPathfinder<TLocation> pathfinder,
+            Func<TBeliefset, TLocation> getCurrentLocation,
+            Func<TBeliefset, TLocation> getEndLocation,
+            Action<TBeliefset, TLocation> effect) => beliefSet =>
         {
-            T startLocation = getCurrentLocation(set);
-            T endLocation = getEndLocation(set);
+            TLocation startLocation = getCurrentLocation(beliefSet);
+            TLocation endLocation = getEndLocation(beliefSet);
 
-            if (!pathfinder.TryGetNextStep(startLocation, endLocation, out T nextLocation))
+            if (!pathfinder.TryGetNextStep(startLocation, endLocation, out TLocation nextLocation))
             {
                 return;
             }
 
-            effect(set, nextLocation);
+            effect(beliefSet, nextLocation);
         };
     }
 }
