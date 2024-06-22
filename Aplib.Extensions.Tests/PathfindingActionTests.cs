@@ -1,0 +1,66 @@
+using Aplib.Core.Belief.BeliefSets;
+using Aplib.Extensions.Actions;
+using Moq;
+
+namespace Aplib.Extensions.Tests;
+
+public class PathfindingActionTests
+{
+    [Fact]
+    public void Execute_WithStandardPathfinder_ShouldFindPath()
+    {
+        // Arrange
+        Mock<IPathfinder<int>> pathfinderMock = new();
+        int output = 2;
+        pathfinderMock.Setup(p => p.TryGetNextStep(It.IsAny<int>(), It.IsAny<int>(), out output)).Returns(true);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        int currentLocation = 1;
+
+        var action = new PathfinderAction<IBeliefSet, int>(
+            pathfinder: pathfinderMock.Object,
+            getCurrentLocation: _ => currentLocation,
+            getEndLocation: _ => 3,
+            effect: (_, location) =>
+            {
+                currentLocation = location;
+            }
+        );
+
+        // Act
+        action.Execute(beliefSet);
+
+        // Assert
+        Assert.Equal(2, currentLocation);
+    }
+
+    [Fact]
+    public void Execute_WithStandardPathfinderCannotFindPath_ShouldNotUpdate()
+    {
+        // Arrange
+        Mock<IPathfinder<int>> pathfinderMock = new();
+        int output = 2;
+        pathfinderMock.Setup(p => p.TryGetNextStep(It.IsAny<int>(), It.IsAny<int>(), out output)).Returns(false);
+
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        int currentLocation = 1;
+
+        var action = new PathfinderAction<IBeliefSet, int>(
+            pathfinder: pathfinderMock.Object,
+            getCurrentLocation: _ => currentLocation,
+            getEndLocation: _ => 3,
+            effect: (_, location) =>
+            {
+                currentLocation = location;
+            }
+        );
+
+        // Act
+        action.Execute(beliefSet);
+
+        // Assert
+        Assert.Equal(1, currentLocation);
+    }
+}
