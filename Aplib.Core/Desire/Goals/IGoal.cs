@@ -17,12 +17,6 @@ namespace Aplib.Core.Desire.Goals
         ITactic<TBeliefSet> Tactic { get; }
 
         /// <summary>
-        /// Gets the <see cref="Heuristics" /> of the current state of the game.
-        /// </summary>
-        /// <remarks>If no heuristics have been calculated yet, they will be calculated first.</remarks>
-        Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet);
-
-        /// <summary>
         /// Tests whether the goal has been achieved, based on the heuristic function of the goal.
         /// The new completion status can be accessed via the <see cref="ICompletable.Status"/> property.
         /// </summary>
