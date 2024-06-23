@@ -2,7 +2,6 @@ using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
-using Aplib.Core.Tests.Tools;
 using FluentAssertions;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
@@ -21,7 +20,6 @@ public class GoalTests
     {
         // Arrange
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Constant(0f);
         const string name = "Such a good goal name";
         const string description =
             "\"A lie is just a good story that someone ruined with the truth.\" - Barney Stinson";
@@ -29,7 +27,7 @@ public class GoalTests
 
         // Act
         // Does not use helper methods on purpose
-        Goal<IBeliefSet> goal = new(metadata, tactic, heuristicFunction: heuristicFunction);
+        Goal<IBeliefSet> goal = new(metadata, tactic, _ => false);
 
         // Assert
         goal.Should().NotBeNull();
@@ -50,7 +48,7 @@ public class GoalTests
         tactic.Setup(x => x.GetAction(It.IsAny<IBeliefSet>())).Returns(new Action<IBeliefSet>(_ => { iterations++; }));
 
         // Act
-        Goal<IBeliefSet> goal = new TestGoalBuilder().UseTactic(tactic.Object).Build();
+        Goal<IBeliefSet> goal = new(tactic.Object, _ => false);
 
         // Assert
         goal.Tactic.Should().Be(tactic.Object);
@@ -58,19 +56,20 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given the Goal's heuristic function is configured to *not* have reached its goal,
-    /// when the Evaluate() method of a goal is used,
-    /// then the method should return false.
+    /// Given the Goal's predicate evaluates to false,
+    /// when the UpdateStatus() method of a goal is used,
+    /// then Status should return false.
     /// </summary>
     [Fact]
     public void Goal_WhenNotReached_DoesNotReturnAsCompleted()
     {
         // Arrange
-        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Uncompleted();
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet> goal = new(tactic, _ => false);
 
         // Act
-        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSet);
         CompletionStatus isCompleted = goal.Status;
 
         // Assert
@@ -78,19 +77,20 @@ public class GoalTests
     }
 
     /// <summary>
-    /// Given the Goal's heuristic function is configured to have reached its goal
-    /// when the Evaluate() method of a goal is used,
+    /// Given the Goal's predicate evaluates to true,
+    /// when the UpdateStatus() method of a goal is used,
     /// then the method should return true.
     /// </summary>
     [Fact]
     public void Goal_WhenReached_ReturnsAsCompleted()
     {
         // Arrange
-        Goal<IBeliefSet>.HeuristicFunction heuristicFunction = CommonHeuristicFunctions<IBeliefSet>.Completed();
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet> goal = new(tactic, _ => true);
 
         // Act
-        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(heuristicFunction).Build();
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSet);
         CompletionStatus isCompleted = goal.Status;
 
         // Assert
@@ -99,7 +99,7 @@ public class GoalTests
 
     /// <summary>
     /// Given a valid goal and belief,
-    /// when the goal's heuristic function is evaluated,
+    /// when the goal's predicate is evaluated,
     /// the belief set is not altered
     /// </summary>
     [Fact]
@@ -107,34 +107,35 @@ public class GoalTests
     {
         // Arrange
         Mock<IBeliefSet> beliefSetMock = new();
-        Goal<IBeliefSet> goal = new TestGoalBuilder().Build();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
+        Goal<IBeliefSet> goal = new(tactic, _ => false);
 
         // Act
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSetMock.Object);
 
         // Assert
         beliefSetMock.Verify(beliefSet => beliefSet.UpdateBeliefs(), Times.Never);
     }
 
     /// <summary>
-    /// Given a valid goal with heuristics
-    /// when the goal's heuristic function's result will be different in the next frame
-    /// the most recent heuristics are used
+    /// Given a valid goal
+    /// when the goal's predicate result will be different in the next frame
+    /// the most recent result is used
     /// </summary>
     [Fact]
     public void Goal_WhereHeuristicsChange_UsesUpdatedHeuristics()
     {
         // Arrange
-        IBeliefSet beliefSetMock = Mock.Of<IBeliefSet>();
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
         bool shouldSucceed = false;
-        // ReSharper disable once AccessToModifiedClosure
-        Goal<IBeliefSet> goal = new TestGoalBuilder().WithHeuristicFunction(_ => shouldSucceed).Build();
+        Goal<IBeliefSet> goal = new(tactic, _ => shouldSucceed);
 
         // Act
-        goal.UpdateStatus(beliefSetMock);
+        goal.UpdateStatus(beliefSet);
         CompletionStatus stateBefore = goal.Status;
         shouldSucceed = true; // Make heuristic function return a different value on next invocation.
-        goal.UpdateStatus(beliefSetMock);
+        goal.UpdateStatus(beliefSet);
         CompletionStatus stateAfter = goal.Status;
 
         // Assert
@@ -142,64 +143,31 @@ public class GoalTests
         stateAfter.Should().Be(CompletionStatus.Success);
     }
 
-    /// <summary>
-    /// Given the Goal's different constructors have been called with semantically equal arguments
-    /// when the Evaluate() method of all goals are used,
-    /// then all returned values should equal.
-    /// </summary>
-    /// <param name="goalCompleted"></param>
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void GoalConstructor_WhereHeuristicFunctionTypeDiffers_HasEqualBehaviour(bool goalCompleted)
-    {
-        // Arrange
-        ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-
-        Goal<IBeliefSet>.HeuristicFunction heuristicFunctionNonBoolean =
-            CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
-
-        Goal<IBeliefSet> goalBoolean = new(tactic, HeuristicFunctionBoolean);
-        Goal<IBeliefSet> goalNonBoolean = new(tactic, heuristicFunctionNonBoolean);
-
-        // Act
-        goalBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
-        CompletionStatus goalBooleanEvaluation = goalBoolean.Status;
-        goalNonBoolean.UpdateStatus(It.IsAny<IBeliefSet>());
-        CompletionStatus goalNonBooleanEvaluation = goalNonBoolean.Status;
-
-        // Assert
-        goalBooleanEvaluation.Should().Be(goalNonBooleanEvaluation);
-        return;
-
-        bool HeuristicFunctionBoolean(IBeliefSet _) => goalCompleted;
-    }
-
     [Fact]
     public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => false);
-        Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
+        Goal<IBeliefSet> goal = new(tactic, predicate: _ => false, failGuard: _ => true);
 
         // Act
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSet);
 
         // Assert
         goal.Status.Should().Be(CompletionStatus.Failure);
     }
 
     [Fact]
-    public void UpdateStatus_WhenBothFailGuardIsTrueAndHeuristicIsReached_CompletesTheGoal()
+    public void UpdateStatus_WhenBothFailGuardIsTrueAndPredicateIsTrue_CompletesTheGoal()
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => true);
-        Goal<IBeliefSet> goal = new(tactic, heuristic, _ => true);
+        Goal<IBeliefSet> goal = new(tactic, predicate: _ => true, failGuard: _ => true);
 
         // Act
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSet);
 
         // Assert
         goal.Status.Should().Be(CompletionStatus.Success);
@@ -208,15 +176,15 @@ public class GoalTests
     [Theory]
     [InlineData(true)]
     [InlineData(false)]
-    public void Goal_WithoutFailGuard_DoesNotFail(bool goalCompleted)
+    public void Goal_WithoutFailGuard_DoesNotFail(bool shouldSucceed)
     {
         // Arrange
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet>.HeuristicFunction heuristic = CommonHeuristicFunctions<IBeliefSet>.Boolean(_ => goalCompleted);
+        Goal<IBeliefSet> goal = new(tactic, predicate: _ => shouldSucceed);
 
         // Act
-        Goal<IBeliefSet> goal = new(tactic, heuristic);
-        goal.UpdateStatus(It.IsAny<IBeliefSet>());
+        goal.UpdateStatus(beliefSet);
 
         // Assert
         goal.Status.Should().NotBe(CompletionStatus.Failure);
