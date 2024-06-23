@@ -1,6 +1,7 @@
 using Aplib.Core.Belief.BeliefSets;
-using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -12,13 +13,13 @@ namespace Aplib.Core.Intent.Tactics
     /// <seealso cref="Desire.Goals.Goal{TBeliefSet}"/>
     /// <seealso cref="Action{TBeliefSet}"/>
     /// <typeparam name="TBeliefSet">The belief set of the agent.</typeparam>
-    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, IDocumented
+    public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
-        protected System.Func<TBeliefSet, bool> _guard;
+        protected readonly System.Predicate<TBeliefSet> _guard;
 
         /// <inheritdoc />
         public IMetadata Metadata { get; }
@@ -30,14 +31,14 @@ namespace Aplib.Core.Intent.Tactics
         /// Metadata about this tactic, used to quickly display the tactic in several contexts.
         /// </param>
         /// <param name="guard">The guard of the tactic.</param>
-        protected Tactic(IMetadata metadata, System.Func<TBeliefSet, bool> guard)
+        protected Tactic(IMetadata metadata, System.Predicate<TBeliefSet> guard)
         {
             _guard = guard;
             Metadata = metadata;
         }
 
-        /// <inheritdoc cref="Tactic{TBeliefSet}(IMetadata,System.Func{TBeliefSet,bool})" />
-        protected Tactic(System.Func<TBeliefSet, bool> guard) : this(new Metadata(), guard) { }
+        /// <inheritdoc cref="Tactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet})" />
+        protected Tactic(System.Predicate<TBeliefSet> guard) : this(new Metadata(), guard) { }
 
         /// <inheritdoc />
         protected Tactic(IMetadata metadata) : this(metadata, _ => true) { }
@@ -50,6 +51,9 @@ namespace Aplib.Core.Intent.Tactics
 
         /// <inheritdoc />
         public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
         /// Implicitly lifts an action into a tactic.

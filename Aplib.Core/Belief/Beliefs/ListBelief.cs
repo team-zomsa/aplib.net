@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,49 +35,53 @@ namespace Aplib.Core.Belief.Beliefs
         /// <param name="getObservationFromReference">
         /// A function that takes an object reference and generates an observation.
         /// </param>
-        /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
-        /// <exception cref="ArgumentException">
+        /// <param name="shouldUpdate">
+        /// A condition on when the observation should be updated. Takes the object references enumerable
+        /// of the belief as a parameter for the predicate.
+        /// </param>
+        /// <exception cref="System.ArgumentException">
         /// Thrown when <paramref name="references"/> is not a reference type.
         /// </exception>
         public ListBelief
         (
             Metadata metadata,
             IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate
+            System.Func<TReference, TObservation> getObservationFromReference,
+            System.Predicate<IEnumerable<TReference>> shouldUpdate
         )
             : base(metadata, references, refer => refer.Select(getObservationFromReference).ToList(), shouldUpdate)
         {
         }
 
-        /// <inheritdoc cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})"/>
+        /// <inheritdoc
+        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},System.Func{TReference,TObservation},System.Predicate{IEnumerable{TReference}})"/>
         public ListBelief
         (
             IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference,
-            Func<bool> shouldUpdate
+            System.Func<TReference, TObservation> getObservationFromReference,
+            System.Predicate<IEnumerable<TReference>> shouldUpdate
         )
             : this(new Metadata(), references, getObservationFromReference, shouldUpdate)
         {
         }
 
         /// <inheritdoc
-        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},System.Func{TReference,TObservation},System.Predicate{IEnumerable{TReference}})" />
         public ListBelief
         (
             Metadata metadata,
             IEnumerable<TReference> references,
-            Func<TReference, TObservation> getObservationFromReference
+            System.Func<TReference, TObservation> getObservationFromReference
         )
-            : this(metadata, references, getObservationFromReference, () => true)
+            : this(metadata, references, getObservationFromReference, _ => true)
         {
         }
 
         /// <inheritdoc
-        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},Func{TReference,TObservation},Func{bool})" />
+        ///     cref="ListBelief{TReference,TObservation}(Metadata,IEnumerable{TReference},System.Func{TReference,TObservation},System.Predicate{IEnumerable{TReference}})" />
         public ListBelief
-            (IEnumerable<TReference> references, Func<TReference, TObservation> getObservationFromReference)
-            : this(new Metadata(), references, getObservationFromReference, () => true)
+            (IEnumerable<TReference> references, System.Func<TReference, TObservation> getObservationFromReference)
+            : this(new Metadata(), references, getObservationFromReference, _ => true)
         {
         }
     }

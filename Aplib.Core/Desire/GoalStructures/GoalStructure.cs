@@ -1,5 +1,6 @@
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
+using Aplib.Core.Logging;
 using System.Collections.Generic;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -7,7 +8,7 @@ namespace Aplib.Core.Desire.GoalStructures
     /// <summary>
     /// Describes a structure of goals that need to be fulfilled.
     /// </summary>
-    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, IDocumented
+    public abstract class GoalStructure<TBeliefSet> : IGoalStructure<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
@@ -19,7 +20,7 @@ namespace Aplib.Core.Desire.GoalStructures
         protected readonly IEnumerable<IGoalStructure<TBeliefSet>> _children;
 
         /// <inheritdoc />
-        public CompletionStatus Status { get; protected set; }
+        public CompletionStatus Status { get; protected set; } = CompletionStatus.Unfinished;
 
         /// <summary>
         /// The goal structure that is currently being fulfilled.
@@ -54,6 +55,17 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         public abstract void UpdateStatus(TBeliefSet beliefSet);
+
+        /// <inheritdoc />
+        public virtual void Reset()
+        {
+            foreach (IGoalStructure<TBeliefSet> child in _children) child.Reset();
+
+            Status = CompletionStatus.Unfinished;
+        }
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
         /// Implicitly lifts a goal into a goal structure.

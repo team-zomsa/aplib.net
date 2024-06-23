@@ -2,12 +2,14 @@
 using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
+using Aplib.Core.Logging;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Aplib.Core.Desire.DesireSets
 {
     /// <inheritdoc cref="DesireSet{TBeliefSet}"/>
-    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, IDocumented
+    public class DesireSet<TBeliefSet> : IDesireSet<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
         /// <inheritdoc />
@@ -25,7 +27,7 @@ namespace Aplib.Core.Desire.DesireSets
         /// All active goal structures of the agent that still need to be finished are pushed on the stack.
         /// </summary>
         private readonly OptimizedActivationStack
-            <(IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)> _goalStructureStack;
+            <(IGoalStructure<TBeliefSet> goalStructure, System.Predicate<TBeliefSet> guard)> _goalStructureStack;
 
         /// <summary>
         /// If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.
@@ -44,7 +46,7 @@ namespace Aplib.Core.Desire.DesireSets
         public DesireSet(
             IMetadata metadata,
             IGoalStructure<TBeliefSet> mainGoal,
-            params (IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)[] sideGoals
+            params (IGoalStructure<TBeliefSet> goalStructure, System.Predicate<TBeliefSet> guard)[] sideGoals
         )
         {
             Metadata = metadata;
@@ -55,15 +57,10 @@ namespace Aplib.Core.Desire.DesireSets
             _goalStructureStack.Activate(new((_mainGoal, _ => false), _goalStructureStack));
         }
 
-        /// <inheritdoc>
-        ///     <cref>
-        ///         DesireSet{TBeliefSet}(IMetadata,IGoalStructure{TBeliefSet},(IGoalStructure{TBeliefSet},
-        ///         System.Func{TBeliefSet,bool})[])
-        ///     </cref>
-        /// </inheritdoc>
+        /// <inheritdoc />
         public DesireSet(
             IGoalStructure<TBeliefSet> mainGoal,
-            params (IGoalStructure<TBeliefSet> goalStructure, System.Func<TBeliefSet, bool> guard)[] sideGoals
+            params (IGoalStructure<TBeliefSet> goalStructure, System.Predicate<TBeliefSet> guard)[] sideGoals
         ) : this(new Metadata(), mainGoal, sideGoals)
         { }
 
@@ -113,6 +110,10 @@ namespace Aplib.Core.Desire.DesireSets
                 _goalStructureStack.Pop();
             }
         }
+
+        /// <inheritdoc />
+        public IEnumerable<ILoggable> GetLogChildren() =>
+            _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
 
         /// <summary>
         /// Implicitly lifts a goal into a desire set.

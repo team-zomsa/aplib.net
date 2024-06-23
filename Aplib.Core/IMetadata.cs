@@ -1,5 +1,3 @@
-using System;
-
 namespace Aplib.Core
 {
     /// <summary>
@@ -14,7 +12,7 @@ namespace Aplib.Core
         /// <summary>
         /// Gets the unique identifier of the instance.
         /// </summary>
-        public Guid Id { get; }
+        public System.Guid Id { get; }
 
         /// <summary>
         /// Gets the name used to display the instance.

@@ -1,5 +1,7 @@
 ﻿using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
+using Aplib.Core.Logging;
+using System.Collections.Generic;
 
 namespace Aplib.Core.Intent.Tactics
 {
@@ -24,19 +26,19 @@ namespace Aplib.Core.Intent.Tactics
         /// </param>
         /// <param name="action">The action of the primitive tactic.</param>
         /// <param name="guard">The guard of the primitive tactic.</param>
-        public PrimitiveTactic(IMetadata metadata, IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+        public PrimitiveTactic(IMetadata metadata, IAction<TBeliefSet> action, System.Predicate<TBeliefSet> guard)
             : base(metadata, guard) => _action = action;
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
-        public PrimitiveTactic(IAction<TBeliefSet> action, System.Func<TBeliefSet, bool> guard)
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
+        public PrimitiveTactic(IAction<TBeliefSet> action, System.Predicate<TBeliefSet> guard)
             : this(new Metadata(), action, guard)
         {
         }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public PrimitiveTactic(IMetadata metadata, IAction<TBeliefSet> action) : this(metadata, action, _ => true) { }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public PrimitiveTactic(IAction<TBeliefSet> action) : this(new Metadata(), action, _ => true) { }
 
         /// <summary>
@@ -49,7 +51,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <param name="queryAction">The queryable action of the primitive tactic.</param>
         /// <param name="guard">The guard of the primitive tactic.</param>
         public PrimitiveTactic
-            (IMetadata metadata, IQueryable<TBeliefSet> queryAction, System.Func<TBeliefSet, bool> guard)
+            (IMetadata metadata, IQueryable<TBeliefSet> queryAction, System.Predicate<TBeliefSet> guard)
             : this
             (
                 metadata,
@@ -60,20 +62,20 @@ namespace Aplib.Core.Intent.Tactics
         }
 
         /// <inheritdoc
-        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
-        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction, System.Func<TBeliefSet, bool> guard)
+        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
+        public PrimitiveTactic(IQueryable<TBeliefSet> queryAction, System.Predicate<TBeliefSet> guard)
             : this(new Metadata(), queryAction, guard)
         {
         }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})" />
+        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Predicate{TBeliefSet})" />
         public PrimitiveTactic(IMetadata metadata, IQueryable<TBeliefSet> queryAction)
             : this(metadata, queryAction, _ => true)
         {
         }
 
         /// <inheritdoc
-        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Func{TBeliefSet,bool})"/>
+        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction)
             : this(new Metadata(), queryAction, _ => true)
         {
@@ -82,5 +84,9 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc/>
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
             => IsActionable(beliefSet) ? _action : null;
+
+        /// <inheritdoc/>
+        public override IEnumerable<ILoggable> GetLogChildren() =>
+            _action is ILoggable loggable ? new[] { loggable } : System.Linq.Enumerable.Empty<ILoggable>();
     }
 }
