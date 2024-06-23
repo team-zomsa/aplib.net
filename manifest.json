@@ -332,40 +332,10 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Aplib.Core.Desire.Goals.CommonHeuristicFunctions-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Aplib.Core.Desire.Goals.Goal-1.yml",
       "output": {
         ".html": {
           "relative_path": "api/Aplib.Core.Desire.Goals.Goal-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Aplib.Core.Desire.Goals.Heuristics.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Aplib.Core.Desire.Goals.Heuristics.html"
         }
       },
       "version": ""
@@ -472,16 +442,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Aplib.Core.Intent.Tactics.AnyOfTactic-1.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Aplib.Core.Intent.Tactics.FirstOfTactic-1.yml",
       "output": {
         ".html": {
@@ -512,6 +472,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Aplib.Core.Intent.Tactics.RandomTactic-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aplib.Core.Intent.Tactics.RandomTactic-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Aplib.Core.Intent.Tactics.Tactic-1.yml",
       "output": {
         ".html": {
@@ -536,6 +506,36 @@
       "output": {
         ".html": {
           "relative_path": "api/Aplib.Core.LiftingExtensionMethods.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Aplib.Core.Logging.ILoggable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aplib.Core.Logging.ILoggable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Aplib.Core.Logging.LogNode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aplib.Core.Logging.LogNode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Aplib.Core.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Aplib.Core.Logging.html"
         }
       },
       "version": ""

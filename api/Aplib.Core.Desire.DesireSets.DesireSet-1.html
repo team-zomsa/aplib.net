@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Desire_DesireSets_DesireSet_1" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1" class="text-break">
-Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -101,7 +101,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class DesireSet&lt;TBeliefSet&gt; : IDesireSet&lt;TBeliefSet&gt;, ICompletable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class DesireSet&lt;TBeliefSet&gt; : IDesireSet&lt;TBeliefSet&gt;, ICompletable, ILoggable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -125,6 +125,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
     <dd>
       <div><a class="xref" href="Aplib.Core.Desire.DesireSets.IDesireSet-1.html">IDesireSet</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
@@ -167,23 +168,23 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
   <a id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_ValueTuple_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_Func__0_System_Boolean_____" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor(Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.ValueTuple{Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.Func{`0,System.Boolean}}[])">
-  DesireSet(IGoalStructure&lt;TBeliefSet&gt;, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Func&lt;TBeliefSet, bool&gt; guard)[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L64"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_ValueTuple_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_Predicate__0_____" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor(Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.ValueTuple{Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.Predicate{`0}}[])">
+  DesireSet(IGoalStructure&lt;TBeliefSet&gt;, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Predicate&lt;TBeliefSet&gt; guard)[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L61"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DesireSet(IGoalStructure&lt;TBeliefSet&gt; mainGoal, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Func&lt;TBeliefSet, bool&gt; guard)[] sideGoals)</code></pre>
+    <pre><code class="lang-csharp hljs">public DesireSet(IGoalStructure&lt;TBeliefSet&gt; mainGoal, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Predicate&lt;TBeliefSet&gt; guard)[] sideGoals)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>mainGoal</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</dt>
     <dd></dd>
-    <dt><code>sideGoals</code> (<a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.func--0,system.boolean--.goalstructure">goalStructure</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.func--0,system.boolean--.guard">guard</a>)[]</dt>
+    <dt><code>sideGoals</code> (<a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.predicate--0--.goalstructure">goalStructure</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.predicate--0--.guard">guard</a>)[]</dt>
     <dd></dd>
   </dl>
 
@@ -200,9 +201,9 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
   <a id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_ValueTuple_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_Func__0_System_Boolean_____" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.ValueTuple{Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.Func{`0,System.Boolean}}[])">
-  DesireSet(IMetadata, IGoalStructure&lt;TBeliefSet&gt;, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Func&lt;TBeliefSet, bool&gt; guard)[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_ValueTuple_Aplib_Core_Desire_GoalStructures_IGoalStructure__0__System_Predicate__0_____" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.ValueTuple{Aplib.Core.Desire.GoalStructures.IGoalStructure{`0},System.Predicate{`0}}[])">
+  DesireSet(IMetadata, IGoalStructure&lt;TBeliefSet&gt;, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Predicate&lt;TBeliefSet&gt; guard)[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.DesireSets.DesireSet-1.html">DesireSet&lt;TBeliefSet&gt;</a> class.</p>
@@ -210,7 +211,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DesireSet(IMetadata metadata, IGoalStructure&lt;TBeliefSet&gt; mainGoal, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Func&lt;TBeliefSet, bool&gt; guard)[] sideGoals)</code></pre>
+    <pre><code class="lang-csharp hljs">public DesireSet(IMetadata metadata, IGoalStructure&lt;TBeliefSet&gt; mainGoal, params (IGoalStructure&lt;TBeliefSet&gt; goalStructure, Predicate&lt;TBeliefSet&gt; guard)[] sideGoals)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -221,7 +222,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
     <dt><code>mainGoal</code> <a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The main goal structure that the agent needs to complete.</p>
 </dd>
-    <dt><code>sideGoals</code> (<a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.func--0,system.boolean--.goalstructure">goalStructure</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.func--0,system.boolean--.guard">guard</a>)[]</dt>
+    <dt><code>sideGoals</code> (<a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.predicate--0--.goalstructure">goalStructure</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-aplib.core.desire.goalstructures.igoalstructure--0-,system.predicate--0--.guard">guard</a>)[]</dt>
     <dd><p>The side goal structures that could be activated during the agent playthrough.</p>
 </dd>
   </dl>
@@ -245,7 +246,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_Metadata" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.Metadata">
   Metadata
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the metadata of the instance.</p>
@@ -277,7 +278,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_Status" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.Status">
   Status
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L35"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.</p>
@@ -313,7 +314,7 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.GetCurrentGoal(`0)">
   GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L82"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a>.</p>
@@ -348,11 +349,44 @@ Class DesireSet&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title
 
 
 
+  <a id="Aplib_Core_Desire_DesireSets_DesireSet_1_GetLogChildren_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_GetLogChildren" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aplib_Core_Desire_DesireSets_DesireSet_1_Update_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.Update*"></a>
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_Update__0_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.Update(`0)">
   Update(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L97"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Activates side goal structures when their guard is satisfied, and updates the activation stack
@@ -390,7 +424,7 @@ by popping goal structures from the top of the stack when they are finished.</p>
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_op_Implicit_Aplib_Core_Desire_GoalStructures_GoalStructure__0___Aplib_Core_Desire_DesireSets_DesireSet__0_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.op_Implicit(Aplib.Core.Desire.GoalStructures.GoalStructure{`0})~Aplib.Core.Desire.DesireSets.DesireSet{`0}">
   implicit operator DesireSet&lt;TBeliefSet&gt;(GoalStructure&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L129"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L130"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Implicitly lifts a goal structure a desire set.</p>
@@ -430,7 +464,7 @@ a single goal structure.</p>
 
   <h3 id="Aplib_Core_Desire_DesireSets_DesireSet_1_op_Implicit_Aplib_Core_Desire_Goals_Goal__0___Aplib_Core_Desire_DesireSets_DesireSet__0_" data-uid="Aplib.Core.Desire.DesireSets.DesireSet`1.op_Implicit(Aplib.Core.Desire.Goals.Goal{`0})~Aplib.Core.Desire.DesireSets.DesireSet{`0}">
   implicit operator DesireSet&lt;TBeliefSet&gt;(Goal&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/DesireSets/DesireSet.cs/#L123"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Implicitly lifts a goal into a desire set.</p>

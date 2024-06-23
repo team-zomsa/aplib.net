@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1" class="text-break">
-Class PrimitiveGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class PrimitiveGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class PrimitiveGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-sec
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PrimitiveGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class PrimitiveGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, ILoggable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -128,6 +128,7 @@ Class PrimitiveGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-sec
     <dd>
       <div><a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
@@ -147,6 +148,9 @@ Class PrimitiveGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-sec
     </div>
     <div>
       <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1__currentGoalStructure">GoalStructure&lt;TBeliefSet&gt;._currentGoalStructure</a>
+    </div>
+    <div>
+      <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html#Aplib_Core_Desire_GoalStructures_GoalStructure_1_Reset">GoalStructure&lt;TBeliefSet&gt;.Reset()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
@@ -199,7 +203,7 @@ This goal structure will only return the goal it was created with if the goal is
 
   <h3 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1__ctor_Aplib_Core_Desire_Goals_IGoal__0__" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.#ctor(Aplib.Core.Desire.Goals.IGoal{`0})">
   PrimitiveGoalStructure(IGoal&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
@@ -232,7 +236,7 @@ This goal structure will only return the goal it was created with if the goal is
 
   <h3 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Desire_Goals_IGoal__0__" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Desire.Goals.IGoal{`0})">
   PrimitiveGoalStructure(IMetadata, IGoal&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure-1.html">PrimitiveGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
@@ -272,7 +276,7 @@ This goal structure will only return the goal it was created with if the goal is
 
   <h3 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.GetCurrentGoal(`0)">
   GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a>.</p>
@@ -307,14 +311,48 @@ This goal structure will only return the goal it was created with if the goal is
 
 
 
+  <a id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1_GetLogChildren_" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1_GetLogChildren" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1_UpdateStatus_" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.UpdateStatus*"></a>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_PrimitiveGoalStructure_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.GoalStructures.PrimitiveGoalStructure`1.UpdateStatus(`0)">
   UpdateStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L38"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/PrimitiveGoalStructure.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Updates the state of the goal structure.</p>
+  <div class="markdown level1 summary"><p>Updates the status of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure&lt;TBeliefSet&gt;</a>.
+The goal structure status is set to the status of the underlying <a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal&lt;TBeliefSet&gt;</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 

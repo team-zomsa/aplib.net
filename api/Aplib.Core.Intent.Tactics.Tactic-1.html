@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Intent_Tactics_Tactic_1" data-uid="Aplib.Core.Intent.Tactics.Tactic`1" class="text-break">
-Class Tactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class Tactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L16"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -104,7 +104,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Tactic&lt;TBeliefSet&gt; : ITactic&lt;TBeliefSet&gt;, IDocumented where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Tactic&lt;TBeliefSet&gt; : ITactic&lt;TBeliefSet&gt;, ILoggable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -128,6 +128,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
@@ -135,8 +136,9 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
   <dl class="typelist derived">
     <dt>Derived</dt>
     <dd>
-      <div><a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a></div>
+      <div><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a></div>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a></div>
+      <div><a class="xref" href="Aplib.Core.Intent.Tactics.RandomTactic-1.html">RandomTactic&lt;TBeliefSet&gt;</a></div>
     </dd>
   </dl>
 
@@ -179,7 +181,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor">
   Tactic()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a> class.</p>
@@ -206,7 +208,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_Aplib_Core_IMetadata_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor(Aplib.Core.IMetadata)">
   Tactic(IMetadata)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -235,9 +237,9 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <a id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_Aplib_Core_IMetadata_System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor(Aplib.Core.IMetadata,System.Func{`0,System.Boolean})">
-  Tactic(IMetadata, Func&lt;TBeliefSet, bool&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_Aplib_Core_IMetadata_System_Predicate__0__" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor(Aplib.Core.IMetadata,System.Predicate{`0})">
+  Tactic(IMetadata, Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic&lt;TBeliefSet&gt;</a> class with a specified guard.</p>
@@ -245,7 +247,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Tactic(IMetadata metadata, Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Tactic(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -253,7 +255,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard of the tactic.</p>
 </dd>
   </dl>
@@ -271,9 +273,9 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <a id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_System_Func__0_System_Boolean__" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor(System.Func{`0,System.Boolean})">
-  Tactic(Func&lt;TBeliefSet, bool&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__ctor_System_Predicate__0__" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.#ctor(System.Predicate{`0})">
+  Tactic(Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L41"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic&lt;TBeliefSet&gt;</a> class with a specified guard.</p>
@@ -281,12 +283,12 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Tactic(Func&lt;TBeliefSet, bool&gt; guard)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Tactic(Predicate&lt;TBeliefSet&gt; guard)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard of the tactic.</p>
 </dd>
   </dl>
@@ -309,7 +311,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1__guard" data-uid="Aplib.Core.Intent.Tactics.Tactic`1._guard">
   _guard
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the guard of the tactic.</p>
@@ -317,7 +319,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Func&lt;TBeliefSet, bool&gt; _guard</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly Predicate&lt;TBeliefSet&gt; _guard</code></pre>
   </div>
 
 
@@ -325,7 +327,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -345,7 +347,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1_Metadata" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.Metadata">
   Metadata
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the metadata of the instance.</p>
@@ -381,7 +383,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1_GetAction__0_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.GetAction(`0)">
   GetAction(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the first enabled action of the tactic.</p>
@@ -415,11 +417,44 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
 
 
+  <a id="Aplib_Core_Intent_Tactics_Tactic_1_GetLogChildren_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_Tactic_1_GetLogChildren" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aplib_Core_Intent_Tactics_Tactic_1_IsActionable_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.IsActionable*"></a>
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1_IsActionable__0_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.IsActionable(`0)">
   IsActionable(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L53"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Determines whether the tactic is actionable.</p>
@@ -461,7 +496,7 @@ a smart combination of <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.
 
   <h3 id="Aplib_Core_Intent_Tactics_Tactic_1_op_Implicit_Aplib_Core_Intent_Actions_Action__0___Aplib_Core_Intent_Tactics_Tactic__0_" data-uid="Aplib.Core.Intent.Tactics.Tactic`1.op_Implicit(Aplib.Core.Intent.Actions.Action{`0})~Aplib.Core.Intent.Tactics.Tactic{`0}">
   implicit operator Tactic&lt;TBeliefSet&gt;(Action&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L59"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/Tactic.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Implicitly lifts an action into a tactic.</p>

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class AnyOfTactic&lt;TBeliefSet&gt; | Aplib.Net </title>
+      <title>Class RandomTactic&lt;TBeliefSet&gt; | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class AnyOfTactic&lt;TBeliefSet&gt; | Aplib.Net ">
+      <meta name="title" content="Class RandomTactic&lt;TBeliefSet&gt; | Aplib.Net ">
       
-      <meta name="description" content="Represents a tactic that executes any of the provided sub-tactics.">
+      <meta name="description" content="Represents a tactic that executes a random tactic from the provided subtactics.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Intent_Tactics_AnyOfTactic_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Intent.Tactics.AnyOfTactic%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Intent_Tactics_RandomTactic_1.md&amp;value=---%0Auid%3A%20Aplib.Core.Intent.Tactics.RandomTactic%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1">
+        <article data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1">
 
 
 
-  <h1 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1" class="text-break">
-Class AnyOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Intent_Tactics_RandomTactic_1" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1" class="text-break">
+Class RandomTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L12"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class AnyOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Represents a tactic that executes any of the provided sub-tactics.</p>
+  <div class="markdown summary"><p>Represents a tactic that executes a random tactic from the provided subtactics.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AnyOfTactic&lt;TBeliefSet&gt; : Tactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt;, IDocumented where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class RandomTactic&lt;TBeliefSet&gt; : Tactic&lt;TBeliefSet&gt;, ITactic&lt;TBeliefSet&gt;, ILoggable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -118,7 +118,7 @@ Class AnyOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic</a>&lt;TBeliefSet&gt;</div>
-      <div><span class="xref">AnyOfTactic&lt;TBeliefSet&gt;</span></div>
+      <div><span class="xref">RandomTactic&lt;TBeliefSet&gt;</span></div>
     </dd>
   </dl>
 
@@ -126,16 +126,11 @@ Class AnyOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
     <dt>Implements</dt>
     <dd>
       <div><a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
 
-  <dl class="typelist derived">
-    <dt>Derived</dt>
-    <dd>
-      <div><a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a></div>
-    </dd>
-  </dl>
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
@@ -181,20 +176,20 @@ Class AnyOfTactic&lt;TBeliefSet&gt;  <a class="header-action link-secondary" tit
 </h2>
 
 
-  <a id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor*"></a>
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])">
-  AnyOfTactic(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  RandomTactic(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.RandomTactic-1.html">RandomTactic&lt;TBeliefSet&gt;</a> class with the specified subtactics
 and an optional guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnyOfTactic(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public RandomTactic(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subtactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -202,7 +197,7 @@ and an optional guard condition.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
     <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
@@ -218,20 +213,20 @@ and an optional guard condition.</p>
 
 
 
-  <a id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor*"></a>
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_Aplib_Core_IMetadata_System_Func__0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(Aplib.Core.IMetadata,System.Func{`0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
-  AnyOfTactic(IMetadata, Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_Aplib_Core_IMetadata_System_Predicate__0__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor(Aplib.Core.IMetadata,System.Predicate{`0},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  RandomTactic(IMetadata, Predicate&lt;TBeliefSet&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.RandomTactic-1.html">RandomTactic&lt;TBeliefSet&gt;</a> class with the specified subtactics
 and an optional guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnyOfTactic(IMetadata metadata, Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public RandomTactic(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -239,10 +234,10 @@ and an optional guard condition.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
     <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
@@ -258,25 +253,25 @@ and an optional guard condition.</p>
 
 
 
-  <a id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor*"></a>
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0}[])">
-  AnyOfTactic(params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  RandomTactic(params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L51"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.RandomTactic-1.html">RandomTactic&lt;TBeliefSet&gt;</a> class with the specified subtactics
 and an optional guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnyOfTactic(params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public RandomTactic(params ITactic&lt;TBeliefSet&gt;[] subtactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
     <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
@@ -292,28 +287,28 @@ and an optional guard condition.</p>
 
 
 
-  <a id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor*"></a>
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__ctor_System_Func__0_System_Boolean__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.#ctor(System.Func{`0,System.Boolean},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
-  AnyOfTactic(Func&lt;TBeliefSet, bool&gt;, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1__ctor_System_Predicate__0__Aplib_Core_Intent_Tactics_ITactic__0____" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.#ctor(System.Predicate{`0},Aplib.Core.Intent.Tactics.ITactic{`0}[])">
+  RandomTactic(Predicate&lt;TBeliefSet&gt;, params ITactic&lt;TBeliefSet&gt;[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.AnyOfTactic-1.html">AnyOfTactic&lt;TBeliefSet&gt;</a> class with the specified sub-tactics
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.RandomTactic-1.html">RandomTactic&lt;TBeliefSet&gt;</a> class with the specified subtactics
 and an optional guard condition.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnyOfTactic(Func&lt;TBeliefSet, bool&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics)</code></pre>
+    <pre><code class="lang-csharp hljs">public RandomTactic(Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
     <dd><p>The list of subtactics.</p>
 </dd>
   </dl>
@@ -334,17 +329,17 @@ and an optional guard condition.</p>
 
 
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1__subTactics" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1._subTactics">
-  _subTactics
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1__subtactics" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1._subtactics">
+  _subtactics
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the sub-tactics of the tactic.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the subtactics of the tactic.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly LinkedList&lt;ITactic&lt;TBeliefSet&gt;&gt; _subTactics</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly LinkedList&lt;ITactic&lt;TBeliefSet&gt;&gt; _subtactics</code></pre>
   </div>
 
 
@@ -368,11 +363,11 @@ and an optional guard condition.</p>
 </h2>
 
 
-  <a id="Aplib_Core_Intent_Tactics_AnyOfTactic_1_GetAction_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction*"></a>
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1_GetAction_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.GetAction*"></a>
 
-  <h3 id="Aplib_Core_Intent_Tactics_AnyOfTactic_1_GetAction__0_" data-uid="Aplib.Core.Intent.Tactics.AnyOfTactic`1.GetAction(`0)">
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1_GetAction__0_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.GetAction(`0)">
   GetAction(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/AnyOfTactic.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the first enabled action of the tactic.</p>
@@ -393,6 +388,39 @@ and an optional guard condition.</p>
   <dl class="parameters">
     <dt><a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>A concrete <a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction&lt;TBeliefSet&gt;</a> that the tactic can perform, or null if no actions are enabled.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Intent_Tactics_RandomTactic_1_GetLogChildren_" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Intent_Tactics_RandomTactic_1_GetLogChildren" data-uid="Aplib.Core.Intent.Tactics.RandomTactic`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Intent/Tactics/RandomTactic.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
 </dd>
   </dl>
 

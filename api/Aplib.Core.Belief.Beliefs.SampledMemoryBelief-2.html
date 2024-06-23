@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2" class="text-break">
-Class SampledMemoryBelief&lt;TReference, TObservation&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/SampledMemoryBelief.cs/#L23"><i class="bi bi-code-slash"></i></a>
+Class SampledMemoryBelief&lt;TReference, TObservation&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/SampledMemoryBelief.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -277,8 +277,8 @@ One observation memory (i.e., snapshot) is stored every <code>sampleInterval</co
 
   <a id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Int32_Aplib_Core_Belief_Beliefs_UpdateMode_System_Int32_System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Int32,Aplib.Core.Belief.Beliefs.UpdateMode,System.Int32,System.Func{System.Boolean})">
-  SampledMemoryBelief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, int, UpdateMode, int, Func&lt;bool&gt;)
+  <h3 id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Int32_Aplib_Core_Belief_Beliefs_UpdateMode_System_Int32_System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Int32,Aplib.Core.Belief.Beliefs.UpdateMode,System.Int32,System.Predicate{`0})">
+  SampledMemoryBelief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, int, UpdateMode, int, Predicate&lt;TReference&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/SampledMemoryBelief.cs/#L76"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -291,7 +291,7 @@ Optionally, the belief can always store the most recent observation, regardless 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SampledMemoryBelief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int sampleInterval, UpdateMode updateMode, int framesToRemember, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public SampledMemoryBelief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int sampleInterval, UpdateMode updateMode, int framesToRemember, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -315,8 +315,9 @@ One observation memory (i.e., snapshot) is stored every <code>sampleInterval</co
     <dt><code>framesToRemember</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The number of frames to remember back.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A function that sets a condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 
@@ -395,8 +396,8 @@ One observation memory (i.e., snapshot) is stored every <code>sampleInterval</co
 
   <a id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_Aplib_Core_Belief_Beliefs_UpdateMode_System_Int32_System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,Aplib.Core.Belief.Beliefs.UpdateMode,System.Int32,System.Func{System.Boolean})">
-  SampledMemoryBelief(TReference, Func&lt;TReference, TObservation&gt;, int, UpdateMode, int, Func&lt;bool&gt;)
+  <h3 id="Aplib_Core_Belief_Beliefs_SampledMemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_Aplib_Core_Belief_Beliefs_UpdateMode_System_Int32_System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.SampledMemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,Aplib.Core.Belief.Beliefs.UpdateMode,System.Int32,System.Predicate{`0})">
+  SampledMemoryBelief(TReference, Func&lt;TReference, TObservation&gt;, int, UpdateMode, int, Predicate&lt;TReference&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/SampledMemoryBelief.cs/#L94"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -409,7 +410,7 @@ Optionally, the belief can always store the most recent observation, regardless 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SampledMemoryBelief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int sampleInterval, UpdateMode updateMode, int framesToRemember, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public SampledMemoryBelief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int sampleInterval, UpdateMode updateMode, int framesToRemember, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -430,8 +431,9 @@ One observation memory (i.e., snapshot) is stored every <code>sampleInterval</co
     <dt><code>framesToRemember</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The number of frames to remember back.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A function that sets a condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 

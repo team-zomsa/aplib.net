@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Desire_Goals_Goal_1" data-uid="Aplib.Core.Desire.Goals.Goal`1" class="text-break">
-Class Goal&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class Goal&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -104,7 +104,7 @@ prepare tests or do the testing.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Goal&lt;TBeliefSet&gt; : IGoal&lt;TBeliefSet&gt;, ICompletable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class Goal&lt;TBeliefSet&gt; : IGoal&lt;TBeliefSet&gt;, ICompletable, ILoggable, IDocumented where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -129,6 +129,7 @@ prepare tests or do the testing.</p>
     <dd>
       <div><a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
     </dd>
   </dl>
@@ -181,34 +182,26 @@ prepare tests or do the testing.</p>
 
   <a id="Aplib_Core_Desire_Goals_Goal_1__ctor_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0__Aplib_Core_Desire_Goals_Goal__0__HeuristicFunction_System_Double_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0},Aplib.Core.Desire.Goals.Goal{`0}.HeuristicFunction,System.Double)">
-  Goal(IMetadata, ITactic&lt;TBeliefSet&gt;, HeuristicFunction, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L69"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0__System_Predicate__0__" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0},System.Predicate{`0})">
+  Goal(IMetadata, ITactic&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L90"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a new goal which works with <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a>.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Goal(IMetadata metadata, ITactic&lt;TBeliefSet&gt; tactic, Goal&lt;TBeliefSet&gt;.HeuristicFunction heuristicFunction, double epsilon = 0.005)</code></pre>
+    <pre><code class="lang-csharp hljs">public Goal(IMetadata metadata, ITactic&lt;TBeliefSet&gt; tactic, Predicate&lt;TBeliefSet&gt; predicate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
-    <dd><p>Metadata about this goal, used to quickly display the goal in several contexts.</p>
-</dd>
+    <dd></dd>
     <dt><code>tactic</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</dt>
-    <dd><p>The tactic used to approach this goal.</p>
-</dd>
-    <dt><code>heuristicFunction</code> <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal</a>&lt;TBeliefSet&gt;.<a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html">HeuristicFunction</a></dt>
-    <dd><p>The heuristic function which defines whether a goal is reached.</p>
-</dd>
-    <dt><code>epsilon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>The goal is considered to be completed, when the distance of the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a>
-is below this value.</p>
-</dd>
+    <dd></dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
   </dl>
 
 
@@ -224,33 +217,36 @@ is below this value.</p>
 
   <a id="Aplib_Core_Desire_Goals_Goal_1__ctor_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0__System_Func__0_System_Boolean__System_Double_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0},System.Func{`0,System.Boolean},System.Double)">
-  Goal(IMetadata, ITactic&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L104"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic__0__System_Predicate__0__System_Predicate__0__" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{`0},System.Predicate{`0},System.Predicate{`0})">
+  Goal(IMetadata, ITactic&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L64"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a new goal which works with boolean-based <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a>.</p>
+  <div class="markdown level1 summary"><p>Initializes a new goal from a given tactic and a success predicate, and an optional fail-guard.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Goal(IMetadata metadata, ITactic&lt;TBeliefSet&gt; tactic, Func&lt;TBeliefSet, bool&gt; predicate, double epsilon = 0.005)</code></pre>
+    <pre><code class="lang-csharp hljs">public Goal(IMetadata metadata, ITactic&lt;TBeliefSet&gt; tactic, Predicate&lt;TBeliefSet&gt; predicate, Predicate&lt;TBeliefSet&gt; failGuard)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
-    <dd><p>Metadata about this goal, used to quickly display the goal in several contexts.</p>
+    <dd><p>Metadata about this goal, used to quickly display the goal in several contexts.
+If omitted, default metadata will be generated.</p>
 </dd>
     <dt><code>tactic</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The tactic used to approach this goal.</p>
 </dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>The heuristic function (or specifically predicate) which defines whether a goal is reached.</p>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>A predicate that determines when the goal has succeeded.</p>
 </dd>
-    <dt><code>epsilon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>The goal is considered to be completed, when the distance of the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a>
-is below this value.</p>
+    <dt><code>failGuard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>A predicate that determines when the goal has failed.
+If the fail-guard is true,
+but the success predicate is also satisfied, the success predicate takes precedence.
+If omitted, the goal will never fail.</p>
 </dd>
   </dl>
 
@@ -267,31 +263,24 @@ is below this value.</p>
 
   <a id="Aplib_Core_Desire_Goals_Goal_1__ctor_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__Aplib_Core_Desire_Goals_Goal__0__HeuristicFunction_System_Double_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},Aplib.Core.Desire.Goals.Goal{`0}.HeuristicFunction,System.Double)">
-  Goal(ITactic&lt;TBeliefSet&gt;, HeuristicFunction, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__System_Predicate__0__" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},System.Predicate{`0})">
+  Goal(ITactic&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a new goal which works with <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a>.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Goal(ITactic&lt;TBeliefSet&gt; tactic, Goal&lt;TBeliefSet&gt;.HeuristicFunction heuristicFunction, double epsilon = 0.005)</code></pre>
+    <pre><code class="lang-csharp hljs">public Goal(ITactic&lt;TBeliefSet&gt; tactic, Predicate&lt;TBeliefSet&gt; predicate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>tactic</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</dt>
-    <dd><p>The tactic used to approach this goal.</p>
-</dd>
-    <dt><code>heuristicFunction</code> <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal</a>&lt;TBeliefSet&gt;.<a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html">HeuristicFunction</a></dt>
-    <dd><p>The heuristic function which defines whether a goal is reached.</p>
-</dd>
-    <dt><code>epsilon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>The goal is considered to be completed, when the distance of the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a>
-is below this value.</p>
-</dd>
+    <dd></dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
   </dl>
 
 
@@ -307,31 +296,26 @@ is below this value.</p>
 
   <a id="Aplib_Core_Desire_Goals_Goal_1__ctor_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__System_Func__0_System_Boolean__System_Double_" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},System.Func{`0,System.Boolean},System.Double)">
-  Goal(ITactic&lt;TBeliefSet&gt;, Func&lt;TBeliefSet, bool&gt;, double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__ctor_Aplib_Core_Intent_Tactics_ITactic__0__System_Predicate__0__System_Predicate__0__" data-uid="Aplib.Core.Desire.Goals.Goal`1.#ctor(Aplib.Core.Intent.Tactics.ITactic{`0},System.Predicate{`0},System.Predicate{`0})">
+  Goal(ITactic&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L79"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Creates a new goal which works with boolean-based <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a>.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Goal(ITactic&lt;TBeliefSet&gt; tactic, Func&lt;TBeliefSet, bool&gt; predicate, double epsilon = 0.005)</code></pre>
+    <pre><code class="lang-csharp hljs">public Goal(ITactic&lt;TBeliefSet&gt; tactic, Predicate&lt;TBeliefSet&gt; predicate, Predicate&lt;TBeliefSet&gt; failGuard)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>tactic</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;</dt>
-    <dd><p>The tactic used to approach this goal.</p>
-</dd>
-    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TBeliefSet, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>The heuristic function (or specifically predicate) which defines whether a goal is reached.</p>
-</dd>
-    <dt><code>epsilon</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
-    <dd><p>The goal is considered to be completed, when the distance of the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a>
-is below this value.</p>
-</dd>
+    <dd></dd>
+    <dt><code>predicate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
+    <dt><code>failGuard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
+    <dd></dd>
   </dl>
 
 
@@ -350,18 +334,18 @@ is below this value.</p>
 
 
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1_DefaultEpsilon" data-uid="Aplib.Core.Desire.Goals.Goal`1.DefaultEpsilon">
-  DefaultEpsilon
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__failGuard" data-uid="Aplib.Core.Desire.Goals.Goal`1._failGuard">
+  _failGuard
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L31"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>The default value for the epsilon parameter in the Goal constructors.
-The epsilon parameter defines the threshold distance for a goal to be considered completed.</p>
+  <div class="markdown level1 summary"><p>An (optional) fail-guard for the goal's completion status.
+The fail-guard predicate is a condition that, when true, indicates that the goal has failed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected const double DefaultEpsilon = 0.005</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly Predicate&lt;TBeliefSet&gt; _failGuard</code></pre>
   </div>
 
 
@@ -369,7 +353,7 @@ The epsilon parameter defines the threshold distance for a goal to be considered
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -382,18 +366,18 @@ The epsilon parameter defines the threshold distance for a goal to be considered
 
 
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__epsilon" data-uid="Aplib.Core.Desire.Goals.Goal`1._epsilon">
-  _epsilon
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1__predicate" data-uid="Aplib.Core.Desire.Goals.Goal`1._predicate">
+  _predicate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>The goal is considered to be completed, when the distance of the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a> is below
-this value.</p>
+  <div class="markdown level1 summary"><p>A predicate that determines whether the goal has succeeded.
+Intuitively, the predicate is the goal itself.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly double _epsilon</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly Predicate&lt;TBeliefSet&gt; _predicate</code></pre>
   </div>
 
 
@@ -401,7 +385,7 @@ this value.</p>
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -411,44 +395,6 @@ this value.</p>
 
 
 
-
-
-
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1__heuristicFunction" data-uid="Aplib.Core.Desire.Goals.Goal`1._heuristicFunction">
-  _heuristicFunction
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L35"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>The concrete implementation of this Goal's <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html">Goal&lt;TBeliefSet&gt;.HeuristicFunction</a>. Used to test whether this goal is
-completed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Goal&lt;TBeliefSet&gt;.HeuristicFunction _heuristicFunction</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal</a>&lt;TBeliefSet&gt;.<a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.HeuristicFunction.html">HeuristicFunction</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-  <dl class="typelist seealso">
-    <dt>See Also</dt>
-    <dd>
-    <div><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_GetStatus__0_">GetStatus(TBeliefSet)</a></div>
-    </dd>
-  </dl>
 
 
   <h2 class="section" id="properties">Properties
@@ -459,7 +405,7 @@ completed.</p>
 
   <h3 id="Aplib_Core_Desire_Goals_Goal_1_Metadata" data-uid="Aplib.Core.Desire.Goals.Goal`1.Metadata">
   Metadata
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the metadata of the instance.</p>
@@ -491,10 +437,11 @@ completed.</p>
 
   <h3 id="Aplib_Core_Desire_Goals_Goal_1_Status" data-uid="Aplib.Core.Desire.Goals.Goal`1.Status">
   Status
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L55"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the completion status of the object.</p>
+  <div class="markdown level1 summary"><p>Gets the completion status of the goal.
+This value may need to be updated first using the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_UpdateStatus__0_">UpdateStatus(TBeliefSet)</a> method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -517,18 +464,23 @@ completed.</p>
 
 
 
+  <dl class="typelist seealso">
+    <dt>See Also</dt>
+    <dd>
+    <div><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_UpdateStatus__0_">UpdateStatus(TBeliefSet)</a></div>
+    </dd>
+  </dl>
 
 
   <a id="Aplib_Core_Desire_Goals_Goal_1_Tactic_" data-uid="Aplib.Core.Desire.Goals.Goal`1.Tactic*"></a>
 
   <h3 id="Aplib_Core_Desire_Goals_Goal_1_Tactic" data-uid="Aplib.Core.Desire.Goals.Goal`1.Tactic">
   Tactic
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>The <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic&lt;TBeliefSet&gt;</a> used to achieve this <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal&lt;TBeliefSet&gt;</a>, which is
-executed during every
-iteration of the BDI cycle.</p>
+  <div class="markdown level1 summary"><p>The <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic&lt;TBeliefSet&gt;</a> used to achieve this <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal&lt;TBeliefSet&gt;</a>.
+It is executed once in every iteration of the BDI cycle while this goal is the active goal of the agent.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -557,73 +509,26 @@ iteration of the BDI cycle.</p>
 </h2>
 
 
-  <a id="Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics_" data-uid="Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics*"></a>
+  <a id="Aplib_Core_Desire_Goals_Goal_1_GetLogChildren_" data-uid="Aplib.Core.Desire.Goals.Goal`1.GetLogChildren*"></a>
 
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_" data-uid="Aplib.Core.Desire.Goals.Goal`1.DetermineCurrentHeuristics(`0)">
-  DetermineCurrentHeuristics(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1_GetLogChildren" data-uid="Aplib.Core.Desire.Goals.Goal`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L160"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a> of the current state of the game.</p>
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual Heuristics DetermineCurrentHeuristics(TBeliefSet beliefSet)</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
   </div>
 
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd></dd>
-  </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-  <h4 class="section" id="Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0__remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>If no heuristics have been calculated yet, they will be calculated first.</p>
-</div>
-
-
-
-
-  <a id="Aplib_Core_Desire_Goals_Goal_1_GetStatus_" data-uid="Aplib.Core.Desire.Goals.Goal`1.GetStatus*"></a>
-
-  <h3 id="Aplib_Core_Desire_Goals_Goal_1_GetStatus__0_" data-uid="Aplib.Core.Desire.Goals.Goal`1.GetStatus(`0)">
-  GetStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L135"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Tests whether the goal has been achieved, bases on the <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__heuristicFunction">_heuristicFunction</a> and the
-<a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_DetermineCurrentHeuristics__0_">DetermineCurrentHeuristics(TBeliefSet)</a>. When the distance of the heuristics is smaller than <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__epsilon">_epsilon</a>,
-the goal is considered to be completed.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual CompletionStatus GetStatus(TBeliefSet beliefSet)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.CompletionStatus.html">CompletionStatus</a></dt>
-    <dd><p>An enum representing whether the goal is complete and if so, with what result.</p>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
 </dd>
   </dl>
 
@@ -635,12 +540,47 @@ the goal is considered to be completed.</p>
 
 
 
-  <dl class="typelist seealso">
-    <dt>See Also</dt>
-    <dd>
-    <div><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1__epsilon">_epsilon</a></div>
-    </dd>
+
+
+  <a id="Aplib_Core_Desire_Goals_Goal_1_UpdateStatus_" data-uid="Aplib.Core.Desire.Goals.Goal`1.UpdateStatus*"></a>
+
+  <h3 id="Aplib_Core_Desire_Goals_Goal_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.Goals.Goal`1.UpdateStatus(`0)">
+  UpdateStatus(TBeliefSet)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L149"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Checks whether the goal has been achieved and stores the result in <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Status">Status</a>.</p>
+<p>
+If the predicate of the goal is satisfied, the goal is considered to have succeeded.
+If the fail-guard is satisfied, the goal is considered to have failed.
+If both are satisfied, the success predicate takes precedence.
+If neither are satisfied, the goal is considered unfinished.
+The table below summarizes the possible outcomes:
+<table><thead><tr><th class="term">Predicate</th><th class="term">Fail guard</th><th class="term">Result</th></tr></thead><tbody><tr><td class="description"><code>true</code></td><td class="description"><code>false</code></td><td class="description"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Success">Success</a></td></tr><tr><td class="description"><code>true</code></td><td class="description"><code>true</code></td><td class="description"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Success">Success</a></td></tr><tr><td class="description"><code>false</code></td><td class="description"><code>true</code></td><td class="description"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Failure">Failure</a></td></tr><tr><td class="description"><code>false</code></td><td class="description"><code>false</code></td><td class="description"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Unfinished">Unfinished</a></td></tr></tbody></table>
+<remarks>Use <a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_Status">Status</a> to get the updated value.</remarks>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void UpdateStatus(TBeliefSet beliefSet)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
+    <dd><p>The belief set of the agent.</p>
+</dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
 
 
   <h2 id="seealso">See Also</h2>

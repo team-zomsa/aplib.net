@@ -96,7 +96,7 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.FirstOfGoalStructure-1.html">FirstOfGoalStructure&lt;TBeliefSet&gt;</a></dt>
-      <dd><p>Represents a goal structure that will complete if any of its children complete.</p>
+      <dd><p>Represents a goal structure that will complete if any one of its children completes.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -111,12 +111,14 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.RepeatGoalStructure-1.html">RepeatGoalStructure&lt;TBeliefSet&gt;</a></dt>
-      <dd><p>Represents a goal structure that will complete if any of its children complete.</p>
+      <dd><p>Represents a goal structure that will complete if any of its children complete.
+This structure will repeatedly execute the goal it was created with until the goal is finished,
+or the maximum number of retries is reached.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a></dt>
-      <dd><p>Represents a sequential goal structure.</p>
+      <dd><p>Represents a goal structure that will complete if all of its children complete.</p>
 </dd>
     </dl>
     <h3 id="interfaces">

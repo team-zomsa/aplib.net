@@ -185,7 +185,7 @@ be aware that this is not enforced by C# if <code class="typeparamref">TReferenc
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1})">
   Belief(Metadata, TReference, Func&lt;TReference, TObservation&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L105"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
@@ -231,9 +231,9 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Func{System.Boolean})">
-  Belief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, Func&lt;bool&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L67"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Predicate{`0})">
+  Belief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, Predicate&lt;TReference&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
@@ -243,7 +243,7 @@ and a condition on when the observation should be updated.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Belief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public Belief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -258,8 +258,9 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
     <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
     <dd><p>A function that takes an object reference and generates/updates an observation.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 
@@ -284,7 +285,7 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor__0_System_Func__0__1__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(`0,System.Func{`0,`1})">
   Belief(TReference, Func&lt;TReference, TObservation&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L112"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L117"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
@@ -327,9 +328,9 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <a id="Aplib_Core_Belief_Beliefs_Belief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor__0_System_Func__0__1__System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(`0,System.Func{`0,`1},System.Func{System.Boolean})">
-  Belief(TReference, Func&lt;TReference, TObservation&gt;, Func&lt;bool&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__ctor__0_System_Func__0__1__System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.#ctor(`0,System.Func{`0,`1},System.Predicate{`0})">
+  Belief(TReference, Func&lt;TReference, TObservation&gt;, Predicate&lt;TReference&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L93"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> class with an object
@@ -339,7 +340,7 @@ and a condition on when the observation should be updated.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Belief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public Belief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -351,8 +352,9 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
     <dt><code>getObservationFromReference</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TReference, TObservation&gt;</dt>
     <dd><p>A function that takes an object reference and generates/updates an observation.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 
@@ -442,15 +444,16 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2__shouldUpdate" data-uid="Aplib.Core.Belief.Beliefs.Belief`2._shouldUpdate">
   _shouldUpdate
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>A condition on when the observation should be updated.</p>
+  <div class="markdown level1 summary"><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected readonly Func&lt;bool&gt; _shouldUpdate</code></pre>
+    <pre><code class="lang-csharp hljs">protected readonly Predicate&lt;TReference&gt; _shouldUpdate</code></pre>
   </div>
 
 
@@ -458,7 +461,7 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h4 class="section">Field Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -478,7 +481,7 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_Metadata" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Metadata">
   Metadata
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L42"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the metadata of the Belief.</p>
@@ -510,7 +513,7 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_Observation" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.Observation">
   Observation
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).</p>
@@ -546,7 +549,7 @@ that this is not enforced by C# if <code class="typeparamref">TReference</code> 
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateBelief" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateBelief">
   UpdateBelief()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates/updates the observation if the shouldUpdate condition is satisfied.
@@ -574,7 +577,7 @@ The observation is then updated by calling the getObservationFromReference funct
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_UpdateObservation" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.UpdateObservation">
   UpdateObservation()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L136"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates/updates the observation.</p>
@@ -605,7 +608,7 @@ The observation is then updated by calling the getObservationFromReference funct
 
   <h3 id="Aplib_Core_Belief_Beliefs_Belief_2_op_Implicit_Aplib_Core_Belief_Beliefs_Belief__0__1____1" data-uid="Aplib.Core.Belief.Beliefs.Belief`2.op_Implicit(Aplib.Core.Belief.Beliefs.Belief{`0,`1})~`1">
   implicit operator TObservation(Belief&lt;TReference, TObservation&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L122"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/Belief.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Implicit conversion operator to allow a <a class="xref" href="Aplib.Core.Belief.Beliefs.Belief-2.html">Belief&lt;TReference, TObservation&gt;</a> object

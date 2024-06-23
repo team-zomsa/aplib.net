@@ -103,7 +103,7 @@ The result can be used in the effect.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class QueryAction&lt;TBeliefSet, TQuery&gt; : Action&lt;TBeliefSet&gt;, IDocumented, IQueryable&lt;TBeliefSet&gt;, IAction&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class QueryAction&lt;TBeliefSet, TQuery&gt; : Action&lt;TBeliefSet&gt;, ILoggable, IDocumented, IQueryable&lt;TBeliefSet&gt;, IAction&lt;TBeliefSet&gt; where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -130,6 +130,7 @@ The result can be used in the effect.</p>
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
       <div><a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.Intent.Actions.IAction-1.html">IAction</a>&lt;TBeliefSet&gt;</div>
@@ -142,6 +143,9 @@ The result can be used in the effect.</p>
     <dd>
     <div>
       <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_Metadata">Action&lt;TBeliefSet&gt;.Metadata</a>
+    </div>
+    <div>
+      <a class="xref" href="Aplib.Core.Intent.Actions.Action-1.html#Aplib_Core_Intent_Actions_Action_1_GetLogChildren">Action&lt;TBeliefSet&gt;.GetLogChildren()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>

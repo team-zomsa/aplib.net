@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2" class="text-break">
-Class MemoryBelief&lt;TReference, TObservation&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L21"><i class="bi bi-code-slash"></i></a>
+Class MemoryBelief&lt;TReference, TObservation&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -208,7 +208,7 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Int32_" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Int32)">
   MemoryBelief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L73"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L74"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.MemoryBelief-2.html">MemoryBelief&lt;TReference, TObservation&gt;</a> class with an object
@@ -257,8 +257,8 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <a id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Int32_System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Int32,System.Func{System.Boolean})">
-  MemoryBelief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, int, Func&lt;bool&gt;)
+  <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor_Aplib_Core_Metadata__0_System_Func__0__1__System_Int32_System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(Aplib.Core.Metadata,`0,System.Func{`0,`1},System.Int32,System.Predicate{`0})">
+  MemoryBelief(Metadata, TReference, Func&lt;TReference, TObservation&gt;, int, Predicate&lt;TReference&gt;)
   <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L50"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -269,7 +269,7 @@ the observation should be updated. Also initializes the memory array with a spec
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryBelief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int framesToRemember, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public MemoryBelief(Metadata metadata, TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int framesToRemember, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -287,8 +287,9 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
     <dt><code>framesToRemember</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The number of frames to remember back.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A function that sets a condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 
@@ -313,7 +314,7 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32)">
   MemoryBelief(TReference, Func&lt;TReference, TObservation&gt;, int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L86"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.MemoryBelief-2.html">MemoryBelief&lt;TReference, TObservation&gt;</a> class with an object
@@ -359,9 +360,9 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <a id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor_" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_System_Func_System_Boolean__" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,System.Func{System.Boolean})">
-  MemoryBelief(TReference, Func&lt;TReference, TObservation&gt;, int, Func&lt;bool&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__ctor__0_System_Func__0__1__System_Int32_System_Predicate__0__" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.#ctor(`0,System.Func{`0,`1},System.Int32,System.Predicate{`0})">
+  MemoryBelief(TReference, Func&lt;TReference, TObservation&gt;, int, Predicate&lt;TReference&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L62"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Belief.Beliefs.MemoryBelief-2.html">MemoryBelief&lt;TReference, TObservation&gt;</a> class with an object
@@ -371,7 +372,7 @@ the observation should be updated. Also initializes the memory array with a spec
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MemoryBelief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int framesToRemember, Func&lt;bool&gt; shouldUpdate)</code></pre>
+    <pre><code class="lang-csharp hljs">public MemoryBelief(TReference reference, Func&lt;TReference, TObservation&gt; getObservationFromReference, int framesToRemember, Predicate&lt;TReference&gt; shouldUpdate)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -386,8 +387,9 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
     <dt><code>framesToRemember</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd><p>The number of frames to remember back.</p>
 </dd>
-    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
-    <dd><p>A function that sets a condition on when the observation should be updated.</p>
+    <dt><code>shouldUpdate</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TReference&gt;</dt>
+    <dd><p>A condition on when the observation should be updated. Takes the object reference
+of the belief as a parameter for the predicate.</p>
 </dd>
   </dl>
 
@@ -415,7 +417,7 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2__memorizedObservations" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2._memorizedObservations">
   _memorizedObservations
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>A &quot;memorized&quot; resource, from the last time the belief was updated.</p>
@@ -451,7 +453,7 @@ this is not enforced by C# if <code class="typeparamref">TReference</code> is an
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2_GetAllMemories" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.GetAllMemories">
   GetAllMemories()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L132"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L134"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets all the memorized observations.
@@ -485,7 +487,7 @@ The first element is the newest memory.</p>
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2_GetMemoryAt_System_Int32_System_Boolean_" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.GetMemoryAt(System.Int32,System.Boolean)">
   GetMemoryAt(int, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the memorized observation at a specific index.
@@ -528,7 +530,7 @@ A higher index means a memory further back in time.</p>
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2_GetMostRecentMemory" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.GetMostRecentMemory">
   GetMostRecentMemory()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L109"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the most recently memorized observation.</p>
@@ -561,7 +563,7 @@ A higher index means a memory further back in time.</p>
 
   <h3 id="Aplib_Core_Belief_Beliefs_MemoryBelief_2_UpdateBelief" data-uid="Aplib.Core.Belief.Beliefs.MemoryBelief`2.UpdateBelief">
   UpdateBelief()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Belief/Beliefs/MemoryBelief.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Generates/updates the observation.

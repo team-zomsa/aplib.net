@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Delegate Goal&lt;TBeliefSet&gt;.HeuristicFunction | Aplib.Net </title>
+      <title>Interface ILoggable | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Delegate Goal&lt;TBeliefSet&gt;.HeuristicFunction | Aplib.Net ">
+      <meta name="title" content="Interface ILoggable | Aplib.Net ">
       
-      <meta name="description" content="The abstract definition of what is means to test the Goal&#39;s heuristic function. Returns , as they represent how close we are to matching the heuristic function, and if the goal is completed.">
+      <meta name="description" content="An interface that allows defining the structure of loggable objects through a  tree. The only method that needs to be implemented in loggable classes is the  method; the structure of the log tree is generated automatically when calling the  method.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Desire_Goals_Goal_1_HeuristicFunction.md&amp;value=---%0Auid%3A%20Aplib.Core.Desire.Goals.Goal%601.HeuristicFunction%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Logging_ILoggable.md&amp;value=---%0Auid%3A%20Aplib.Core.Logging.ILoggable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,38 +84,112 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Desire.Goals.Goal`1.HeuristicFunction">
+        <article data-uid="Aplib.Core.Logging.ILoggable">
 
 
 
-  <h1 id="Aplib_Core_Desire_Goals_Goal_1_HeuristicFunction" data-uid="Aplib.Core.Desire.Goals.Goal`1.HeuristicFunction" class="text-break">
-Delegate Goal&lt;TBeliefSet&gt;.HeuristicFunction  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/Goals/Goal.cs/#L42"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Logging_ILoggable" data-uid="Aplib.Core.Logging.ILoggable" class="text-break">
+Interface ILoggable  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/ILoggable.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Desire.html">Desire</a>.<a class="xref" href="Aplib.Core.Desire.Goals.html">Goals</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Logging.html">Logging</a></dd></dl>
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The abstract definition of what is means to test the Goal's heuristic function. Returns <a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a>, as
-they represent how close we are to matching the heuristic function, and if the goal is completed.</p>
+  <div class="markdown summary"><p>An interface that allows defining the structure of loggable objects through a <a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a> tree.
+The only method that needs to be implemented in loggable classes is the <a class="xref" href="Aplib.Core.Logging.ILoggable.html#Aplib_Core_Logging_ILoggable_GetLogChildren">GetLogChildren()</a> method;
+the structure of the log tree is generated automatically when calling the <a class="xref" href="Aplib.Core.Logging.ILoggable.html#Aplib_Core_Logging_ILoggable_GetLogTree_System_Int32_">GetLogTree(int)</a> method.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public delegate Heuristics Goal&lt;TBeliefSet&gt;.HeuristicFunction(TBeliefSet beliefSet)</code></pre>
+    <pre><code class="lang-csharp hljs">public interface ILoggable : IDocumented</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="Aplib.Core.IDocumented.html#Aplib_Core_IDocumented_Metadata">IDocumented.Metadata</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Aplib_Core_Logging_ILoggable_GetLogChildren_" data-uid="Aplib.Core.Logging.ILoggable.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Logging_ILoggable_GetLogChildren" data-uid="Aplib.Core.Logging.ILoggable.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/ILoggable.cs/#L16"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Logging_ILoggable_GetLogTree_" data-uid="Aplib.Core.Logging.ILoggable.GetLogTree*"></a>
+
+  <h3 id="Aplib_Core_Logging_ILoggable_GetLogTree_System_Int32_" data-uid="Aplib.Core.Logging.ILoggable.GetLogTree(System.Int32)">
+  GetLogTree(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/ILoggable.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Generates a log tree of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">LogNode GetLogTree(int depth = 0)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd>The abstract definition of what is means to test the Goal's heuristic function. Returns , as they represent how close we are to matching the heuristic function, and if the goal is completed.</dd>
+    <dt><code>depth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The depth of this node in the log tree.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="Aplib.Core.Desire.Goals.Heuristics.html">Heuristics</a></dt>
-    <dd>The abstract definition of what is means to test the Goal's heuristic function. Returns , as they represent how close we are to matching the heuristic function, and if the goal is completed.</dd>
+    <dt><a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a></dt>
+    <dd><p>The root node of the log tree.</p>
+</dd>
   </dl>
 
 
@@ -128,10 +202,6 @@ they represent how close we are to matching the heuristic function, and if the g
 
 
 
-  <h2 id="seealso">See Also</h2>
-  <div class="seealso">
-      <div><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html#Aplib_Core_Desire_Goals_Goal_1_GetStatus__0_">GetStatus</a>(TBeliefSet)</div>
-  </div>
 
 </article>
 

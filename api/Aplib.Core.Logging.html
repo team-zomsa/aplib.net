@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Namespace Aplib.Core.Desire.Goals | Aplib.Net </title>
+      <title>Namespace Aplib.Core.Logging | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Namespace Aplib.Core.Desire.Goals | Aplib.Net ">
+      <meta name="title" content="Namespace Aplib.Core.Logging | Aplib.Net ">
       
       
       <link rel="icon" href="../favicon.ico">
@@ -84,9 +84,9 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Desire.Goals">
+        <article data-uid="Aplib.Core.Logging">
 
-  <h1 id="Aplib_Core_Desire_Goals" data-uid="Aplib.Core.Desire.Goals" class="text-break">Namespace Aplib.Core.Desire.Goals</h1>
+  <h1 id="Aplib_Core_Logging" data-uid="Aplib.Core.Logging" class="text-break">Namespace Aplib.Core.Logging</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
@@ -95,18 +95,18 @@
 Classes
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.Desire.Goals.Goal-1.html">Goal&lt;TBeliefSet&gt;</a></dt>
-      <dd><p>A goal effectively combines a heuristic function with a tactic, and aims to meet the heuristic function by
-applying the tactic. Goals are combined in a <a class="xref" href="Aplib.Core.Desire.GoalStructures.GoalStructure-1.html">GoalStructure&lt;TBeliefSet&gt;</a>, and are used to
-prepare tests or do the testing.</p>
+      <dt><a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a></dt>
+      <dd><p>Represents a node in the log tree.</p>
 </dd>
     </dl>
     <h3 id="interfaces">
 Interfaces
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="Aplib.Core.Desire.Goals.IGoal-1.html">IGoal&lt;TBeliefSet&gt;</a></dt>
-      <dd><p>Defines a goal that can be achieved by a <a class="xref" href="Aplib.Core.Intent.Tactics.Tactic-1.html">Tactic&lt;TBeliefSet&gt;</a>.</p>
+      <dt><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></dt>
+      <dd><p>An interface that allows defining the structure of loggable objects through a <a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a> tree.
+The only method that needs to be implemented in loggable classes is the <a class="xref" href="Aplib.Core.Logging.ILoggable.html#Aplib_Core_Logging_ILoggable_GetLogChildren">GetLogChildren()</a> method;
+the structure of the log tree is generated automatically when calling the <a class="xref" href="Aplib.Core.Logging.ILoggable.html#Aplib_Core_Logging_ILoggable_GetLogTree_System_Int32_">GetLogTree(int)</a> method.</p>
 </dd>
     </dl>
 

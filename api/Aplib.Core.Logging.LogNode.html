@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class Metadata | Aplib.Net </title>
+      <title>Class LogNode | Aplib.Net </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class Metadata | Aplib.Net ">
+      <meta name="title" content="Class LogNode | Aplib.Net ">
       
-      <meta name="description" content="Data structure to store information about a component which may be useful for debugging or logging.">
+      <meta name="description" content="Represents a node in the log tree.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Metadata.md&amp;value=---%0Auid%3A%20Aplib.Core.Metadata%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/team-zomsa/aplib.net/new/main/apiSpec/new?filename=Aplib_Core_Logging_LogNode.md&amp;value=---%0Auid%3A%20Aplib.Core.Logging.LogNode%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,25 +84,25 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="Aplib.Core.Metadata">
+        <article data-uid="Aplib.Core.Logging.LogNode">
 
 
 
-  <h1 id="Aplib_Core_Metadata" data-uid="Aplib.Core.Metadata" class="text-break">
-Class Metadata  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Metadata.cs/#L6"><i class="bi bi-code-slash"></i></a>
+  <h1 id="Aplib_Core_Logging_LogNode" data-uid="Aplib.Core.Logging.LogNode" class="text-break">
+Class LogNode  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L8"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
-    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a></dd></dl>
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Aplib.html">Aplib</a>.<a class="xref" href="Aplib.Core.html">Core</a>.<a class="xref" href="Aplib.Core.Logging.html">Logging</a></dd></dl>
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Data structure to store information about a component which may be useful for debugging or logging.</p>
+  <div class="markdown summary"><p>Represents a node in the log tree.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Metadata : IMetadata</code></pre>
+    <pre><code class="lang-csharp hljs">public class LogNode</code></pre>
   </div>
 
 
@@ -112,16 +112,10 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">Metadata</span></div>
+      <div><span class="xref">LogNode</span></div>
     </dd>
   </dl>
 
-  <dl class="typelist implements">
-    <dt>Implements</dt>
-    <dd>
-      <div><a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></div>
-    </dd>
-  </dl>
 
 
   <dl class="typelist inheritedMembers">
@@ -159,28 +153,67 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 </h2>
 
 
-  <a id="Aplib_Core_Metadata__ctor_" data-uid="Aplib.Core.Metadata.#ctor*"></a>
+  <a id="Aplib_Core_Logging_LogNode__ctor_" data-uid="Aplib.Core.Logging.LogNode.#ctor*"></a>
 
-  <h3 id="Aplib_Core_Metadata__ctor_System_String_System_String_" data-uid="Aplib.Core.Metadata.#ctor(System.String,System.String)">
-  Metadata(string?, string?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Metadata.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Logging_LogNode__ctor_Aplib_Core_Logging_ILoggable_System_Int32_" data-uid="Aplib.Core.Logging.LogNode.#ctor(Aplib.Core.Logging.ILoggable,System.Int32)">
+  LogNode(ILoggable, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Store information about a BDI cycle component which may be useful for debugging or logging or general overviews.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Metadata(string? name = null, string? description = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public LogNode(ILoggable loggable, int depth)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The name used to display the component.</p>
+    <dt><code>loggable</code> <a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></dt>
+    <dd></dd>
+    <dt><code>depth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Logging_LogNode__ctor_" data-uid="Aplib.Core.Logging.LogNode.#ctor*"></a>
+
+  <h3 id="Aplib_Core_Logging_LogNode__ctor_Aplib_Core_Logging_ILoggable_System_Int32_System_Collections_Generic_List_Aplib_Core_Logging_LogNode__" data-uid="Aplib.Core.Logging.LogNode.#ctor(Aplib.Core.Logging.ILoggable,System.Int32,System.Collections.Generic.List{Aplib.Core.Logging.LogNode})">
+  LogNode(ILoggable, int, List&lt;LogNode&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Initialize a new <a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a> from a given loggable object,
+the depth, and optionally a list of children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LogNode(ILoggable loggable, int depth, List&lt;LogNode&gt; children)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>loggable</code> <a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></dt>
+    <dd><p>The loggable object of the node.</p>
 </dd>
-    <dt><code>description</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd><p>The description used to describe the component.</p>
+    <dt><code>depth</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The depth at which this node resides.</p>
+</dd>
+    <dt><code>children</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a>&gt;</dt>
+    <dd><p>The children of the node.
+It is assumed the children have a correct depth set.
+If omitted, an empty list will be used.</p>
 </dd>
   </dl>
 
@@ -199,19 +232,19 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 </h2>
 
 
-  <a id="Aplib_Core_Metadata_Description_" data-uid="Aplib.Core.Metadata.Description*"></a>
+  <a id="Aplib_Core_Logging_LogNode_Children_" data-uid="Aplib.Core.Logging.LogNode.Children*"></a>
 
-  <h3 id="Aplib_Core_Metadata_Description" data-uid="Aplib.Core.Metadata.Description">
-  Description
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Metadata.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Logging_LogNode_Children" data-uid="Aplib.Core.Logging.LogNode.Children">
+  Children
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the description used to describe the instance.</p>
+  <div class="markdown level1 summary"><p>The children of the node.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Description { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;LogNode&gt; Children { get; }</code></pre>
   </div>
 
 
@@ -220,7 +253,7 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Aplib.Core.Logging.LogNode.html">LogNode</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -231,19 +264,19 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 
 
 
-  <a id="Aplib_Core_Metadata_Id_" data-uid="Aplib.Core.Metadata.Id*"></a>
+  <a id="Aplib_Core_Logging_LogNode_Depth_" data-uid="Aplib.Core.Logging.LogNode.Depth*"></a>
 
-  <h3 id="Aplib_Core_Metadata_Id" data-uid="Aplib.Core.Metadata.Id">
-  Id
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Metadata.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Logging_LogNode_Depth" data-uid="Aplib.Core.Logging.LogNode.Depth">
+  Depth
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L18"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the unique identifier of the instance.</p>
+  <div class="markdown level1 summary"><p>The depth at which this node resides.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Guid Id { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Depth { get; }</code></pre>
   </div>
 
 
@@ -252,7 +285,7 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.guid">Guid</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
   </dl>
 
@@ -263,19 +296,19 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 
 
 
-  <a id="Aplib_Core_Metadata_Name_" data-uid="Aplib.Core.Metadata.Name*"></a>
+  <a id="Aplib_Core_Logging_LogNode_Loggable_" data-uid="Aplib.Core.Logging.LogNode.Loggable*"></a>
 
-  <h3 id="Aplib_Core_Metadata_Name" data-uid="Aplib.Core.Metadata.Name">
-  Name
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Metadata.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  <h3 id="Aplib_Core_Logging_LogNode_Loggable" data-uid="Aplib.Core.Logging.LogNode.Loggable">
+  Loggable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Logging/LogNode.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the name used to display the instance.</p>
+  <div class="markdown level1 summary"><p>The loggable object of the node.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? Name { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ILoggable Loggable { get; }</code></pre>
   </div>
 
 
@@ -284,7 +317,7 @@ Class Metadata  <a class="header-action link-secondary" title="View source" href
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></dt>
     <dd></dd>
   </dl>
 

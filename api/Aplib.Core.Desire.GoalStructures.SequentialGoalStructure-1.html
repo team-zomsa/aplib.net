@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class SequentialGoalStructure&lt;TBeliefSet&gt; | Aplib.Net ">
       
-      <meta name="description" content="Represents a sequential goal structure.">
+      <meta name="description" content="Represents a goal structure that will complete if all of its children complete.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -89,7 +89,7 @@
 
 
   <h1 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1" class="text-break">
-Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
   <dl><dt>Assembly</dt><dd>Aplib.Core.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Represents a sequential goal structure.</p>
+  <div class="markdown summary"><p>Represents a goal structure that will complete if all of its children complete.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SequentialGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, IDocumented, IDisposable where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public class SequentialGoalStructure&lt;TBeliefSet&gt; : GoalStructure&lt;TBeliefSet&gt;, IGoalStructure&lt;TBeliefSet&gt;, ICompletable, ILoggable, IDocumented, IDisposable where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
 
@@ -128,6 +128,7 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
     <dd>
       <div><a class="xref" href="Aplib.Core.Desire.GoalStructures.IGoalStructure-1.html">IGoalStructure</a>&lt;TBeliefSet&gt;</div>
       <div><a class="xref" href="Aplib.Core.ICompletable.html">ICompletable</a></div>
+      <div><a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a></div>
       <div><a class="xref" href="Aplib.Core.IDocumented.html">IDocumented</a></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
@@ -186,8 +187,7 @@ Class SequentialGoalStructure&lt;TBeliefSet&gt;  <a class="header-action link-se
 
 
   <h2 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>This class is a specific type of goal structure where goals are processed sequentially.
-All goals must be completed in order for the goal structure to be completed.</p>
+  <div class="markdown level0 remarks"><p>The children of this goal structure will be executed in the order they are given.</p>
 </div>
 
 
@@ -199,7 +199,7 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_Aplib_Core_Desire_GoalStructures_IGoalStructure__0____" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor(Aplib.Core.Desire.GoalStructures.IGoalStructure{`0}[])">
   SequentialGoalStructure(params IGoalStructure&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L43"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L44"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
@@ -232,7 +232,7 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1__ctor_Aplib_Core_IMetadata_Aplib_Core_Desire_GoalStructures_IGoalStructure__0____" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.#ctor(Aplib.Core.IMetadata,Aplib.Core.Desire.GoalStructures.IGoalStructure{`0}[])">
   SequentialGoalStructure(IMetadata, params IGoalStructure&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a> class.</p>
@@ -272,7 +272,7 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose">
   Dispose()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L89"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L97"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
@@ -299,7 +299,7 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Dispose_System_Boolean_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Dispose(System.Boolean)">
   Dispose(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Disposes the enumerator.</p>
@@ -332,7 +332,7 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_GetCurrentGoal__0_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.GetCurrentGoal(`0)">
   GetCurrentGoal(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L49"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the current goal using the given <a class="xref" href="Aplib.Core.Belief.BeliefSets.IBeliefSet.html">IBeliefSet</a>.</p>
@@ -367,14 +367,76 @@ All goals must be completed in order for the goal structure to be completed.</p>
 
 
 
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_GetLogChildren_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.GetLogChildren*"></a>
+
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_GetLogChildren" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.GetLogChildren">
+  GetLogChildren()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L110"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the children of the loggable object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override IEnumerable&lt;ILoggable&gt; GetLogChildren()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Aplib.Core.Logging.ILoggable.html">ILoggable</a>&gt;</dt>
+    <dd><p>The children of the loggable object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Reset_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Reset*"></a>
+
+  <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_Reset" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.Reset">
+  Reset()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Resets the goal structure to its initial state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Reset()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_UpdateStatus_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.UpdateStatus*"></a>
 
   <h3 id="Aplib_Core_Desire_GoalStructures_SequentialGoalStructure_1_UpdateStatus__0_" data-uid="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure`1.UpdateStatus(`0)">
   UpdateStatus(TBeliefSet)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Desire/GoalStructures/SequentialGoalStructure.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Updates the state of the goal structure.</p>
+  <div class="markdown level1 summary"><p>Updates the status of the <a class="xref" href="Aplib.Core.Desire.GoalStructures.SequentialGoalStructure-1.html">SequentialGoalStructure&lt;TBeliefSet&gt;</a>.
+The goal structure status is set to:</p>
+<ul><li><span class="term"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Success">Success</a></span>When all children are successful.</li><li><span class="term"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Failure">Failure</a></span>When any one of its children fails.</li><li><span class="term"><a class="xref" href="Aplib.Core.CompletionStatus.html#Aplib_Core_CompletionStatus_Unfinished">Unfinished</a></span>Otherwise.</li></ul>
 </div>
   <div class="markdown level1 conceptual"></div>
 
