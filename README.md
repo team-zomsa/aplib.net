@@ -62,4 +62,4 @@ Check out our [Quickstart Guide](https://github.com/team-zomsa/aplib.net/wiki/Qu
 
 ## Licensing
 > [!WARNING]
-> The project is provided under the **_BSD 3 License_**, which can be found [here](https://github.com/team-zomsa/aplib.net/blob/main/LICENSE).
+> The project is provided under the **GNU Affero General Public License**, which can be found [here](https://github.com/team-zomsa/aplib.net/blob/main/LICENSE).
