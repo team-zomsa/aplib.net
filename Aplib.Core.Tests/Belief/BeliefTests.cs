@@ -38,21 +38,21 @@ public class BeliefTests
 
         public System.Func<object, object> GetObservationFromReference => _getObservationFromReference;
 
-        public System.Func<bool> ShouldUpdate => _shouldUpdate;
+        public System.Predicate<object> ShouldUpdate => _shouldUpdate;
 
         public TestBelief
         (
             Metadata metadata,
             object reference,
             System.Func<object, object> getObservationFromReference,
-            System.Func<bool> shouldUpdate
+            System.Predicate<object> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, shouldUpdate)
         {
         }
 
         public TestBelief
-            (object reference, System.Func<object, object> getObservationFromReference, System.Func<bool> shouldUpdate)
+            (object reference, System.Func<object, object> getObservationFromReference, System.Predicate<object> shouldUpdate)
             : base(reference, getObservationFromReference, shouldUpdate)
         {
         }
@@ -75,7 +75,7 @@ public class BeliefTests
         Metadata metadata = It.IsAny<Metadata>();
         object reference = new Mock<object>().Object;
         System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
-        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
+        System.Predicate<object> shouldUpdate = It.IsAny<System.Predicate<object>>();
 
         // Act
         TestBelief belief = new(metadata, reference, getObservationFromReference, shouldUpdate);
@@ -84,7 +84,7 @@ public class BeliefTests
         belief.Metadata.Should().Be(metadata);
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
-        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+        belief.ShouldUpdate.Should().Be(shouldUpdate);
     }
 
     [Fact]
@@ -93,7 +93,7 @@ public class BeliefTests
         // Arrange
         object reference = new Mock<object>().Object;
         System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
-        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
+        System.Predicate<object> shouldUpdate = It.IsAny<System.Predicate<object>>();
 
         // Act
         TestBelief belief = new(reference, getObservationFromReference, shouldUpdate);
@@ -104,7 +104,7 @@ public class BeliefTests
         belief.Metadata.Description.Should().BeNull();
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
-        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+        belief.ShouldUpdate.Should().Be(shouldUpdate);
     }
 
     [Fact]
@@ -122,7 +122,7 @@ public class BeliefTests
         belief.Metadata.Should().Be(metadata);
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
-        belief.ShouldUpdate().Should().BeTrue();
+        belief.ShouldUpdate(reference).Should().BeTrue();
     }
 
     [Fact]
@@ -141,7 +141,7 @@ public class BeliefTests
         belief.Metadata.Description.Should().BeNull();
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
-        belief.ShouldUpdate().Should().BeTrue();
+        belief.ShouldUpdate(reference).Should().BeTrue();
     }
 
     /// <summary>
@@ -215,7 +215,7 @@ public class BeliefTests
     {
         // Arrange
         string def = "def";
-        Belief<string, string> belief = new(def, reference => reference, () => true);
+        Belief<string, string> belief = new(def, reference => reference, _ => true);
 
         // Act
         def = "abc";
@@ -235,7 +235,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => false);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, _ => false);
 
         // Act
         list.Add(420);
@@ -256,7 +256,7 @@ public class BeliefTests
     {
         // Arrange
         List<int> list = [];
-        Belief<List<int>, int> belief = new(list, reference => reference.Count, () => true);
+        Belief<List<int>, int> belief = new(list, reference => reference.Count, _ => true);
 
         // Act
         list.Add(69);

@@ -1,4 +1,6 @@
-﻿namespace Aplib.Core.Belief.Beliefs
+﻿using Aplib.Core;
+
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.
@@ -18,17 +20,18 @@
         /// <summary>
         /// The object reference used to generate/update the observation.
         /// </summary>
-        protected readonly TReference _reference;
+        protected internal readonly TReference _reference;
 
         /// <summary>
         /// A function that takes an object reference and generates/updates an observation.
         /// </summary>
-        protected readonly System.Func<TReference, TObservation> _getObservationFromReference;
+        protected internal readonly System.Func<TReference, TObservation> _getObservationFromReference;
 
         /// <summary>
-        /// A condition on when the observation should be updated.
+        /// A condition on when the observation should be updated. Takes the object reference
+        /// of the belief as a parameter for the predicate.
         /// </summary>
-        protected readonly System.Func<bool> _shouldUpdate;
+        protected internal readonly System.Predicate<TReference> _shouldUpdate;
 
         /// <summary>
         /// Gets the metadata of the Belief.
@@ -58,7 +61,10 @@
         /// <param name="getObservationFromReference">
         /// A function that takes an object reference and generates/updates an observation.
         /// </param>
-        /// <param name="shouldUpdate">A condition on when the observation should be updated.</param>
+        /// <param name="shouldUpdate">
+        /// A condition on when the observation should be updated. Takes the object reference
+        /// of the belief as a parameter for the predicate.
+        /// </param>
         /// <exception cref="System.ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
         /// </exception>
@@ -67,7 +73,7 @@
             Metadata metadata,
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
-            System.Func<bool> shouldUpdate
+            System.Predicate<TReference> shouldUpdate
         )
         {
             System.Type referenceType = reference.GetType();
@@ -83,33 +89,33 @@
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})"/>
+        ///     cref="Belief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})"/>
         public Belief
         (
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
-            System.Func<bool> shouldUpdate
+            System.Predicate<TReference> shouldUpdate
         )
             : this(new Metadata(), reference, getObservationFromReference, shouldUpdate)
         {
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})" />
+        ///     cref="Belief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})" />
         public Belief
         (
             Metadata metadata,
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference
         )
-            : this(metadata, reference, getObservationFromReference, () => true)
+            : this(metadata, reference, getObservationFromReference, _ => true)
         {
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Aplib.Core.Metadata,TReference,System.Func{TReference,TObservation},System.Func{bool})" />
+        ///     cref="Belief{TReference,TObservation}(Core.Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})" />
         public Belief(TReference reference, System.Func<TReference, TObservation> getObservationFromReference)
-            : this(new Metadata(), reference, getObservationFromReference, () => true)
+            : this(new Metadata(), reference, getObservationFromReference, _ => true)
         {
         }
 
@@ -126,7 +132,7 @@
         /// </summary>
         public virtual void UpdateBelief()
         {
-            if (_shouldUpdate()) UpdateObservation();
+            if (_shouldUpdate(_reference)) UpdateObservation();
         }
 
         /// <summary>

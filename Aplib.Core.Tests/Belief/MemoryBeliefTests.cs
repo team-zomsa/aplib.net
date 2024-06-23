@@ -17,7 +17,7 @@ public class MemoryBeliefTests
 
         public System.Func<object, object> GetObservationFromReference => _getObservationFromReference;
 
-        public System.Func<bool> ShouldUpdate => _shouldUpdate;
+        public System.Predicate<object> ShouldUpdate => _shouldUpdate;
 
         public ExposedQueue<object> MemorizedObservations => _memorizedObservations;
 
@@ -27,7 +27,7 @@ public class MemoryBeliefTests
             object reference,
             System.Func<object, object> getObservationFromReference,
             int framesToRemember,
-            System.Func<bool> shouldUpdate
+            System.Predicate<object> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
@@ -38,7 +38,7 @@ public class MemoryBeliefTests
             object reference,
             System.Func<object, object> getObservationFromReference,
             int framesToRemember,
-            System.Func<bool> shouldUpdate
+            System.Predicate<object> shouldUpdate
         )
             : base(reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
@@ -70,7 +70,7 @@ public class MemoryBeliefTests
         object reference = new Mock<object>().Object;
         System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 0;
-        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
+        System.Predicate<object> shouldUpdate = It.IsAny<System.Predicate<object>>();
 
         // Act
         TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember, shouldUpdate);
@@ -80,7 +80,7 @@ public class MemoryBeliefTests
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
         belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
-        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+        belief.ShouldUpdate.Should().Be(shouldUpdate);
     }
 
     [Fact]
@@ -90,7 +90,7 @@ public class MemoryBeliefTests
         object reference = new Mock<object>().Object;
         System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
         const int framesToRemember = 1;
-        System.Func<bool> shouldUpdate = It.IsAny<System.Func<bool>>();
+        System.Predicate<object> shouldUpdate = It.IsAny<System.Predicate<object>>();
 
         // Act
         TestMemoryBelief belief = new(reference, getObservationFromReference, framesToRemember, shouldUpdate);
@@ -102,7 +102,7 @@ public class MemoryBeliefTests
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
         belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
-        ((object)belief.ShouldUpdate).Should().Be(shouldUpdate);
+        belief.ShouldUpdate.Should().Be(shouldUpdate);
     }
 
     [Fact]
@@ -122,7 +122,7 @@ public class MemoryBeliefTests
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
         belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
-        belief.ShouldUpdate().Should().BeTrue();
+        belief.ShouldUpdate(reference).Should().BeTrue();
     }
 
     [Fact]
@@ -143,7 +143,7 @@ public class MemoryBeliefTests
         belief.Reference.Should().Be(reference);
         belief.GetObservationFromReference.Should().Be(getObservationFromReference);
         belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
-        belief.ShouldUpdate().Should().BeTrue();
+        belief.ShouldUpdate(reference).Should().BeTrue();
     }
 
     /// <summary>
