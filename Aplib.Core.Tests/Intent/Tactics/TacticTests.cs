@@ -34,7 +34,7 @@ public class TacticTests
     {
         public System.Predicate<IBeliefSet> Guard => _guard;
 
-        public LinkedList<ITactic<IBeliefSet>> SubTactics => _subTactics;
+        public LinkedList<ITactic<IBeliefSet>> Subtactics => _subtactics;
 
         public TestFirstOfTactic
             (Metadata metadata, System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subTactics)
@@ -201,7 +201,7 @@ public class TacticTests
         // Assert
         tactic.Metadata.Should().Be(metadata);
         tactic.Guard.Should().Be(guard);
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subTactics);
     }
 
     [Fact]
@@ -217,7 +217,7 @@ public class TacticTests
         // Assert
         tactic.Metadata.Should().Be(metadata);
         tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subTactics);
     }
 
     [Fact]
@@ -235,7 +235,7 @@ public class TacticTests
         tactic.Metadata.Name.Should().BeNull();
         tactic.Metadata.Description.Should().BeNull();
         tactic.Guard.Should().Be(guard);
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subTactics);
     }
 
     [Fact]
@@ -252,7 +252,7 @@ public class TacticTests
         tactic.Metadata.Name.Should().BeNull();
         tactic.Metadata.Description.Should().BeNull();
         tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subTactics);
     }
 
     /// <summary>
