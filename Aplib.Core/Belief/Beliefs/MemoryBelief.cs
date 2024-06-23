@@ -41,7 +41,8 @@ namespace Aplib.Core.Belief.Beliefs
         /// </param>
         /// <param name="framesToRemember">The number of frames to remember back.</param>
         /// <param name="shouldUpdate">
-        /// A function that sets a condition on when the observation should be updated.
+        /// A condition on when the observation should be updated. Takes the object reference
+        /// of the belief as a parameter for the predicate.
         /// </param>
         /// <exception cref="System.ArgumentException">
         /// Thrown when <paramref name="reference"/> is not a reference type.
@@ -51,41 +52,41 @@ namespace Aplib.Core.Belief.Beliefs
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
-            System.Func<bool> shouldUpdate
+            System.Predicate<TReference> shouldUpdate
         )
             : base(metadata, reference, getObservationFromReference, shouldUpdate)
             => _memorizedObservations = new ExposedQueue<TObservation>(framesToRemember);
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Func{bool})"/>
+        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Predicate{TReference})"/>
         public MemoryBelief(
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember,
-            System.Func<bool> shouldUpdate
+            System.Predicate<TReference> shouldUpdate
         )
             : this(new Metadata(), reference, getObservationFromReference, framesToRemember, shouldUpdate)
         {
         }
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Func{bool})" />
+        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Predicate{TReference})" />
         public MemoryBelief(
             Metadata metadata,
             TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember
         )
-            : this(metadata, reference, getObservationFromReference, framesToRemember, () => true)
+            : this(metadata, reference, getObservationFromReference, framesToRemember, _ => true)
         {
         }
 
         /// <inheritdoc
-        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Func{bool})" />
+        ///     cref="MemoryBelief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},int,System.Predicate{TReference})" />
         public MemoryBelief(TReference reference,
             System.Func<TReference, TObservation> getObservationFromReference,
             int framesToRemember)
-            : this(new Metadata(), reference, getObservationFromReference, framesToRemember, () => true)
+            : this(new Metadata(), reference, getObservationFromReference, framesToRemember, _ => true)
         {
         }
 
@@ -98,7 +99,7 @@ namespace Aplib.Core.Belief.Beliefs
             // We use the implicit conversion to TObservation to store the observation.
             _memorizedObservations.Put(this);
 
-            if (_shouldUpdate()) UpdateObservation();
+            if (_shouldUpdate(_reference)) UpdateObservation();
         }
 
         /// <summary>
