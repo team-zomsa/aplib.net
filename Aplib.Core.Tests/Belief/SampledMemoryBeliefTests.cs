@@ -212,7 +212,7 @@ public class SampledMemoryBeliefTests
         int sampleInterval = 2,
             framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
-            = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, () => false);
+            = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, _ => false);
 
         // Act
         // Expected values:

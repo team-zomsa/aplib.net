@@ -43,7 +43,7 @@ public class ListBeliefTests
         List<string> strings = ["foo", "bar"];
 
         // Observation: What is the last character?
-        ListBelief<string, char> belief = new(strings, str => str[^1], () => false);
+        ListBelief<string, char> belief = new(strings, str => str[^1], _ => false);
 
         // Act
         // Append 'x' to each string
