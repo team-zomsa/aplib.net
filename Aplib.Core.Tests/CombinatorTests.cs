@@ -234,8 +234,8 @@ public class CombinatorTests
         System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
-        AnyOfTactic<IBeliefSet> anyOfTactic =
-            AnyOf(metadata, guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(metadata, guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
 
         IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
 
@@ -254,8 +254,8 @@ public class CombinatorTests
         System.Predicate<IBeliefSet> guard = _ => false;
 
         // Act
-        AnyOfTactic<IBeliefSet> anyOfTactic =
-            AnyOf(guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
 
         IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
 
@@ -274,8 +274,8 @@ public class CombinatorTests
         Action<IBeliefSet> action2 = new(_ => { });
 
         // Act
-        AnyOfTactic<IBeliefSet> anyOfTactic =
-            AnyOf(metadata, Primitive(action1, _ => true), Primitive(action2, _ => false));
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(metadata, Primitive(action1, _ => true), Primitive(action2, _ => false));
 
         IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
 
@@ -292,7 +292,7 @@ public class CombinatorTests
         Action<IBeliefSet> action2 = new(_ => { });
 
         // Act
-        AnyOfTactic<IBeliefSet> anyOfTactic = AnyOf(Primitive(action1, _ => true), Primitive(action2, _ => false));
+        RandomTactic<IBeliefSet> anyOfTactic = Random(Primitive(action1, _ => true), Primitive(action2, _ => false));
 
         IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
 

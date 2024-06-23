@@ -50,7 +50,7 @@ namespace Aplib.Core.Tests
         public void AnyOfTactic_WhenGettingTree_ReturnsCorrectTree()
         {
             // Arrange
-            AnyOfTactic<IBeliefSet> tactic = new(_tactic1, _tactic2);
+            RandomTactic<IBeliefSet> tactic = new(_tactic1, _tactic2);
 
             LogNode tactic1Node = new(_tactic1, 1, [new LogNode(_action1, 2)]);
             LogNode tactic2Node = new(_tactic2, 1, [new LogNode(_action2, 2)]);

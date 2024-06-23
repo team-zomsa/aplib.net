@@ -7,9 +7,9 @@ using System.Linq;
 namespace Aplib.Core.Intent.Tactics
 {
     /// <summary>
-    /// Represents a tactic that executes any of the provided subtactics.
+    /// Represents a tactic that executes a random tactic from the provided subtactics.
     /// </summary>
-    public class AnyOfTactic<TBeliefSet> : Tactic<TBeliefSet>
+    public class RandomTactic<TBeliefSet> : Tactic<TBeliefSet>
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
@@ -18,7 +18,7 @@ namespace Aplib.Core.Intent.Tactics
         protected internal readonly LinkedList<ITactic<TBeliefSet>> _subtactics;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AnyOfTactic{TBeliefSet}"/> class with the specified subtactics
+        /// Initializes a new instance of the <see cref="RandomTactic{TBeliefSet}"/> class with the specified subtactics
         /// and an optional guard condition.
         /// </summary>
         /// <param name="metadata">
@@ -26,7 +26,7 @@ namespace Aplib.Core.Intent.Tactics
         /// </param>
         /// <param name="guard">The guard condition.</param>
         /// <param name="subtactics">The list of subtactics.</param>
-        public AnyOfTactic
+        public RandomTactic
         (
             IMetadata metadata,
             System.Predicate<TBeliefSet> guard,
@@ -34,21 +34,21 @@ namespace Aplib.Core.Intent.Tactics
         )
             : base(metadata, guard) => _subtactics = new LinkedList<ITactic<TBeliefSet>>(subtactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])"/>
-        public AnyOfTactic
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])"/>
+        public RandomTactic
             (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subtactics)
             : this(new Metadata(), guard, subtactics)
         {
         }
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
-        public AnyOfTactic(IMetadata metadata, params ITactic<TBeliefSet>[] subtactics)
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
+        public RandomTactic(IMetadata metadata, params ITactic<TBeliefSet>[] subtactics)
             : this(metadata, _ => true, subtactics)
         {
         }
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
-        public AnyOfTactic(params ITactic<TBeliefSet>[] subtactics)
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
+        public RandomTactic(params ITactic<TBeliefSet>[] subtactics)
             : this(new Metadata(), _ => true, subtactics)
         {
         }

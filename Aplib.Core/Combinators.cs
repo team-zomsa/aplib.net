@@ -61,26 +61,26 @@ namespace Aplib.Core
 
         #region Tactic combinators
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
-        public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
+        public static RandomTactic<TBeliefSet> Random<TBeliefSet>
             (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(metadata, guard, subTactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
-        public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
+        public static RandomTactic<TBeliefSet> Random<TBeliefSet>
             (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(guard, subTactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(IMetadata,ITactic{TBeliefSet}[])" />
-        public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,ITactic{TBeliefSet}[])" />
+        public static RandomTactic<TBeliefSet> Random<TBeliefSet>
             (IMetadata metadata, params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(metadata, subTactics);
 
-        /// <inheritdoc cref="AnyOfTactic{TBeliefSet}(ITactic{TBeliefSet}[])" />
-        public static AnyOfTactic<TBeliefSet> AnyOf<TBeliefSet>(params ITactic<TBeliefSet>[] subTactics)
+        /// <inheritdoc cref="RandomTactic{TBeliefSet}(ITactic{TBeliefSet}[])" />
+        public static RandomTactic<TBeliefSet> Random<TBeliefSet>(params ITactic<TBeliefSet>[] subTactics)
             where TBeliefSet : IBeliefSet =>
             new(subTactics);
 
