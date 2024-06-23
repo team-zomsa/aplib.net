@@ -142,7 +142,7 @@ public class TacticTests
     public void AnyOfTactic_WithoutMetadata_ContainsDefaultMetadata()
     {
         // Act
-        AnyOfTactic<IBeliefSet> tactic = new(_ => true);
+        RandomTactic<IBeliefSet> tactic = new(_ => true);
 
         // Assert
         tactic.Metadata.Id.Should().NotBeEmpty();
@@ -151,7 +151,7 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="AnyOfTactic{TBeliefSet}" /> with two subtactics,
+    /// Given a parent of type <see cref="RandomTactic{TBeliefSet}" /> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the action of an enabled tactic.
     /// </summary>
@@ -163,7 +163,7 @@ public class TacticTests
         Action<IBeliefSet> action2 = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
         PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => false);
-        AnyOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
+        RandomTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
@@ -178,7 +178,7 @@ public class TacticTests
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
-        AnyOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
+        RandomTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
