@@ -15,7 +15,7 @@ namespace Aplib.Core.Intent.Tactics
         /// <summary>
         /// Gets or sets the subtactics of the tactic.
         /// </summary>
-        protected readonly LinkedList<ITactic<TBeliefSet>> _subtactics;
+        protected internal readonly LinkedList<ITactic<TBeliefSet>> _subtactics;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FirstOfTactic{TBeliefSet}"/> class with the specified
