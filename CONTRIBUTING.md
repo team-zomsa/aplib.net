@@ -47,23 +47,23 @@ public abstract class Baz { ... };
 Naming conventions for identifiers ([Microsoft C# Docs: Identifier names](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names), [Microsoft C# Docs: protected](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/protected)):
 
 ```csharp
-namespace PascalCase { ... } // -------------- // **Namespaces**.
-<TPascalCase> // ----------------------------- // **Generic types**. Prefix T.
-interface IPascalCase { ... } // ------------- // **Interfaces**. Prefix I.
-class PascalCase { ... } // ------------------ // **Classes**.
-class PascalCaseAttribute : Attribute { ... }  // **Attributes**. Suffix Attribute.
-... PascalCase( ... camelCase ) { ... } // --- // **Methods** and **method arguments**.
-... PascalCase { get; set; } // -------------- // **Properties**.
-const PascalCase; // ------------------------- // **Constants**.
-... camelCase; // ---------------------------- // **Local variables**.
-public static PascalCase; // --------------- // Public static **fields**. Prefix s_.
-internal static _camelCase; // -------------- // Internal static **fields**. Prefix s_.
-protected static _camelCase; // ------------- // Protected static **fields**. Prefix s_.
-private static _camelCase; // --------------- // Private static **fields**. Prefix s_.
-public PascalCase; // ------------------------ // Public nonstatic **fields**.
-internal _camelCase: // ---------------------- // Internal nonstatic **fields**. Prefix _.
-protected _camelCase; // --------------------- // Protected nonstatic **fields**. Prefix _.
-private _camelCase; // ----------------------- // Private nonstatic **fields**. Prefix _.
+namespace PascalCase { ... } // -------------- // Namespaces.
+<TPascalCase> // ----------------------------- // Generic types. Prefix T.
+interface IPascalCase { ... } // ------------- // Interfaces. Prefix I.
+class PascalCase { ... } // ------------------ // Classes.
+class PascalCaseAttribute : Attribute { ... }  // Attributes. Suffix Attribute.
+... PascalCase( ... camelCase ) { ... } // --- // Methods and method arguments.
+... PascalCase { get; set; } // -------------- // Properties.
+const PascalCase; // ------------------------- // Constants.
+... camelCase; // ---------------------------- // Local variables.
+public static PascalCase; // ----------------- // Public static fields. Prefix s_.
+internal static _camelCase; // --------------- // Internal static fields. Prefix s_.
+protected static _camelCase; // -------------- // Protected static fields. Prefix s_.
+private static _camelCase; // ---------------- // Private static fields. Prefix s_.
+public PascalCase; // ------------------------ // Public nonstatic fields.
+internal _camelCase: // ---------------------- // Internal nonstatic fields. Prefix _.
+protected _camelCase; // --------------------- // Protected nonstatic fields. Prefix _.
+private _camelCase; // ----------------------- // Private nonstatic fields. Prefix _.
 ```
 
 **Additional naming conventions:**
