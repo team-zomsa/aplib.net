@@ -56,7 +56,7 @@ namespace Aplib.Core.Intent.Tactics
             if (!IsActionable(beliefSet)) return null;
 
             return _subtactics
-                .Select(subTactic => subTactic.GetAction(beliefSet))
+                .Select(subtactic => subtactic.GetAction(beliefSet))
                 .OfType<IAction<TBeliefSet>>()
                 .FirstOrDefault();
         }

@@ -63,50 +63,50 @@ namespace Aplib.Core
 
         /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static RandomTactic<TBeliefSet> Random<TBeliefSet>
-            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, guard, subTactics);
+            new(metadata, guard, subtactics);
 
         /// <inheritdoc cref="RandomTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static RandomTactic<TBeliefSet> Random<TBeliefSet>
-            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
+            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(guard, subTactics);
+            new(guard, subtactics);
 
         /// <inheritdoc cref="RandomTactic{TBeliefSet}(IMetadata,ITactic{TBeliefSet}[])" />
         public static RandomTactic<TBeliefSet> Random<TBeliefSet>
-            (IMetadata metadata, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, subTactics);
+            new(metadata, subtactics);
 
         /// <inheritdoc cref="RandomTactic{TBeliefSet}(ITactic{TBeliefSet}[])" />
-        public static RandomTactic<TBeliefSet> Random<TBeliefSet>(params ITactic<TBeliefSet>[] subTactics)
+        public static RandomTactic<TBeliefSet> Random<TBeliefSet>(params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(subTactics);
+            new(subtactics);
 
         /// <inheritdoc
         ///     cref="FirstOfTactic{TBeliefSet}(IMetadata,System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
-            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, guard, subTactics);
+            new(metadata, guard, subtactics);
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(System.Predicate{TBeliefSet},ITactic{TBeliefSet}[])" />
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
-            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subTactics)
+            (System.Predicate<TBeliefSet> guard, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(guard, subTactics);
+            new(guard, subtactics);
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(IMetadata,ITactic{TBeliefSet}[])"/>
         public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>
-            (IMetadata metadata, params ITactic<TBeliefSet>[] subTactics)
+            (IMetadata metadata, params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, subTactics);
+            new(metadata, subtactics);
 
         /// <inheritdoc cref="FirstOfTactic{TBeliefSet}(ITactic{TBeliefSet}[])"/>
-        public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>(params ITactic<TBeliefSet>[] subTactics)
+        public static FirstOfTactic<TBeliefSet> FirstOf<TBeliefSet>(params ITactic<TBeliefSet>[] subtactics)
             where TBeliefSet : IBeliefSet =>
-            new(subTactics);
+            new(subtactics);
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IAction{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
