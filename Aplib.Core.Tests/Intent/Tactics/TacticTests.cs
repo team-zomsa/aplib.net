@@ -34,25 +34,25 @@ public class TacticTests
     {
         public System.Predicate<IBeliefSet> Guard => _guard;
 
-        public LinkedList<ITactic<IBeliefSet>> SubTactics => _subTactics;
+        public LinkedList<ITactic<IBeliefSet>> Subtactics => _subtactics;
 
         public TestFirstOfTactic
-            (Metadata metadata, System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subTactics)
-            : base(metadata, guard, subTactics)
+            (Metadata metadata, System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subtactics)
+            : base(metadata, guard, subtactics)
         {
         }
 
-        public TestFirstOfTactic(Metadata metadata, params ITactic<IBeliefSet>[] subTactics)
-            : base(metadata, subTactics)
+        public TestFirstOfTactic(Metadata metadata, params ITactic<IBeliefSet>[] subtactics)
+            : base(metadata, subtactics)
         {
         }
 
-        public TestFirstOfTactic(System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subTactics)
-            : base(guard, subTactics)
+        public TestFirstOfTactic(System.Predicate<IBeliefSet> guard, params ITactic<IBeliefSet>[] subtactics)
+            : base(guard, subtactics)
         {
         }
 
-        public TestFirstOfTactic(params ITactic<IBeliefSet>[] subTactics) : base(subTactics) { }
+        public TestFirstOfTactic(params ITactic<IBeliefSet>[] subtactics) : base(subtactics) { }
     }
 
 
@@ -142,7 +142,7 @@ public class TacticTests
     public void AnyOfTactic_WithoutMetadata_ContainsDefaultMetadata()
     {
         // Act
-        AnyOfTactic<IBeliefSet> tactic = new(_ => true);
+        RandomTactic<IBeliefSet> tactic = new(_ => true);
 
         // Assert
         tactic.Metadata.Id.Should().NotBeEmpty();
@@ -151,7 +151,7 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="AnyOfTactic{TBeliefSet}" /> with two subtactics,
+    /// Given a parent of type <see cref="RandomTactic{TBeliefSet}" /> with two subtactics,
     /// When getting the next tactic,
     /// Then the result should be the action of an enabled tactic.
     /// </summary>
@@ -163,7 +163,7 @@ public class TacticTests
         Action<IBeliefSet> action2 = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
         PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => false);
-        AnyOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
+        RandomTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
@@ -178,7 +178,7 @@ public class TacticTests
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
-        AnyOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
+        RandomTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
@@ -193,15 +193,15 @@ public class TacticTests
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
         System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
-        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+        ITactic<IBeliefSet>[] subtactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
-        TestFirstOfTactic tactic = new(metadata, guard, subTactics);
+        TestFirstOfTactic tactic = new(metadata, guard, subtactics);
 
         // Assert
         tactic.Metadata.Should().Be(metadata);
         tactic.Guard.Should().Be(guard);
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subtactics);
     }
 
     [Fact]
@@ -209,15 +209,15 @@ public class TacticTests
     {
         // Arrange
         Metadata metadata = It.IsAny<Metadata>();
-        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+        ITactic<IBeliefSet>[] subtactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
-        TestFirstOfTactic tactic = new(metadata, subTactics);
+        TestFirstOfTactic tactic = new(metadata, subtactics);
 
         // Assert
         tactic.Metadata.Should().Be(metadata);
         tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subtactics);
     }
 
     [Fact]
@@ -225,34 +225,34 @@ public class TacticTests
     {
         // Arrange
         System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
-        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+        ITactic<IBeliefSet>[] subtactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
-        TestFirstOfTactic tactic = new(guard, subTactics);
+        TestFirstOfTactic tactic = new(guard, subtactics);
 
         // Assert
         tactic.Metadata.Id.Should().NotBeEmpty();
         tactic.Metadata.Name.Should().BeNull();
         tactic.Metadata.Description.Should().BeNull();
         tactic.Guard.Should().Be(guard);
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subtactics);
     }
 
     [Fact]
     public void FirstOfTacticTactic_WithoutMetadataWithoutGuard_HasExpectedData()
     {
         // Arrange
-        ITactic<IBeliefSet>[] subTactics = [It.IsAny<ITactic<IBeliefSet>>()];
+        ITactic<IBeliefSet>[] subtactics = [It.IsAny<ITactic<IBeliefSet>>()];
 
         // Act
-        TestFirstOfTactic tactic = new(subTactics);
+        TestFirstOfTactic tactic = new(subtactics);
 
         // Assert
         tactic.Metadata.Id.Should().NotBeEmpty();
         tactic.Metadata.Name.Should().BeNull();
         tactic.Metadata.Description.Should().BeNull();
         tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-        tactic.SubTactics.Should().BeEquivalentTo(subTactics);
+        tactic.Subtactics.Should().BeEquivalentTo(subtactics);
     }
 
     /// <summary>
