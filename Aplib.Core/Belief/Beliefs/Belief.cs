@@ -1,18 +1,17 @@
-﻿using Aplib.Core;
-
-namespace Aplib.Core.Belief.Beliefs
+﻿namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
-    /// The <see cref="Belief{TReference, TObservation}"/> class represents the agent's belief of a single object.
+    /// Represents the agent's belief of a single object.
     /// Some <i>object reference</i> is used to generate/update an <i>observation</i>
-    /// (i.e., some piece of information of the game state as perceived by an agent).
+    /// (i.e., some information about the game state as perceived by an agent).
     /// </summary>
     /// <remarks>
-    /// It supports implicit conversion to <typeparamref name="TObservation"/>.
+    /// This class supports implicit conversion to <typeparamref name="TObservation" />.
     /// </remarks>
     /// <typeparam name="TReference">
-    /// The type of the object reference used to generate/update the observation. This <i>must</i> be a reference type,
-    /// be aware that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+    /// The type of the object reference used to generate/update the observation.
+    /// This <i>must</i> be a reference type,
+    /// be aware that this is not enforced by the type checker if <typeparamref name="TReference" /> is an interface.
     /// </typeparam>
     /// <typeparam name="TObservation">The type of the observation that the belief represents.</typeparam>
     public class Belief<TReference, TObservation> : IBelief where TReference : class
@@ -42,31 +41,34 @@ namespace Aplib.Core.Belief.Beliefs
         public Metadata Metadata { get; }
 
         /// <summary>
-        /// The observation represented by the belief (i.e., some piece of information of the game state as perceived by an agent).
+        /// The observation represented by the belief
+        /// (i.e., some information about the game state as perceived by an agent).
         /// </summary>
         public TObservation Observation { get; protected set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}"/> class with an object
+        /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}" /> class with an object
         /// reference, a function to generate/update the observation using the object reference,
-        /// and a condition on when the observation should be updated.
+        /// and optionally a condition on when the observation should be updated.
         /// </summary>
         /// <param name="metadata">
-        /// Metadata about this Belief, used to quickly display the goal in several contexts.
+        /// Optional metadata about this belief, used to quickly display the goal in several contexts.
+        /// If omitted, default metadata will be used.
         /// </param>
         /// <param name="reference">
         /// The object reference used to generate/update the observation. This <i>must</i> be a reference type, be aware
-        /// that this is not enforced by C# if <typeparamref name="TReference"/> is an interface.
+        /// that this is not enforced by the type checker if <typeparamref name="TReference"/> is an interface.
         /// </param>
         /// <param name="getObservationFromReference">
         /// A function that takes an object reference and generates/updates an observation.
         /// </param>
         /// <param name="shouldUpdate">
-        /// A condition on when the observation should be updated. Takes the object reference
-        /// of the belief as a parameter for the predicate.
+        /// An optional condition on when the observation should be updated.
+        /// Takes the object reference of the belief as a parameter for the predicate.
+        /// If omitted, the belief will always update.
         /// </param>
         /// <exception cref="System.ArgumentException">
-        /// Thrown when <paramref name="reference"/> is not a reference type.
+        /// Thrown when <paramref name="reference" /> is not a reference type.
         /// </exception>
         public Belief
         (
@@ -89,7 +91,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})"/>
+        ///     cref="Belief{TReference,TObservation}(Core.Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})" />
         public Belief
         (
             TReference reference,
@@ -101,7 +103,7 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <inheritdoc
-        ///     cref="Belief{TReference,TObservation}(Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})" />
+        ///     cref="Belief{TReference,TObservation}(Core.Metadata,TReference,System.Func{TReference,TObservation},System.Predicate{TReference})" />
         public Belief
         (
             Metadata metadata,
@@ -120,15 +122,15 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <summary>
-        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TObservation}"/> object
-        /// to be used where a <typeparamref name="TObservation"/> is expected.
+        /// Implicit conversion operator to allow a <see cref="Belief{TReference, TObservation}" /> object
+        /// to be used where a <typeparamref name="TObservation" /> is expected.
         /// </summary>
-        /// <param name="belief">The <see cref="Belief{TReference, TObservation}"/> object to convert.</param>
+        /// <param name="belief">The <see cref="Belief{TReference, TObservation}" /> object to convert.</param>
         public static implicit operator TObservation(Belief<TReference, TObservation> belief) => belief.Observation;
 
         /// <summary>
-        /// Generates/updates the observation if the shouldUpdate condition is satisfied.
-        /// The observation is then updated by calling the getObservationFromReference function.
+        /// Generates/updates the observation if the <c>shouldUpdate</c> condition is satisfied.
+        /// The observation is then updated by calling the <c>getObservationFromReference</c> function.
         /// </summary>
         public virtual void UpdateBelief()
         {
