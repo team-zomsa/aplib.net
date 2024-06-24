@@ -13,7 +13,7 @@ namespace Aplib.Core.Agents
         where TBeliefSet : IBeliefSet
     {
         /// <summary>
-        /// Gets the beliefset of the agent.
+        /// Gets the belief set of the agent.
         /// </summary>
         private readonly TBeliefSet _beliefSet;
 
@@ -29,10 +29,11 @@ namespace Aplib.Core.Agents
         public CompletionStatus Status => _desireSet.Status;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class.
+        /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class,
+        /// from a given set of beliefs and desires.
         /// </summary>
-        /// <param name="beliefSet">The beliefset of the agent.</param>
-        /// <param name="desireSet"></param>
+        /// <param name="beliefSet">The belief set of the agent.</param>
+        /// <param name="desireSet">The desire set of the agent.</param>
         public BdiAgent(TBeliefSet beliefSet, IDesireSet<TBeliefSet> desireSet)
         {
             _beliefSet = beliefSet;
@@ -43,7 +44,7 @@ namespace Aplib.Core.Agents
         /// Performs a single BDI cycle, in which the agent updates its beliefs, selects a concrete goal,
         /// chooses a concrete action to achieve the selected goal, and executes the chosen action.
         /// </summary>
-        /// <remarks>This method will get called every frame of the game.</remarks>
+        /// <remarks>This method will get called for every frame of the game.</remarks>
         public void Update()
         {
             // Belief
