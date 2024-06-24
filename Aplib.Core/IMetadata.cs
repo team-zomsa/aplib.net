@@ -2,11 +2,9 @@ namespace Aplib.Core
 {
     /// <summary>
     /// A collection of generic metadata for unique instances which should help
-    /// visualise the instance with human-readable information.
-    /// </summary>
-    /// <remark>
+    /// visualize the instance with human-readable information.
     /// This metadata may be useful for debugging or logging.
-    /// </remark>
+    /// </summary>
     public interface IMetadata
     {
         /// <summary>

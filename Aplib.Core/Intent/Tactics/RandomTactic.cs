@@ -60,9 +60,9 @@ namespace Aplib.Core.Intent.Tactics
 
             List<IAction<TBeliefSet>> actions = new();
 
-            foreach (ITactic<TBeliefSet> subTactic in _subtactics)
+            foreach (ITactic<TBeliefSet> subtactic in _subtactics)
             {
-                IAction<TBeliefSet>? action = subTactic.GetAction(beliefSet);
+                IAction<TBeliefSet>? action = subtactic.GetAction(beliefSet);
 
                 if (action is not null) actions.Add(action);
             }
