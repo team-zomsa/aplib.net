@@ -73,8 +73,100 @@
         <article data-uid="">
 <h1 id="contributing">Contributing</h1>
 
-<p>Thank you for your interest in contributing to this project. At the moment, we are not accepting contributions from outside sources.</p>
-<p>If you have any questions or concerns, please feel free to reach out to us.</p>
+<p>Thank you for your interest in contributing to this project. In order to contribute to this project, we ask you to read this document to get acquainted with our style.</p>
+<h2 id="formats">Formats</h2>
+<p><strong>Class names</strong></p>
+<ul>
+<li>Class name same as file name</li>
+</ul>
+<h1 id="modifiers-naming-conventions--member-order">Modifiers, naming conventions &amp; member order</h1>
+<h2 id="access-modifiers">Access modifiers.</h2>
+<p>Access modifiers in order of priority when combining them (<a href="https://learn.microsoft.com/en-us/dotnet/fundamentals/code-analysis/code-style-rule-options?view=vs-2017">Microsoft C# Docs: Code-style rule options</a>):</p>
+<pre><code class="lang-csharp">public
+private
+protected
+internal
+file
+static
+extern
+new
+virtual
+abstract
+sealed
+override
+readonly
+unsafe
+required
+volatile
+async
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code class="lang-csharp">private static readonly bool s_foo;
+protected new virtual int bar;
+public abstract class Baz { ... };
+</code></pre>
+<h2 id="identifier-names">Identifier names.</h2>
+<p>Naming conventions for identifiers (<a href="https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/identifier-names">Microsoft C# Docs: Identifier names</a>, <a href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/protected">Microsoft C# Docs: protected</a>):</p>
+<pre><code class="lang-csharp">namespace PascalCase { ... } // -------------- // Namespaces.
+&lt;TPascalCase&gt; // ----------------------------- // Generic types. Prefix T.
+interface IPascalCase { ... } // ------------- // Interfaces. Prefix I.
+class PascalCase { ... } // ------------------ // Classes.
+class PascalCaseAttribute : Attribute { ... }  // Attributes. Suffix Attribute.
+... PascalCase( ... camelCase ) { ... } // --- // Methods and method arguments.
+... PascalCase { get; set; } // -------------- // Properties.
+const PascalCase; // ------------------------- // Constants.
+... camelCase; // ---------------------------- // Local variables.
+public static PascalCase; // ----------------- // Public static fields. Prefix s_.
+internal static _camelCase; // --------------- // Internal static fields. Prefix s_.
+protected static _camelCase; // -------------- // Protected static fields. Prefix s_.
+private static _camelCase; // ---------------- // Private static fields. Prefix s_.
+public PascalCase; // ------------------------ // Public nonstatic fields.
+internal _camelCase: // ---------------------- // Internal nonstatic fields. Prefix _.
+protected _camelCase; // --------------------- // Protected nonstatic fields. Prefix _.
+private _camelCase; // ----------------------- // Private nonstatic fields. Prefix _.
+</code></pre>
+<p><strong>Additional naming conventions:</strong></p>
+<ul>
+<li>Use meaningful and descriptive names for variables, methods, and classes.</li>
+<li>Prefer clarity over brevity.</li>
+<li>Enum types use a singular noun for nonflags, and a plural noun for flags.</li>
+<li>Identifiers shouldn't contain two consecutive underscore (_) characters. Those names are reserved for compiler-generated identifiers.</li>
+<li>Avoid using abbreviations or acronyms in names, except for widely known and accepted abbreviations.</li>
+<li>Use meaningful and descriptive namespaces that follow the reverse domain name notation.</li>
+<li>Choose assembly names that represent the primary purpose of the assembly.</li>
+<li>Avoid using single-letter names, except for simple loop counters.</li>
+<li>Treat an acronym or abbreviation of three letters or more as a single word for capitalization. For example, <code>IterateBdiCycle</code> instead of <code>IterateBDICycle</code>.</li>
+</ul>
+<h2 id="order-of-members">Order of members.</h2>
+<p>The ordering of class members is as follows (combination of <a href="https://google.github.io/styleguide/csharp-style.html">C# at Google Style Guide</a> and <a href="https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/SA1201.md">StyleCop</a>).</p>
+<p><strong>Within a class, struct, or interface:</strong></p>
+<ul>
+<li>Nested classes, enums, delegates and events.</li>
+<li>Static, const and readonly fields.</li>
+<li>Fields and properties.</li>
+<li>Constructors and finalizers.</li>
+<li>Methods.</li>
+</ul>
+<p><strong>Within each group, elements should be in the following order:</strong></p>
+<ul>
+<li>Public.</li>
+<li>Internal.</li>
+<li>Protected internal.</li>
+<li>Protected.</li>
+<li>Private.</li>
+<li>Where possible, group interface implementations together.</li>
+</ul>
+<p><strong>Within each of the access groups, order by static, then nonstatic:</strong></p>
+<ul>
+<li>Static</li>
+<li>Nonstatic</li>
+</ul>
+<p><strong>Within each of the static/nonstatic groups of fields, order by readonly, then nonreadonly:</strong></p>
+<ul>
+<li>Readonly</li>
+<li>Nonreadonly</li>
+</ul>
+<p>Within each group: Order on Name.</p>
 
 </article>
 
