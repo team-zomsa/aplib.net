@@ -133,26 +133,26 @@ namespace Aplib.Core
         /// <inheritdoc
         ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IMetadata metadata, IQueryable<TBeliefSet> query, System.Predicate<TBeliefSet> guard)
+            (IMetadata metadata, IQueryable<TBeliefSet> queryAction, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, query, guard);
+            new(metadata, queryAction, guard);
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IQueryable<TBeliefSet> query, System.Predicate<TBeliefSet> guard)
+            (IQueryable<TBeliefSet> queryAction, System.Predicate<TBeliefSet> guard)
             where TBeliefSet : IBeliefSet =>
-            new(query, guard);
+            new(queryAction, guard);
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet})"/>
         public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>
-            (IMetadata metadata, IQueryable<TBeliefSet> query)
+            (IMetadata metadata, IQueryable<TBeliefSet> queryAction)
             where TBeliefSet : IBeliefSet =>
-            new(metadata, query);
+            new(metadata, queryAction);
 
         /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet})"/>
-        public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>(IQueryable<TBeliefSet> query)
+        public static PrimitiveTactic<TBeliefSet> Primitive<TBeliefSet>(IQueryable<TBeliefSet> queryAction)
             where TBeliefSet : IBeliefSet =>
-            new(query);
+            new(queryAction);
 
         #endregion
     }
