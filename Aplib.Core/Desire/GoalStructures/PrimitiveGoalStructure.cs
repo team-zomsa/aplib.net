@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Logging;
@@ -36,6 +40,10 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <inheritdoc />
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet) => _goal;
 
+        /// <inheritdoc />
+        public override IEnumerable<ILoggable> GetLogChildren() =>
+            _goal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
+
         /// <summary>
         /// Updates the status of the <see cref="FirstOfGoalStructure{TBeliefSet}" />.
         /// The goal structure status is set to the status of the underlying <see cref="IGoal{TBeliefSet}" />.
@@ -46,9 +54,5 @@ namespace Aplib.Core.Desire.GoalStructures
             _goal.UpdateStatus(beliefSet);
             Status = _goal.Status;
         }
-
-        /// <inheritdoc />
-        public override IEnumerable<ILoggable> GetLogChildren() =>
-            _goal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
     }
 }

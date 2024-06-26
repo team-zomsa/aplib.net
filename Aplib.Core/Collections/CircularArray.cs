@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 namespace Aplib.Core.Collections
 {
     /// <summary>
@@ -6,13 +10,24 @@ namespace Aplib.Core.Collections
     /// </summary>
     public class CircularArray<T>
     {
-        private readonly T[] _array;
-        private int _head;
-
         /// <summary>
         /// The length of the array.
         /// </summary>
         public int Length { get; private set; }
+
+        private readonly T[] _array;
+        private int _head;
+
+        /// <summary>
+        /// Gets the element at the specified index.
+        /// </summary>
+        /// <param name="index">The index of the element to get.</param>
+        /// <returns>The element at the specified index.</returns>
+        public T this[int index]
+        {
+            get => _array[(index + _head + 1) % Length];
+            set => _array[(index + _head + 1) % Length] = value;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CircularArray{T}"/> class.
@@ -37,32 +52,12 @@ namespace Aplib.Core.Collections
         }
 
         /// <summary>
-        /// Gets the element at the specified index.
+        /// Gets the first element of the array.
         /// </summary>
-        /// <param name="index">The index of the element to get.</param>
-        /// <returns>The element at the specified index.</returns>
-        public T this[int index]
+        /// <returns>The last element of the array</returns>
+        public T GetFirst()
         {
-            get => _array[(index + _head + 1) % Length];
-            set => _array[(index + _head + 1) % Length] = value;
-        }
-
-        /// <summary>
-        /// Decrements the head of the array.
-        /// </summary>
-        private void DecrementHead()
-        {
-            _head = (_head - 1 + Length) % Length;
-        }
-
-        /// <summary>
-        /// Puts an element at the start of the array.
-        /// </summary>
-        /// <param name="value">The element to add to the array</param>
-        public void Put(T value)
-        {
-            _array[_head] = value;
-            DecrementHead();
+            return this[0];
         }
 
         /// <summary>
@@ -75,12 +70,13 @@ namespace Aplib.Core.Collections
         }
 
         /// <summary>
-        /// Gets the first element of the array.
+        /// Puts an element at the start of the array.
         /// </summary>
-        /// <returns>The last element of the array</returns>
-        public T GetFirst()
+        /// <param name="value">The element to add to the array</param>
+        public void Put(T value)
         {
-            return this[0];
+            _array[_head] = value;
+            DecrementHead();
         }
 
         /// <summary>
@@ -98,6 +94,14 @@ namespace Aplib.Core.Collections
             for (int i = 0; i < result.Length; i++) result[i] = this[start + i];
 
             return result;
+        }
+
+        /// <summary>
+        /// Decrements the head of the array.
+        /// </summary>
+        private void DecrementHead()
+        {
+            _head = (_head - 1 + Length) % Length;
         }
     }
 }

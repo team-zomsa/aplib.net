@@ -1,9 +1,55 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Collections;
 
 namespace Aplib.Core.Tests.Collections;
 
 public class CircularArrayTests
 {
+    /// <summary>
+    /// Given a CircularArray instance,
+    /// When the head is updated,
+    /// GetLast should return the last element.
+    /// </summary>
+    [Fact]
+    public void GetFirst_HeadIsUpdated_ReturnsFirstElement()
+    {
+        // Arrange
+        CircularArray<int> circularArray = new([1, 2, 3]);
+        int prevFirst = circularArray.GetFirst();
+
+        // Act
+        circularArray.Put(4);
+        int firstElement = circularArray.GetFirst();
+
+        // Assert
+        Assert.NotEqual(prevFirst, firstElement);
+        Assert.Equal(4, firstElement);
+    }
+
+    /// <summary>
+    /// Given a CircularArray instance,
+    /// When the head is updated,
+    /// GetHead should return the correct head.
+    /// </summary>
+    [Fact]
+    public void GetHead_HeadIsUpdated_ReturnsLastElement()
+    {
+        // Arrange
+        CircularArray<int> circularArray = new([1, 2, 3]);
+        int prevHead = circularArray.GetHead();
+
+        // Act
+        circularArray.Put(0);
+        int head = circularArray.GetHead();
+
+        // Assert
+        Assert.NotEqual(prevHead, head);
+        Assert.Equal(2, head);
+    }
+
     /// <summary>
     /// Given a CircularArray instance,
     /// When an element is put into the array,
@@ -51,48 +97,6 @@ public class CircularArrayTests
         Assert.Equal(4, circularArray[0]);
         Assert.Equal(5, circularArray[1]);
         Assert.Equal(6, circularArray[2]);
-    }
-
-    /// <summary>
-    /// Given a CircularArray instance,
-    /// When the head is updated,
-    /// GetHead should return the correct head.
-    /// </summary>
-    [Fact]
-    public void GetHead_HeadIsUpdated_ReturnsLastElement()
-    {
-        // Arrange
-        CircularArray<int> circularArray = new([1, 2, 3]);
-        int prevHead = circularArray.GetHead();
-
-        // Act
-        circularArray.Put(0);
-        int head = circularArray.GetHead();
-
-        // Assert
-        Assert.NotEqual(prevHead, head);
-        Assert.Equal(2, head);
-    }
-
-    /// <summary>
-    /// Given a CircularArray instance,
-    /// When the head is updated,
-    /// GetLast should return the last element.
-    /// </summary>
-    [Fact]
-    public void GetFirst_HeadIsUpdated_ReturnsFirstElement()
-    {
-        // Arrange
-        CircularArray<int> circularArray = new([1, 2, 3]);
-        int prevFirst = circularArray.GetFirst();
-
-        // Act
-        circularArray.Put(4);
-        int firstElement = circularArray.GetFirst();
-
-        // Assert
-        Assert.NotEqual(prevFirst, firstElement);
-        Assert.Equal(4, firstElement);
     }
 
     /// <summary>

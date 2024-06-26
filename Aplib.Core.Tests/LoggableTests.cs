@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.DesireSets;
 using Aplib.Core.Desire.Goals;
@@ -13,10 +17,10 @@ namespace Aplib.Core.Tests
     {
         private readonly Action<IBeliefSet> _action1;
         private readonly Action<IBeliefSet> _action2;
-        private readonly PrimitiveTactic<IBeliefSet> _tactic1;
-        private readonly PrimitiveTactic<IBeliefSet> _tactic2;
         private readonly Goal<IBeliefSet> _goal1;
         private readonly Goal<IBeliefSet> _goal2;
+        private readonly PrimitiveTactic<IBeliefSet> _tactic1;
+        private readonly PrimitiveTactic<IBeliefSet> _tactic2;
 
         /// <summary>
         /// Set up (part of a) DesireSet to use in the tests.
@@ -32,21 +36,6 @@ namespace Aplib.Core.Tests
         }
 
         [Fact]
-        public void PrimitiveTactic_WhenGettingTree_ReturnsCorrectTree()
-        {
-            // Arrange
-            PrimitiveTactic<IBeliefSet> tactic = new(_action1, _ => true);
-
-            LogNode expectedRoot = new(tactic, 0, [new LogNode(_action1, 1)]);
-
-            // Act
-            LogNode root = ((ILoggable)tactic).GetLogTree();
-
-            // Assert
-            root.Should().BeEquivalentTo(expectedRoot);
-        }
-
-        [Fact]
         public void AnyOfTactic_WhenGettingTree_ReturnsCorrectTree()
         {
             // Arrange
@@ -58,6 +47,25 @@ namespace Aplib.Core.Tests
 
             // Act
             LogNode root = ((ILoggable)tactic).GetLogTree();
+
+            // Assert
+            root.Should().BeEquivalentTo(expectedRoot);
+        }
+
+        [Fact]
+        public void DesireSet_WhenGettingTree_ReturnsCorrectTree()
+        {
+            // Arrange
+            Goal<IBeliefSet> goal = new(_tactic1, _ => true);
+            PrimitiveGoalStructure<IBeliefSet> goalStructure = new(goal);
+            DesireSet<IBeliefSet> desireSet = new(goalStructure);
+
+            LogNode goalNode = new(goal, 2, [new LogNode(_tactic1, 3, [new LogNode(_action1, 4)])]);
+            LogNode goalStructureNode = new(goalStructure, 1, [goalNode]);
+            LogNode expectedRoot = new(desireSet, 0, [goalStructureNode]);
+
+            // Act
+            LogNode root = ((ILoggable)desireSet).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);
@@ -116,6 +124,21 @@ namespace Aplib.Core.Tests
         }
 
         [Fact]
+        public void PrimitiveTactic_WhenGettingTree_ReturnsCorrectTree()
+        {
+            // Arrange
+            PrimitiveTactic<IBeliefSet> tactic = new(_action1, _ => true);
+
+            LogNode expectedRoot = new(tactic, 0, [new LogNode(_action1, 1)]);
+
+            // Act
+            LogNode root = ((ILoggable)tactic).GetLogTree();
+
+            // Assert
+            root.Should().BeEquivalentTo(expectedRoot);
+        }
+
+        [Fact]
         public void SequentialGoalStructure_WhenGettingTree_ReturnsCorrectTree()
         {
             // Arrange
@@ -131,25 +154,6 @@ namespace Aplib.Core.Tests
 
             // Act
             LogNode root = ((ILoggable)seqStructure).GetLogTree();
-
-            // Assert
-            root.Should().BeEquivalentTo(expectedRoot);
-        }
-
-        [Fact]
-        public void DesireSet_WhenGettingTree_ReturnsCorrectTree()
-        {
-            // Arrange
-            Goal<IBeliefSet> goal = new(_tactic1, _ => true);
-            PrimitiveGoalStructure<IBeliefSet> goalStructure = new(goal);
-            DesireSet<IBeliefSet> desireSet = new(goalStructure);
-
-            LogNode goalNode = new(goal, 2, [new LogNode(_tactic1, 3, [new LogNode(_action1, 4)])]);
-            LogNode goalStructureNode = new(goalStructure, 1, [goalNode]);
-            LogNode expectedRoot = new(desireSet, 0, [goalStructureNode]);
-
-            // Act
-            LogNode root = ((ILoggable)desireSet).GetLogTree();
 
             // Assert
             root.Should().BeEquivalentTo(expectedRoot);

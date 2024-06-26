@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Logging;
@@ -16,13 +20,13 @@ namespace Aplib.Core.Intent.Tactics
     public abstract class Tactic<TBeliefSet> : ITactic<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
+
         /// <summary>
         /// Gets or sets the guard of the tactic.
         /// </summary>
         protected readonly System.Predicate<TBeliefSet> _guard;
-
-        /// <inheritdoc />
-        public IMetadata Metadata { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Tactic{TBeliefSet}"/> class with a specified guard.
@@ -46,20 +50,20 @@ namespace Aplib.Core.Intent.Tactics
         /// <inheritdoc />
         protected Tactic() : this(new Metadata(), _ => true) { }
 
-        /// <inheritdoc />
-        public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
-
-        /// <inheritdoc />
-        public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
-
-        /// <inheritdoc />
-        public abstract IEnumerable<ILoggable> GetLogChildren();
-
         /// <summary>
         /// Implicitly lifts an action into a tactic.
         /// </summary>
         /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IAction{TBeliefSet},IMetadata)" path="/param[@name='action']"/>
         /// <returns>The most logically matching tactic, wrapping around <paramref name="action"/>.</returns>
         public static implicit operator Tactic<TBeliefSet>(Action<TBeliefSet> action) => action.Lift();
+
+        /// <inheritdoc />
+        public virtual bool IsActionable(TBeliefSet beliefSet) => _guard(beliefSet);
+
+        /// <inheritdoc />
+        public abstract IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet);
+
+        /// <inheritdoc />
+        public abstract IEnumerable<ILoggable> GetLogChildren();
     }
 }

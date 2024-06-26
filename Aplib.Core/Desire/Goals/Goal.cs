@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.GoalStructures;
 using Aplib.Core.Intent.Tactics;
@@ -18,20 +22,15 @@ namespace Aplib.Core.Desire.Goals
     public class Goal<TBeliefSet> : IGoal<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
-        /// <summary>
-        /// A predicate that determines whether the goal has succeeded.
-        /// Intuitively, the predicate is the goal itself.
-        /// </summary>
-        protected internal readonly System.Predicate<TBeliefSet> _predicate;
-
-        /// <summary>
-        /// An (optional) fail-guard for the goal's completion status.
-        /// The fail-guard predicate is a condition that, when true, indicates that the goal has failed.
-        /// </summary>
-        protected internal readonly System.Predicate<TBeliefSet> _failGuard;
-
         /// <inheritdoc />
         public IMetadata Metadata { get; }
+
+        /// <summary>
+        /// Gets the completion status of the goal.
+        /// This value may need to be updated first using the <see cref="UpdateStatus"/> method.
+        /// </summary>
+        /// <seealso cref="UpdateStatus"/>
+        public CompletionStatus Status { get; protected set; }
 
         /// <summary>
         /// The <see cref="Tactic{TBeliefSet}" /> used to achieve this <see cref="Goal{TBeliefSet}" />.
@@ -40,11 +39,16 @@ namespace Aplib.Core.Desire.Goals
         public ITactic<TBeliefSet> Tactic { get; }
 
         /// <summary>
-        /// Gets the completion status of the goal.
-        /// This value may need to be updated first using the <see cref="UpdateStatus"/> method.
+        /// An (optional) fail-guard for the goal's completion status.
+        /// The fail-guard predicate is a condition that, when true, indicates that the goal has failed.
         /// </summary>
-        /// <seealso cref="UpdateStatus"/>
-        public CompletionStatus Status { get; protected set; }
+        protected internal readonly System.Predicate<TBeliefSet> _failGuard;
+
+        /// <summary>
+        /// A predicate that determines whether the goal has succeeded.
+        /// Intuitively, the predicate is the goal itself.
+        /// </summary>
+        protected internal readonly System.Predicate<TBeliefSet> _predicate;
 
         /// <summary>
         /// Initializes a new goal from a given tactic and a success predicate, and an optional fail-guard.

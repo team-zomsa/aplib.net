@@ -1,4 +1,8 @@
-﻿using Aplib.Core.Collections;
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
+using Aplib.Core.Collections;
 using FluentAssertions;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +30,30 @@ public class OptimizedActivationStackTests
         // Assert
         IEnumerable<int> items = activatableStackItems.Select(stackItem => stackItem.Data);
         items.Should().BeEquivalentTo(activatables);
+    }
+
+    /// <summary>
+    /// Given an optimized activation stack,
+    /// When an item from a different optimized activation stack is activated on this stack,
+    /// Then an argument exception should be thrown.
+    /// </summary>
+    [Fact]
+    public void Activate_WhenActivatedItemIsFromDifferentStack_ShouldThrowArgumentException()
+    {
+        // Arrange
+        int[] activatables = [1, 2, 3];
+        OptimizedActivationStack<int> activationStack = new(activatables);
+
+        int[] otherActivatables = [4, 5, 6];
+        OptimizedActivationStack<int> otherActivationStack = new(otherActivatables);
+        OptimizedActivationStack<int>.StackItem stackItemToActivate
+            = otherActivationStack.ActivatableStackItems.First();
+
+        // Act
+        System.Action activateItem = () => activationStack.Activate(stackItemToActivate);
+
+        // Assert
+        activateItem.Should().Throw<System.ArgumentException>();
     }
 
     /// <summary>
@@ -87,27 +115,28 @@ public class OptimizedActivationStackTests
     }
 
     /// <summary>
-    /// Given an optimized activation stack,
-    /// When an item from a different optimized activation stack is activated on this stack,
-    /// Then an argument exception should be thrown.
+    /// Given an optimized activation stack with activated items on the stack,
+    /// When an item is peeked,
+    /// Then the count of the optimized activation stack should stay the same.
     /// </summary>
     [Fact]
-    public void Activate_WhenActivatedItemIsFromDifferentStack_ShouldThrowArgumentException()
+    public void Peek_WhenCalled_CountShouldStayTheSame()
     {
         // Arrange
         int[] activatables = [1, 2, 3];
         OptimizedActivationStack<int> activationStack = new(activatables);
 
-        int[] otherActivatables = [4, 5, 6];
-        OptimizedActivationStack<int> otherActivationStack = new(otherActivatables);
-        OptimizedActivationStack<int>.StackItem stackItemToActivate
-            = otherActivationStack.ActivatableStackItems.First();
+        // Activate all stack items.
+        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
+            activationStack.Activate(stackItem);
 
         // Act
-        System.Action activateItem = () => activationStack.Activate(stackItemToActivate);
+        int countBeforePeek = activationStack.Count;
+        _ = activationStack.Peek();
+        int countAfterPeek = activationStack.Count;
 
         // Assert
-        activateItem.Should().Throw<System.ArgumentException>();
+        countBeforePeek.Should().Be(countAfterPeek);
     }
 
     /// <summary>
@@ -155,11 +184,11 @@ public class OptimizedActivationStackTests
 
     /// <summary>
     /// Given an optimized activation stack with activated items on the stack,
-    /// When an item is peeked,
-    /// Then the count of the optimized activation stack should stay the same.
+    /// When an item is popped,
+    /// Then the count of the optimized activation stack should be decreased by one.
     /// </summary>
     [Fact]
-    public void Peek_WhenCalled_CountShouldStayTheSame()
+    public void Pop_WhenCalled_CountShouldDecrement()
     {
         // Arrange
         int[] activatables = [1, 2, 3];
@@ -170,12 +199,12 @@ public class OptimizedActivationStackTests
             activationStack.Activate(stackItem);
 
         // Act
-        int countBeforePeek = activationStack.Count;
-        _ = activationStack.Peek();
-        int countAfterPeek = activationStack.Count;
+        int countBeforePop = activationStack.Count;
+        _ = activationStack.Pop();
+        int countAfterPop = activationStack.Count;
 
         // Assert
-        countBeforePeek.Should().Be(countAfterPeek);
+        countAfterPop.Should().Be(countBeforePop - 1);
     }
 
     /// <summary>
@@ -219,30 +248,5 @@ public class OptimizedActivationStackTests
 
         // Assert
         popItem.Should().Throw<System.InvalidOperationException>();
-    }
-
-    /// <summary>
-    /// Given an optimized activation stack with activated items on the stack,
-    /// When an item is popped,
-    /// Then the count of the optimized activation stack should be decreased by one.
-    /// </summary>
-    [Fact]
-    public void Pop_WhenCalled_CountShouldDecrement()
-    {
-        // Arrange
-        int[] activatables = [1, 2, 3];
-        OptimizedActivationStack<int> activationStack = new(activatables);
-
-        // Activate all stack items.
-        foreach (OptimizedActivationStack<int>.StackItem stackItem in activationStack.ActivatableStackItems)
-            activationStack.Activate(stackItem);
-
-        // Act
-        int countBeforePop = activationStack.Count;
-        _ = activationStack.Pop();
-        int countAfterPop = activationStack.Count;
-
-        // Assert
-        countAfterPop.Should().Be(countBeforePop - 1);
     }
 }

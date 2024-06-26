@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 namespace Aplib.Core
 {
     /// <summary>
@@ -6,13 +10,13 @@ namespace Aplib.Core
     public class Metadata : IMetadata
     {
         /// <inheritdoc />
+        public string? Description { get; }
+
+        /// <inheritdoc />
         public System.Guid Id { get; }
 
         /// <inheritdoc />
         public string? Name { get; }
-
-        /// <inheritdoc />
-        public string? Description { get; }
 
         /// <summary>
         /// Store information about a BDI cycle component which may be useful for debugging or logging or general

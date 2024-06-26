@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Collections;
 
 namespace Aplib.Core.Belief.Beliefs
@@ -103,10 +107,11 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <summary>
-        /// Gets the most recently memorized observation.
+        /// Gets all the memorized observations.
+        /// The first element is the newest memory.
         /// </summary>
-        /// <returns> The most recent memory of the observation.</returns>
-        public TObservation GetMostRecentMemory() => _memorizedObservations.GetFirst();
+        /// <returns> An array of all the memorized observations.</returns>
+        public TObservation[] GetAllMemories() => _memorizedObservations.ToArray();
 
         /// <summary>
         /// Gets the memorized observation at a specific index.
@@ -127,10 +132,9 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <summary>
-        /// Gets all the memorized observations.
-        /// The first element is the newest memory.
+        /// Gets the most recently memorized observation.
         /// </summary>
-        /// <returns> An array of all the memorized observations.</returns>
-        public TObservation[] GetAllMemories() => _memorizedObservations.ToArray();
+        /// <returns> The most recent memory of the observation.</returns>
+        public TObservation GetMostRecentMemory() => _memorizedObservations.GetFirst();
     }
 }

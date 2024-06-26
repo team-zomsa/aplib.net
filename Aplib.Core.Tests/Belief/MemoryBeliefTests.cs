@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.Beliefs;
 using Aplib.Core.Collections;
 using FluentAssertions;
@@ -13,13 +17,12 @@ public class MemoryBeliefTests
 {
     public class TestMemoryBelief : MemoryBelief<object, object>
     {
-        public object Reference => _reference;
-
         public System.Func<object, object> GetObservationFromReference => _getObservationFromReference;
 
-        public System.Predicate<object> ShouldUpdate => _shouldUpdate;
-
         public ExposedQueue<object> MemorizedObservations => _memorizedObservations;
+        public object Reference => _reference;
+
+        public System.Predicate<object> ShouldUpdate => _shouldUpdate;
 
         public TestMemoryBelief
         (
@@ -60,6 +63,90 @@ public class MemoryBeliefTests
             : base(reference, getObservationFromReference, framesToRemember)
         {
         }
+    }
+
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When the observation is updated and GetAllMemories is called,
+    /// Then all the currently saved observations are returned.
+    /// </summary>
+    [Fact]
+    public void GetAllMemories_ReturnsAllMemories()
+    {
+        // Arrange
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
+
+        // Act
+        list.Add(4);
+        belief.UpdateBelief();
+
+        // Assert
+        Assert.Equal([3], belief.GetAllMemories());
+    }
+
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When asking for an index that is out of bounds,
+    /// Then an exception should be thrown.
+    /// </summary>
+    [Fact]
+    public void GetMemoryAt_IndexOutOfBounds_ShouldThrowException()
+    {
+        // Arrange
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
+
+        // Act
+        void GetMemoryAtNegativeIndex() => belief.GetMemoryAt(-1);
+        void GetMemoryAtIndexGreaterThanCount() => belief.GetMemoryAt(3);
+
+        // Assert
+        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtNegativeIndex);
+        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtIndexGreaterThanCount);
+    }
+
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When the observation is updated and GetMemoryAt is called with an index,
+    /// Then the observation at the specified index is returned.
+    /// </summary>
+    [Fact]
+    public void GetMemoryAt_WhenObservationIsUpdated_ShouldReturnObservationAtSpecifiedIndex()
+    {
+        // Arrange
+        List<int> list = [1, 2, 3];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
+
+        // Act
+        list.Add(4);
+        belief.UpdateBelief();
+        list.Add(5);
+        belief.UpdateBelief();
+
+        // Assert
+        Assert.Equal(4, belief.GetMemoryAt(0));
+        Assert.Equal(3, belief.GetMemoryAt(1));
+    }
+
+    /// <summary>
+    /// Given a MemoryBelief instance with an observation,
+    /// When the observation is updated and GetMostRecentMemory is called,
+    /// Then the last observation is returned.
+    /// </summary>
+    [Fact]
+    public void GetMostRecentMemory_WhenObservationIsUpdated_ShouldReturnLastObservation()
+    {
+        // Arrange
+        List<int> list = [1];
+        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 1);
+
+        // Act
+        list.Add(2);
+        belief.UpdateBelief();
+
+        // Assert
+        Assert.Equal(1, belief.GetMostRecentMemory());
     }
 
     [Fact]
@@ -106,26 +193,6 @@ public class MemoryBeliefTests
     }
 
     [Fact]
-    public void MemoryBelief_WithoutShouldUpdate_HasExpectedData()
-    {
-        // Arrange
-        Metadata metadata = It.IsAny<Metadata>();
-        object reference = new Mock<object>().Object;
-        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
-        const int framesToRemember = 2;
-
-        // Act
-        TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember);
-
-        // Assert
-        belief.Metadata.Should().Be(metadata);
-        belief.Reference.Should().Be(reference);
-        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
-        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
-        belief.ShouldUpdate(reference).Should().BeTrue();
-    }
-
-    [Fact]
     public void MemoryBelief_WithoutMetadataWithoutShouldUpdate_HasExpectedData()
     {
         // Arrange
@@ -146,87 +213,23 @@ public class MemoryBeliefTests
         belief.ShouldUpdate(reference).Should().BeTrue();
     }
 
-    /// <summary>
-    /// Given a MemoryBelief instance with an observation,
-    /// When the observation is updated and GetMostRecentMemory is called,
-    /// Then the last observation is returned.
-    /// </summary>
     [Fact]
-    public void GetMostRecentMemory_WhenObservationIsUpdated_ShouldReturnLastObservation()
+    public void MemoryBelief_WithoutShouldUpdate_HasExpectedData()
     {
         // Arrange
-        List<int> list = [1];
-        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 1);
+        Metadata metadata = It.IsAny<Metadata>();
+        object reference = new Mock<object>().Object;
+        System.Func<object, object> getObservationFromReference = new Mock<System.Func<object, object>>().Object;
+        const int framesToRemember = 2;
 
         // Act
-        list.Add(2);
-        belief.UpdateBelief();
+        TestMemoryBelief belief = new(metadata, reference, getObservationFromReference, framesToRemember);
 
         // Assert
-        Assert.Equal(1, belief.GetMostRecentMemory());
-    }
-
-    /// <summary>
-    /// Given a MemoryBelief instance with an observation,
-    /// When the observation is updated and GetMemoryAt is called with an index,
-    /// Then the observation at the specified index is returned.
-    /// </summary>
-    [Fact]
-    public void GetMemoryAt_WhenObservationIsUpdated_ShouldReturnObservationAtSpecifiedIndex()
-    {
-        // Arrange
-        List<int> list = [1, 2, 3];
-        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
-
-        // Act
-        list.Add(4);
-        belief.UpdateBelief();
-        list.Add(5);
-        belief.UpdateBelief();
-
-        // Assert
-        Assert.Equal(4, belief.GetMemoryAt(0));
-        Assert.Equal(3, belief.GetMemoryAt(1));
-    }
-
-    /// <summary>
-    /// Given a MemoryBelief instance with an observation,
-    /// When asking for an index that is out of bounds,
-    /// Then an exception should be thrown.
-    /// </summary>
-    [Fact]
-    public void GetMemoryAt_IndexOutOfBounds_ShouldThrowException()
-    {
-        // Arrange
-        List<int> list = [1, 2, 3];
-        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
-
-        // Act
-        void GetMemoryAtNegativeIndex() => belief.GetMemoryAt(-1);
-        void GetMemoryAtIndexGreaterThanCount() => belief.GetMemoryAt(3);
-
-        // Assert
-        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtNegativeIndex);
-        Assert.Throws<System.ArgumentOutOfRangeException>(GetMemoryAtIndexGreaterThanCount);
-    }
-
-    /// <summary>
-    /// Given a MemoryBelief instance with an observation,
-    /// When the observation is updated and GetAllMemories is called,
-    /// Then all the currently saved observations are returned.
-    /// </summary>
-    [Fact]
-    public void GetAllMemories_ReturnsAllMemories()
-    {
-        // Arrange
-        List<int> list = [1, 2, 3];
-        MemoryBelief<List<int>, int> belief = new(list, reference => reference.Count, 3);
-
-        // Act
-        list.Add(4);
-        belief.UpdateBelief();
-
-        // Assert
-        Assert.Equal([3], belief.GetAllMemories());
+        belief.Metadata.Should().Be(metadata);
+        belief.Reference.Should().Be(reference);
+        belief.GetObservationFromReference.Should().Be(getObservationFromReference);
+        belief.MemorizedObservations.MaxCount.Should().Be(framesToRemember);
+        belief.ShouldUpdate(reference).Should().BeTrue();
     }
 }

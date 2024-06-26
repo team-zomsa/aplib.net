@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using System.Collections;
 using System.Collections.Generic;
 
@@ -16,11 +20,6 @@ namespace Aplib.Core.Collections
     public class ExposedQueue<T> : ICollection<T>
     {
         /// <summary>
-        /// The length of the array.
-        /// </summary>
-        public int MaxCount { get; private set; }
-
-        /// <summary>
         /// Actual number of elements in the array.
         /// </summary>
         public int Count { get; private set; }
@@ -28,8 +27,35 @@ namespace Aplib.Core.Collections
         /// <inheritdoc/>
         public bool IsReadOnly => false;
 
+        /// <summary>
+        /// The length of the array.
+        /// </summary>
+        public int MaxCount { get; private set; }
+
         private readonly T[] _array;
         private int _head;
+
+        /// <summary>
+        /// Gets the element at the specified index. Throws an exception if the index is out of bounds.
+        /// </summary>
+        /// <param name="index">The index of the element to get.</param>
+        /// <returns>The element at the specified index.</returns>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// Thrown when the index is out of range.
+        /// </exception>
+        public T this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
+                return _array[(index + _head + 1) % MaxCount];
+            }
+            private set
+            {
+                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
+                _array[(index + _head + 1) % MaxCount] = value;
+            }
+        }
 
         /// <summary>
         /// Initializes a new empty instance of the <see cref="ExposedQueue{T}"/> class.
@@ -74,53 +100,25 @@ namespace Aplib.Core.Collections
         {
         }
 
-        /// <summary>
-        /// Gets the element at the specified index. Throws an exception if the index is out of bounds.
-        /// </summary>
-        /// <param name="index">The index of the element to get.</param>
-        /// <returns>The element at the specified index.</returns>
-        /// <exception cref="System.ArgumentOutOfRangeException">
-        /// Thrown when the index is out of range.
-        /// </exception>
-        public T this[int index]
-        {
-            get
-            {
-                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
-                return _array[(index + _head + 1) % MaxCount];
-            }
-            private set
-            {
-                if (index < 0 || index >= Count) throw new System.ArgumentOutOfRangeException(nameof(index));
-                _array[(index + _head + 1) % MaxCount] = value;
-            }
-        }
-
-        /// <summary>
-        /// Puts an element at the start of the queue.
-        /// </summary>
-        /// <param name="value">The element to add to the queue.</param>
-        public void Put(T value)
-        {
-            _array[_head] = value;
-            DecrementHead();
-            if (Count < MaxCount) Count++;
-        }
-
         /// <inheritdoc/>
         public void Add(T item) => Put(item);
 
-        /// <summary>
-        /// Gets the element at the end of the queue.
-        /// </summary>
-        /// <returns>The element at the end of the queue.</returns>
-        public T GetLast() => _array[_head];
+        /// <inheritdoc/>
+        public void Clear()
+        {
+            for (int i = 0; i < MaxCount; i++) _array[i] = default!;
+            _head = MaxCount - 1;
+            Count = 0;
+        }
 
-        /// <summary>
-        /// Gets the first element of the queue.
-        /// </summary>
-        /// <returns>The first element of the queue.</returns>
-        public T GetFirst() => this[0];
+        /// <inheritdoc/>
+        public bool Contains(T item)
+        {
+            for (int i = 0; i < Count; i++)
+                if (this[i]!.Equals(item))
+                    return true;
+            return false;
+        }
 
         /// <summary>
         /// Copies the ExposedQueue to an array.
@@ -143,6 +141,58 @@ namespace Aplib.Core.Collections
 
         /// <inheritdoc/>
         public void CopyTo(T[] array, int arrayIndex) => CopyTo(array, arrayIndex, arrayIndex + Count - 1);
+
+        /// <inheritdoc/>
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < Count; i++) yield return this[i];
+        }
+
+        /// <summary>
+        /// Gets the first element of the queue.
+        /// </summary>
+        /// <returns>The first element of the queue.</returns>
+        public T GetFirst() => this[0];
+
+        /// <summary>
+        /// Gets the element at the end of the queue.
+        /// </summary>
+        /// <returns>The element at the end of the queue.</returns>
+        public T GetLast() => _array[_head];
+
+        /// <summary>
+        /// Puts an element at the start of the queue.
+        /// </summary>
+        /// <param name="value">The element to add to the queue.</param>
+        public void Put(T value)
+        {
+            _array[_head] = value;
+            DecrementHead();
+            if (Count < MaxCount) Count++;
+        }
+
+        /// <summary>
+        /// Removes the specified item from the queue and shifts remaining elements to the left.
+        /// For example, given the queue [4, 3, 2, 1], if you call Remove(3), the resulting queue will be [4, 2, 1].
+        /// </summary>
+        /// <param name="item">The item to remove.</param>
+        /// <returns>True if the item was successfully removed; otherwise, false.</returns>
+        /// <remarks>
+        /// The MaxCount will not change, but the Count will decrease by one.
+        /// </remarks>
+        public bool Remove(T item)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                if (this[i]!.Equals(item))
+                {
+                    RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         /// <summary>
         /// Converts the ExposedQueue to an array.
@@ -170,58 +220,12 @@ namespace Aplib.Core.Collections
         /// <returns>An array containing the elements within the specified range.</returns>
         public T[] ToArray() => ToArray(0, Count - 1);
 
-        /// <inheritdoc/>
-        public void Clear()
-        {
-            for (int i = 0; i < MaxCount; i++) _array[i] = default!;
-            _head = MaxCount - 1;
-            Count = 0;
-        }
-
-        /// <inheritdoc/>
-        public bool Contains(T item)
-        {
-            for (int i = 0; i < Count; i++)
-                if (this[i]!.Equals(item))
-                    return true;
-            return false;
-        }
-
-        /// <summary>
-        /// Removes the specified item from the queue and shifts remaining elements to the left.
-        /// For example, given the queue [4, 3, 2, 1], if you call Remove(3), the resulting queue will be [4, 2, 1].
-        /// </summary>
-        /// <param name="item">The item to remove.</param>
-        /// <returns>True if the item was successfully removed; otherwise, false.</returns>
-        /// <remarks>
-        /// The MaxCount will not change, but the Count will decrease by one.
-        /// </remarks>
-        public bool Remove(T item)
-        {
-            for (int i = 0; i < Count; i++)
-            {
-                if (this[i]!.Equals(item))
-                {
-                    RemoveAt(i);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        /// <inheritdoc/>
-        public IEnumerator<T> GetEnumerator()
-        {
-            for (int i = 0; i < Count; i++) yield return this[i];
-        }
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
         /// <summary>
         /// Decrements the head of the array.
         /// </summary>
         private void DecrementHead() => _head = (_head - 1 + MaxCount) % MaxCount;
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         /// <summary>
         /// Removes the element at the specified index.

@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.Beliefs;
 using System.Collections.Generic;
 using static Aplib.Core.Belief.Beliefs.UpdateMode;
@@ -86,6 +90,40 @@ public class SampledMemoryBeliefTests
     }
 
     /// <summary>
+    /// Given a SampledMemoryBelief instance with a shouldUpdate method,
+    /// When shouldUpdate returns false,
+    /// Then Observation should not be updated regardless of the update mode.
+    /// </summary>
+    [Fact]
+    public void Observation_WhenShouldUpdateReturnsFalse_ShouldNotBeUpdated()
+    {
+        // Arrange
+        List<int> list = [];
+        int sampleInterval = 2,
+            framesToRemember = 3;
+        SampledMemoryBelief<List<int>, int> belief
+            = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, _ => false);
+
+        // Act
+        // Expected values:
+        // -----------------------------------------
+        //             | list.Count | Observation
+        // -----------------------------------------
+        // Initial     | 0          | 0              (set initial observation)
+        // Iteration 0 | 1          | 0
+        // Iteration 1 | 2          | 0
+        // -----------------------------------------
+        for (int i = 0; i < 2; i++)
+        {
+            list.Add(0);
+            belief.UpdateBelief();
+        }
+
+        // Assert
+        Assert.Equal(0, belief.Observation);
+    }
+
+    /// <summary>
     /// Given a SampledMemoryBelief instance with update mode 'AlwaysUpdate',
     /// When the belief is not in a sampleInterval-th cycle,
     /// Then Observation should be up-to-date.
@@ -117,42 +155,6 @@ public class SampledMemoryBeliefTests
 
         // Assert
         Assert.Equal(list.Count, belief.Observation);
-    }
-
-    /// <summary>
-    /// Given a SampledMemoryBelief instance with update mode 'UpdateWhenSampled',
-    /// When the belief is not in a sampleInterval-th cycle,
-    /// Then Observation should be outdated.
-    /// </summary>
-    [Fact]
-    public void Observation_WhenUpdateModeIsUpdateWhenSampled_ShouldBeOutdated()
-    {
-        // Arrange
-        List<int> list = [];
-        int sampleInterval = 2,
-            framesToRemember = 3;
-        SampledMemoryBelief<List<int>, int> belief
-            = new(list, reference => reference.Count, sampleInterval, UpdateWhenSampled, framesToRemember);
-
-        // Act
-        // Expected values:
-        // -----------------------------------------
-        //             | list.Count | Observation
-        // -----------------------------------------
-        // Initial     | 0          | 0
-        // Iteration 0 | 1          | 1              (observation is updated)
-        // Iteration 1 | 2          | 1
-        // Iteration 2 | 3          | 3              (observation is updated)
-        // Iteration 3 | 4          | 3
-        // -----------------------------------------
-        for (int i = 0; i < 4; i++)
-        {
-            list.Add(0);
-            belief.UpdateBelief();
-        }
-
-        // Assert
-        Assert.NotEqual(list.Count, belief.Observation);
     }
 
     /// <summary>
@@ -200,36 +202,38 @@ public class SampledMemoryBeliefTests
     }
 
     /// <summary>
-    /// Given a SampledMemoryBelief instance with a shouldUpdate method,
-    /// When shouldUpdate returns false,
-    /// Then Observation should not be updated regardless of the update mode.
+    /// Given a SampledMemoryBelief instance with update mode 'UpdateWhenSampled',
+    /// When the belief is not in a sampleInterval-th cycle,
+    /// Then Observation should be outdated.
     /// </summary>
     [Fact]
-    public void Observation_WhenShouldUpdateReturnsFalse_ShouldNotBeUpdated()
+    public void Observation_WhenUpdateModeIsUpdateWhenSampled_ShouldBeOutdated()
     {
         // Arrange
         List<int> list = [];
         int sampleInterval = 2,
             framesToRemember = 3;
         SampledMemoryBelief<List<int>, int> belief
-            = new(list, reference => reference.Count, sampleInterval, AlwaysUpdate, framesToRemember, _ => false);
+            = new(list, reference => reference.Count, sampleInterval, UpdateWhenSampled, framesToRemember);
 
         // Act
         // Expected values:
         // -----------------------------------------
         //             | list.Count | Observation
         // -----------------------------------------
-        // Initial     | 0          | 0              (set initial observation)
-        // Iteration 0 | 1          | 0
-        // Iteration 1 | 2          | 0
+        // Initial     | 0          | 0
+        // Iteration 0 | 1          | 1              (observation is updated)
+        // Iteration 1 | 2          | 1
+        // Iteration 2 | 3          | 3              (observation is updated)
+        // Iteration 3 | 4          | 3
         // -----------------------------------------
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 4; i++)
         {
             list.Add(0);
             belief.UpdateBelief();
         }
 
         // Assert
-        Assert.Equal(0, belief.Observation);
+        Assert.NotEqual(list.Count, belief.Observation);
     }
 }

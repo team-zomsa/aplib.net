@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using static Aplib.Core.Belief.Beliefs.UpdateMode;
 
 namespace Aplib.Core.Belief.Beliefs
@@ -22,6 +26,8 @@ namespace Aplib.Core.Belief.Beliefs
     public class SampledMemoryBelief<TReference, TObservation> : MemoryBelief<TReference, TObservation>
         where TReference : class
     {
+        private int _moduloCounter = 0;
+
         /// <summary>
         /// The sample interval of the memory (inverse of the sample rate).
         /// One observation memory (i.e., snapshot) is stored every <see cref="_sampleInterval"/>-th cycle.
@@ -32,8 +38,6 @@ namespace Aplib.Core.Belief.Beliefs
         /// Specifies how this sampled memory belief should be updated.
         /// </summary>
         private readonly UpdateMode _updateMode;
-
-        private int _moduloCounter = 0;
 
         /// <summary>
         /// The number of cycles that have passed since the last memory sample was stored.
@@ -161,13 +165,6 @@ namespace Aplib.Core.Belief.Beliefs
         }
 
         /// <summary>
-        /// Determines whether the memory should be sampled.
-        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
-        /// </summary>
-        /// <returns>Whether a memory sample should be stored in the current cycle.</returns>
-        private bool ShouldSampleMemory() => ModuloCounter++ == 0;
-
-        /// <summary>
         /// Generates/updates the observation if applicable.
         /// Also stores the previous observation in memory every <c>sampleInterval</c>-th cycle.
         /// </summary>
@@ -177,5 +174,12 @@ namespace Aplib.Core.Belief.Beliefs
                 base.UpdateBelief();
             else if (_updateMode is AlwaysUpdate && _shouldUpdate(_reference)) UpdateObservation();
         }
+
+        /// <summary>
+        /// Determines whether the memory should be sampled.
+        /// One observation memory (i.e., snapshot) is stored every <c>sampleInterval</c>-th cycle.
+        /// </summary>
+        /// <returns>Whether a memory sample should be stored in the current cycle.</returns>
+        private bool ShouldSampleMemory() => ModuloCounter++ == 0;
     }
 }

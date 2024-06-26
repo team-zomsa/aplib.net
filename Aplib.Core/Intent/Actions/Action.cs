@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Logging;
 using System.Collections.Generic;
@@ -12,13 +16,13 @@ namespace Aplib.Core.Intent.Actions
     public class Action<TBeliefSet> : IAction<TBeliefSet>, ILoggable
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public IMetadata Metadata { get; }
+
         /// <summary>
         /// Gets or sets the effect of the action.
         /// </summary>
         protected readonly System.Action<TBeliefSet> _effect;
-
-        /// <inheritdoc />
-        public IMetadata Metadata { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Action{TQuery}" /> class.

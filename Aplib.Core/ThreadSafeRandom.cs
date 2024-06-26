@@ -1,10 +1,15 @@
-﻿namespace Aplib.Core
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
+namespace Aplib.Core
 {
     internal static class ThreadSafeRandom
     {
+        private static readonly System.Random _global = new();
+
         [System.ThreadStatic]
         private static System.Random? _local;
-        private static readonly System.Random _global = new();
 
         private static System.Random Instance
         {

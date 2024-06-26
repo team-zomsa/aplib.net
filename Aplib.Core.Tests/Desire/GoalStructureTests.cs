@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
@@ -277,6 +281,44 @@ public class GoalStructureTests
     }
 
     [Fact]
+    public void RepeatGoalStructure_BeforeMaxRetriesIsExceeded_DoesNotFail()
+    {
+        // Arrange
+        Mock<IGoal<IBeliefSet>> goal = new();
+        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
+        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure, 3);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        CompletionStatus status0 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status1 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status2 = repeatGoalStructure.Status;
+        repeatGoalStructure.UpdateStatus(beliefSet);
+        CompletionStatus status3 = repeatGoalStructure.Status;
+
+        // Assert
+        status0.Should().Be(CompletionStatus.Unfinished);
+        status1.Should().Be(CompletionStatus.Unfinished);
+        status2.Should().Be(CompletionStatus.Unfinished);
+        status3.Should().Be(CompletionStatus.Unfinished);
+    }
+
+
+    [Fact]
+    public void RepeatGoalStructure_WhenConstructedWithNegativeMaxRetries_ThrowsException()
+    {
+        // Arrange
+        IGoalStructure<IBeliefSet> goalStructure = It.IsAny<IGoalStructure<IBeliefSet>>();
+        System.Action act = () => _ = new RepeatGoalStructure<IBeliefSet>(goalStructure, -3);
+
+        // Act, Assert
+        act.Should().Throw<System.ArgumentOutOfRangeException>().WithParameterName("maxRetries");
+    }
+
+    [Fact]
     public void RepeatGoalStructure_WhenGoalIsNotFinished_ShouldReturnGoal()
     {
         // Arrange
@@ -371,42 +413,6 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void RepeatGoalStructure_WhenReset_ShouldResetInnerGoalStructure()
-    {
-        // Arrange
-        Mock<IGoalStructure<IBeliefSet>> innerGoalStructure = new();
-        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(innerGoalStructure.Object);
-
-        // Act
-        repeatGoalStructure.Reset();
-
-        // Assert
-        innerGoalStructure.Verify(x => x.Reset(), Times.Once);
-    }
-
-    [Fact]
-    public void RepeatGoalStructure_WhenReset_ShouldBeUnfinished()
-    {
-        // Arrange
-        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
-        goalStructure.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
-
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(goalStructure.Object);
-
-        repeatGoalStructure.UpdateStatus(beliefSet);
-
-        // Pre-conditions
-        repeatGoalStructure.Status.Should().Be(CompletionStatus.Success);
-
-        // Act
-        repeatGoalStructure.Reset();
-
-        // Assert
-        repeatGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
-    }
-
-    [Fact]
     public void RepeatGoalStructure_WhenMaxRetriesIsExceeded_CanFail()
     {
         // Arrange
@@ -444,41 +450,39 @@ public class GoalStructureTests
     }
 
     [Fact]
-    public void RepeatGoalStructure_BeforeMaxRetriesIsExceeded_DoesNotFail()
+    public void RepeatGoalStructure_WhenReset_ShouldBeUnfinished()
     {
         // Arrange
-        Mock<IGoal<IBeliefSet>> goal = new();
-        goal.Setup(g => g.Status).Returns(CompletionStatus.Failure);
-        PrimitiveGoalStructure<IBeliefSet> primitiveGoalStructure = new(goal.Object);
-        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(primitiveGoalStructure, 3);
+        Mock<IGoalStructure<IBeliefSet>> goalStructure = new();
+        goalStructure.SetupGet(g => g.Status).Returns(CompletionStatus.Success);
+
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(goalStructure.Object);
+
+        repeatGoalStructure.UpdateStatus(beliefSet);
+
+        // Pre-conditions
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Success);
 
         // Act
-        CompletionStatus status0 = repeatGoalStructure.Status;
-        repeatGoalStructure.UpdateStatus(beliefSet);
-        CompletionStatus status1 = repeatGoalStructure.Status;
-        repeatGoalStructure.UpdateStatus(beliefSet);
-        CompletionStatus status2 = repeatGoalStructure.Status;
-        repeatGoalStructure.UpdateStatus(beliefSet);
-        CompletionStatus status3 = repeatGoalStructure.Status;
+        repeatGoalStructure.Reset();
 
         // Assert
-        status0.Should().Be(CompletionStatus.Unfinished);
-        status1.Should().Be(CompletionStatus.Unfinished);
-        status2.Should().Be(CompletionStatus.Unfinished);
-        status3.Should().Be(CompletionStatus.Unfinished);
+        repeatGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
     }
 
-
     [Fact]
-    public void RepeatGoalStructure_WhenConstructedWithNegativeMaxRetries_ThrowsException()
+    public void RepeatGoalStructure_WhenReset_ShouldResetInnerGoalStructure()
     {
         // Arrange
-        IGoalStructure<IBeliefSet> goalStructure = It.IsAny<IGoalStructure<IBeliefSet>>();
-        System.Action act = () => _ = new RepeatGoalStructure<IBeliefSet>(goalStructure, -3);
+        Mock<IGoalStructure<IBeliefSet>> innerGoalStructure = new();
+        RepeatGoalStructure<IBeliefSet> repeatGoalStructure = new(innerGoalStructure.Object);
 
-        // Act, Assert
-        act.Should().Throw<System.ArgumentOutOfRangeException>().WithParameterName("maxRetries");
+        // Act
+        repeatGoalStructure.Reset();
+
+        // Assert
+        innerGoalStructure.Verify(x => x.Reset(), Times.Once);
     }
 
     [Fact]
@@ -642,24 +646,6 @@ public class GoalStructureTests
         act.Should().Throw<System.ArgumentException>();
     }
 
-    [Fact]
-    public void SequentialGoalStructure_WhenReset_ShouldResetChildren()
-    {
-        // Arrange
-        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
-        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
-
-        Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure
-            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
-
-        // Act
-        sequentialGoalStructure.Object.Reset();
-
-        // Assert
-        goalStructure1.Verify(x => x.Reset(), Times.Once);
-        goalStructure2.Verify(x => x.Reset(), Times.Once);
-    }
-
 
     [Fact]
     public void SequentialGoalStructure_WhenReset_ShouldBeUnfinished()
@@ -683,5 +669,23 @@ public class GoalStructureTests
 
         // Assert
         sequentialGoalStructure.Status.Should().Be(CompletionStatus.Unfinished);
+    }
+
+    [Fact]
+    public void SequentialGoalStructure_WhenReset_ShouldResetChildren()
+    {
+        // Arrange
+        Mock<IGoalStructure<IBeliefSet>> goalStructure1 = new();
+        Mock<IGoalStructure<IBeliefSet>> goalStructure2 = new();
+
+        Mock<SequentialGoalStructure<IBeliefSet>> sequentialGoalStructure
+            = new(goalStructure1.Object, goalStructure2.Object) { CallBase = true };
+
+        // Act
+        sequentialGoalStructure.Object.Reset();
+
+        // Assert
+        goalStructure1.Verify(x => x.Reset(), Times.Once);
+        goalStructure2.Verify(x => x.Reset(), Times.Once);
     }
 }

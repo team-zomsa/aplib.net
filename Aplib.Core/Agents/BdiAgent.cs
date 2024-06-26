@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.DesireSets;
 using Aplib.Core.Desire.Goals;
@@ -12,6 +16,9 @@ namespace Aplib.Core.Agents
     public class BdiAgent<TBeliefSet> : IAgent
         where TBeliefSet : IBeliefSet
     {
+        /// <inheritdoc />
+        public CompletionStatus Status => _desireSet.Status;
+
         /// <summary>
         /// Gets the belief set of the agent.
         /// </summary>
@@ -24,9 +31,6 @@ namespace Aplib.Core.Agents
         /// The desire contains all goal structures and the current goal.
         /// </remarks>
         private readonly IDesireSet<TBeliefSet> _desireSet;
-
-        /// <inheritdoc />
-        public CompletionStatus Status => _desireSet.Status;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BdiAgent{TBeliefSet}" /> class,

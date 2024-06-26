@@ -1,4 +1,8 @@
-﻿using Aplib.Core.Belief.BeliefSets;
+﻿// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Collections;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
@@ -16,9 +20,10 @@ namespace Aplib.Core.Desire.DesireSets
         public IMetadata Metadata { get; }
 
         /// <summary>
-        /// Stores the main goal structure of the agent.
+        /// If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.
         /// </summary>
-        private readonly IGoalStructure<TBeliefSet> _mainGoal;
+        public CompletionStatus Status
+            => _goalStructureStack.Count == 0 ? _mainGoal.Status : CompletionStatus.Unfinished;
 
         /// <summary>
         /// Stores the side goal structures of the agent.
@@ -30,10 +35,9 @@ namespace Aplib.Core.Desire.DesireSets
             <(IGoalStructure<TBeliefSet> goalStructure, System.Predicate<TBeliefSet> guard)> _goalStructureStack;
 
         /// <summary>
-        /// If there are no goal structures left to be completed, the status of this desire set is set to the main goal status.
+        /// Stores the main goal structure of the agent.
         /// </summary>
-        public CompletionStatus Status
-            => _goalStructureStack.Count == 0 ? _mainGoal.Status : CompletionStatus.Unfinished;
+        private readonly IGoalStructure<TBeliefSet> _mainGoal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DesireSet{TBeliefSet}" /> class.
@@ -65,18 +69,19 @@ namespace Aplib.Core.Desire.DesireSets
         { }
 
         /// <summary>
-        /// Pushes side goal structures on the stack if their guard is fulfilled.
+        /// Implicitly lifts a goal into a desire set.
         /// </summary>
-        /// <param name="beliefSet">The belief set to check the guards of the goal structures with.</param>
-        private void ActivateRelevantGoalStructures(TBeliefSet beliefSet)
-        {
-            // Filter all the goal structures by their guards.
-            var itemsToActivate = _goalStructureStack.ActivatableStackItems
-                .Where(item => item.Data.guard(beliefSet));
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
+        /// <returns>The most logically matching desire set, wrapping around <paramref name="goal"/>.</returns>
+        public static implicit operator DesireSet<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift().Lift();
 
-            // (Re)activate the filtered goal structures.
-            foreach (var item in itemsToActivate) _goalStructureStack.Activate(item);
-        }
+        /// <summary>
+        /// Implicitly lifts a goal structure a desire set.
+        /// </summary>
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoalStructure{TBeliefSet},IMetadata)" path="/param[@name='goalStructure']"/>
+        /// <returns>The most logically matching desire set, wrapping around <paramref name="goalStructure"/>.</returns>
+        public static implicit operator DesireSet<TBeliefSet>(GoalStructure<TBeliefSet> goalStructure) =>
+            goalStructure.Lift();
 
         /// <inheritdoc />
         public IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
@@ -85,6 +90,10 @@ namespace Aplib.Core.Desire.DesireSets
 
             return currentGoalStructure.GetCurrentGoal(beliefSet);
         }
+
+        /// <inheritdoc />
+        public IEnumerable<ILoggable> GetLogChildren() =>
+            _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
 
         /// <summary>
         /// Activates side goal structures when their guard is satisfied, and updates the activation stack
@@ -111,23 +120,18 @@ namespace Aplib.Core.Desire.DesireSets
             }
         }
 
-        /// <inheritdoc />
-        public IEnumerable<ILoggable> GetLogChildren() =>
-            _mainGoal is ILoggable loggable ? new[] { loggable } : Enumerable.Empty<ILoggable>();
-
         /// <summary>
-        /// Implicitly lifts a goal into a desire set.
+        /// Pushes side goal structures on the stack if their guard is fulfilled.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
-        /// <returns>The most logically matching desire set, wrapping around <paramref name="goal"/>.</returns>
-        public static implicit operator DesireSet<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift().Lift();
+        /// <param name="beliefSet">The belief set to check the guards of the goal structures with.</param>
+        private void ActivateRelevantGoalStructures(TBeliefSet beliefSet)
+        {
+            // Filter all the goal structures by their guards.
+            var itemsToActivate = _goalStructureStack.ActivatableStackItems
+                .Where(item => item.Data.guard(beliefSet));
 
-        /// <summary>
-        /// Implicitly lifts a goal structure a desire set.
-        /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoalStructure{TBeliefSet},IMetadata)" path="/param[@name='goalStructure']"/>
-        /// <returns>The most logically matching desire set, wrapping around <paramref name="goalStructure"/>.</returns>
-        public static implicit operator DesireSet<TBeliefSet>(GoalStructure<TBeliefSet> goalStructure) =>
-            goalStructure.Lift();
+            // (Re)activate the filtered goal structures.
+            foreach (var item in itemsToActivate) _goalStructureStack.Activate(item);
+        }
     }
 }

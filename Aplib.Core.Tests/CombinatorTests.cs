@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Desire.GoalStructures;
@@ -19,21 +23,84 @@ public class CombinatorTests
         [new Metadata(System.Guid.Empty, "a name", "a description"), "a name", "a description"]
     ];
 
-    private static void CheckMetadata(string? expectedName, string? expectedDescription, IMetadata actual)
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void AnyOfTacticCombinator_WhenCalled_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
     {
-        actual.Id.Should().BeEmpty();
-        actual.Name.Should().Be(expectedName);
-        actual.Description.Should().Be(expectedDescription);
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        // ReSharper disable once ConvertToLocalFunction
+        System.Predicate<IBeliefSet> guard = _ => false;
+
+        // Act
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(metadata, guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
+
+        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, anyOfTactic.Metadata);
+        selectedAction.Should().BeNull();
     }
 
-    private static void CheckDefaultMetadata(IMetadata actual)
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void AnyOfTacticCombinator_WithoutGuard_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
     {
-        actual.Id.Should().NotBeEmpty();
-        actual.Name.Should().BeNull();
-        actual.Description.Should().BeNull();
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+
+        // Act
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(metadata, Primitive(action1, _ => true), Primitive(action2, _ => false));
+
+        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, anyOfTactic.Metadata);
+        selectedAction.Should().Be(action1);
     }
 
-    #region GoalStructure combinator tests
+    [Fact]
+    public void AnyOfTacticCombinator_WithoutMetadata_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        // ReSharper disable once ConvertToLocalFunction
+        System.Predicate<IBeliefSet> guard = _ => false;
+
+        // Act
+        RandomTactic<IBeliefSet> anyOfTactic =
+            Random(guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
+
+        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(anyOfTactic.Metadata);
+        selectedAction.Should().BeNull();
+    }
+
+    [Fact]
+    public void AnyOfTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+
+        // Act
+        RandomTactic<IBeliefSet> anyOfTactic = Random(Primitive(action1, _ => true), Primitive(action2, _ => false));
+
+        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(anyOfTactic.Metadata);
+        selectedAction.Should().Be(action1);
+    }
 
     [Theory]
     [MemberData(nameof(Metadatas))]
@@ -91,6 +158,86 @@ public class CombinatorTests
 
     [Theory]
     [MemberData(nameof(Metadatas))]
+    public void FirstOfTacticCombinator_WhenCalled_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        // ReSharper disable once ConvertToLocalFunction
+        System.Predicate<IBeliefSet> guard = _ => false;
+
+        // Act
+        FirstOfTactic<IBeliefSet> firstOfTactic =
+            FirstOf(metadata, guard, Primitive(action1, _ => false), Primitive(action2, _ => true));
+
+        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, firstOfTactic.Metadata);
+        selectedAction.Should().BeNull();
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void FirstOfTacticCombinator_WithoutGuard_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+
+        // Act
+        FirstOfTactic<IBeliefSet> firstOfTactic =
+            FirstOf(metadata, Primitive(action1, _ => false), Primitive(action2, _ => true));
+
+        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, firstOfTactic.Metadata);
+        selectedAction.Should().Be(action2);
+    }
+
+    [Fact]
+    public void FirstOfTacticCombinator_WithoutMetadata_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        // ReSharper disable once ConvertToLocalFunction
+        System.Predicate<IBeliefSet> guard = _ => false;
+
+        // Act
+        FirstOfTactic<IBeliefSet> firstOfTactic =
+            FirstOf(guard, Primitive(action1, _ => false), Primitive(action2, _ => true));
+
+        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(firstOfTactic.Metadata);
+        selectedAction.Should().BeNull();
+    }
+
+    [Fact]
+    public void FirstOfTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+
+        // Act
+        FirstOfTactic<IBeliefSet> firstOfTactic =
+            FirstOf(Primitive(action1, _ => false), Primitive(action2, _ => true));
+
+        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(firstOfTactic.Metadata);
+        selectedAction.Should().Be(action2);
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
     public void PrimitiveGoalStructureCombinator_WhenCalled_GivesExpectedGoalStructure
         (Metadata metadata, string? expectedName, string? expectedDescription)
     {
@@ -125,6 +272,174 @@ public class CombinatorTests
         // Assert
         CheckDefaultMetadata(primitiveGoalStructure.Metadata);
         primitiveGoalStructure.Status.Should().Be(CompletionStatus.Success);
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void PrimitiveTacticCombinator_FromQueryable_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Mock<System.Func<IBeliefSet, int>> query = new();
+        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
+        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
+        Mock<System.Predicate<IBeliefSet>> guard = new();
+        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, queryAction, guard.Object);
+
+        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
+        actionFromFirstCall.Should().BeNull();
+        actionFromSecondCall.Should().Be(queryAction);
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void PrimitiveTacticCombinator_FromQueryableWithoutGuard_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Mock<System.Func<IBeliefSet, int>> query = new();
+        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
+        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, queryAction);
+
+        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
+        isActionable.Should().BeTrue();
+        selectedAction.Should().Be(queryAction);
+    }
+
+    [Fact]
+    public void PrimitiveTacticCombinator_FromQueryableWithoutMetadata_GivesExpectedTactic()
+    {
+        // Arrange
+        Mock<System.Func<IBeliefSet, int>> query = new();
+        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
+        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
+        Mock<System.Predicate<IBeliefSet>> guard = new();
+        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(queryAction, guard.Object);
+
+        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(primitiveTactic.Metadata);
+        actionFromFirstCall.Should().BeNull();
+        actionFromSecondCall.Should().Be(queryAction);
+    }
+
+    [Fact]
+    public void PrimitiveTacticCombinator_FromQueryableWithoutMetadataWithoutGuard_GivesExpectedTactic()
+    {
+        // Arrange
+        Mock<System.Func<IBeliefSet, int>> query = new();
+        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
+        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(queryAction);
+
+        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(primitiveTactic.Metadata);
+        isActionable.Should().BeTrue();
+        selectedAction.Should().Be(queryAction);
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void PrimitiveTacticCombinator_WhenCalled_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Action<IBeliefSet> action = new(_ => { });
+        Mock<System.Predicate<IBeliefSet>> guard = new();
+        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, action, guard.Object);
+
+        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
+        actionFromFirstCall.Should().BeNull();
+        actionFromSecondCall.Should().Be(action);
+    }
+
+    [Theory]
+    [MemberData(nameof(Metadatas))]
+    public void PrimitiveTacticCombinator_WithoutGuard_GivesExpectedTactic
+        (Metadata metadata, string? expectedName, string? expectedDescription)
+    {
+        // Arrange
+        Action<IBeliefSet> action = new(_ => { });
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, action);
+
+        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
+        isActionable.Should().BeTrue();
+        selectedAction.Should().Be(action);
+    }
+
+    [Fact]
+    public void PrimitiveTacticCombinator_WithoutMetadata_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action = new(_ => { });
+        Mock<System.Predicate<IBeliefSet>> guard = new();
+        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(action, guard.Object);
+
+        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(primitiveTactic.Metadata);
+        actionFromFirstCall.Should().BeNull();
+        actionFromSecondCall.Should().Be(action);
+    }
+
+    [Fact]
+    public void PrimitiveTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action = new(_ => { });
+
+        // Act
+        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(action);
+
+        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        CheckDefaultMetadata(primitiveTactic.Metadata);
+        isActionable.Should().BeTrue();
+        selectedAction.Should().Be(action);
     }
 
     [Theory]
@@ -218,336 +533,17 @@ public class CombinatorTests
         goalStructure1.Verify(x => x.UpdateStatus(It.IsAny<IBeliefSet>()), Times.Once);
     }
 
-    #endregion
-
-    #region Tactic combinator tests
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void AnyOfTacticCombinator_WhenCalled_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
+    private static void CheckDefaultMetadata(IMetadata actual)
     {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        // ReSharper disable once ConvertToLocalFunction
-        System.Predicate<IBeliefSet> guard = _ => false;
-
-        // Act
-        RandomTactic<IBeliefSet> anyOfTactic =
-            Random(metadata, guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
-
-        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, anyOfTactic.Metadata);
-        selectedAction.Should().BeNull();
+        actual.Id.Should().NotBeEmpty();
+        actual.Name.Should().BeNull();
+        actual.Description.Should().BeNull();
     }
 
-    [Fact]
-    public void AnyOfTacticCombinator_WithoutMetadata_GivesExpectedTactic()
+    private static void CheckMetadata(string? expectedName, string? expectedDescription, IMetadata actual)
     {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        // ReSharper disable once ConvertToLocalFunction
-        System.Predicate<IBeliefSet> guard = _ => false;
-
-        // Act
-        RandomTactic<IBeliefSet> anyOfTactic =
-            Random(guard, Primitive(action1, _ => true), Primitive(action2, _ => false));
-
-        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(anyOfTactic.Metadata);
-        selectedAction.Should().BeNull();
+        actual.Id.Should().BeEmpty();
+        actual.Name.Should().Be(expectedName);
+        actual.Description.Should().Be(expectedDescription);
     }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void AnyOfTacticCombinator_WithoutGuard_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-
-        // Act
-        RandomTactic<IBeliefSet> anyOfTactic =
-            Random(metadata, Primitive(action1, _ => true), Primitive(action2, _ => false));
-
-        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, anyOfTactic.Metadata);
-        selectedAction.Should().Be(action1);
-    }
-
-    [Fact]
-    public void AnyOfTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-
-        // Act
-        RandomTactic<IBeliefSet> anyOfTactic = Random(Primitive(action1, _ => true), Primitive(action2, _ => false));
-
-        IAction<IBeliefSet>? selectedAction = anyOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(anyOfTactic.Metadata);
-        selectedAction.Should().Be(action1);
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void FirstOfTacticCombinator_WhenCalled_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        // ReSharper disable once ConvertToLocalFunction
-        System.Predicate<IBeliefSet> guard = _ => false;
-
-        // Act
-        FirstOfTactic<IBeliefSet> firstOfTactic =
-            FirstOf(metadata, guard, Primitive(action1, _ => false), Primitive(action2, _ => true));
-
-        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, firstOfTactic.Metadata);
-        selectedAction.Should().BeNull();
-    }
-
-    [Fact]
-    public void FirstOfTacticCombinator_WithoutMetadata_GivesExpectedTactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        // ReSharper disable once ConvertToLocalFunction
-        System.Predicate<IBeliefSet> guard = _ => false;
-
-        // Act
-        FirstOfTactic<IBeliefSet> firstOfTactic =
-            FirstOf(guard, Primitive(action1, _ => false), Primitive(action2, _ => true));
-
-        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(firstOfTactic.Metadata);
-        selectedAction.Should().BeNull();
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void FirstOfTacticCombinator_WithoutGuard_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-
-        // Act
-        FirstOfTactic<IBeliefSet> firstOfTactic =
-            FirstOf(metadata, Primitive(action1, _ => false), Primitive(action2, _ => true));
-
-        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, firstOfTactic.Metadata);
-        selectedAction.Should().Be(action2);
-    }
-
-    [Fact]
-    public void FirstOfTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-
-        // Act
-        FirstOfTactic<IBeliefSet> firstOfTactic =
-            FirstOf(Primitive(action1, _ => false), Primitive(action2, _ => true));
-
-        IAction<IBeliefSet>? selectedAction = firstOfTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(firstOfTactic.Metadata);
-        selectedAction.Should().Be(action2);
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void PrimitiveTacticCombinator_WhenCalled_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Action<IBeliefSet> action = new(_ => { });
-        Mock<System.Predicate<IBeliefSet>> guard = new();
-        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, action, guard.Object);
-
-        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
-        actionFromFirstCall.Should().BeNull();
-        actionFromSecondCall.Should().Be(action);
-    }
-
-    [Fact]
-    public void PrimitiveTacticCombinator_WithoutMetadata_GivesExpectedTactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action = new(_ => { });
-        Mock<System.Predicate<IBeliefSet>> guard = new();
-        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(action, guard.Object);
-
-        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(primitiveTactic.Metadata);
-        actionFromFirstCall.Should().BeNull();
-        actionFromSecondCall.Should().Be(action);
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void PrimitiveTacticCombinator_WithoutGuard_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Action<IBeliefSet> action = new(_ => { });
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, action);
-
-        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
-        isActionable.Should().BeTrue();
-        selectedAction.Should().Be(action);
-    }
-
-    [Fact]
-    public void PrimitiveTacticCombinator_WithoutMetadataWithoutGuard_GivesExpectedTactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action = new(_ => { });
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(action);
-
-        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(primitiveTactic.Metadata);
-        isActionable.Should().BeTrue();
-        selectedAction.Should().Be(action);
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void PrimitiveTacticCombinator_FromQueryable_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Mock<System.Func<IBeliefSet, int>> query = new();
-        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
-        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-        Mock<System.Predicate<IBeliefSet>> guard = new();
-        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, queryAction, guard.Object);
-
-        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
-        actionFromFirstCall.Should().BeNull();
-        actionFromSecondCall.Should().Be(queryAction);
-    }
-
-    [Fact]
-    public void PrimitiveTacticCombinator_FromQueryableWithoutMetadata_GivesExpectedTactic()
-    {
-        // Arrange
-        Mock<System.Func<IBeliefSet, int>> query = new();
-        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
-        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-        Mock<System.Predicate<IBeliefSet>> guard = new();
-        guard.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(false).Returns(true);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(queryAction, guard.Object);
-
-        IAction<IBeliefSet>? actionFromFirstCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? actionFromSecondCall = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(primitiveTactic.Metadata);
-        actionFromFirstCall.Should().BeNull();
-        actionFromSecondCall.Should().Be(queryAction);
-    }
-
-    [Theory]
-    [MemberData(nameof(Metadatas))]
-    public void PrimitiveTacticCombinator_FromQueryableWithoutGuard_GivesExpectedTactic
-        (Metadata metadata, string? expectedName, string? expectedDescription)
-    {
-        // Arrange
-        Mock<System.Func<IBeliefSet, int>> query = new();
-        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
-        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(metadata, queryAction);
-
-        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckMetadata(expectedName, expectedDescription, primitiveTactic.Metadata);
-        isActionable.Should().BeTrue();
-        selectedAction.Should().Be(queryAction);
-    }
-
-    [Fact]
-    public void PrimitiveTacticCombinator_FromQueryableWithoutMetadataWithoutGuard_GivesExpectedTactic()
-    {
-        // Arrange
-        Mock<System.Func<IBeliefSet, int>> query = new();
-        query.SetupSequence(f => f(It.IsAny<IBeliefSet>())).Returns(1).Returns(2);
-        QueryAction<IBeliefSet, int> queryAction = new((_, _) => { }, query.Object);
-
-        // Act
-        PrimitiveTactic<IBeliefSet> primitiveTactic = Primitive(queryAction);
-
-        bool isActionable = primitiveTactic.IsActionable(It.IsAny<IBeliefSet>());
-        IAction<IBeliefSet>? selectedAction = primitiveTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        CheckDefaultMetadata(primitiveTactic.Metadata);
-        isActionable.Should().BeTrue();
-        selectedAction.Should().Be(queryAction);
-    }
-
-    #endregion
 }

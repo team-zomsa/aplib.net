@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
@@ -10,25 +14,6 @@ namespace Aplib.Core.Tests.Intent.Tactics;
 
 public class TacticTests
 {
-    // A subclass of Tactic for testing
-    public class TestTactic : Tactic<IBeliefSet>
-    {
-        public System.Predicate<IBeliefSet> Guard => _guard;
-
-        public TestTactic(Metadata metadata, System.Predicate<IBeliefSet> guard) : base(metadata, guard) { }
-
-        public TestTactic(System.Predicate<IBeliefSet> guard) : base(guard) { }
-
-        public TestTactic(Metadata metadata) : base(metadata) { }
-
-        public TestTactic() { }
-
-        public override IAction<IBeliefSet> GetAction(IBeliefSet beliefSet)
-            => throw new System.NotImplementedException();
-        public override IEnumerable<ILoggable> GetLogChildren()
-            => throw new System.NotImplementedException();
-    }
-
     // A subclass of FirstOfTactic for testing
     public class TestFirstOfTactic : FirstOfTactic<IBeliefSet>
     {
@@ -55,82 +40,39 @@ public class TacticTests
         public TestFirstOfTactic(params ITactic<IBeliefSet>[] subtactics) : base(subtactics) { }
     }
 
-
-    [Fact]
-    public void Tactic_WhenConstructed_HasExpectedData()
+    // A subclass of Tactic for testing
+    public class TestTactic : Tactic<IBeliefSet>
     {
-        // Arrange
-        Metadata metadata = It.IsAny<Metadata>();
-        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
+        public System.Predicate<IBeliefSet> Guard => _guard;
 
-        // Act
-        TestTactic tactic = new(metadata, guard);
+        public TestTactic(Metadata metadata, System.Predicate<IBeliefSet> guard) : base(metadata, guard) { }
 
-        // Assert
-        tactic.Metadata.Should().Be(metadata);
-        tactic.Guard.Should().Be(guard);
+        public TestTactic(System.Predicate<IBeliefSet> guard) : base(guard) { }
+
+        public TestTactic(Metadata metadata) : base(metadata) { }
+
+        public TestTactic() { }
+
+        public override IAction<IBeliefSet> GetAction(IBeliefSet beliefSet)
+            => throw new System.NotImplementedException();
+
+        public override IEnumerable<ILoggable> GetLogChildren()
+            => throw new System.NotImplementedException();
     }
 
     [Fact]
-    public void Tactic_WithoutMetadata_HasExpectedData()
+    public void AnyOfTactic_WithFalseGuard_ReturnsNoAction()
     {
         // Arrange
-        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
+        Action<IBeliefSet> action = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
+        RandomTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
 
         // Act
-        TestTactic tactic = new(guard);
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        tactic.Metadata.Id.Should().NotBeEmpty();
-        tactic.Metadata.Name.Should().BeNull();
-        tactic.Metadata.Description.Should().BeNull();
-        tactic.Guard.Should().Be(guard);
-    }
-
-    [Fact]
-    public void Tactic_WithoutGuard_HasExpectedData()
-    {
-        // Arrange
-        Metadata metadata = It.IsAny<Metadata>();
-
-        // Act
-        TestTactic tactic = new(metadata);
-
-        // Assert
-        tactic.Metadata.Should().Be(metadata);
-        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-    }
-
-    [Fact]
-    public void Tactic_Default_HasExpectedData()
-    {
-        // Act
-        TestTactic tactic = new();
-
-        // Assert
-        tactic.Metadata.Id.Should().NotBeEmpty();
-        tactic.Metadata.Name.Should().BeNull();
-        tactic.Metadata.Description.Should().BeNull();
-        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
-    }
-
-    /// <summary>
-    /// Given a tactic and an action,
-    /// When the guard of the tactic returns true,
-    /// Then an action should be selected.
-    /// </summary>
-    [Fact]
-    public void PrimitveTacticExecute_WhenGuardReturnsTrue_ActionIsSelected()
-    {
-        // Arrange
-        Mock<IAction<IBeliefSet>> action = new();
-        PrimitiveTactic<IBeliefSet> tactic = new(action.Object, guard: _ => true);
-
-        // Act
-        IAction<IBeliefSet> selectedAction = tactic.GetAction(It.IsAny<IBeliefSet>())!;
-
-        // Assert
-        selectedAction.Should().NotBeNull();
+        selectedAction.Should().BeNull();
     }
 
     /// <summary>
@@ -173,18 +115,62 @@ public class TacticTests
     }
 
     [Fact]
-    public void AnyOfTactic_WithFalseGuard_ReturnsNoAction()
+    public void FirstOfTactic_WithFalseGuard_ReturnsNoAction()
     {
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
         PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
-        RandomTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
+        FirstOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
 
         // Act
         IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
         selectedAction.Should().BeNull();
+    }
+
+    /// <summary>
+    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
+    /// When both subtactic guards are true,
+    /// Then the result should be the first subtactic.
+    /// </summary>
+    [Fact]
+    public void FirstOfTacticGetAction_WhenBothSubtacticsEnabled_ReturnsFirstSubtactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
+        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
+        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
+
+        // Act
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        selectedAction.Should().Be(action1);
+    }
+
+    /// <summary>
+    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
+    /// When the first subtactic guard is false and the second is true,
+    /// Then the result should be the second subtactic.
+    /// </summary>
+    [Fact]
+    public void FirstOfTacticGetAction_WhenFirstSubtacticIsDisabled_ReturnsSecondSubtactic()
+    {
+        // Arrange
+        Action<IBeliefSet> action1 = new(_ => { });
+        Action<IBeliefSet> action2 = new(_ => { });
+        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => false);
+        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
+        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
+
+        // Act
+        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+
+        // Assert
+        selectedAction.Should().Be(action2);
     }
 
     [Fact]
@@ -256,62 +242,22 @@ public class TacticTests
     }
 
     /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
-    /// When both subtactic guards are true,
-    /// Then the result should be the first subtactic.
+    /// Given a primitive tactic with a non-actionable action,
+    /// When calling GetAction,
+    /// Then the result should be null.
     /// </summary>
     [Fact]
-    public void FirstOfTacticGetAction_WhenBothSubtacticsEnabled_ReturnsFirstSubtactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => true);
-        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
-        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
-
-        // Act
-        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        selectedAction.Should().Be(action1);
-    }
-
-    /// <summary>
-    /// Given a parent of type <see cref="FirstOfTactic{TBeliefSet}" /> with two subtactics,
-    /// When the first subtactic guard is false and the second is true,
-    /// Then the result should be the second subtactic.
-    /// </summary>
-    [Fact]
-    public void FirstOfTacticGetAction_WhenFirstSubtacticIsDisabled_ReturnsSecondSubtactic()
-    {
-        // Arrange
-        Action<IBeliefSet> action1 = new(_ => { });
-        Action<IBeliefSet> action2 = new(_ => { });
-        PrimitiveTactic<IBeliefSet> tactic1 = new(action1, _ => false);
-        PrimitiveTactic<IBeliefSet> tactic2 = new(action2, _ => true);
-        FirstOfTactic<IBeliefSet> parentTactic = new(tactic1, tactic2);
-
-        // Act
-        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        selectedAction.Should().Be(action2);
-    }
-
-    [Fact]
-    public void FirstOfTactic_WithFalseGuard_ReturnsNoAction()
+    public void PrimitiveTactic_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsNoAction()
     {
         // Arrange
         Action<IBeliefSet> action = new(_ => { });
-        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
-        FirstOfTactic<IBeliefSet> parentTactic = new(_ => false, tactic);
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => false);
 
         // Act
-        IAction<IBeliefSet>? selectedAction = parentTactic.GetAction(It.IsAny<IBeliefSet>());
+        IAction<IBeliefSet>? enabledAction = tactic.GetAction(It.IsAny<IBeliefSet>());
 
         // Assert
-        selectedAction.Should().BeNull();
+        enabledAction.Should().Be(null);
     }
 
     /// <summary>
@@ -331,25 +277,6 @@ public class TacticTests
 
         // Assert
         enabledAction.Should().Be(action);
-    }
-
-    /// <summary>
-    /// Given a primitive tactic with a non-actionable action,
-    /// When calling GetAction,
-    /// Then the result should be null.
-    /// </summary>
-    [Fact]
-    public void PrimitiveTactic_WhenTacticTypeIsPrimitiveAndActionIsNotActionable_ReturnsNoAction()
-    {
-        // Arrange
-        Action<IBeliefSet> action = new(_ => { });
-        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => false);
-
-        // Act
-        IAction<IBeliefSet>? enabledAction = tactic.GetAction(It.IsAny<IBeliefSet>());
-
-        // Assert
-        enabledAction.Should().Be(null);
     }
 
     /// <summary>
@@ -390,24 +317,6 @@ public class TacticTests
     }
 
     [Fact]
-    public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndHasQuery_ReturnsCorrectQuery()
-    {
-        // Arrange
-        int result = 0;
-        QueryAction<IBeliefSet, int> action = new((_, b) => result = b, _ => 42);
-        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
-        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
-
-        // Act
-        bool isActionable = tactic.IsActionable(beliefSet);
-        tactic.GetAction(beliefSet)!.Execute(beliefSet);
-
-        // Assert
-        isActionable.Should().BeTrue();
-        result.Should().Be(42);
-    }
-
-    [Fact]
     public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndHasNullQuery_IsNotActionable()
     {
         // Arrange
@@ -428,5 +337,101 @@ public class TacticTests
         // Assert
         isActionable.Should().BeFalse();
         result.Should().Be(0);
+    }
+
+    [Fact]
+    public void PrimitiveTacticIsActionable_WhenGuardReturnsTrueAndHasQuery_ReturnsCorrectQuery()
+    {
+        // Arrange
+        int result = 0;
+        QueryAction<IBeliefSet, int> action = new((_, b) => result = b, _ => 42);
+        PrimitiveTactic<IBeliefSet> tactic = new(action, _ => true);
+        IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
+
+        // Act
+        bool isActionable = tactic.IsActionable(beliefSet);
+        tactic.GetAction(beliefSet)!.Execute(beliefSet);
+
+        // Assert
+        isActionable.Should().BeTrue();
+        result.Should().Be(42);
+    }
+
+    /// <summary>
+    /// Given a tactic and an action,
+    /// When the guard of the tactic returns true,
+    /// Then an action should be selected.
+    /// </summary>
+    [Fact]
+    public void PrimitveTacticExecute_WhenGuardReturnsTrue_ActionIsSelected()
+    {
+        // Arrange
+        Mock<IAction<IBeliefSet>> action = new();
+        PrimitiveTactic<IBeliefSet> tactic = new(action.Object, guard: _ => true);
+
+        // Act
+        IAction<IBeliefSet> selectedAction = tactic.GetAction(It.IsAny<IBeliefSet>())!;
+
+        // Assert
+        selectedAction.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void Tactic_Default_HasExpectedData()
+    {
+        // Act
+        TestTactic tactic = new();
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+    }
+
+
+    [Fact]
+    public void Tactic_WhenConstructed_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
+
+        // Act
+        TestTactic tactic = new(metadata, guard);
+
+        // Assert
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard.Should().Be(guard);
+    }
+
+    [Fact]
+    public void Tactic_WithoutGuard_HasExpectedData()
+    {
+        // Arrange
+        Metadata metadata = It.IsAny<Metadata>();
+
+        // Act
+        TestTactic tactic = new(metadata);
+
+        // Assert
+        tactic.Metadata.Should().Be(metadata);
+        tactic.Guard(It.IsAny<IBeliefSet>()).Should().BeTrue();
+    }
+
+    [Fact]
+    public void Tactic_WithoutMetadata_HasExpectedData()
+    {
+        // Arrange
+        System.Predicate<IBeliefSet> guard = It.IsAny<System.Predicate<IBeliefSet>>();
+
+        // Act
+        TestTactic tactic = new(guard);
+
+        // Assert
+        tactic.Metadata.Id.Should().NotBeEmpty();
+        tactic.Metadata.Name.Should().BeNull();
+        tactic.Metadata.Description.Should().BeNull();
+        tactic.Guard.Should().Be(guard);
     }
 }

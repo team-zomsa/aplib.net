@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Logging;
@@ -49,6 +53,18 @@ namespace Aplib.Core.Desire.GoalStructures
         public override IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet)
             => _currentGoalStructure!.GetCurrentGoal(beliefSet);
 
+        /// <inheritdoc />
+        public override IEnumerable<ILoggable> GetLogChildren() => _children.OfType<ILoggable>();
+
+        /// <inheritdoc />
+        public override void Reset()
+        {
+            base.Reset();
+
+            _childrenEnumerator.Reset();
+            _childrenEnumerator.MoveNext();
+        }
+
         /// <summary>
         /// Updates the status of the <see cref="SequentialGoalStructure{TBeliefSet}" />.
         /// The goal structure status is set to:
@@ -85,15 +101,6 @@ namespace Aplib.Core.Desire.GoalStructures
         }
 
         /// <inheritdoc />
-        public override void Reset()
-        {
-            base.Reset();
-
-            _childrenEnumerator.Reset();
-            _childrenEnumerator.MoveNext();
-        }
-
-        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -105,8 +112,5 @@ namespace Aplib.Core.Desire.GoalStructures
         /// </summary>
         /// <param name="disposing">Whether the object is being disposed.</param>
         protected virtual void Dispose(bool disposing) => _childrenEnumerator.Dispose();
-
-        /// <inheritdoc />
-        public override IEnumerable<ILoggable> GetLogChildren() => _children.OfType<ILoggable>();
     }
 }

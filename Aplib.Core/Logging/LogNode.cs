@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using System.Collections.Generic;
 
 namespace Aplib.Core.Logging
@@ -8,9 +12,9 @@ namespace Aplib.Core.Logging
     public class LogNode
     {
         /// <summary>
-        /// The loggable object of the node.
+        /// The children of the node.
         /// </summary>
-        public ILoggable Loggable { get; }
+        public List<LogNode> Children { get; }
 
         /// <summary>
         /// The depth at which this node resides.
@@ -18,9 +22,9 @@ namespace Aplib.Core.Logging
         public int Depth { get; }
 
         /// <summary>
-        /// The children of the node.
+        /// The loggable object of the node.
         /// </summary>
-        public List<LogNode> Children { get; }
+        public ILoggable Loggable { get; }
 
         /// <summary>
         /// Initialize a new <see cref="LogNode" /> from a given loggable object,

@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.Beliefs;
 using System.Collections.Generic;
 
@@ -9,26 +13,22 @@ namespace Aplib.Core.Tests.Belief;
 public class ListBeliefTests
 {
     /// <summary>
-    /// Given a ListBelief without an explicit shouldUpdate parameter,
-    /// When UpdateBelief is called,
-    /// Then the observation is updated.
+    /// Given an empty collection,
+    /// When a ListBelief is created from that collection,
+    /// Then the observation is also empty
     /// </summary>
     [Fact]
-    public void ListBelief_WithoutShouldUpdate_UpdatesObservation()
+    public void ListBelief_FromEmptyEnumerable_HasEmptyObservationList()
     {
         // Arrange
-        int[] numbers = [1, 1, 2, 3, 5, 8];
-
-        // Observation: Is the number even?
-        ListBelief<int, bool> belief = new(numbers, i => i % 2 == 0);
+        // ReSharper disable once CollectionNeverUpdated.Local
+        Stack<byte> stack = new();
 
         // Act
-        numbers[0] = 0;
-        belief.UpdateBelief();
+        ListBelief<byte, byte> belief = new(stack, b => b);
 
         // Assert
-        List<bool> expected = [true, false, true, false, false, true];
-        Assert.Equal(expected, belief);
+        Assert.Empty(belief.Observation);
     }
 
     /// <summary>
@@ -55,21 +55,25 @@ public class ListBeliefTests
     }
 
     /// <summary>
-    /// Given an empty collection,
-    /// When a ListBelief is created from that collection,
-    /// Then the observation is also empty
+    /// Given a ListBelief without an explicit shouldUpdate parameter,
+    /// When UpdateBelief is called,
+    /// Then the observation is updated.
     /// </summary>
     [Fact]
-    public void ListBelief_FromEmptyEnumerable_HasEmptyObservationList()
+    public void ListBelief_WithoutShouldUpdate_UpdatesObservation()
     {
         // Arrange
-        // ReSharper disable once CollectionNeverUpdated.Local
-        Stack<byte> stack = new();
+        int[] numbers = [1, 1, 2, 3, 5, 8];
+
+        // Observation: Is the number even?
+        ListBelief<int, bool> belief = new(numbers, i => i % 2 == 0);
 
         // Act
-        ListBelief<byte, byte> belief = new(stack, b => b);
+        numbers[0] = 0;
+        belief.UpdateBelief();
 
         // Assert
-        Assert.Empty(belief.Observation);
+        List<bool> expected = [true, false, true, false, false, true];
+        Assert.Equal(expected, belief);
     }
 }

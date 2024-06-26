@@ -1,4 +1,8 @@
-﻿namespace Aplib.Core.Belief.Beliefs
+﻿// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
+namespace Aplib.Core.Belief.Beliefs
 {
     /// <summary>
     /// Represents the agent's belief of a single object.
@@ -17,22 +21,6 @@
     public class Belief<TReference, TObservation> : IBelief where TReference : class
     {
         /// <summary>
-        /// The object reference used to generate/update the observation.
-        /// </summary>
-        protected internal readonly TReference _reference;
-
-        /// <summary>
-        /// A function that takes an object reference and generates/updates an observation.
-        /// </summary>
-        protected internal readonly System.Func<TReference, TObservation> _getObservationFromReference;
-
-        /// <summary>
-        /// A condition on when the observation should be updated. Takes the object reference
-        /// of the belief as a parameter for the predicate.
-        /// </summary>
-        protected internal readonly System.Predicate<TReference> _shouldUpdate;
-
-        /// <summary>
         /// Gets the metadata of the Belief.
         /// </summary>
         /// <remark>
@@ -45,6 +33,22 @@
         /// (i.e., some information about the game state as perceived by an agent).
         /// </summary>
         public TObservation Observation { get; protected set; }
+
+        /// <summary>
+        /// A function that takes an object reference and generates/updates an observation.
+        /// </summary>
+        protected internal readonly System.Func<TReference, TObservation> _getObservationFromReference;
+
+        /// <summary>
+        /// The object reference used to generate/update the observation.
+        /// </summary>
+        protected internal readonly TReference _reference;
+
+        /// <summary>
+        /// A condition on when the observation should be updated. Takes the object reference
+        /// of the belief as a parameter for the predicate.
+        /// </summary>
+        protected internal readonly System.Predicate<TReference> _shouldUpdate;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Belief{TReference, TObservation}" /> class with an object

@@ -1,10 +1,13 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Intent.Actions;
 using Aplib.Core.Intent.Tactics;
 using FluentAssertions;
 using Moq;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Aplib.Core.Tests.Desire;
 
@@ -143,19 +146,21 @@ public class GoalTests
         stateAfter.Should().Be(CompletionStatus.Success);
     }
 
-    [Fact]
-    public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal()
+    [Theory]
+    [InlineData(true)]
+    [InlineData(false)]
+    public void Goal_WithoutFailGuard_DoesNotFail(bool shouldSucceed)
     {
         // Arrange
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet> goal = new(tactic, predicate: _ => false, failGuard: _ => true);
+        Goal<IBeliefSet> goal = new(tactic, predicate: _ => shouldSucceed);
 
         // Act
         goal.UpdateStatus(beliefSet);
 
         // Assert
-        goal.Status.Should().Be(CompletionStatus.Failure);
+        goal.Status.Should().NotBe(CompletionStatus.Failure);
     }
 
     [Fact]
@@ -173,20 +178,18 @@ public class GoalTests
         goal.Status.Should().Be(CompletionStatus.Success);
     }
 
-    [Theory]
-    [InlineData(true)]
-    [InlineData(false)]
-    public void Goal_WithoutFailGuard_DoesNotFail(bool shouldSucceed)
+    [Fact]
+    public void UpdateStatus_WhenFailGuardIsTrue_FailsTheGoal()
     {
         // Arrange
         IBeliefSet beliefSet = Mock.Of<IBeliefSet>();
         ITactic<IBeliefSet> tactic = Mock.Of<ITactic<IBeliefSet>>();
-        Goal<IBeliefSet> goal = new(tactic, predicate: _ => shouldSucceed);
+        Goal<IBeliefSet> goal = new(tactic, predicate: _ => false, failGuard: _ => true);
 
         // Act
         goal.UpdateStatus(beliefSet);
 
         // Assert
-        goal.Status.Should().NotBe(CompletionStatus.Failure);
+        goal.Status.Should().Be(CompletionStatus.Failure);
     }
 }

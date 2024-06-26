@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using System.Collections.Generic;
 
 namespace Aplib.Core.Logging
@@ -9,12 +13,6 @@ namespace Aplib.Core.Logging
     /// </summary>
     public interface ILoggable : IDocumented
     {
-        /// <summary>
-        /// Gets the children of the loggable object.
-        /// </summary>
-        /// <returns>The children of the loggable object.</returns>
-        public IEnumerable<ILoggable> GetLogChildren();
-
         /// <summary>
         /// Generates a log tree of the loggable object.
         /// </summary>
@@ -29,5 +27,11 @@ namespace Aplib.Core.Logging
 
             return root;
         }
+
+        /// <summary>
+        /// Gets the children of the loggable object.
+        /// </summary>
+        /// <returns>The children of the loggable object.</returns>
+        public IEnumerable<ILoggable> GetLogChildren();
     }
 }

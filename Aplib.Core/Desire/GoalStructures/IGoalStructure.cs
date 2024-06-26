@@ -1,4 +1,8 @@
-﻿using Aplib.Core.Belief.BeliefSets;
+﻿// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
+using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 
 namespace Aplib.Core.Desire.GoalStructures
@@ -21,14 +25,14 @@ namespace Aplib.Core.Desire.GoalStructures
         IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet);
 
         /// <summary>
+        /// Resets the goal structure to its initial state.
+        /// </summary>
+        void Reset();
+
+        /// <summary>
         /// Updates the state of the goal structure.
         /// </summary>
         /// <param name="beliefSet">The belief set of the agent.</param>
         void UpdateStatus(TBeliefSet beliefSet);
-
-        /// <summary>
-        /// Resets the goal structure to its initial state.
-        /// </summary>
-        void Reset();
     }
 }

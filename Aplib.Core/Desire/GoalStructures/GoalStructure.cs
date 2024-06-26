@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 using Aplib.Core.Belief.BeliefSets;
 using Aplib.Core.Desire.Goals;
 using Aplib.Core.Logging;
@@ -14,13 +18,13 @@ namespace Aplib.Core.Desire.GoalStructures
         /// <inheritdoc />
         public IMetadata Metadata { get; }
 
+        /// <inheritdoc />
+        public CompletionStatus Status { get; protected set; } = CompletionStatus.Unfinished;
+
         /// <summary>
         /// The children of the goal structure.
         /// </summary>
         protected readonly IEnumerable<IGoalStructure<TBeliefSet>> _children;
-
-        /// <inheritdoc />
-        public CompletionStatus Status { get; protected set; } = CompletionStatus.Unfinished;
 
         /// <summary>
         /// The goal structure that is currently being fulfilled.
@@ -44,17 +48,11 @@ namespace Aplib.Core.Desire.GoalStructures
         protected GoalStructure(IEnumerable<IGoalStructure<TBeliefSet>> children) : this(new Metadata(), children) { }
 
         /// <summary>
-        /// Gets the current goal using the given <see cref="IBeliefSet" />.
+        /// Implicitly lifts a goal into a goal structure.
         /// </summary>
-        /// <param name="beliefSet">The belief set of the agent.</param>
-        /// <returns>The current goal to be fulfilled.</returns>
-        public abstract IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet);
-
-        /// <summary>
-        /// Updates the state of the goal structure.
-        /// </summary>
-        /// <param name="beliefSet">The belief set of the agent.</param>
-        public abstract void UpdateStatus(TBeliefSet beliefSet);
+        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
+        /// <returns>The most logically matching goal structure, wrapping around <paramref name="goal"/>.</returns>
+        public static implicit operator GoalStructure<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
 
         /// <inheritdoc />
         public virtual void Reset()
@@ -64,14 +62,20 @@ namespace Aplib.Core.Desire.GoalStructures
             Status = CompletionStatus.Unfinished;
         }
 
+        /// <summary>
+        /// Gets the current goal using the given <see cref="IBeliefSet" />.
+        /// </summary>
+        /// <param name="beliefSet">The belief set of the agent.</param>
+        /// <returns>The current goal to be fulfilled.</returns>
+        public abstract IGoal<TBeliefSet> GetCurrentGoal(TBeliefSet beliefSet);
+
         /// <inheritdoc />
         public abstract IEnumerable<ILoggable> GetLogChildren();
 
         /// <summary>
-        /// Implicitly lifts a goal into a goal structure.
+        /// Updates the state of the goal structure.
         /// </summary>
-        /// <inheritdoc cref="LiftingExtensionMethods.Lift{TBeliefSet}(IGoal{TBeliefSet},IMetadata)" path="/param[@name='goal']"/>
-        /// <returns>The most logically matching goal structure, wrapping around <paramref name="goal"/>.</returns>
-        public static implicit operator GoalStructure<TBeliefSet>(Goal<TBeliefSet> goal) => goal.Lift();
+        /// <param name="beliefSet">The belief set of the agent.</param>
+        public abstract void UpdateStatus(TBeliefSet beliefSet);
     }
 }

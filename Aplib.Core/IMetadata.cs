@@ -1,3 +1,7 @@
+// This program has been developed by students from the bachelor Computer Science at Utrecht
+// University within the Software Project course.
+// Copyright Utrecht University (Department of Information and Computing Sciences)
+
 namespace Aplib.Core
 {
     /// <summary>
@@ -8,6 +12,11 @@ namespace Aplib.Core
     public interface IMetadata
     {
         /// <summary>
+        /// Gets the description used to describe the instance.
+        /// </summary>
+        public string? Description { get; }
+
+        /// <summary>
         /// Gets the unique identifier of the instance.
         /// </summary>
         public System.Guid Id { get; }
@@ -16,10 +25,5 @@ namespace Aplib.Core
         /// Gets the name used to display the instance.
         /// </summary>
         public string? Name { get; }
-
-        /// <summary>
-        /// Gets the description used to describe the instance.
-        /// </summary>
-        public string? Description { get; }
     }
 }
