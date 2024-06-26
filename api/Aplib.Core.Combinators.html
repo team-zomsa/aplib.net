@@ -246,7 +246,7 @@ Class Combinators  <a class="header-action link-secondary" title="View source" h
 
   <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Tactics.ITactic{``0}[])">
   FirstOf&lt;TBeliefSet&gt;(IMetadata, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L100"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L101"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
@@ -255,7 +255,7 @@ subtactics and guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -263,8 +263,9 @@ subtactics and guard condition.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -292,7 +293,7 @@ subtactics and guard condition.</p>
 
   <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_IMetadata_System_Predicate___0__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.IMetadata,System.Predicate{``0},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
   FirstOf&lt;TBeliefSet&gt;(IMetadata, Predicate&lt;TBeliefSet&gt;, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L89"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
@@ -301,7 +302,7 @@ subtactics and guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -312,8 +313,9 @@ subtactics and guard condition.</p>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -341,7 +343,7 @@ subtactics and guard condition.</p>
 
   <h3 id="Aplib_Core_Combinators_FirstOf__1_Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(Aplib.Core.Intent.Tactics.ITactic{``0}[])">
   FirstOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L106"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L107"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
@@ -350,13 +352,14 @@ subtactics and guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -384,7 +387,7 @@ subtactics and guard condition.</p>
 
   <h3 id="Aplib_Core_Combinators_FirstOf__1_System_Predicate___0__Aplib_Core_Intent_Tactics_ITactic___0____" data-uid="Aplib.Core.Combinators.FirstOf``1(System.Predicate{``0},Aplib.Core.Intent.Tactics.ITactic{``0}[])">
   FirstOf&lt;TBeliefSet&gt;(Predicate&lt;TBeliefSet&gt;, params ITactic&lt;TBeliefSet&gt;[])
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L94"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L95"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.FirstOfTactic-1.html">FirstOfTactic&lt;TBeliefSet&gt;</a> class with the specified
@@ -393,7 +396,7 @@ subtactics and guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static FirstOfTactic&lt;TBeliefSet&gt; FirstOf&lt;TBeliefSet&gt;(Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -401,8 +404,9 @@ subtactics and guard condition.</p>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -519,7 +523,7 @@ subtactics and guard condition.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{``0})">
   Primitive&lt;TBeliefSet&gt;(IMetadata, IAction&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L123"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L124"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -566,7 +570,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IAction___0__System_Predicate___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IAction{``0},System.Predicate{``0})">
   Primitive&lt;TBeliefSet&gt;(IMetadata, IAction&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L112"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -616,7 +620,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{``0})">
   Primitive&lt;TBeliefSet&gt;(IMetadata, IQueryable&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L147"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -625,7 +629,7 @@ and guard.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; query) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; queryAction) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -633,8 +637,9 @@ and guard.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -662,7 +667,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_IMetadata_Aplib_Core_Intent_Actions_IQueryable___0__System_Predicate___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.IMetadata,Aplib.Core.Intent.Actions.IQueryable{``0},System.Predicate{``0})">
   Primitive&lt;TBeliefSet&gt;(IMetadata, IQueryable&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L135"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -671,7 +676,7 @@ and guard.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; query, Predicate&lt;TBeliefSet&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IMetadata metadata, IQueryable&lt;TBeliefSet&gt; queryAction, Predicate&lt;TBeliefSet&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -679,8 +684,9 @@ and guard.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard of the primitive tactic.</p>
 </dd>
@@ -711,7 +717,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IAction___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IAction{``0})">
   Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L128"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L129"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -755,7 +761,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IAction___0__System_Predicate___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IAction{``0},System.Predicate{``0})">
   Primitive&lt;TBeliefSet&gt;(IAction&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L117"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -802,7 +808,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IQueryable___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IQueryable{``0})">
   Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L151"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L153"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -811,13 +817,14 @@ and guard.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; query) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; queryAction) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -845,7 +852,7 @@ and guard.</p>
 
   <h3 id="Aplib_Core_Combinators_Primitive__1_Aplib_Core_Intent_Actions_IQueryable___0__System_Predicate___0__" data-uid="Aplib.Core.Combinators.Primitive``1(Aplib.Core.Intent.Actions.IQueryable{``0},System.Predicate{``0})">
   Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt;, Predicate&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L140"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Combinators.cs/#L141"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Intent.Tactics.PrimitiveTactic-1.html">PrimitiveTactic&lt;TBeliefSet&gt;</a> class with the specified action
@@ -854,13 +861,14 @@ and guard.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; query, Predicate&lt;TBeliefSet&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static PrimitiveTactic&lt;TBeliefSet&gt; Primitive&lt;TBeliefSet&gt;(IQueryable&lt;TBeliefSet&gt; queryAction, Predicate&lt;TBeliefSet&gt; guard) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>query</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
+    <dt><code>queryAction</code> <a class="xref" href="Aplib.Core.Intent.Actions.IQueryable-1.html">IQueryable</a>&lt;TBeliefSet&gt;</dt>
+    <dd><p>The queryable action of the primitive tactic.</p>
+</dd>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard of the primitive tactic.</p>
 </dd>
@@ -900,7 +908,7 @@ and an optional guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(IMetadata metadata, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -908,8 +916,9 @@ and an optional guard condition.</p>
     <dt><code>metadata</code> <a class="xref" href="Aplib.Core.IMetadata.html">IMetadata</a></dt>
     <dd><p>Metadata about this tactic, used to quickly display the tactic in several contexts.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -946,7 +955,7 @@ and an optional guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(IMetadata metadata, Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -957,8 +966,9 @@ and an optional guard condition.</p>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -995,13 +1005,14 @@ and an optional guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -1038,7 +1049,7 @@ and an optional guard condition.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subTactics) where TBeliefSet : IBeliefSet</code></pre>
+    <pre><code class="lang-csharp hljs">public static RandomTactic&lt;TBeliefSet&gt; Random&lt;TBeliefSet&gt;(Predicate&lt;TBeliefSet&gt; guard, params ITactic&lt;TBeliefSet&gt;[] subtactics) where TBeliefSet : IBeliefSet</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1046,8 +1057,9 @@ and an optional guard condition.</p>
     <dt><code>guard</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.predicate-1">Predicate</a>&lt;TBeliefSet&gt;</dt>
     <dd><p>The guard condition.</p>
 </dd>
-    <dt><code>subTactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
-    <dd></dd>
+    <dt><code>subtactics</code> <a class="xref" href="Aplib.Core.Intent.Tactics.ITactic-1.html">ITactic</a>&lt;TBeliefSet&gt;[]</dt>
+    <dd><p>The list of subtactics.</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>

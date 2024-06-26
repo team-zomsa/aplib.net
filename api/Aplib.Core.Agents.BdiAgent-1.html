@@ -169,10 +169,11 @@ Class BdiAgent&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title=
 
   <h3 id="Aplib_Core_Agents_BdiAgent_1__ctor__0_Aplib_Core_Desire_DesireSets_IDesireSet__0__" data-uid="Aplib.Core.Agents.BdiAgent`1.#ctor(`0,Aplib.Core.Desire.DesireSets.IDesireSet{`0})">
   BdiAgent(TBeliefSet, IDesireSet&lt;TBeliefSet&gt;)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Agents/BdiAgent.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Agents/BdiAgent.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Agents.BdiAgent-1.html">BdiAgent&lt;TBeliefSet&gt;</a> class.</p>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Aplib.Core.Agents.BdiAgent-1.html">BdiAgent&lt;TBeliefSet&gt;</a> class,
+from a given set of beliefs and desires.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -183,10 +184,11 @@ Class BdiAgent&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title=
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
     <dt><code>beliefSet</code> <span class="xref">TBeliefSet</span></dt>
-    <dd><p>The beliefset of the agent.</p>
+    <dd><p>The belief set of the agent.</p>
 </dd>
     <dt><code>desireSet</code> <a class="xref" href="Aplib.Core.Desire.DesireSets.IDesireSet-1.html">IDesireSet</a>&lt;TBeliefSet&gt;</dt>
-    <dd></dd>
+    <dd><p>The desire set of the agent.</p>
+</dd>
   </dl>
 
 
@@ -211,7 +213,7 @@ Class BdiAgent&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title=
   <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Agents/BdiAgent.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets the completion status of the object.</p>
+  <div class="markdown level1 summary"><p>Gets the completion status of the instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -244,7 +246,7 @@ Class BdiAgent&lt;TBeliefSet&gt;  <a class="header-action link-secondary" title=
 
   <h3 id="Aplib_Core_Agents_BdiAgent_1_Update" data-uid="Aplib.Core.Agents.BdiAgent`1.Update">
   Update()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Agents/BdiAgent.cs/#L47"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/team-zomsa/aplib.net/blob/main/Aplib.Core/Agents/BdiAgent.cs/#L48"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Performs a single BDI cycle, in which the agent updates its beliefs, selects a concrete goal,
@@ -265,7 +267,7 @@ chooses a concrete action to achieve the selected goal, and executes the chosen 
 
 
   <h4 class="section" id="Aplib_Core_Agents_BdiAgent_1_Update_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>This method will get called every frame of the game.</p>
+  <div class="markdown level1 remarks"><p>This method will get called for every frame of the game.</p>
 </div>
 
 
