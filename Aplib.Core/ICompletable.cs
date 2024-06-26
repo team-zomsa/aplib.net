@@ -6,7 +6,7 @@
     public interface ICompletable
     {
         /// <summary>
-        /// Gets the completion status of the object.
+        /// Gets the completion status of the instance.
         /// </summary>
         public CompletionStatus Status { get; }
     }

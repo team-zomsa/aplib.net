@@ -62,13 +62,14 @@ namespace Aplib.Core.Intent.Tactics
         }
 
         /// <inheritdoc
-        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})"/>
+        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})" />
         public PrimitiveTactic(IQueryable<TBeliefSet> queryAction, System.Predicate<TBeliefSet> guard)
             : this(new Metadata(), queryAction, guard)
         {
         }
 
-        /// <inheritdoc cref="PrimitiveTactic{TBeliefSet}(IQueryable{TBeliefSet},System.Predicate{TBeliefSet})" />
+        /// <inheritdoc
+        ///     cref="PrimitiveTactic{TBeliefSet}(IMetadata,IQueryable{TBeliefSet},System.Predicate{TBeliefSet})" />
         public PrimitiveTactic(IMetadata metadata, IQueryable<TBeliefSet> queryAction)
             : this(metadata, queryAction, _ => true)
         {
@@ -81,11 +82,11 @@ namespace Aplib.Core.Intent.Tactics
         {
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override IAction<TBeliefSet>? GetAction(TBeliefSet beliefSet)
             => IsActionable(beliefSet) ? _action : null;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override IEnumerable<ILoggable> GetLogChildren() =>
             _action is ILoggable loggable ? new[] { loggable } : System.Linq.Enumerable.Empty<ILoggable>();
     }
